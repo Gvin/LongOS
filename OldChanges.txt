@@ -1,5 +1,5 @@
 This changes came from GvinCCGUI project.
-For changes of the LongOS see file TODO.txt
+For changes of the LongOS see file TODO.md
 
 
 
