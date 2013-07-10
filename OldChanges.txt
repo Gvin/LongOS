@@ -1,0 +1,101 @@
+This changes came from GvinCCGUI project.
+For changes of the LongOS see file TODO.txt
+
+
+
+
+===== For version 0.7 =====
+Done - F54: Separate window's functions on standard and window-specific.
+Done - F54.1: Separate drawing function.
+Done - F54.2: Separate left click processing function.
+Done - F54.3: Separate right click processing function.
+Done - F54.4: Separate double click processing function.
+Done - F54.5: Separate key processing function.
+Done - F54.6: Separate char processing function.
+Done - F54.7: Separate rednet processing function.
+Done - F54.8: Separate rupdating function.
+Done - F23: Add global error screen.
+Rejected - F19: Add screensaver.
+
+===== For version 0.6 =====
+Done - F58: Add reaction on double click for buttons.
+Done - F34: Add calculator program.
+Done - F65: Add calendar.
+Done - F68: Update calendar to show years too.
+Done - F56: Add modem control button to the control panel.
+Done - F70: Update Edit component, add cursor moving.
+Done - F39: Add scroll bar on-scroll-click value changing.
+Done - F73: Change window moving mechanics.
+Done - F42: Add logger.
+Done - F76: Add logging on loading.
+Done - F77: Add logging to the system classes.
+Done - F78: Change Id generation to generate only letters and numbers.
+Done - F74: Add Home, End and Delete keys processing in Edit component.
+Done - F79: Add real loading screen with progress bar.
+Done - F82: Change modem manager class to modem state monitor.
+Done - F81: Make OS screen size independent.
+Done - F69: Improve GvinCalculator.
+Done - F83: Update GvinPaint to work with new image format.
+Done - F86: Remove unused PeripheralsManager.
+Rejected - F21: Add login screen and password entering (configurable).
+Fixed - B13: [Issue #13] GvinFileManager error when copying directory inside itself.
+Fixed - B14: [Issue #14] GvinFileManager context menu is showing out of the window.
+Fixed - B15: [Issue #15] GvinFileManager error when delete key is pressed.
+Fixed - B16: [Issue #16] GvinFIleManager: Not properly drawing context menu.
+Fixed - B17: [Issue #17] Edit: When focused, cursor sometimes blinks all over the screen.
+Fixed - B18: [Issue # 18] Color schema not applying for desktop context menu.
+Fixed - B19: [Issue #19] Edit component: Cursor on the wrong position after setting Text value.
+Fixed - B20: [Issue #20] Loading screen: Progress bar not showing correctly on large resolutions.
+
+===== For version 0.5 =====
+Done - F16: Upgrade GvinPaint to working version.
+Done - F16.1: Add properly canvas drawing in Paint.
+Done - F16.2: Add file saving and loading.
+Done - F16.3: Add colors palette.
+Done - F16.4: Add tools
+Done - F41: Add wallpaper path to the configuration.
+Done - F38: Add standard error text with function name for every error.
+Done - F53: Add OpenFile window reacting on Enter key.
+Done - F52: Add delete key handling in FileManager.
+Done - F48: Add renaming to the FileManager.
+Done - F51: Add question in FileManager when trying to delete file or directory.
+Done - F46: Add file deselection in FileManager on left click in empty space.
+Done - F49: Add "Set as active" button in TasksManager.
+Done - F45: Update TasksManager to change old-style scroll-bar.
+Done - F47: Add autosizing option in PopupMenu component and possibility to disable it.
+Done - F50: Add events queue.
+Fixed - B6: [Issue #6] Fix scroll bar roller not properly positioned on the edge values.
+Fixed - B7: [Issue #7] Fix file manager error with file/directory names duplication.
+Fixed - B8: [Issue #8] Fix not moving titles of windows when moving windows horizontaly.
+Fixed - B9: [Issue #4] Bug is still reproducible. Fix paint crash when moving out of the screen. Possible error with scroll bars.
+Fixed - B10: [Issue #10] Fix desktop context-menu showing on right click on program window.
+Fixed - B11: [Issue #11] Fix popup menu not reacting when out of the main window.
+Fixed - B12: [Issue #12] OpenFile: Backspace key not processing in Edit.
+
+===== For version 0.4 =====
+Done - F6: Add components manager.
+Done - F7: Add configuration for double click speed.
+Done - F8: Add check box component.
+Done - F9: Add configurable option for changing control panel position.
+Done - F10: Add selection in FileManager.
+Done - F11: Add context menu in FileManager.
+Done - F12: Add file operations in FileManager.
+Done - F13: Add folder operations in FileManager.
+Done - F14: Add additional error processing in FileManager.
+Done - F15: Add configuration for changing standard window buttons position.
+Done - F29: Add modal windows.
+Done - F30: Add modem messages processing.
+Done - F31: Add timers.
+Done - F32: Add menues manager.
+Fixed - B1: [Issue #1] Add window title length processing to limit it's length.
+Fixed - B2: [Issue #2] Fix bug with empty directories in FileManager.
+Fixed - B3: [Issue #3] Add control panel position processing for maximizing windows.
+Fixed - B4: [Issue #4] Update "Out of range" video buffer errors processing.
+Fixed - B5: [Issue #5] Update window behavior when dragging it out of the screen.
+
+===== For version 0.3 =====
+Done - F1: Upgrade images storing format, for easier manual reading and writing.
+Done - F2: Add double click processing in applications manager.
+Done - F3: Add horizontal scroll bar component.
+Done - F4: Add progress bar component.
+Done - F5: Add text box component.

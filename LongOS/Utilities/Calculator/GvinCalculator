@@ -1,0 +1,9 @@
+local function run()
+	shell.run('/LongOS/Utilities/Calculator/CalculatorWindowClass.lua');
+
+	local application = Application('Calculator', false, true);
+	local calculatorWindow = CalculatorWindow(application);
+	application:Run(calculatorWindow);
+end
+
+System:Try(run);

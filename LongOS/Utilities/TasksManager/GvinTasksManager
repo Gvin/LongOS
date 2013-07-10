@@ -1,0 +1,9 @@
+local function run()
+	shell.run('/LongOS/Utilities/TasksManager/TasksManagerWindowClass.lua');
+
+	local application = Application('Tasks manager', true, true);
+	local tasksManagerWindow = TasksManagerWindow(application);
+	application:Run(tasksManagerWindow);
+end
+
+System:Try(run);

@@ -1,0 +1,9 @@
+local function run()
+	shell.run('/LongOS/Utilities/FileManager/FileManagerWindowClass.lua');
+
+	local application = Application('File manager', false, true);
+	local fileManagerWindow = FileManagerWindow(application);
+	application:Run(fileManagerWindow);
+end
+
+System:Try(run);
