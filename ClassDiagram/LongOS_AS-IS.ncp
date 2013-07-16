@@ -1,0 +1,162 @@
+<Project>
+  <Name>LongOS_AS-IS</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>VideoBuffer</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>VideoBuffer</Name>
+        <Access>Public</Access>
+        <Location left="221" top="159" />
+        <Size width="458" height="485" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int[] backgroundColor</Member>
+        <Member type="Field">private int currentBackgroundColor</Member>
+        <Member type="Field">private int currentTextColor</Member>
+        <Member type="Field">private int[] textColor</Member>
+        <Member type="Field">private string[] text</Member>
+        <Member type="Field">private int cursorX</Member>
+        <Member type="Field">private int cursorY</Member>
+        <Member type="Field">private int realCursorX</Member>
+        <Member type="Field">private int realCursorY</Member>
+        <Member type="Field">private bool cursorBlink</Member>
+        <Member type="Constructor">public VideoBuffer()</Member>
+        <Member type="Method">private bool isOnScreen(int x, int y)</Member>
+        <Member type="Method">public void SetRealCursorPos(int x, int y)</Member>
+        <Member type="Method">public void SetCursorPos(int x, int y)</Member>
+        <Member type="Method">public void SetBackgroundColor(int color)</Member>
+        <Member type="Method">public void SetPixelColor(int x, int y, int color)</Member>
+        <Member type="Method">public void SetTextColor(int color)</Member>
+        <Member type="Method">public void DrawBlock(int x, int y, int width, int height, int color, char symbol)</Member>
+        <Member type="Method">public void SetColorParameters(int textColor, int backgroundColor)</Member>
+        <Member type="Method">public void SetCursorBlink(bool value)</Member>
+        <Member type="Method">public void Write(string text)</Member>
+        <Member type="Method">public void WriteAt(int x, int y, string text)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Desktop</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Desktop</Name>
+        <Access>Public</Access>
+        <Location left="153" top="102" />
+        <Size width="362" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int[] wallpaper</Member>
+        <Member type="Field">private int wallpaperWidth</Member>
+        <Member type="Field">private int wallpaperHeight</Member>
+        <Member type="Field">public string FileName</Member>
+        <Member type="Field">private PopupMenu desktopMenu</Member>
+        <Member type="Constructor">public Desktop()</Member>
+        <Member type="Method">private string[] separate(string text, char separator)</Member>
+        <Member type="Method">private int[] loadWallpaper(string wallpaperName)</Member>
+        <Member type="Method">public void LoadWallpaper(string wallpaperName)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ControlPanel</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>ControlPanel</Name>
+        <Access>Public</Access>
+        <Location left="59" top="45" />
+        <Size width="378" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public bool IsBottom</Member>
+        <Member type="Field">private ComponentsManager componentsManager</Member>
+        <Member type="Field">private MenuesManager menuesManager</Member>
+        <Member type="Constructor">public ControlPanel()</Member>
+        <Member type="Method">private void drawControlPanel(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void alighMenu(PopupMenu menu)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void AddApplication(string applicationName, string applicationPath)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Logger</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Logger</Name>
+        <Access>Public</Access>
+        <Location left="96" top="48" />
+        <Size width="228" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Constructor">public Logger(string fileName)</Member>
+        <Member type="Method">private void writeLine(string line)</Member>
+        <Member type="Method">public void ClearLog()</Member>
+        <Member type="Method">public void LogMessage(string message)</Member>
+        <Member type="Method">public void LogError(string errorText)</Member>
+        <Member type="Method">public void LogDebug(string debugText)</Member>
+        <Member type="Method">public void LogWarning(string warningText)</Member>
+        <Member type="Method">public void AddDivider(string dividerName)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Timer</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Timer</Name>
+        <Access>Public</Access>
+        <Location left="110" top="53" />
+        <Size width="162" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int Interval</Member>
+        <Member type="Field">private bool enabled = false</Member>
+        <Member type="Field">public function OnTick = nil</Member>
+        <Member type="Field">public object OnTickParams = nil</Member>
+        <Member type="Constructor">public Timer(int interval)</Member>
+        <Member type="Method">public void Tick()</Member>
+        <Member type="Method">public bool GetEnabled()</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public void Stop()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Configuration</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Configuration</Name>
+        <Access>Public</Access>
+        <Location left="73" top="48" />
+        <Size width="250" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private object[] values</Member>
+        <Member type="Constructor">public Configuration()</Member>
+        <Member type="Method">public void ReadConfiguration(string fileName)</Member>
+        <Member type="Method">public void WriteConfiguration(string fileName)</Member>
+        <Member type="Method">public object GetValue(string name)</Member>
+        <Member type="Method">public void SetValue(string name, object value)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+</Project>
