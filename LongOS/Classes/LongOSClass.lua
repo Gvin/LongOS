@@ -3,7 +3,7 @@ LongOS = Class(function(this)
 
 	local updateLock = false;
 
-	local colorConfiguration = Configuration();
+	local colorConfiguration = ColorConfiguration('/LongOS/Configuration/color_schema.xml');
 	local interfaceConfiguration = Configuration();
 	local mouseConfiguration = Configuration();
 
@@ -338,7 +338,7 @@ LongOS = Class(function(this)
 
 	-- Load color scheme configuration from file.
 	this.LoadColorSchemaConfiguration = function()
-		colorConfiguration:ReadConfiguration('/LongOS/Configuration/color_schema.config');
+		colorConfiguration:ReadConfiguration();
 	end
 
 	this.LoadInterfaceConfiguration = function()
@@ -355,12 +355,12 @@ LongOS = Class(function(this)
 
 	-- Get color from system pallete by it's name.
 	this.GetSystemColor = function(_, name)
-		return colorConfiguration:GetValue(name) + 0;
+		return colorConfiguration:GetColor(name);
 	end
 
 	-- Set color in system pallete by it's name.
 	this.SetSystemColor = function(_, name, value)
-		colorConfiguration:SetValue(name, value);
+		colorConfiguration:SetColor(name, value);
 	end
 
 	this.GetInterfaceOption = function(_, name)
@@ -373,7 +373,7 @@ LongOS = Class(function(this)
 
 	-- Save current color scheme configuration to the configuration file.
 	this.SaveColorSchemaConfiguration = function(_)
-		colorConfiguration:WriteConfiguration('/LongOS/Configuration/color_schema.config');
+		colorConfiguration:WriteConfiguration();
 	end
 
 	this.SaveInterfaceConfiguration = function()

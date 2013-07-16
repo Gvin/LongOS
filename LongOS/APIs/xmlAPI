@@ -1,0 +1,81 @@
+local function parseargs(s)
+  local arg = {}
+  string.gsub(s, "(%w+)=([\"'])(.-)%2", function (w, _, a)
+    arg[w] = a
+  end)
+  return arg
+end
+    
+function parse(s)
+  local stack = {}
+  local top = {}
+  table.insert(stack, top)
+  local ni,c,label,xarg, empty
+  local i, j = 1, 1
+  while true do
+    ni,j,c,label,xarg, empty = string.find(s, "<(%/?)([%w:]+)(.-)(%/?)>", i)
+    if not ni then break end
+    local text = string.sub(s, i, ni-1)
+    if not string.find(text, "^%s*$") then
+      table.insert(top, text)
+    end
+    if empty == "/" then  -- empty element tag
+      table.insert(top, {label=label, xarg=parseargs(xarg), empty=1})
+    elseif c == "" then   -- start tag
+      top = {label=label, xarg=parseargs(xarg)}
+      table.insert(stack, top)   -- new level
+    else  -- end tag
+      local toclose = table.remove(stack)  -- remove top
+      top = stack[#stack]
+      if #stack < 1 then
+        error("Nothing to close with "..label)
+      end
+      if toclose.label ~= label then
+        error("Trying to close "..toclose.label.." with "..label)
+      end
+      table.insert(top, toclose)
+    end
+    i = j+1
+  end
+  local text = string.sub(s, i)
+  if not string.find(text, "^%s*$") then
+    table.insert(stack[#stack], text)
+  end
+  if #stack > 1 then
+    error("Unclosed "..stack[#stack].label)
+  end
+  return stack[1]
+end
+
+local function getSpaces(depth)
+  local spaces = '';
+  for i = 1, depth do
+    spaces = spaces..'\t';
+  end
+  return spaces;
+end
+
+local function getNodeLine(node, depth)
+  local nodeLine = getSpaces(depth)..'<'..node.label;
+  if (node.xarg ~= nil) then
+    for key,_ in pairs(node.xarg) do
+      nodeLine = nodeLine..' '..key..'="'..node.xarg[key]..'"';
+    end
+  end
+  if (#node == 0) then -- no more child elements
+    return nodeLine..' />\n\r';
+  else
+    nodeLine = nodeLine..'>\n\r';
+    for i = 1, #node do
+      nodeLine = nodeLine..getNodeLine(node[i], depth + 1);
+    end
+    return nodeLine..getSpaces(depth)..'</'..node.label..'>\n\r';
+  end
+end
+
+function write(data, fileName)
+  local file = fs.open(fileName, 'w');
+  local line = getNodeLine(data, 0);
+  file.write(line);
+  file.close();
+end
