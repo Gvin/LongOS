@@ -94,40 +94,19 @@ PaintWindow = Class(Window, function(this, application)
 	hScrollBar:SetValue(1);
 	this:AddComponent(hScrollBar);
 
-	local function separate(text, separator)
-		local result = {};
-		local substring = '';
-
-		for i = 1, string.len(text) do
-			local symbol = string.sub(text, i, i);
-			if (symbol == separator) then
-				table.insert(result, substring);
-				substring = '';
-			else
-				substring = substring..symbol;
-			end
-		end
-
-		if (substring ~= '') then
-			table.insert(result, substring);
-		end
-
-		return result;
-	end
-
 	local function getImageSize(file)
-		local size = separate(file.readLine(),'x');
+		local size = stringExtAPI.separate(file.readLine(),'x');
 		return size[1] + 0, size[2] + 0;
 	end
 
 	this.LoadFile = function(_)
-		local fileName = separate(this.FileName, '#')[1];
+		local fileName = stringExtAPI.separate(this.FileName, '#')[1];
 		local file = fs.open(fileName, 'r');
 		canvasWidth, canvasHeight = getImageSize(file);
 		canvas = {};
 		for i = 1, canvasHeight do
 			local line = file.readLine();
-			canvas[i] = separate(line, ' ');
+			canvas[i] = stringExtAPI.separate(line, ' ');
 			for j = 1, canvasWidth do
 				canvas[i][j] = canvas[i][j] + 0;
 			end
@@ -159,8 +138,8 @@ PaintWindow = Class(Window, function(this, application)
 			end
 		else
 			if (this.FileName ~= oldFileName) then
-				local sizeString = separate(this.FileName, '#')[2];
-				local size = separate(sizeString, 'x');
+				local sizeString = stringExtAPI.separate(this.FileName, '#')[2];
+				local size = stringExtAPI.separate(sizeString, 'x');
 				canvasWidth = size[1] + 0;
 				canvasHeight = size[2] + 0;
 				this:Clear();
@@ -264,7 +243,7 @@ PaintWindow = Class(Window, function(this, application)
 	end
 
 	this.SaveFile = function(_)
-		local fileName = separate(this.FileName, '#')[1];
+		local fileName = stringExtAPI.separate(this.FileName, '#')[1];
 		local file = fs.open(fileName, 'w');
 		file.writeLine(canvasWidth..'x'..canvasHeight);
 		local line = '';

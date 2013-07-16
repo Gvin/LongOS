@@ -271,27 +271,6 @@ FileManagerWindow = Class(Window, function(this, application)
 		end
 	end
 
-	local function separate(text, separator)
-		local result = {};
-		local substring = '';
-
-		for i = 1, string.len(text) do
-			local symbol = string.sub(text, i, i);
-			if (symbol == separator) then
-				table.insert(result, substring);
-				substring = '';
-			else
-				substring = substring..symbol;
-			end
-		end
-
-		if (substring ~= '') then
-			table.insert(result, substring);
-		end
-
-		return result;
-	end
-
 	this.Copy = function(_)
 		copiedFile = currentDirectory..'/'..selectedFile;
 		cuttedFile = '';
@@ -309,8 +288,8 @@ FileManagerWindow = Class(Window, function(this, application)
 
 	local function copyFile(fileName, accessPath)
 		if (fs.isDir(fileName)) then
-			local newPathParts = separate(accessPath, '/');
-			local oldPathParts = separate(fileName, '/');
+			local newPathParts = stringExtAPI.separate(accessPath, '/');
+			local oldPathParts = stringExtAPI.separate(fileName, '/');
 			local name = fs.getName(fileName);
 			local equal = true;
 			for i = 1, #oldPathParts do

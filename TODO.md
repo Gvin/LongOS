@@ -14,7 +14,7 @@ For v0.2
 - [ ] F5: Change configs extension to XML (Result of F4).
 - [ ] F6: Create Pixel class.
 - [ ] F7: Create class diagrams for all classes.
-- [ ] F9: Create stringExtAPI.
+- [X] F9: Create stringExtAPI.
 
 Further features
 --------

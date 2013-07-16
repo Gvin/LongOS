@@ -157,27 +157,6 @@ CalculatorWindow = Class(Window, function(this, application)
 		return result;
 	end
 
-	local function separate(text, separator)
-		local result = {};
-		local substring = '';
-
-		for i = 1, string.len(text) do
-			local symbol = string.sub(text, i, i);
-			if (symbol == separator) then
-				table.insert(result, substring);
-				substring = '';
-			else
-				substring = substring..symbol;
-			end
-		end
-
-		if (substring ~= '') then
-			table.insert(result, substring);
-		end
-
-		return result;
-	end
-
 	local function add(params)
 		if (params[1] == nil or params[2] == nil) then
 			error('$Wrong statement.');
@@ -260,7 +239,7 @@ CalculatorWindow = Class(Window, function(this, application)
 	this.Evaluate = function(_)
 		local success, message = pcall(evaluate);
 		if (not success) then
-			local data = separate(message, '$');
+			local data = stringExtAPI.separate(message, '$');
 			dataEdit.Text = data[2];
 		end
 	end

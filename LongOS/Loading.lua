@@ -155,6 +155,14 @@ local function includeBaseClass()
 	mustBeLoaded(LongOS, 'LongOS');
 end
 
+os.loadAPI('/LongOS/APIs/xmlAPI');
+if (xmlAPI == nil) then
+	error('xmlAPI not found in location /LongOS/APIs/');
+end
+os.loadAPI('/LongOS/APIs/stringExtAPI');
+if (stringExtAPI == nil) then
+	error('stringExtAPI not found in location /LongOS/APIs/');
+end
 
 includeSystemClasses();
 

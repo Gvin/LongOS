@@ -1,22 +1,3 @@
-local function separate(text, separator)
-	local result = {};
-	local substring = '';
-
-	for i = 1, string.len(text) do
-		local symbol = string.sub(text, i, i);
-		if (symbol == separator) then
-			table.insert(result, substring);
-			substring = '';
-		else
-			substring = substring..symbol;
-		end
-	end
-
-	table.insert(result, substring);
-
-	return result;
-end
-
 TextBox = Class(Component, function(this, width, height, backgroundColor, textColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
@@ -36,7 +17,7 @@ TextBox = Class(Component, function(this, width, height, backgroundColor, textCo
 		videoBuffer:DrawBlock(this.X, this.Y, this.Width, this.Height, this.BackgroundColor);
 		videoBuffer:SetColorParameters(this.TextColor, this.BackgroundColor);
 
-		local lines = separate(this.Text, '\n');
+		local lines = stringExtAPI.separate(this.Text, '\n', false);
 
 		local toPrint = '';
 		if (#lines > 0) then
@@ -69,7 +50,7 @@ TextBox = Class(Component, function(this, width, height, backgroundColor, textCo
 	end
 
 	local newLine = function()
-		local lines = separate(this.Text, '\n');
+		local lines = stringExtAPI.separate(this.Text, '\n', false);
 		if (#lines < this.Height) then
 			this.Text = this.Text..'\n';
 		end
@@ -88,7 +69,7 @@ TextBox = Class(Component, function(this, width, height, backgroundColor, textCo
 
 	this.ProcessCharEvent = function(_, char)
 		if (focus) then
-			local lines = separate(this.Text, '\n');
+			local lines = stringExtAPI.separate(this.Text, '\n', false);
 			if (string.len(lines[#lines]) < this.Width - 1) then
 				this.Text = this.Text..char;
 			end

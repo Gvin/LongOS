@@ -9,37 +9,16 @@ Desktop = Class(function(a)
 	local changeWallpaperButton = Button('Change wallpaper', colors.gray, colors.white, 1, 1, 'left-top');
 	desktopMenu:AddComponent(changeWallpaperButton);
 
-	local function separate(text, separator)
-		local result = {};
-		local substring = '';
-
-		for i = 1, string.len(text) do
-			local symbol = string.sub(text, i, i);
-			if (symbol == separator) then
-				table.insert(result, substring);
-				substring = '';
-			else
-				substring = substring..symbol;
-			end
-		end
-
-		if (substring ~= '') then
-			table.insert(result, substring);
-		end
-
-		return result;
-	end
-
 	local loadWallpaper = function(wallpaperName)
 		a.FileName = wallpaperName;
 		local wallpaper = {};
 		local file = fs.open(wallpaperName, 'r');
-		local size = separate(file.readLine(),'x');
+		local size = stringExtAPI.separate(file.readLine(),'x');
 		wallpaperWidth = size[1];
 		wallpaperHeight = size[2];
 		for i = 1, wallpaperHeight do
 			local line = file.readLine();
-			wallpaper[i] = separate(line, ' ');
+			wallpaper[i] = stringExtAPI.separate(line, ' ');
 			for j = 1, wallpaperWidth do
 				wallpaper[i][j] = wallpaper[i][j] + 0;
 			end

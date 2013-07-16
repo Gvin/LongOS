@@ -1,0 +1,20 @@
+function separate(text, separator, ignoreEmptyLines)
+	local result = {};
+	local substring = '';
+
+	for i = 1, string.len(text) do
+		local symbol = string.sub(text, i, i);
+		if (symbol == separator) then
+			table.insert(result, substring);
+			substring = '';
+		else
+			substring = substring..symbol;
+		end
+	end
+
+	if (substring ~= '' or ignoreEmptyLines == false) then
+		table.insert(result, substring);
+	end
+
+	return result;
+end
