@@ -190,4 +190,35 @@ Maintains reading, storing and writing color schema configuration.</Text>
     </Entities>
     <Relationships />
   </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>InterfaceConfiguration</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>InterfaceConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="43" top="37" />
+        <Size width="275" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Field">private object[] data = nil</Member>
+        <Member type="Constructor">public InterfaceConfiguration(string fileName)</Member>
+        <Member type="Method">private object[] getData(object[] parsed)</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public int GetOption(string optionName)</Member>
+        <Member type="Method">public void SetOption(string optionName, int value)</Member>
+        <Member type="Method">private object[] prepareDocument()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>New class added for the feature 
+"F5: Change configs extension to XML (Result of F4)." 
+Maintains reading, storing and writing interface configuration.</Text>
+        <Location left="434" top="37" />
+        <Size width="287" height="75" />
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
 </Project>
