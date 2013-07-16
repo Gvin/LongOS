@@ -147,8 +147,10 @@ local function includeSystemClasses()
 	mustBeLoaded(Desktop, 'Desktop');
 	include('Classes/SystemClasses/ConfigurationClass');
 	mustBeLoaded(Configuration, 'Configuration');
-	include('Classes/SystemClasses/ColorConfiguration');
+	include('Classes/SystemClasses/ConfigurationManager/ColorConfiguration');
 	mustBeLoaded(ColorConfiguration, 'ColorConfiguration');
+	include('Classes/SystemClasses/ConfigurationManager/InterfaceConfiguration');
+	mustBeLoaded(InterfaceConfiguration, 'InterfaceConfiguration');
 end
 
 local function includeBaseClass()

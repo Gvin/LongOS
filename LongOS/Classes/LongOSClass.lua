@@ -4,7 +4,7 @@ LongOS = Class(function(this)
 	local updateLock = false;
 
 	local colorConfiguration = ColorConfiguration('/LongOS/Configuration/color_schema.xml');
-	local interfaceConfiguration = Configuration();
+	local interfaceConfiguration = InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
 	local mouseConfiguration = Configuration();
 
 	local runtimeLog = Logger('/LongOS/Logs/runtime.log');
@@ -80,8 +80,8 @@ LongOS = Class(function(this)
 	-- Draw system.
 	this.Draw = function()
 		if (not updateLock) then
-			if (desktopManager.FileName ~= interfaceConfiguration:GetValue('WallpaperFileName')) then
-				desktopManager:LoadWallpaper(interfaceConfiguration:GetValue('WallpaperFileName'));
+			if (desktopManager.FileName ~= interfaceConfiguration:GetOption('WallpaperFileName')) then
+				desktopManager:LoadWallpaper(interfaceConfiguration:GetOption('WallpaperFileName'));
 			end
 			
 			videoBuffer:SetCursorBlink(false);
@@ -342,7 +342,7 @@ LongOS = Class(function(this)
 	end
 
 	this.LoadInterfaceConfiguration = function()
-		interfaceConfiguration:ReadConfiguration('/LongOS/Configuration/interface.config');
+		interfaceConfiguration:ReadConfiguration();
 	end
 
 	-- Load all system configuration.
@@ -364,11 +364,11 @@ LongOS = Class(function(this)
 	end
 
 	this.GetInterfaceOption = function(_, name)
-		return interfaceConfiguration:GetValue(name);
+		return interfaceConfiguration:GetOption(name);
 	end
 
 	this.SetInterfaceOption = function(_, name, value)
-		interfaceConfiguration:SetValue(name, value);
+		interfaceConfiguration:SetOption(name, value);
 	end
 
 	-- Save current color scheme configuration to the configuration file.
@@ -377,7 +377,7 @@ LongOS = Class(function(this)
 	end
 
 	this.SaveInterfaceConfiguration = function()
-		interfaceConfiguration:WriteConfiguration('/LongOS/Configuration/interface.config');
+		interfaceConfiguration:WriteConfiguration();
 	end
 
 	-- Show configuration window.
