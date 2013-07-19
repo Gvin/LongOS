@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 12 registered features.
+Currently there are 17 registered features.
 
 TODO
 ========
@@ -26,6 +26,10 @@ For v0.2
 Further features
 --------
 - [ ] F8: Add terminal programs support.
+- [ ] F14: Add drag-n-drop support.
+- [ ] F15: Improve PopupMenu to support submenues.
+- [ ] F16: Improve components ierarchy.
+- [ ] F17: Add TimersManager class.
 
 History
 ========
