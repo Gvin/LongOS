@@ -145,12 +145,15 @@ local function includeSystemClasses()
 	mustBeLoaded(ControlPanel, 'ControlPanel');
 	include('Classes/SystemClasses/DesktopClass');
 	mustBeLoaded(Desktop, 'Desktop');
-	include('Classes/SystemClasses/ConfigurationClass');
-	mustBeLoaded(Configuration, 'Configuration');
+end
+
+local function includeConfigurationClasses()
 	include('Classes/SystemClasses/ConfigurationManager/ColorConfiguration');
 	mustBeLoaded(ColorConfiguration, 'ColorConfiguration');
 	include('Classes/SystemClasses/ConfigurationManager/InterfaceConfiguration');
 	mustBeLoaded(InterfaceConfiguration, 'InterfaceConfiguration');
+	include('Classes/SystemClasses/ConfigurationManager/MouseConfiguration');
+	mustBeLoaded(MouseConfiguration, 'MouseConfiguration');
 end
 
 local function includeBaseClass()
@@ -169,6 +172,8 @@ if (stringExtAPI == nil) then
 end
 
 includeSystemClasses();
+
+includeConfigurationClasses();
 
 includeApplicationClasses();
 

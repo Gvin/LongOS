@@ -5,7 +5,7 @@ LongOS = Class(function(this)
 
 	local colorConfiguration = ColorConfiguration('/LongOS/Configuration/color_schema.xml');
 	local interfaceConfiguration = InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
-	local mouseConfiguration = Configuration();
+	local mouseConfiguration = MouseConfiguration('/LongOS/Configuration/mouse_configuration.xml');
 
 	local runtimeLog = Logger('/LongOS/Logs/runtime.log');
 
@@ -104,7 +104,7 @@ LongOS = Class(function(this)
 			return;
 		end
 
-		dblClickTimer = mouseConfiguration:GetValue('DoubleClickSpeed') + 0;
+		dblClickTimer = mouseConfiguration:GetOption('DoubleClickSpeed') + 0;
 		clickX = cursorX;
 		clickY = cursorY;
 
@@ -350,7 +350,7 @@ LongOS = Class(function(this)
 		this:LoadColorSchemaConfiguration();
 		this:LoadInterfaceConfiguration();
 		loadApplicationsConfiguration();
-		mouseConfiguration:ReadConfiguration('/LongOS/Configuration/mouse.config');
+		mouseConfiguration:ReadConfiguration();
 	end
 
 	-- Get color from system pallete by it's name.

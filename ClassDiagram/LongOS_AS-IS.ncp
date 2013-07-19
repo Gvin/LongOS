@@ -139,27 +139,6 @@
     <Relationships />
   </ProjectItem>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Configuration</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>Configuration</Name>
-        <Access>Public</Access>
-        <Location left="73" top="48" />
-        <Size width="250" height="179" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private object[] values</Member>
-        <Member type="Constructor">public Configuration()</Member>
-        <Member type="Method">public void ReadConfiguration(string fileName)</Member>
-        <Member type="Method">public void WriteConfiguration(string fileName)</Member>
-        <Member type="Method">public object GetValue(string name)</Member>
-        <Member type="Method">public void SetValue(string name, object value)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
     <Name>ColorConfiguration</Name>
     <Language>Java</Language>
     <Entities>
@@ -197,7 +176,7 @@ Maintains reading, storing and writing color schema configuration.</Text>
       <Entity type="Class">
         <Name>InterfaceConfiguration</Name>
         <Access>Public</Access>
-        <Location left="43" top="37" />
+        <Location left="44" top="37" />
         <Size width="275" height="230" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private string fileName</Member>
@@ -215,8 +194,39 @@ Maintains reading, storing and writing color schema configuration.</Text>
         <Text>New class added for the feature 
 "F5: Change configs extension to XML (Result of F4)." 
 Maintains reading, storing and writing interface configuration.</Text>
-        <Location left="434" top="37" />
+        <Location left="435" top="37" />
         <Size width="287" height="75" />
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>MouseConfiguration</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Comment">
+        <Text>New class added for the feature 
+"F5: Change configs extension to XML (Result of F4)." 
+Maintains reading, storing and writing mouse configuration.</Text>
+        <Location left="455" top="57" />
+        <Size width="287" height="75" />
+      </Entity>
+      <Entity type="Class">
+        <Name>MouseConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="64" top="57" />
+        <Size width="275" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Field">private object[] data = nil</Member>
+        <Member type="Constructor">public MouseConfiguration(string fileName)</Member>
+        <Member type="Method">private object[] getData(object[] parsed)</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public int GetOption(string optionName)</Member>
+        <Member type="Method">public void SetOption(string optionName, int value)</Member>
+        <Member type="Method">private object[] prepareDocument()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
       </Entity>
     </Entities>
     <Relationships />
