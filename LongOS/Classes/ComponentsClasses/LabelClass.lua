@@ -2,15 +2,18 @@ Label = Class(Component, function(this, text, backgroundColor, textColor, dX, dY
 	Component.init(this, dX, dY, anchorType);
 	this.Text = text;
 	this.TextColor = textColor;
-	if (this.TextColor == nil) then
-		this.TextColor = System:GetSystemColor('SystemLabelsTextColor');
-	end
 	this.BackgroundColor = backgroundColor;
-	if (this.BackgroundColor == nil) then
-		this.BackgroundColor = System:GetSystemColor('WindowColor');
-	end
 
 	this._draw = function(videoBuffer, x, y)
+		if (textColor == nil) then
+			local colorConfiguration = System:GetColorConfiguration();
+			this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+		end
+		if (backgroundColor == nil) then
+			local colorConfiguration = System:GetColorConfiguration();
+			this.BackgroundColor = colorConfiguration:GetColor('WindowColor');
+		end
+
 		videoBuffer:SetTextColor(this.TextColor);
 		videoBuffer:SetBackgroundColor(this.BackgroundColor);
 		videoBuffer:WriteAt(x, y, this.Text);

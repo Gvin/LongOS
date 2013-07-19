@@ -154,6 +154,8 @@ local function includeConfigurationClasses()
 	mustBeLoaded(InterfaceConfiguration, 'InterfaceConfiguration');
 	include('Classes/SystemClasses/ConfigurationManager/MouseConfiguration');
 	mustBeLoaded(MouseConfiguration, 'MouseConfiguration');
+	include('Classes/SystemClasses/ConfigurationManager/ConfigurationManager');
+	mustBeLoaded(ConfigurationManager, 'ConfigurationManager');
 end
 
 local function includeBaseClass()
@@ -175,12 +177,12 @@ includeSystemClasses();
 
 includeConfigurationClasses();
 
+includeBaseClass();
+
 includeApplicationClasses();
 
 includeComponents();
 
 includeSystemWindows();
-
-includeBaseClass();
 
 loadingLog:AddDivider('Loading finished');

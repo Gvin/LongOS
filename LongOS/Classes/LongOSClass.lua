@@ -3,9 +3,7 @@ LongOS = Class(function(this)
 
 	local updateLock = false;
 
-	local colorConfiguration = ColorConfiguration('/LongOS/Configuration/color_schema.xml');
-	local interfaceConfiguration = InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
-	local mouseConfiguration = MouseConfiguration('/LongOS/Configuration/mouse_configuration.xml');
+	local configurationManager = ConfigurationManager();
 
 	local runtimeLog = Logger('/LongOS/Logs/runtime.log');
 
@@ -79,6 +77,7 @@ LongOS = Class(function(this)
 	
 	-- Draw system.
 	this.Draw = function()
+		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
 		if (not updateLock) then
 			if (desktopManager.FileName ~= interfaceConfiguration:GetOption('WallpaperFileName')) then
 				desktopManager:LoadWallpaper(interfaceConfiguration:GetOption('WallpaperFileName'));
@@ -99,6 +98,8 @@ LongOS = Class(function(this)
 	end
 
 	local function processLeftClickEvent(cursorX, cursorY)
+		local mouseConfiguration = configurationManager:GetMouseConfiguration();
+
 		if (dblClickTimer > 0 and clickX == cursorX and clickY == cursorY) then
 			processDoubleClickEvent(cursorX, cursorY);
 			return;
@@ -324,6 +325,9 @@ LongOS = Class(function(this)
 		end
 	end
 
+-------------------------------------------------------------------
+--------------------- CONFIGURATION -------------------------------
+
 	local loadApplicationsConfiguration = function()
 		local file = fs.open('/LongOS/Configuration/applications.config', 'r');
 		local name = file.readLine();
@@ -336,48 +340,23 @@ LongOS = Class(function(this)
 		file.close();
 	end
 
-	-- Load color scheme configuration from file.
-	this.LoadColorSchemaConfiguration = function()
-		colorConfiguration:ReadConfiguration();
-	end
-
-	this.LoadInterfaceConfiguration = function()
-		interfaceConfiguration:ReadConfiguration();
-	end
-
-	-- Load all system configuration.
-	this.LoadConfiguration = function(_)
-		this:LoadColorSchemaConfiguration();
-		this:LoadInterfaceConfiguration();
+	-- Read all system configurations.
+	this.ReadConfiguration = function()
+		configurationManager:ReadConfiguration();
 		loadApplicationsConfiguration();
-		mouseConfiguration:ReadConfiguration();
 	end
 
-	-- Get color from system pallete by it's name.
-	this.GetSystemColor = function(_, name)
-		return colorConfiguration:GetColor(name);
+	this.WriteConfiguration = function()
+		configurationManager:WriteConfiguration();
 	end
 
-	-- Set color in system pallete by it's name.
-	this.SetSystemColor = function(_, name, value)
-		colorConfiguration:SetColor(name, value);
+	-- Gets color configuration.
+	this.GetColorConfiguration = function()
+		return configurationManager:GetColorConfiguration();
 	end
 
-	this.GetInterfaceOption = function(_, name)
-		return interfaceConfiguration:GetOption(name);
-	end
-
-	this.SetInterfaceOption = function(_, name, value)
-		interfaceConfiguration:SetOption(name, value);
-	end
-
-	-- Save current color scheme configuration to the configuration file.
-	this.SaveColorSchemaConfiguration = function(_)
-		colorConfiguration:WriteConfiguration();
-	end
-
-	this.SaveInterfaceConfiguration = function()
-		interfaceConfiguration:WriteConfiguration();
+	this.GetInterfaceConfiguration = function()
+		return configurationManager:GetInterfaceConfiguration();
 	end
 
 	-- Show configuration window.

@@ -11,7 +11,7 @@ TasksManagerWindow = Class(Window, function(this, application)
 	local scroll = 0;
 	local selectedApplicationId = '';
 
-	local tasksCountLabel = Label('Applications count: '..System:GetApplicationsCount(), System:GetSystemColor('WindowColor'), System:GetSystemColor('SystemLabelsTextColor'), 2, 1, 'left-top');
+	local tasksCountLabel = Label('Applications count: '..System:GetApplicationsCount(), nil, nil, 2, 1, 'left-top');
 	this:AddComponent(tasksCountLabel);
 
 	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, -2, 2, 'right-top');

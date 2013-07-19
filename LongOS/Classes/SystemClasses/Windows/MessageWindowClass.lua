@@ -32,8 +32,10 @@ MessageWindow = Class(Window, function(this, application, title, text, textColor
 	this.Text = text;
 	this.TextColor = textColor;
 	this.IsModal = true;
+	local colorConfiguration = System:GetColorConfiguration();
+
 	if (this.TextColor == nil) then
-		this.TextColor = System:GetSystemColor('SystemLabelsTextColor');
+		this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
 	end
 
 	local okButton = Button(' OK ', nil, nil, math.floor(this.Width / 2 - 2), this.Height - 2, 'left-top');
@@ -43,7 +45,7 @@ MessageWindow = Class(Window, function(this, application, title, text, textColor
 
 	this.Draw = function(_, videoBuffer)
 		videoBuffer:SetTextColor(this.TextColor);
-		videoBuffer:SetBackgroundColor(System:GetSystemColor('WindowColor'));
+		videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('WindowColor'));
 		local line = 1;
 		local col = 1;
 		for i = 1, string.len(this.Text) do

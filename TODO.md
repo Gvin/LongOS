@@ -9,8 +9,8 @@ For v0.2
 
 - [ ] F1: Make code clean-up.
 - [ ] F2: Create Image class.
-- [ ] F3: Create ConfigurationManager class.
-- [ ] F4: Add XML support.
+- [X] F3: Create ConfigurationManager class.
+- [X] F4: Add XML support.
 - [X] F5: Change configs extension to XML (Result of F4).
 - [X] F5.1: Change color schema config extension to XML.
 - [X] F5.2: Change interface config extension to XML.
@@ -20,7 +20,8 @@ For v0.2
 - [X] F9: Create stringExtAPI.
 - [ ] F10: Rename all files to be equal with class names.
 - [ ] F11: Add packets manager.
-- [ ] F12: Improve configuration acess.
+- [X] F12: Improve configuration acess.
+- [ ] F13: Add events manager.
 
 Further features
 --------

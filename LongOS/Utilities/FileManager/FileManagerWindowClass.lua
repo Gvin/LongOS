@@ -113,7 +113,8 @@ FileManagerWindow = Class(Window, function(this, application)
 	end
 
 	local writeCurrentDirectory = function(videoBuffer)
-		videoBuffer:SetColorParameters(colors.red, System:GetSystemColor('WindowColor'));
+		local colorConfiguration = System:GetColorConfiguration();
+		videoBuffer:SetColorParameters(colors.red, colorConfiguration:GetColor('WindowColor'));
 
 		local currentDirectoryToPrint = findCurrentDirectoryToPrint();
 

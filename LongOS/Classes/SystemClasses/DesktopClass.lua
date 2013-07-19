@@ -39,7 +39,8 @@ Desktop = Class(function(a)
 				videoBuffer:SetPixelColor(j, i, color);
 			end
 		end
-		desktopMenu.BackgroundColor = System:GetSystemColor('WindowColor');
+		local colorConfiguration = System:GetColorConfiguration();
+		desktopMenu.BackgroundColor = colorConfiguration:GetColor('WindowColor');
 		desktopMenu:Draw(videoBuffer);
 	end
 

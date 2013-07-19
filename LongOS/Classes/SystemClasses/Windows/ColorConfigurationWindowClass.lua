@@ -14,10 +14,12 @@ end
 ColorConfigurationWindow = Class(Window, function(this, application)
 	Window.init(this, application, 7, 3, 36, 16, false, true, nil, 'Color configuration window', 'Color configuration', true);
 
+	local colorConfiguration = System:GetColorConfiguration();
+
 	local windowColorLabel = Label('Window color:', nil, nil, 1, 1, 'left-top');
 	this:AddComponent(windowColorLabel);
 
-	local windowColorButton = Button(' ', System:GetSystemColor('WindowColor'), nil, -2, 1, 'right-top');
+	local windowColorButton = Button(' ', colorConfiguration:GetColor('WindowColor'), nil, -2, 1, 'right-top');
 	windowColorButton.OnClick = selectColorClick;
 	windowColorButton.OnClickParams = { application, windowColorButton };
 	this:AddComponent(windowColorButton);
@@ -25,7 +27,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local windowBorderColorLabel = Label('Window border color:', nil, nil, 1, 2, 'left-top');
 	this:AddComponent(windowBorderColorLabel);
 
-	local windowBorderColorButton = Button(' ', System:GetSystemColor('WindowBorderColor'), nil, -2, 2, 'right-top');
+	local windowBorderColorButton = Button(' ', colorConfiguration:GetColor('WindowBorderColor'), nil, -2, 2, 'right-top');
 	windowBorderColorButton.OnClick = selectColorClick;
 	windowBorderColorButton.OnClickParams = { application, windowBorderColorButton };
 	this:AddComponent(windowBorderColorButton);
@@ -33,7 +35,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local topLineActiveColorLabel = Label('Top line active color:', nil, nil, 1, 3, 'left-top');
 	this:AddComponent(topLineActiveColorLabel);
 
-	local topLineActiveColorButton = Button(' ', System:GetSystemColor('TopLineActiveColor'), nil, -2, 3, 'right-top');
+	local topLineActiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineActiveColor'), nil, -2, 3, 'right-top');
 	topLineActiveColorButton.OnClick = selectColorClick;
 	topLineActiveColorButton.OnClickParams = { application, topLineActiveColorButton };
 	this:AddComponent(topLineActiveColorButton);
@@ -41,7 +43,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local topLineInactiveColorLabel = Label('Top line inactive color:', nil, nil, 1, 4, 'left-top');
 	this:AddComponent(topLineInactiveColorLabel);
 
-	local topLineInactiveColorButton = Button(' ', System:GetSystemColor('TopLineInactiveColor'), nil, -2, 4, 'right-top');
+	local topLineInactiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineInactiveColor'), nil, -2, 4, 'right-top');
 	topLineInactiveColorButton.OnClick = selectColorClick;
 	topLineInactiveColorButton.OnClickParams = { application, topLineInactiveColorButton };
 	this:AddComponent(topLineInactiveColorButton);
@@ -49,7 +51,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local topLineTextColorLabel = Label('Top line text color:', nil, nil, 1, 5, 'left-top');
 	this:AddComponent(topLineTextColorLabel);
 
-	local topLineTextColorButton = Button(' ', System:GetSystemColor('TopLineTextColor'), nil, -2, 5, 'right-top');
+	local topLineTextColorButton = Button(' ', colorConfiguration:GetColor('TopLineTextColor'), nil, -2, 5, 'right-top');
 	topLineTextColorButton.OnClick = selectColorClick;
 	topLineTextColorButton.OnClickParams = { application, topLineTextColorButton };
 	this:AddComponent(topLineTextColorButton);
@@ -57,7 +59,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local controlPanelColorLabel = Label('Control panel color:', nil, nil, 1, 6, 'left-top');
 	this:AddComponent(controlPanelColorLabel);
 
-	local controlPanelColorButton = Button(' ', System:GetSystemColor('ControlPanelColor'), nil, -2, 6, 'right-top');
+	local controlPanelColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelColor'), nil, -2, 6, 'right-top');
 	controlPanelColorButton.OnClick = selectColorClick;
 	controlPanelColorButton.OnClickParams = { application, controlPanelColorButton };
 	this:AddComponent(controlPanelColorButton);
@@ -65,7 +67,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local timeTextColorLabel = Label('Time text color:', nil, nil, 1, 7, 'left-top');
 	this:AddComponent(timeTextColorLabel);
 
-	local timeTextColorButton = Button(' ', System:GetSystemColor('TimeTextColor'), nil, -2, 7, 'right-top');
+	local timeTextColorButton = Button(' ', colorConfiguration:GetColor('TimeTextColor'), nil, -2, 7, 'right-top');
 	timeTextColorButton.OnClick = selectColorClick;
 	timeTextColorButton.OnClickParams = { application, timeTextColorButton };
 	this:AddComponent(timeTextColorButton);
@@ -73,7 +75,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local controlPanelButtonsColorLabel = Label('Control panel buttons color:', nil, nil, 1, 8, 'left-top');
 	this:AddComponent(controlPanelButtonsColorLabel);
 
-	local controlPanelButtonsColorButton = Button(' ', System:GetSystemColor('ControlPanelButtonsColor'), nil, -2, 8, 'right-top');
+	local controlPanelButtonsColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelButtonsColor'), nil, -2, 8, 'right-top');
 	controlPanelButtonsColorButton.OnClick = selectColorClick;
 	controlPanelButtonsColorButton.OnClickParams = { application, controlPanelButtonsColorButton };
 	this:AddComponent(controlPanelButtonsColorButton);
@@ -81,7 +83,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local controlPanelPowerButtonColorLabel = Label('Control panel power button color:', nil, nil, 1, 9, 'left-top');
 	this:AddComponent(controlPanelPowerButtonColorLabel);
 
-	local controlPanelPowerButtonColorButton = Button(' ', System:GetSystemColor('ControlPanelPowerButtonColor'), nil, -2, 9, 'right-top');
+	local controlPanelPowerButtonColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelPowerButtonColor'), nil, -2, 9, 'right-top');
 	controlPanelPowerButtonColorButton.OnClick = selectColorClick;
 	controlPanelPowerButtonColorButton.OnClickParams = { application, controlPanelPowerButtonColorButton };
 	this:AddComponent(controlPanelPowerButtonColorButton);
@@ -89,7 +91,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local systemButtonsColorLabel = Label('System buttons color:', nil, nil, 1, 10, 'left-top');
 	this:AddComponent(systemButtonsColorLabel);
 
-	local systemButtonsColorButton = Button(' ', System:GetSystemColor('SystemButtonsColor'), nil, -2, 10, 'right-top');
+	local systemButtonsColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsColor'), nil, -2, 10, 'right-top');
 	systemButtonsColorButton.OnClick = selectColorClick;
 	systemButtonsColorButton.OnClickParams = { application, systemButtonsColorButton };
 	this:AddComponent(systemButtonsColorButton);
@@ -97,7 +99,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local systemButtonsTextColorLabel = Label('System buttons text color:', nil, nil, 1, 11, 'left-top');
 	this:AddComponent(systemButtonsTextColorLabel);
 
-	local systemButtonsTextColorButton = Button(' ', System:GetSystemColor('SystemButtonsTextColor'), nil, -2, 11, 'right-top');
+	local systemButtonsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsTextColor'), nil, -2, 11, 'right-top');
 	systemButtonsTextColorButton.OnClick = selectColorClick;
 	systemButtonsTextColorButton.OnClickParams = { application, systemButtonsTextColorButton };
 	this:AddComponent(systemButtonsTextColorButton);
@@ -105,7 +107,7 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 	local systemLabelsTextColorLabel = Label('System labels text color:', nil, nil, 1, 12, 'left-top');
 	this:AddComponent(systemLabelsTextColorLabel);
 
-	local systemLabelsTextColorButton = Button(' ', System:GetSystemColor('SystemLabelsTextColor'), nil, -2, 12, 'right-top');
+	local systemLabelsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemLabelsTextColor'), nil, -2, 12, 'right-top');
 	systemLabelsTextColorButton.OnClick = selectColorClick;
 	systemLabelsTextColorButton.OnClickParams = { application, systemLabelsTextColorButton };
 	this:AddComponent(systemLabelsTextColorButton);
@@ -123,27 +125,27 @@ ColorConfigurationWindow = Class(Window, function(this, application)
 
 
 	this.Update = function(_)
-		System:SetSystemColor('WindowColor', windowColorButton.BackgroundColor);
-		System:SetSystemColor('WindowBorderColor', windowBorderColorButton.BackgroundColor);
-		System:SetSystemColor('TopLineActiveColor', topLineActiveColorButton.BackgroundColor);
-		System:SetSystemColor('TopLineInactiveColor', topLineInactiveColorButton.BackgroundColor);
-		System:SetSystemColor('TopLineTextColor', topLineTextColorButton.BackgroundColor);
-		System:SetSystemColor('ControlPanelColor', controlPanelColorButton.BackgroundColor);
-		System:SetSystemColor('TimeTextColor', timeTextColorButton.BackgroundColor);
-		System:SetSystemColor('ControlPanelButtonsColor', controlPanelButtonsColorButton.BackgroundColor);
-		System:SetSystemColor('ControlPanelPowerButtonColor', controlPanelPowerButtonColorButton.BackgroundColor);
-		System:SetSystemColor('SystemButtonsColor', systemButtonsColorButton.BackgroundColor);
-		System:SetSystemColor('SystemButtonsTextColor', systemButtonsTextColorButton.BackgroundColor);
-		System:SetSystemColor('SystemLabelsTextColor', systemLabelsTextColorButton.BackgroundColor);
+		colorConfiguration:SetColor('WindowColor', windowColorButton.BackgroundColor);
+		colorConfiguration:SetColor('WindowBorderColor', windowBorderColorButton.BackgroundColor);
+		colorConfiguration:SetColor('TopLineActiveColor', topLineActiveColorButton.BackgroundColor);
+		colorConfiguration:SetColor('TopLineInactiveColor', topLineInactiveColorButton.BackgroundColor);
+		colorConfiguration:SetColor('TopLineTextColor', topLineTextColorButton.BackgroundColor);
+		colorConfiguration:SetColor('ControlPanelColor', controlPanelColorButton.BackgroundColor);
+		colorConfiguration:SetColor('TimeTextColor', timeTextColorButton.BackgroundColor);
+		colorConfiguration:SetColor('ControlPanelButtonsColor', controlPanelButtonsColorButton.BackgroundColor);
+		colorConfiguration:SetColor('ControlPanelPowerButtonColor', controlPanelPowerButtonColorButton.BackgroundColor);
+		colorConfiguration:SetColor('SystemButtonsColor', systemButtonsColorButton.BackgroundColor);
+		colorConfiguration:SetColor('SystemButtonsTextColor', systemButtonsTextColorButton.BackgroundColor);
+		colorConfiguration:SetColor('SystemLabelsTextColor', systemLabelsTextColorButton.BackgroundColor);
 	end
 
 	this.SaveChanges = function(_)
-		System:SaveColorSchemaConfiguration();
+		colorConfiguration:WriteConfiguration();
 		this:Close();
 	end
 
 	this.Cancel = function(_)
-		System:LoadColorSchemaConfiguration();
+		colorConfiguration:ReadConfiguration();
 		this:Close();
 	end
 end)

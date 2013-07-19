@@ -17,10 +17,9 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 	this.Title = title;
 	this.BackgroundColor = backgroundColor;
 
-	if (this.BackgroundColor == nil) then
-		this.BackgroundColor = System:GetSystemColor('WindowColor');
-	end
 	local screenWidth, screenHeight = term.getSize();
+	local colorConfiguration = System:GetColorConfiguration();
+	local interfaceConfiguration = System:GetInterfaceConfiguration();
 
 	this.X = x;
 	this.Y = y;
@@ -48,7 +47,7 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 	local titlePosition = this.X + 1;
 	local closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
 	local maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
-	if (System:GetInterfaceOption('WindowButtonsPosition') == 'left') then
+	if (interfaceConfiguration:GetOption('WindowButtonsPosition') == 'left') then
 		closeButton = Button('X', colors.black, colors.white, 0, 0, 'left-top');
 		maximizeButton = Button('[]', colors.black, colors.white, 1, 0, 'left-top');
 		titlePosition = this.X + 2;
@@ -145,26 +144,26 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 ----------------------- Drawing -----------------------------------------
 
 	local function drawTopLine(videoBuffer)
-		local topLineColor = System:GetSystemColor('TopLineActiveColor');
+		local topLineColor = colorConfiguration:GetColor('TopLineActiveColor');
 		if (this.Enabled) then
-			videoBuffer:SetBackgroundColor(System:GetSystemColor('TopLineActiveColor'));
-			closeButton.BackgroundColor = System:GetSystemColor('TopLineActiveColor');
+			videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
+			closeButton.BackgroundColor = colorConfiguration:GetColor('TopLineActiveColor');
 			if (maximizeButton ~= nil) then
-				maximizeButton.BackgroundColor = System:GetSystemColor('TopLineActiveColor');
+				maximizeButton.BackgroundColor = colorConfiguration:GetColor('TopLineActiveColor');
 			end
 		else
-			topLineColor = System:GetSystemColor('TopLineInactiveColor');
-			videoBuffer:SetBackgroundColor(System:GetSystemColor('TopLineInactiveColor'));
-			closeButton.BackgroundColor = System:GetSystemColor('TopLineInactiveColor');
+			topLineColor = colorConfiguration:GetColor('TopLineInactiveColor');
+			videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
+			closeButton.BackgroundColor = colorConfiguration:GetColor('TopLineInactiveColor');
 			if (maximizeButton ~= nil) then
-				maximizeButton.BackgroundColor = System:GetSystemColor('TopLineInactiveColor');
+				maximizeButton.BackgroundColor = colorConfiguration:GetColor('TopLineInactiveColor');
 			end
 		end
 
 		videoBuffer:DrawBlock(this.X, this.Y, this.Width, 1, topLineColor);
 
 		titlePosition = this.X + 1;
-		if (System:GetInterfaceOption('WindowButtonsPosition') == 'left') then
+		if (interfaceConfiguration:GetOption('WindowButtonsPosition') == 'left') then
 			titlePosition = this.X + 2;
 			if (allowMaximize) then
 				titlePosition = this.X + 4;
@@ -177,7 +176,7 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 			titleToPrint = titleToPrint..'...';
 		end
 
-		videoBuffer:SetTextColor(System:GetSystemColor('TopLineTextColor'));
+		videoBuffer:SetTextColor(colorConfiguration:GetColor('TopLineTextColor'));
 		videoBuffer:WriteAt(titlePosition, this.Y, titleToPrint);
 	end
 
@@ -189,7 +188,7 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 		drawTopLine(videoBuffer);
 		
 		videoBuffer:SetBackgroundColor(this.BackgroundColor);
-		videoBuffer:SetTextColor(System:GetSystemColor('WindowBorderColor'));
+		videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
 		for i = 1, this.Height - 2 do
 			videoBuffer:WriteAt(this.X, this.Y + i, '|');
 			videoBuffer:WriteAt(this.X + this.Width - 1, this.Y + i, '|');
@@ -220,7 +219,7 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 	end
 
 	local function drawBase(videoBuffer)
-		this.BackgroundColor = System:GetSystemColor('WindowColor');
+		this.BackgroundColor = colorConfiguration:GetColor('WindowColor');
 		updateSize();
 		draw(videoBuffer);
 	end

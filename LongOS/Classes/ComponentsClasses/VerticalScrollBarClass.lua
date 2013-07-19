@@ -19,13 +19,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 	this.Height = height;
 	local value = minValue;
 	this.BarColor = barColor;
-	if (this.BarColor == nil) then
-		this.BarColor = System:GetSystemColor('SystemButtonsTextColor');
-	end
 	this.RollerColor = rollerColor;
-	if (this.RollerColor == nil) then
-		this.RollerColor = System:GetSystemColor('WindowBorderColor');
-	end
 
 	local scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
 	scrollUpButton.OnClick = scrollUpClick;
@@ -46,9 +40,17 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 	end
 
 	this._draw = function(videoBuffer, x, y)
+		local colorConfiguration = System:GetColorConfiguration();
+		if (barColor == nil) then
+			this.BarColor = colorConfiguration:GetColor('SystemButtonsTextColor');
+		end
+		if (rollerColor == nil) then
+			this.RollerColor = colorConfiguration:GetColor('WindowBorderColor');
+		end
+
 		this.X = x;
 		this.Y = y;
-		videoBuffer:SetTextColor(System:GetSystemColor('SystemButtonsColor'));
+		videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemButtonsColor'));
 		videoBuffer:DrawBlock(this.X, this.Y, 1, this.Height, this.BarColor, '|');
 		scrollDownButton:Draw(videoBuffer, this.X, this.Y, 1, this.Height);
 		scrollUpButton:Draw(videoBuffer, this.X, this.Y, 1, this.Height);

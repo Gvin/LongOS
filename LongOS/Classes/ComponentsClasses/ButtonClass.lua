@@ -10,13 +10,6 @@ Button = Class(Component, function(this, text, backgroundColor, textColor, dX, d
 	this.BackgroundColor = backgroundColor;
 	this.TextColor = textColor;
 
-	if (this.BackgroundColor == nil) then
-		this.BackgroundColor = System:GetSystemColor('SystemButtonsColor');
-	end
-	if (this.TextColor == nil) then
-		this.TextColor = System:GetSystemColor('SystemButtonsTextColor');
-	end
-
 	this.OnClick = nil;
 	this.OnClickParams = nil;
 	this.Enabled = true;
@@ -24,6 +17,14 @@ Button = Class(Component, function(this, text, backgroundColor, textColor, dX, d
 	this.Y = dY;
 
 	this._draw = function(videoBuffer, x, y)
+		local colorConfiguration = System:GetColorConfiguration();
+		if (backgroundColor == nil) then
+			this.BackgroundColor = colorConfiguration:GetColor('SystemButtonsColor');
+		end
+		if (textColor == nil) then
+			this.TextColor = colorConfiguration:GetColor('SystemButtonsTextColor');
+		end
+
 		this.X = x;
 		this.Y = y;
 		videoBuffer:SetBackgroundColor(this.BackgroundColor);

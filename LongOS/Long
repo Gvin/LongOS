@@ -60,7 +60,7 @@ if (not success) then
 end
 
 System = LongOS();
-System:LoadConfiguration();
+System:ReadConfiguration();
 
 success, message = pcall(parallel.waitForAny, update, draw, catchEvents, processEvents);
 if (not success) then

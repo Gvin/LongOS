@@ -44,8 +44,9 @@ MenuesManager = Class(function(this)
 
 	-- Draw all menues to the buffer.
 	this.Draw = function(_, videoBuffer)
+		local colorConfiguration = System:GetColorConfiguration();
 		for key, v in pairs(menues) do
-			menues[key].BackgroundColor = System:GetSystemColor('WindowColor');
+			menues[key].BackgroundColor = colorConfiguration:GetColor('WindowColor');
 			menues[key]:Draw(videoBuffer);
 		end
 	end

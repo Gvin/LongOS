@@ -231,4 +231,28 @@ Maintains reading, storing and writing mouse configuration.</Text>
     </Entities>
     <Relationships />
   </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ConfigurationManager</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>ConfigurationManager</Name>
+        <Access>Public</Access>
+        <Location left="75" top="50" />
+        <Size width="283" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private ColorConfiguration colorConfiguration</Member>
+        <Member type="Field">private InterfaceConfiguration interfaceConfiguration</Member>
+        <Member type="Field">private MouseConfiguration mouseConfiguration</Member>
+        <Member type="Constructor">public ConfigurationManager()</Member>
+        <Member type="Method">public ColorConfiguration GetColorConfiguration()</Member>
+        <Member type="Method">public InterfaceConfiguration GetInterfaceConfiguration()</Member>
+        <Member type="Method">public MouseConfiguration GetMouseConfiguration()</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
 </Project>

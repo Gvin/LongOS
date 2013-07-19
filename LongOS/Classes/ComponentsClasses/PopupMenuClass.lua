@@ -6,9 +6,6 @@ PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAut
 	this.Width = width;
 	this.Height = height;
 	this.BackgroundColor = backgroundColor;
-	if (this.BackgroundColor == nil) then
-		this.BackgroundColor = System:GetSystemColor('WindowColor');
-	end
 
 	local isOpened = false;
 	local componentsManager = ComponentsManager();
@@ -90,6 +87,11 @@ PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAut
 	end
 
 	this.Draw = function(_, videoBuffer)
+		if (backgroundColor == nil) then
+			local colorConfiguration = System:GetColorConfiguration();
+			this.BackgroundColor = colorConfiguration:GetColor('WindowColor');
+		end
+
 		updateWidth();
 		updateHeight();
 

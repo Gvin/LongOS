@@ -109,20 +109,21 @@ ControlPanel = Class(function(this)
 	componentsManager:AddComponent(modemLabel);
 	
 	local drawControlPanel = function(videoBuffer)
-		applicationsButton.BackgroundColor = System:GetSystemColor('ControlPanelButtonsColor');
-		systemButton.BackgroundColor = System:GetSystemColor('ControlPanelButtonsColor');
-		powerButton.BackgroundColor = System:GetSystemColor('ControlPanelPowerButtonColor');
-		calendarButton.BackgroundColor = System:GetSystemColor('ControlPanelColor');
-		calendarButton.TextColor = System:GetSystemColor('TimeTextColor');
-		dayLabel.BackgroundColor = System:GetSystemColor('WindowColor');
-		dayLabel.TextColor = System:GetSystemColor('SystemLabelsTextColor');
-		yearLabel.BackgroundColor = System:GetSystemColor('WindowColor');
-		yearLabel.TextColor = System:GetSystemColor('SystemLabelsTextColor');
+		local colorConfiguration = System:GetColorConfiguration();
+		applicationsButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelButtonsColor');
+		systemButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelButtonsColor');
+		powerButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelPowerButtonColor');
+		calendarButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelColor');
+		calendarButton.TextColor = colorConfiguration:GetColor('TimeTextColor');
+		dayLabel.BackgroundColor = colorConfiguration:GetColor('WindowColor');
+		dayLabel.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+		yearLabel.BackgroundColor = colorConfiguration:GetColor('WindowColor');
+		yearLabel.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
 
-		configurationButton.BackgroundColor = System:GetSystemColor('SystemButtonsColor');
-		configurationButton.TextColor = System:GetSystemColor('SystemButtonsTextColor');
-		tasksManagerButton.BackgroundColor = System:GetSystemColor('SystemButtonsColor');
-		tasksManagerButton.TextColor = System:GetSystemColor('SystemButtonsTextColor');
+		configurationButton.BackgroundColor = colorConfiguration:GetColor('SystemButtonsColor');
+		configurationButton.TextColor = colorConfiguration:GetColor('SystemButtonsTextColor');
+		tasksManagerButton.BackgroundColor = colorConfiguration:GetColor('SystemButtonsColor');
+		tasksManagerButton.TextColor = colorConfiguration:GetColor('SystemButtonsTextColor');
 		powerMenu.X = powerButton.X;
 		calendarMenu.X = calendarButton.X - 4;
 
@@ -131,7 +132,7 @@ ControlPanel = Class(function(this)
 			line = screenHeight;
 		end
 
-		videoBuffer:DrawBlock(1, line, screenWidth, 1, System:GetSystemColor('ControlPanelColor'));
+		videoBuffer:DrawBlock(1, line, screenWidth, 1, colorConfiguration:GetColor('ControlPanelColor'));
 		
 		calendarButton.Text = System:GetCurrentTime();
 
@@ -179,7 +180,8 @@ ControlPanel = Class(function(this)
 
 	-- Draw bottom menu on the screen.
 	this.Draw = function(_, videoBuffer)
-		this.IsBottom = System:GetInterfaceOption('ControlPanelPosition') == 'bottom';
+		local interfaceConfiguration = System:GetInterfaceConfiguration();
+		this.IsBottom = interfaceConfiguration:GetOption('ControlPanelPosition') == 'bottom';
 		drawControlPanel(videoBuffer);
 		
 		menuesManager:ForEach(alignMenu);

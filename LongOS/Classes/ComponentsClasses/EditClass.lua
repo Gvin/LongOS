@@ -5,13 +5,8 @@ Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY
 	local cursorPosition = 0;
 
 	this.BackgroundColor = backgroundColor;
-	if (this.BackgroundColor == nil) then
-		this.BackgroundColor = System:GetSystemColor('SystemEditsBackgroundColor');
-	end
 	this.TextColor = textColor;
-	if (this.TextColor == nil) then
-		this.TextColor = System:GetSystemColor('SystemLabelsTextColor');
-	end
+
 	this.Text = '';
 	this.X = dX;
 	this.Y = dY;
@@ -21,6 +16,14 @@ Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY
 	local mig = 0;
 
 	this._draw = function(videoBuffer, x, y)
+		local colorConfiguration = System:GetColorConfiguration();
+		if (backgroundColor == nil) then
+			this.BackgroundColor = colorConfiguration:GetColor('SystemEditsBackgroundColor');
+		end
+		if (textColor == nil) then
+			this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+		end
+
 		this.X = x;
 		this.Y = y;
 
