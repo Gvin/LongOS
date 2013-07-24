@@ -46,18 +46,13 @@
       <Entity type="Class">
         <Name>Desktop</Name>
         <Access>Public</Access>
-        <Location left="153" top="102" />
-        <Size width="362" height="281" />
+        <Location left="153" top="101" />
+        <Size width="298" height="196" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">private int[] wallpaper</Member>
-        <Member type="Field">private int wallpaperWidth</Member>
-        <Member type="Field">private int wallpaperHeight</Member>
-        <Member type="Field">public string FileName</Member>
+        <Member type="Field">private Image wallpaper</Member>
         <Member type="Field">private PopupMenu desktopMenu</Member>
         <Member type="Constructor">public Desktop()</Member>
-        <Member type="Method">private string[] separate(string text, char separator)</Member>
-        <Member type="Method">private int[] loadWallpaper(string wallpaperName)</Member>
-        <Member type="Method">public void LoadWallpaper(string wallpaperName)</Member>
+        <Member type="Method">public void LoadWallpaper(string fileName)</Member>
         <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
         <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
         <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
@@ -467,11 +462,25 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <Collapsed>True</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
+      <Entity type="Class">
+        <Name>Image</Name>
+        <Access>Public</Access>
+        <Location left="1788" top="819" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Pixel</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="819" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="0" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -480,8 +489,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -494,8 +501,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -504,8 +509,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -518,8 +521,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="5">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -528,8 +529,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="6">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -542,8 +541,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="7">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -552,8 +549,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="8">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -562,8 +557,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="8" second="9">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -572,8 +565,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="9" second="10">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -582,8 +573,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="10" second="11">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -592,8 +581,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="12" second="14">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -602,8 +589,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="11" second="12">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -612,8 +597,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="11" second="13">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -626,8 +609,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="12">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -644,8 +625,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="13">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -654,8 +633,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="13" second="15">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -664,8 +641,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="2" second="15">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -678,8 +653,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="16">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -756,8 +729,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="23" second="17">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -782,8 +753,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="24" second="17">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -800,14 +769,28 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <EndMultiplicity>2</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="25">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>1534</X>
           <Y>1321</Y>
         </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="2" second="26">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="1" second="27">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Composition</AssociationType>
         <StartMultiplicity>1</StartMultiplicity>
@@ -837,6 +820,32 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <Member type="Method">public void SetSymbol(string value)</Member>
         <Member type="Method">public void DrawAt(int x, int y)</Member>
         <Member type="Method">public void Clear()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Image</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Image</Name>
+        <Access>Public</Access>
+        <Location left="42" top="29" />
+        <Size width="215" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int width</Member>
+        <Member type="Field">private int height</Member>
+        <Member type="Field">private table[] canvas</Member>
+        <Member type="Constructor">public Image(string fileName)</Member>
+        <Member type="Constructor">public Image(int width, int height)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public int GetHeight()</Member>
+        <Member type="Method">public int GetPixel(int x, int y)</Member>
+        <Member type="Method">public void SetPixel(int x, int y, int color)</Member>
+        <Member type="Method">public void SaveToFile(string fileName)</Member>
+        <Member type="Method">public void LoadFromFile(string fileName)</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>

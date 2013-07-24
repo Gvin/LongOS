@@ -72,10 +72,6 @@ LongOS = Class(function(this)
 	this.Draw = function()
 		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
 		if (not updateLock) then
-			if (desktopManager.FileName ~= interfaceConfiguration:GetOption('WallpaperFileName')) then
-				desktopManager:LoadWallpaper(interfaceConfiguration:GetOption('WallpaperFileName'));
-			end
-			
 			videoBuffer:SetCursorBlink(false);
 
 			desktopManager:Draw(videoBuffer);
@@ -337,6 +333,9 @@ LongOS = Class(function(this)
 	this.ReadConfiguration = function()
 		configurationManager:ReadConfiguration();
 		loadApplicationsConfiguration();
+
+		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
+		desktopManager:LoadWallpaper(interfaceConfiguration:GetOption('WallpaperFileName'));
 	end
 
 	this.WriteConfiguration = function()

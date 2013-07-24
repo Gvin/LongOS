@@ -1,5 +1,5 @@
 local version = '0.1';
-local operationsCount = 34;
+local operationsCount = 35;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -143,7 +143,9 @@ local function includeSystemClasses()
 	mustBeLoaded(Timer, 'Timer');
 	include('Classes/SystemClasses/ControlPanelClass');
 	mustBeLoaded(ControlPanel, 'ControlPanel');
-	include('Classes/SystemClasses/DesktopClass');
+	include('Classes/SystemClasses/Image');
+	mustBeLoaded(Image, 'Image');
+	include('Classes/SystemClasses/Desktop');
 	mustBeLoaded(Desktop, 'Desktop');
 end
 

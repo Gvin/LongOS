@@ -8,7 +8,7 @@ For v0.2
 --------
 
 - [ ] F1: Make code clean-up.
-- [ ] F2: Create Image class.
+- [X] F2: Create Image class.
 - [X] F3: Create ConfigurationManager class.
 - [X] F4: Add XML support.
 - [X] F5: Change configs extension to XML (Result of F4).
