@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 17 registered features.
+Currently there are 21 registered features.
 
 TODO
 ========
@@ -15,13 +15,15 @@ For v0.2
 - [X] F5.1: Change color schema config extension to XML.
 - [X] F5.2: Change interface config extension to XML.
 - [X] F5.3: Change mouse config extension to XML.
-- [ ] F6: Create Pixel class.
+- [X] F6: Create Pixel class.
 - [ ] F7: Create class diagrams for all classes.
 - [X] F9: Create stringExtAPI.
 - [ ] F10: Rename all files to be equal with class names.
 - [ ] F11: Add packets manager.
 - [X] F12: Improve configuration acess.
 - [ ] F13: Add events manager.
+- [ ] F18: Update GvinPaint.
+- [ ] F21: Add GetClassName function to all classes.
 
 Further features
 --------
@@ -30,6 +32,10 @@ Further features
 - [ ] F15: Improve PopupMenu to support submenues.
 - [ ] F16: Improve components ierarchy.
 - [ ] F17: Add TimersManager class.
+- [ ] F19: Add desktop icons.
+- [ ] F19.1: Add Icon class.
+- [ ] F19.2: Add DesktopIcon class.
+- [ ] F20: Add program to draw icons.
 
 History
 ========

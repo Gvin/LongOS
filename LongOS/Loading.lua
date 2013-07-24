@@ -1,5 +1,5 @@
 local version = '0.1';
-local operationsCount = 31;
+local operationsCount = 35;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -133,6 +133,8 @@ end
 
 local function includeSystemClasses()
 	loadingLog:AddDivider('Loading system classes');
+	include('Classes/SystemClasses/Pixel');
+	mustBeLoaded(Pixel, 'Pixel');
 	include('Classes/SystemClasses/VideoBufferClass');
 	mustBeLoaded(VideoBuffer, 'VideoBuffer');
 	include('Classes/SystemClasses/ApplicationsManagerClass')

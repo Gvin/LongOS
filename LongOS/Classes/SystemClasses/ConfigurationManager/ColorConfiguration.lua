@@ -49,7 +49,7 @@ ColorConfiguration = Class(function(this, _fileName)
 			error('ColorConfiguration.SetColor [colorName]: string expected, got '..type(colorName)..'.');
 		end
 		if (type(value) ~= 'number') then
-			error('ColorConfiguration.SetColor [value]: string expected, got '..type(value)..'.');
+			error('ColorConfiguration.SetColor [value]: number expected, got '..type(value)..'.');
 		end
 		if (data == nil) then
 			error('ColorConfiguration.SetColor: configuration must be red first. Use ReadConfiguration method.');
