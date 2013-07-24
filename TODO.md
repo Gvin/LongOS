@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 21 registered features.
+Currently there are 22 registered features.
 
 TODO
 ========
@@ -24,6 +24,7 @@ For v0.2
 - [ ] F13: Add events manager.
 - [ ] F18: Update GvinPaint.
 - [ ] F21: Add GetClassName function to all classes.
+- [X] F22: Remove ModemMonitor.
 
 Further features
 --------

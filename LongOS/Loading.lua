@@ -1,5 +1,5 @@
 local version = '0.1';
-local operationsCount = 35;
+local operationsCount = 34;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -141,8 +141,6 @@ local function includeSystemClasses()
 	mustBeLoaded(ApplicationsManager, 'ApplicationsManager');
 	include('Classes/SystemClasses/TimerClass');
 	mustBeLoaded(Timer, 'Timer');
-	include('Classes/SystemClasses/ModemMonitorClass');
-	mustBeLoaded(ModemMonitor, 'ModemMonitor');
 	include('Classes/SystemClasses/ControlPanelClass');
 	mustBeLoaded(ControlPanel, 'ControlPanel');
 	include('Classes/SystemClasses/DesktopClass');

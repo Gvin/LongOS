@@ -52,7 +52,7 @@ ControlPanel = Class(function(this)
 	logOffButton.OnClick = logOff;
 	powerMenu:AddComponent(logOffButton);
 
-	local powerButton = Button('Power', colors.red, colors.black, -14, 0, 'right-top');
+	local powerButton = Button('Power', colors.red, colors.black, -12, 0, 'right-top');
 	powerButton.OnClick = openMenu;
 	powerButton.OnClickParams = { menuesManager, 'PowerMenu' };
 	componentsManager:AddComponent(powerButton);
@@ -100,13 +100,6 @@ ControlPanel = Class(function(this)
 	calendarButton.OnClick = openMenu;
 	calendarButton.OnClickParams = { menuesManager, 'CalendarMenu' };
 	componentsManager:AddComponent(calendarButton);
-
-	-- MODEM MANAGER
-
-	local modemLetter = 'X';
-	local modemColor = colors.blue;
-	local modemLabel = Label(modemLetter, modemColor, colors.white, -8, 0, 'right-top');
-	componentsManager:AddComponent(modemLabel);
 	
 	local drawControlPanel = function(videoBuffer)
 		local colorConfiguration = System:GetColorConfiguration();
@@ -150,22 +143,6 @@ ControlPanel = Class(function(this)
 		end
 		dayLabel.Text = 'Day '..day;
 		yearLabel.Text = 'Year '..year;
-
-		local modemMonitor = System:GetModemMonitor();
-		if (modemMonitor:IsModemConnected()) then
-			modemLetter = 'M';
-			if (modemMonitor:IsModemEnabled()) then
-				modemColor = colors.red;
-			else
-				modemColor = colors.gray;
-			end
-		else
-			modemLetter = 'X';
-			modemColor = colors.gray;
-		end
-
-		modemLabel.BackgroundColor = modemColor;
-		modemLabel.Text = modemLetter;
 
 		componentsManager:Draw(videoBuffer, 1, line, screenWidth, 1);
 	end

@@ -11,8 +11,6 @@ LongOS = Class(function(this)
 
 	local applicationsManager = ApplicationsManager();
 
-	local modemMonitor = ModemMonitor();
-
 	local desktopManager = Desktop();
 
 	local controlPanel = ControlPanel();
@@ -40,10 +38,6 @@ LongOS = Class(function(this)
 		return working;
 	end
 
-	this.GetModemMonitor = function(_)
-		return modemMonitor;
-	end
-
 	-- Add new applications to the applications manager.
 	this.AddApplication = function(_, application)
 		applicationsManager:AddApplication(application);
@@ -66,7 +60,6 @@ LongOS = Class(function(this)
 	-- Update system's state.
 	this.Update = function()
 		updateLock = true;
-		modemMonitor:Update();
 		applicationsManager:Update();
 		updateLock = false;
 
