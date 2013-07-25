@@ -36,7 +36,7 @@ Image = Class(function(this, param1, param2)
 	----- METHODS -----
 
 	this.SaveToFile = function(_, _fileName)
-		local file = fs.open(fileName, 'w');
+		local file = fs.open(_fileName, 'w');
 		file.writeLine(with..'x'..height);
 		local line = '';
 		for i = 1, height do
@@ -50,11 +50,11 @@ Image = Class(function(this, param1, param2)
 	end
 
 	this.LoadFromFile = function(_, _fileName)
-		if (not fs.exists(fileName)) then
-			error('Image.LoadFromFile: file with name "'..fileName..'" doest exist.');
+		if (not fs.exists(_fileName)) then
+			error('Image.LoadFromFile: file with name "'.._fileName..'" doest exist.');
 		end
 
-		local file = fs.open(fileName, 'r');
+		local file = fs.open(_fileName, 'r');
 		local size = stringExtAPI.separate(file.readLine(),'x');
 		width = size[1] + 0;
 		height = size[2] + 0;
