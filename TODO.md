@@ -23,6 +23,9 @@ For v0.2
 - [X] F12: Improve configuration acess.
 - [ ] F13: Add events manager.
 - [ ] F18: Update GvinPaint.
+- [ ] F18.1: Use Image class instead of direct file working.
+- [ ] F18.2: Add more tools.
+- [ ] F18.3: Add custom dialogs.
 - [ ] F21: Add GetClassName function to all classes.
 - [X] F22: Remove ModemMonitor.
 
