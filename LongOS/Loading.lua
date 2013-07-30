@@ -46,7 +46,7 @@ if (Class == nil) then
 	error('Basic objects system cannot be loaded.');
 end
 
-include('Classes/SystemClasses/LoggerClass');
+include('Classes/SystemClasses/Logger');
 
 if (Logger == nil) then
 	LoadingErrors = LoadingErrors + 1;
@@ -79,55 +79,55 @@ end
 
 local function includeComponents()
 	loadingLog:AddDivider('Loading components');
-	include('Classes/ComponentsClasses/ComponentClass');
+	include('Classes/ComponentsClasses/Component');
 	mustBeLoaded(Component, 'Component');
-	include('Classes/ComponentsClasses/ButtonClass');
+	include('Classes/ComponentsClasses/Button');
 	mustBeLoaded(Button, 'Button');
-	include('Classes/ComponentsClasses/LabelClass');
+	include('Classes/ComponentsClasses/Label');
 	mustBeLoaded(Label, 'Label');
-	include('Classes/ComponentsClasses/EditClass');
+	include('Classes/ComponentsClasses/Edit');
 	shouldBeLoaded(Edit, 'Edit');
-	include('Classes/ComponentsClasses/PopupMenuClass');
+	include('Classes/ComponentsClasses/PopupMenu');
 	mustBeLoaded(PopupMenu, 'PopupMenu');
-	include('Classes/ComponentsClasses/VerticalScrollBarClass');
+	include('Classes/ComponentsClasses/VerticalScrollBar');
 	shouldBeLoaded(VerticalScrollBar, 'VerticalScrollBar');
-	include('Classes/ComponentsClasses/HorizontalScrollBarClass');
+	include('Classes/ComponentsClasses/HorizontalScrollBar');
 	shouldBeLoaded(HorizontalScrollBar, 'HorizontalScrollBar');
-	include('Classes/ComponentsClasses/ProgressBarClass');
+	include('Classes/ComponentsClasses/ProgressBar');
 	shouldBeLoaded(ProgressBar, 'ProgressBar');
-	include('Classes/ComponentsClasses/TextBoxClass');
+	include('Classes/ComponentsClasses/TextBox');
 	shouldBeLoaded(TextBox, 'TextBox');
-	include('Classes/ComponentsClasses/CheckBoxClass');
+	include('Classes/ComponentsClasses/CheckBox');
 	shouldBeLoaded(CheckBox, 'CheckBox');
 end
 
 local function includeSystemWindows()
 	loadingLog:AddDivider('Loading system windows');
-	include('Classes/SystemClasses/Windows/ConfigurationWindowClass');
+	include('Classes/SystemClasses/Windows/ConfigurationWindow');
 	shouldBeLoaded(ConfigurationWindow, 'ConfigurationWindow');
-	include('Classes/SystemClasses//Windows/ColorConfigurationWindowClass');
+	include('Classes/SystemClasses//Windows/ColorConfigurationWindow');
 	shouldBeLoaded(ColorConfigurationWindow, 'ColorConfigurationWindow');
-	include('Classes/SystemClasses/Windows/ColorPickerWindowClass');
+	include('Classes/SystemClasses/Windows/ColorPickerWindow');
 	shouldBeLoaded(ColorPickerWindow, 'ColorPickerWindow');
-	include('Classes/SystemClasses/Windows/MessageWindowClass');
+	include('Classes/SystemClasses/Windows/MessageWindow');
 	shouldBeLoaded(MessageWindow, 'MessageWindow');
-	include('Classes/SystemClasses/Windows/OpenFileWindowClass');
+	include('Classes/SystemClasses/Windows/OpenFileWindow');
 	shouldBeLoaded(OpenFileWindow, 'OpenFileWindow');
-	include('Classes/SystemClasses/Windows/DialogWindowClass');
+	include('Classes/SystemClasses/Windows/DialogWindow');
 	shouldBeLoaded(DialogWindow, 'DialogWindow');
 end
 
 local function includeApplicationClasses()
 	loadingLog:AddDivider('Loading application classes');
-	include('Classes/ApplicationClasses/ComponentsManagerClass');
+	include('Classes/ApplicationClasses/ComponentsManager');
 	mustBeLoaded(ComponentsManager, 'ComponentsManager');
-	include('Classes/ApplicationClasses/MenuesManagerClass');
+	include('Classes/ApplicationClasses/MenuesManager');
 	mustBeLoaded(MenuesManager, 'MenuesManager');
-	include('Classes/ApplicationClasses/WindowClass');
+	include('Classes/ApplicationClasses/Window');
 	mustBeLoaded(Window, 'Window');
-	include('Classes/ApplicationClasses/WindowsManagerClass');
+	include('Classes/ApplicationClasses/WindowsManager');
 	mustBeLoaded(WindowsManager, 'WindowsManager');
-	include('Classes/ApplicationClasses/ApplicationClass');
+	include('Classes/ApplicationClasses/Application');
 	mustBeLoaded(Application, 'Application');
 end
 
@@ -135,13 +135,13 @@ local function includeSystemClasses()
 	loadingLog:AddDivider('Loading system classes');
 	include('Classes/SystemClasses/Pixel');
 	mustBeLoaded(Pixel, 'Pixel');
-	include('Classes/SystemClasses/VideoBufferClass');
+	include('Classes/SystemClasses/VideoBuffer');
 	mustBeLoaded(VideoBuffer, 'VideoBuffer');
-	include('Classes/SystemClasses/ApplicationsManagerClass')
+	include('Classes/SystemClasses/ApplicationsManager')
 	mustBeLoaded(ApplicationsManager, 'ApplicationsManager');
-	include('Classes/SystemClasses/TimerClass');
+	include('Classes/SystemClasses/Timer');
 	mustBeLoaded(Timer, 'Timer');
-	include('Classes/SystemClasses/ControlPanelClass');
+	include('Classes/SystemClasses/ControlPanel');
 	mustBeLoaded(ControlPanel, 'ControlPanel');
 	include('Classes/SystemClasses/Image');
 	mustBeLoaded(Image, 'Image');
@@ -162,7 +162,7 @@ end
 
 local function includeBaseClass()
 	loadingLog:AddDivider('Loading main system class');
-	include('Classes/LongOSClass');
+	include('Classes/LongOS');
 	mustBeLoaded(LongOS, 'LongOS');
 end
 

@@ -18,7 +18,7 @@ For v0.2
 - [X] F6: Create Pixel class.
 - [ ] F7: Create class diagrams for all classes.
 - [X] F9: Create stringExtAPI.
-- [ ] F10: Rename all files to be equal with class names.
+- [X] F10: Rename all files to be equal with class names.
 - [X] F12: Improve configuration acess.
 - [X] F13: Add events manager.
 - [ ] F18: Update GvinPaint.
