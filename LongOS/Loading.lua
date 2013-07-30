@@ -1,4 +1,4 @@
-local version = '0.1';
+local version = '0.2';
 local operationsCount = 35;
 local currentOperation = 1;
 LoadingErrors = 0;

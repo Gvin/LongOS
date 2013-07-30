@@ -4,6 +4,39 @@ Currently there are 27 registered features.
 TODO
 ========
 
+For v 0.3
+--------
+- [ ] F18: Update GvinPaint.
+- [ ] F18.1: Use Image class instead of direct file working.
+- [ ] F18.2: Add more tools.
+- [ ] F18.3: Add custom dialogs.
+- [ ] F26: Remove Timer class.
+- [ ] F27: Add Canvas class.
+- [ ] F23: Add real threads.
+
+For all versions
+--------
+- [ ] F7: Create class diagrams for all classes.
+- [ ] F1: Make code clean-up.
+
+Further features
+--------
+- [ ] F8: Add terminal programs support.
+- [ ] F11: Add packets manager.
+- [ ] F14: Add drag-n-drop support.
+- [ ] F15: Improve PopupMenu to support submenues.
+- [ ] F16: Improve components ierarchy.
+- [ ] F19: Add desktop icons.
+- [ ] F19.1: Add Icon class.
+- [ ] F19.2: Add DesktopIcon class.
+- [ ] F20: Add program to draw icons.
+- [ ] F24: Create application for components testing.
+- [ ] F25: Separate configuration manager into single application.
+
+
+History
+========
+
 For v0.2
 --------
 
@@ -23,35 +56,6 @@ For v0.2
 - [X] F22: Remove ModemMonitor.
 - [X] #1: OS global error on right click on the desktop with any active window on the screen.
 - [X] #2: Error when moving window to the right border of the screen.
-
-For all versions
---------
-- [ ] F7: Create class diagrams for all classes.
-- [ ] F1: Make code clean-up.
-
-Further features
---------
-- [ ] F8: Add terminal programs support.
-- [ ] F11: Add packets manager.
-- [ ] F14: Add drag-n-drop support.
-- [ ] F15: Improve PopupMenu to support submenues.
-- [ ] F16: Improve components ierarchy.
-- [ ] F19: Add desktop icons.
-- [ ] F19.1: Add Icon class.
-- [ ] F19.2: Add DesktopIcon class.
-- [ ] F20: Add program to draw icons.
-- [ ] F23: Add real threads.
-- [ ] F24: Create application for components testing.
-- [ ] F25: Separate configuration manager into single application.
-- [ ] F26: Remove Timer class.
-- [ ] F27: Add Canvas class.
-- [ ] F18: Update GvinPaint.
-- [ ] F18.1: Use Image class instead of direct file working.
-- [ ] F18.2: Add more tools.
-- [ ] F18.3: Add custom dialogs.
-
-History
-========
 
 Rejected
 --------
