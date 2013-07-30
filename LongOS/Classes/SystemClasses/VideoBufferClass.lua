@@ -139,7 +139,7 @@ VideoBuffer = Class(function(this)
 		end
 
 		for i = 1, string.len(value) do
-			if (y >= 1 and y <= screenHeight) then
+			if (isOnScreen(x + i - 1, y)) then
 				local pixel = pixels[y][x + i - 1];
 				pixel:SetBackgroundColor(currentBackgroundColor);
 				pixel:SetTextColor(currentTextColor);
