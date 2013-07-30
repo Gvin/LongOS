@@ -116,7 +116,7 @@ VideoBuffer = Class(function(this)
 
 		local newCursorX = cursorX;
 		for i = 1, string.len(value) do
-			if (cursorY >= 1 and cursorY <= screenHeight) then
+			if (isOnScreen(cursorX + i - 1, cursorY)) then
 				local pixel = pixels[cursorY][cursorX + i - 1];
 				pixel:SetBackgroundColor(currentBackgroundColor);
 				pixel:SetTextColor(currentTextColor);

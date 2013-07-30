@@ -28,7 +28,7 @@ For v0.2
 - [X] F21: Add GetClassName function to all classes.
 - [X] F22: Remove ModemMonitor.
 - [X] #1: OS global error on right click on the desktop with any active window on the screen.
-- [ ] #2: Error when moving window to the right border of the screen.
+- [X] #2: Error when moving window to the right border of the screen.
 
 Further features
 --------
