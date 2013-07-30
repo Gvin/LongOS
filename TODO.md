@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 27 registered features.
+Currently there are 29 registered features.
 
 TODO
 ========
@@ -13,6 +13,9 @@ For v 0.3
 - [ ] F26: Remove Timer class.
 - [ ] F27: Add Canvas class.
 - [ ] F23: Add real threads.
+- [ ] F28: Improve CheckBox component.
+- [ ] F24: Create application for components testing.
+- [ ] F29: Add Event class.
 
 For all versions
 --------
@@ -30,7 +33,6 @@ Further features
 - [ ] F19.1: Add Icon class.
 - [ ] F19.2: Add DesktopIcon class.
 - [ ] F20: Add program to draw icons.
-- [ ] F24: Create application for components testing.
 - [ ] F25: Separate configuration manager into single application.
 
 
