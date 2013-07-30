@@ -10,7 +10,7 @@ For v 0.3
 - [ ] F18.1: Use Image class instead of direct file working.
 - [ ] F18.2: Add more tools.
 - [ ] F18.3: Add custom dialogs.
-- [ ] F26: Remove Timer class.
+- [X] F26: Remove Timer class.
 - [ ] F27: Add Canvas class.
 - [ ] F23: Add real threads.
 - [ ] F28: Improve CheckBox component.

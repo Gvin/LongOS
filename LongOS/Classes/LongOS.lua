@@ -29,7 +29,6 @@ LongOS = Class(function(this)
 	local clickX = 0;
 	local clickY = 0;
 
-	local timers = {};
 	local eventsQueue = {};
 
 	this.LogRuntimeError = function(_, errorText)
@@ -85,7 +84,7 @@ LongOS = Class(function(this)
 		end
 	end
 
-	local  function processDoubleClickEvent(cursorX, cursorY)
+	local function processDoubleClickEvent(cursorX, cursorY)
 		applicationsManager:ProcessDoubleClickEvent(cursorX, cursorY);
 	end
 
@@ -144,25 +143,6 @@ LongOS = Class(function(this)
 		applicationsManager:ProcessRednetEvent(id, message, distance);
 	end
 
-	this.AddTimer = function(_, timer)
-		if (timer:GetEnabled()) then
-			local timerId = os.startTimer(timer.Interval);
-			timers[timerId..''] = timer;
-		end
-	end
-
-	local function processTimerEvent(timerId)
-		for key, v in pairs(timers) do
-			if (key == timerId..'') then
-				local timer = timers[key];
-				timer:Tick();
-				timers[key] = nil;
-				this:AddTimer(timer);
-				return;
-			end
-		end
-	end
-
 	-- Process events from events queue.
 	this.ProcessEvents = function()
 		if (#eventsQueue > 0) then
@@ -175,8 +155,6 @@ LongOS = Class(function(this)
 				processCharEvent(event.Params[1]);
 			elseif (event.Name == 'modem_message') then
 				processRednetEvent(event.Params[3], event.Params[4], event.Params[5]);
-			elseif (event.Name == 'timer') then
-				processTimerEvent(event.Params[1]);
 			end
 			table.remove(eventsQueue, 1);
 		else

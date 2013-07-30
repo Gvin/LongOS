@@ -1,5 +1,5 @@
 local version = '0.2';
-local operationsCount = 35;
+local operationsCount = 34;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -139,8 +139,6 @@ local function includeSystemClasses()
 	mustBeLoaded(VideoBuffer, 'VideoBuffer');
 	include('Classes/SystemClasses/ApplicationsManager')
 	mustBeLoaded(ApplicationsManager, 'ApplicationsManager');
-	include('Classes/SystemClasses/Timer');
-	mustBeLoaded(Timer, 'Timer');
 	include('Classes/SystemClasses/ControlPanel');
 	mustBeLoaded(ControlPanel, 'ControlPanel');
 	include('Classes/SystemClasses/Image');
