@@ -1,6 +1,602 @@
 <Project>
   <Name>LongOS_AS-IS</Name>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Full</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>LongOS</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="1251" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VideoBuffer</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="1058" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Desktop</Name>
+        <Access>Public</Access>
+        <Location left="1788" top="1058" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ControlPanel</Name>
+        <Access>Public</Access>
+        <Location left="1788" top="1251" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConfigurationManager</Name>
+        <Access>Public</Access>
+        <Location left="1206" top="1058" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ColorConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="1206" top="879" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InterfaceConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="926" top="879" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MouseConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="926" top="1058" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ApplicationsManager</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="1409" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Application</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="1568" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>WindowsManager</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="1726" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Window</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="1882" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ComponentsManager</Name>
+        <Access>Public</Access>
+        <Location left="2213" top="1881" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MenuesManager</Name>
+        <Access>Public</Access>
+        <Location left="1788" top="1726" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Component</Name>
+        <Access>Public</Access>
+        <Location left="2213" top="2040" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PopupMenu</Name>
+        <Access>Public</Access>
+        <Location left="2049" top="1726" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Logger</Name>
+        <Access>Public</Access>
+        <Location left="1149" top="1251" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Button</Name>
+        <Access>Public</Access>
+        <Location left="2400" top="2284" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Label</Name>
+        <Access>Public</Access>
+        <Location left="2540" top="1795" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CheckBox</Name>
+        <Access>Public</Access>
+        <Location left="2172" top="2284" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Edit</Name>
+        <Access>Public</Access>
+        <Location left="1900" top="2152" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TextBox</Name>
+        <Access>Public</Access>
+        <Location left="1900" top="1948" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ProgressBar</Name>
+        <Access>Public</Access>
+        <Location left="1900" top="2040" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VerticalScrollBar</Name>
+        <Access>Public</Access>
+        <Location left="2493" top="2040" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HorizontalScrollBar</Name>
+        <Access>Public</Access>
+        <Location left="2733" top="1956" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Timer</Name>
+        <Access>Public</Access>
+        <Location left="1149" top="1367" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Image</Name>
+        <Access>Public</Access>
+        <Location left="1788" top="819" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Pixel</Name>
+        <Access>Public</Access>
+        <Location left="1500" top="819" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1638</X>
+          <Y>1226</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1529</X>
+          <Y>1223</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1227</X>
+          <Y>1033</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="8" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="9" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="12" second="14">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="11" second="12">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="11" second="13">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1636</X>
+          <Y>1857</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="3" second="12">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2011</X>
+          <Y>1275</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2292</X>
+          <Y>1856</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="3" second="13">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="13" second="15">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="2" second="15">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2003</X>
+          <Y>1074</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="16">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Generalization" first="17" second="14">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2428</X>
+          <Y>2259</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2300</X>
+          <Y>2111</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="18" second="14">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2335</X>
+          <Y>2012</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="19" second="14">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2252</X>
+          <Y>2110</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="20" second="14">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2231</X>
+          <Y>2110</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="21" second="14">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2248</X>
+          <Y>2011</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="22" second="14">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2088</X>
+          <Y>2062</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2188</X>
+          <Y>2062</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="23" second="14">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2468</X>
+          <Y>2061</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2410</X>
+          <Y>2061</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="23" second="17">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2526</X>
+          <Y>2110</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>2</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Generalization" first="24" second="14">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2708</X>
+          <Y>1972</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2361</X>
+          <Y>2004</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="24" second="17">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2756</X>
+          <Y>2026</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2607</X>
+          <Y>2309</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>2</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="25">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1534</X>
+          <Y>1321</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="2" second="26">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="1" second="27">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
     <Name>VideoBuffer</Name>
     <Language>Java</Language>
     <Entities>
@@ -251,554 +847,6 @@ Maintains reading, storing and writing mouse configuration.</Text>
     <Relationships />
   </ProjectItem>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Full</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>LongOS</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="1251" />
-        <Size width="162" height="77" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>VideoBuffer</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="1058" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Desktop</Name>
-        <Access>Public</Access>
-        <Location left="1788" top="1058" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>ControlPanel</Name>
-        <Access>Public</Access>
-        <Location left="1788" top="1251" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>ConfigurationManager</Name>
-        <Access>Public</Access>
-        <Location left="1206" top="1058" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>ColorConfiguration</Name>
-        <Access>Public</Access>
-        <Location left="1206" top="879" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>InterfaceConfiguration</Name>
-        <Access>Public</Access>
-        <Location left="926" top="879" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>MouseConfiguration</Name>
-        <Access>Public</Access>
-        <Location left="926" top="1058" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>ApplicationsManager</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="1409" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Application</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="1568" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>WindowsManager</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="1726" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Window</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="1882" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>Abstract</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>ComponentsManager</Name>
-        <Access>Public</Access>
-        <Location left="2213" top="1881" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>MenuesManager</Name>
-        <Access>Public</Access>
-        <Location left="1788" top="1726" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Component</Name>
-        <Access>Public</Access>
-        <Location left="2213" top="2040" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>Abstract</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>PopupMenu</Name>
-        <Access>Public</Access>
-        <Location left="2049" top="1726" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Logger</Name>
-        <Access>Public</Access>
-        <Location left="1149" top="1251" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Button</Name>
-        <Access>Public</Access>
-        <Location left="2400" top="2284" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Label</Name>
-        <Access>Public</Access>
-        <Location left="2540" top="1795" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>CheckBox</Name>
-        <Access>Public</Access>
-        <Location left="2172" top="2284" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Edit</Name>
-        <Access>Public</Access>
-        <Location left="1900" top="2152" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>TextBox</Name>
-        <Access>Public</Access>
-        <Location left="1900" top="1948" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>ProgressBar</Name>
-        <Access>Public</Access>
-        <Location left="1900" top="2040" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>VerticalScrollBar</Name>
-        <Access>Public</Access>
-        <Location left="2493" top="2040" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>HorizontalScrollBar</Name>
-        <Access>Public</Access>
-        <Location left="2733" top="1956" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Timer</Name>
-        <Access>Public</Access>
-        <Location left="1149" top="1367" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Image</Name>
-        <Access>Public</Access>
-        <Location left="1788" top="819" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Pixel</Name>
-        <Access>Public</Access>
-        <Location left="1500" top="819" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships>
-      <Relationship type="Association" first="0" second="1">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="0" second="2">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1638</X>
-          <Y>1226</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="0" second="3">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="0" second="4">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1529</X>
-          <Y>1223</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="4" second="5">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="4" second="6">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1227</X>
-          <Y>1033</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="4" second="7">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="0" second="8">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="8" second="9">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>*</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="9" second="10">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="10" second="11">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>*</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="12" second="14">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>*</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="11" second="12">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="11" second="13">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1636</X>
-          <Y>1857</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="3" second="12">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2011</X>
-          <Y>1275</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>2292</X>
-          <Y>1856</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="3" second="13">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="13" second="15">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>*</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="2" second="15">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2003</X>
-          <Y>1074</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="0" second="16">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Generalization" first="17" second="14">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2428</X>
-          <Y>2259</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>2300</X>
-          <Y>2111</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="18" second="14">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="False">
-          <X>2335</X>
-          <Y>2012</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="19" second="14">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="False">
-          <X>2252</X>
-          <Y>2110</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="20" second="14">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="False">
-          <X>2231</X>
-          <Y>2110</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="21" second="14">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="False">
-          <X>2248</X>
-          <Y>2011</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="22" second="14">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2088</X>
-          <Y>2062</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>2188</X>
-          <Y>2062</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="23" second="14">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2468</X>
-          <Y>2061</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>2410</X>
-          <Y>2061</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Association" first="23" second="17">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2526</X>
-          <Y>2110</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>2</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Generalization" first="24" second="14">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2708</X>
-          <Y>1972</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>2361</X>
-          <Y>2004</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Association" first="24" second="17">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>2756</X>
-          <Y>2026</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>2607</X>
-          <Y>2309</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>2</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="0" second="25">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>1534</X>
-          <Y>1321</Y>
-        </BendPoint>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>*</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="2" second="26">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Aggregation</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>1</EndMultiplicity>
-      </Relationship>
-      <Relationship type="Association" first="1" second="27">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
-        <StartMultiplicity>1</StartMultiplicity>
-        <EndMultiplicity>*</EndMultiplicity>
-      </Relationship>
-    </Relationships>
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
     <Name>Pixel</Name>
     <Language>Java</Language>
     <Entities>
@@ -846,6 +894,269 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <Member type="Method">public void SetPixel(int x, int y, int color)</Member>
         <Member type="Method">public void SaveToFile(string fileName)</Member>
         <Member type="Method">public void LoadFromFile(string fileName)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Application</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Application</Name>
+        <Access>Public</Access>
+        <Location left="75" top="55" />
+        <Size width="450" height="434" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public string Name</Member>
+        <Member type="Field">public bool IsUnique</Member>
+        <Member type="Field">public bool Enabled</Member>
+        <Member type="Field">public string Id</Member>
+        <Member type="Field">private WindowsManager windowsManager</Member>
+        <Member type="Field">private bool shutdownWhenNoWindows</Member>
+        <Member type="Constructor">public Application(string applicationName, bool isUnique, bool shutdownWhenNoWindows)</Member>
+        <Member type="Method">public void AddWindow(Window window)</Member>
+        <Member type="Method">public void DeleteWindow(string windowId)</Member>
+        <Member type="Method">public void Run(Window window)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void Update()</Member>
+        <Member type="Method">public void Close()</Member>
+        <Member type="Method">public void ProcessKeyEvent(int key)</Member>
+        <Member type="Method">public void ProcessCharEvent(char symbol)</Member>
+        <Member type="Method">public void ProcessRednetEvent(int id, string message, float distance)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public bool Contains(int x, int y)</Member>
+        <Member type="Method">public int GetWindowsCount()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ComponentsManager</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>ComponentsManager</Name>
+        <Access>Public</Access>
+        <Location left="151" top="79" />
+        <Size width="326" height="247" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Component[] components</Member>
+        <Member type="Constructor">public ComponentsManager()</Member>
+        <Member type="Method">public void AddComponent(Component component)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public bool ProcessKeyEvent(int key)</Member>
+        <Member type="Method">public bool ProcessCharEvent(char symbol)</Member>
+        <Member type="Method">public bool ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public int GetComponentsCount()</Member>
+        <Member type="Method">public void ForEach(function operation)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>MenuesManager</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>MenuesManager</Name>
+        <Access>Public</Access>
+        <Location left="118" top="104" />
+        <Size width="305" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private PopupMenu[] menues</Member>
+        <Member type="Constructor">public MenuesManager()</Member>
+        <Member type="Method">public void AddMenu(string name, PopupMenu menu)</Member>
+        <Member type="Method">public void CloseAll()</Member>
+        <Member type="Method">public void OpenMenu(string name)</Member>
+        <Member type="Method">public void OpenCloseMenu(string name)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public int GetMenuesCount()</Member>
+        <Member type="Method">public PopupMenu GetMenu(string name)</Member>
+        <Member type="Method">public void ForEach(function operation)</Member>
+        <Member type="Method">public bool Contains(int x, int y)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Window</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Window</Name>
+        <Access>Public</Access>
+        <Location left="114" top="82" />
+        <Size width="869" height="1182" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Application _application</Member>
+        <Member type="Field">public string Name</Member>
+        <Member type="Field">public bool IsUnique</Member>
+        <Member type="Field">public string Id</Member>
+        <Member type="Field">public string Title</Member>
+        <Member type="Field">public int BackgroundColor</Member>
+        <Member type="Field">public int X</Member>
+        <Member type="Field">public int Y</Member>
+        <Member type="Field">public int Width</Member>
+        <Member type="Field">public int Height</Member>
+        <Member type="Field">public bool Visible</Member>
+        <Member type="Field">public bool Maximized</Member>
+        <Member type="Field">public bool Enabled</Member>
+        <Member type="Field">public bool AllowMove</Member>
+        <Member type="Field">public bool IsModal</Member>
+        <Member type="Field">private ComponentsManager componentsManager</Member>
+        <Member type="Field">private MenuesManager menuesManager</Member>
+        <Member type="Field">private int realWidth</Member>
+        <Member type="Field">private int realHeight</Member>
+        <Member type="Field">private bool isMoving</Member>
+        <Member type="Constructor">public Window(Application application, int x, int y, int width, int height, bool allowMaximize, bool allowMove, int backgroundColor, string name, string title, bool isUnique)</Member>
+        <Member type="Method">public void Close()</Member>
+        <Member type="Method">public void Show()</Member>
+        <Member type="Method">public void Maximize()</Member>
+        <Member type="Method">public void Minimize()</Member>
+        <Member type="Method">private void updateSize()</Member>
+        <Member type="Method">public void SetSize(int width, int height)</Member>
+        <Member type="Method">public bool Contains(int x, int y)</Member>
+        <Member type="Method">public void AddComponent()</Member>
+        <Member type="Method">public void OpenCloseMenu(string name)</Member>
+        <Member type="Method">public PopupMenu GetMenu(string name)</Member>
+        <Member type="Method">public void AddMenu(string name, PopupMenu menu)</Member>
+        <Member type="Method">public void OpenMenu(string name)</Member>
+        <Member type="Method">public void CloseAllMenues()</Member>
+        <Member type="Method">private void drawTopLine(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void drawCanvas(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void drawFrame(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void drawComponents(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void drawMenues(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void drawBase(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void DrawBase(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public abstract void Draw()</Member>
+        <Member type="Method">public void UpdateBase()</Member>
+        <Member type="Method">public abstract void Update()</Member>
+        <Member type="Method">private bool processLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public bool ProcessLeftClickEventBase(int cursorX, int cursorY)</Member>
+        <Member type="Method">public abstract void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public bool ProcessRightClickEventBase(int cursorX, int cursorY)</Member>
+        <Member type="Method">public abstract void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">private void processDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessDoubleClickEventBase(int cursorX, int cursorY)</Member>
+        <Member type="Method">public abstract void ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">private void processUpArrowKey()</Member>
+        <Member type="Method">private void processLeftArrowKey()</Member>
+        <Member type="Method">private void processDownArrowKey()</Member>
+        <Member type="Method">private void processRightArrowKey()</Member>
+        <Member type="Method">private void processKeyEvent(int key)</Member>
+        <Member type="Method">public void ProcessKeyEventBase(int key)</Member>
+        <Member type="Method">public abstract void ProcessKeyEvent(int key)</Member>
+        <Member type="Method">private void processCharEvent(char symbol)</Member>
+        <Member type="Method">public void ProcessCharEventBase(char symbol)</Member>
+        <Member type="Method">public abstract void ProcessCharEvent(char symbol)</Member>
+        <Member type="Method">public void ProcessRednetEventBase(int id, string message, float distance)</Member>
+        <Member type="Method">public void ProcessRednetEvent(int id, string message, float distance)</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>WindowsManager</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>WindowsManager</Name>
+        <Access>Public</Access>
+        <Location left="160" top="77" />
+        <Size width="273" height="553" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public bool Enabled = true</Member>
+        <Member type="Field">private Window[] windows</Member>
+        <Member type="Field">private Window currentWindow = nil</Member>
+        <Member type="Constructor">public WindowsManager()</Member>
+        <Member type="Method">private Window getWindowById(string windowId)</Member>
+        <Member type="Method">public Window getWindowByName(string windowName)</Member>
+        <Member type="Method">public void AddWindow(Window window)</Member>
+        <Member type="Method">public void SetCurrentWindow(string windowId)</Member>
+        <Member type="Method">public void DeveleWindow(string windowId)</Member>
+        <Member type="Method">private void windowErrorCheck(Window window, bool success, string errorText, string message)</Member>
+        <Member type="Method">private void tryProcessLeftClickEvent(Window window, int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">private void tryProcessRightClickEvent(Window window, int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">private void tryProcessDoubleClickEvent(Window window, int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">private void tryProcessKeyEvent(Window window, int key)</Member>
+        <Member type="Method">public void ProcessKeyEvent(int key)</Member>
+        <Member type="Method">private void tryProcessCharEvent(Window window, char symbol)</Member>
+        <Member type="Method">public void ProcessCharEvent(char symbol)</Member>
+        <Member type="Method">private void tryProcessRednetEvent(Window window, int id, string message, float distance)</Member>
+        <Member type="Method">public void ProcessRednetEvent(int id, string message, float distance)</Member>
+        <Member type="Method">public void SwitchWindow()</Member>
+        <Member type="Method">public bool Contains(int x, int y)</Member>
+        <Member type="Method">private void tryDraw(Window window, VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void tryUpdate(Window window)</Member>
+        <Member type="Method">public void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Button</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Button</Name>
+        <Access>Public</Access>
+        <Location left="86" top="67" />
+        <Size width="477" height="332" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public string Text</Member>
+        <Member type="Field">public int BackgroundColor</Member>
+        <Member type="Field">public int TextColor</Member>
+        <Member type="Field">public function OnClick = nil</Member>
+        <Member type="Field">public object OnClickParams = nil</Member>
+        <Member type="Field">public bool Enabled = true</Member>
+        <Member type="Field">public int X</Member>
+        <Member type="Field">public int Y</Member>
+        <Member type="Constructor">public Button(string text, int backgroundColor, int textColor, int dX, int dY, string anchorType)</Member>
+        <Member type="Method">public void _draw(VideoBuffer videoBuffer, int x, int y)</Member>
+        <Member type="Method">public bool Contains(int x, int y)</Member>
+        <Member type="Method">private void click()</Member>
+        <Member type="Method">private bool processClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public bool ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>CheckBox</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>CheckBox</Name>
+        <Access>Public</Access>
+        <Location left="110" top="107" />
+        <Size width="433" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public bool Checked = false</Member>
+        <Member type="Field">public int BackgroundColor</Member>
+        <Member type="Field">public int TextColor</Member>
+        <Member type="Constructor">public CheckBox(int backgroundColor, int textColor, int dX, int dY, string anchorType)</Member>
+        <Member type="Method">public void _draw(VideoBuffer videoBuffer, int x, int y)</Member>
+        <Member type="Method">private void check(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>

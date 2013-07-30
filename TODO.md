@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 25 registered features.
+Currently there are 27 registered features.
 
 TODO
 ========
@@ -16,7 +16,6 @@ For v0.2
 - [X] F5.2: Change interface config extension to XML.
 - [X] F5.3: Change mouse config extension to XML.
 - [X] F6: Create Pixel class.
-- [ ] F7: Create class diagrams for all classes.
 - [X] F9: Create stringExtAPI.
 - [X] F10: Rename all files to be equal with class names.
 - [X] F12: Improve configuration acess.
@@ -29,6 +28,10 @@ For v0.2
 - [X] F22: Remove ModemMonitor.
 - [X] #1: OS global error on right click on the desktop with any active window on the screen.
 - [X] #2: Error when moving window to the right border of the screen.
+
+For all versions
+--------
+- [ ] F7: Create class diagrams for all classes.
 
 Further features
 --------
@@ -45,6 +48,8 @@ Further features
 - [ ] F23: Add real threads.
 - [ ] F24: Create application for components testing.
 - [ ] F25: Separate configuration manager into single application.
+- [ ] F26: Remove Timer class.
+- [ ] F27: Add Canvas class.
 
 History
 ========
