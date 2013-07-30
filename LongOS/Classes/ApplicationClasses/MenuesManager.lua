@@ -62,7 +62,7 @@ MenuesManager = Class(function(this)
 	end
 
 	-- Get menu instance by it's name.
-	this.GetMenue = function(_, name)
+	this.GetMenu = function(_, name)
 		return menues[name];
 	end
 

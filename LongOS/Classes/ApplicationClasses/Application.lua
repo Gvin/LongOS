@@ -1,81 +1,156 @@
-Application = Class(function(a, applicationName, isUnique, _shutdownWhenNoWindows)
+Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
 	
-	a.GetClassName = function()
+	this.GetClassName = function()
 		return 'Application';
 	end
 
-	a.Name = applicationName;
-	a.IsUnique = isUnique;
-	a.Enabled = true;
-	a.Id = 'none';
-	local windowsManager = WindowsManager();
-	local shutdownWhenNoWindows = _shutdownWhenNoWindows;
+	----- Fields -----
 
-	a.AddWindow = function(_, window)
-		windowsManager:AddWindow(window);
+	local name;
+	local isUnique;
+	local enabled;
+	local id;
+	local windowsManager;
+	local shutdownWhenNoWindows;
+
+	----- Properties -----
+
+	this.GetName = function()
+		return name;
 	end
 
-	a.DeleteWindow = function(_, windowId)
-		windowsManager:DeleteWindow(windowId);
+	this.GetIsUnique = function()
+		return isUnique;
 	end
 
-	a.Run = function(_, window)
-		if (window == nil and shutdownWhenNoWindows) then 
+	this.GetEnabled = function()
+		return enabled;
+	end
+
+	this.SetEnabled = function(_, _value)
+		enabled = _value;
+	end
+
+	this.GetId = function()
+		return id;
+	end
+
+	this.SetId = function(_, _value)
+		id = _value;
+	end
+
+	----- Methods -----
+
+	this.AddWindow = function(_, _window)
+		windowsManager:AddWindow(_window);
+	end
+
+	this.DeleteWindow = function(_, _windowId)
+		windowsManager:DeleteWindow(_windowId);
+	end
+
+	this.Run = function(_, _window)
+		if (_window == nil and shutdownWhenNoWindows) then 
 			return;
 		end
-		if (window == nil) then
+		if (_window == nil) then
 			return;
 		end
-		windowsManager:AddWindow(window);
-		System:AddApplication(a);
+		windowsManager:AddWindow(_window);
+		System:AddApplication(this);
 	end
 
-	a.Draw = function(_, videoBuffer)
-		windowsManager.Enabled = a.Enabled;
-		windowsManager:Draw(videoBuffer);
+	this.Draw = function(_, _videoBuffer)
+		windowsManager.Enabled = enabled;
+		windowsManager:Draw(_videoBuffer);
 	end
 
-	a.Update = function(_)
+	this.Update = function(_)
 		windowsManager:Update();
 
 		if (shutdownWhenNoWindows and windowsManager:GetWindowsCount() == 0) then
-			a:Close();
+			this:Close();
 		end
 	end
 
-	a.Close = function(_)
-		System:DeleteApplication(a.Id);
+	this.Close = function(_)
+		System:DeleteApplication(id);
 	end
 
-	a.ProcessKeyEvent = function(_, key)
-		windowsManager:ProcessKeyEvent(key);
+	this.ProcessKeyEvent = function(_, _key)
+		windowsManager:ProcessKeyEvent(_key);
 	end
 
-	a.ProcessCharEvent = function(_, char)
-		windowsManager:ProcessCharEvent(char);
+	this.ProcessCharEvent = function(_, _char)
+		windowsManager:ProcessCharEvent(_char);
 	end
 
-	a.ProcessRednetEvent = function(_, id, message, distance)
-		windowsManager:ProcessRednetEvent(id, message, distance);
+	this.ProcessRednetEvent = function(_, _id, _message, _distance)
+		windowsManager:ProcessRednetEvent(_id, _message, _distance);
 	end
 
-	a.ProcessLeftClickEvent = function(_, cursorX, cursorY)
-		return windowsManager:ProcessLeftClickEvent(cursorX, cursorY);
+	this.ProcessLeftClickEvent = function(_, _cursorX, _cursorY)
+		return windowsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 	end
 
-	a.ProcessRightClickEvent = function(_, cursorX, cursorY)
-		return windowsManager:ProcessRightClickEvent(cursorX, cursorY);
+	this.ProcessRightClickEvent = function(_, _cursorX, _cursorY)
+		return windowsManager:ProcessRightClickEvent(_cursorX, _cursorY);
 	end
 
-	a.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
-		windowsManager:ProcessDoubleClickEvent(cursorX, cursorY);
+	this.ProcessDoubleClickEvent = function(_, _cursorX, _cursorY)
+		windowsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
-	a.Contains = function(_, x, y)
-		return windowsManager:Contains(x, y);
+	this.Contains = function(_, _x, _y)
+		return windowsManager:Contains(_x, _y);
 	end
 
-	a.GetWindowsCount = function(_)
+	this.GetWindowsCount = function(_)
 		return windowsManager:GetWindowsCount();
+	end
+
+	----- Constructors -----
+
+	local constructor1 = function(_applicationName, _isUnique, _shutdownWhenNoWindows)
+		name = _applicationName;
+		isUnique = _isUnique;
+		shutdownWhenNoWindows = _shutdownWhenNoWindows;
+
+		enabled = true;
+
+		windowsManager = WindowsManager();
+	end
+
+	local constructor2 = function(_applicationName, _isUnique)
+		constructor1(_applicationName, _isUnique, true);
+	end
+
+	local constructor3 = function(_applicationName)
+		constructor2(_applicationName, false);
+	end
+
+	if (type(_applicationName) ~= 'string') then
+		error('Application.Constructor [applicationName]: String expected, got '..type(_applicationName)..'.');
+	end
+
+	if (_shutdownWhenNoWindows == nil and _isUnique == nil) then
+		constructor3(_applicationName);
+	elseif (_isUnique ~= nil and _shutdownWhenNoWindows == nil) then
+		if (type(_isUnique) ~= 'boolean') then
+			error('Application.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+
+		constructor2(_applicationName, _isUnique);
+	elseif (_isUnique ~= nil and _shutdownWhenNoWindows ~= nil) then
+		if (type(_isUnique) ~= 'boolean') then
+			error('Application.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		if (type(_shutdownWhenNoWindows) ~= 'boolean') then
+			error('Application.Constructor [shutdownWhenNoWindows]: Boolean expected, got '..type(_shutdownWhenNoWindows)..'.');
+		end
+
+		constructor1(_applicationName, _isUnique, _shutdownWhenNoWindows);
+	else
+		error('Application.Constructor: Not found constructor with such parameters.');
 	end
 end)

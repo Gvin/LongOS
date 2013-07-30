@@ -7,7 +7,6 @@ TODO
 For v0.2
 --------
 
-- [ ] F1: Make code clean-up.
 - [X] F2: Create Image class.
 - [X] F3: Create ConfigurationManager class.
 - [X] F4: Add XML support.
@@ -20,10 +19,6 @@ For v0.2
 - [X] F10: Rename all files to be equal with class names.
 - [X] F12: Improve configuration acess.
 - [X] F13: Add events manager.
-- [ ] F18: Update GvinPaint.
-- [ ] F18.1: Use Image class instead of direct file working.
-- [ ] F18.2: Add more tools.
-- [ ] F18.3: Add custom dialogs.
 - [X] F21: Add GetClassName function to all classes.
 - [X] F22: Remove ModemMonitor.
 - [X] #1: OS global error on right click on the desktop with any active window on the screen.
@@ -32,6 +27,7 @@ For v0.2
 For all versions
 --------
 - [ ] F7: Create class diagrams for all classes.
+- [ ] F1: Make code clean-up.
 
 Further features
 --------
@@ -40,7 +36,6 @@ Further features
 - [ ] F14: Add drag-n-drop support.
 - [ ] F15: Improve PopupMenu to support submenues.
 - [ ] F16: Improve components ierarchy.
-- [ ] F17: Add TimersManager class.
 - [ ] F19: Add desktop icons.
 - [ ] F19.1: Add Icon class.
 - [ ] F19.2: Add DesktopIcon class.
@@ -50,6 +45,14 @@ Further features
 - [ ] F25: Separate configuration manager into single application.
 - [ ] F26: Remove Timer class.
 - [ ] F27: Add Canvas class.
+- [ ] F18: Update GvinPaint.
+- [ ] F18.1: Use Image class instead of direct file working.
+- [ ] F18.2: Add more tools.
+- [ ] F18.3: Add custom dialogs.
 
 History
 ========
+
+Rejected
+--------
+- [X] F17: [REJECTED] Add TimersManager class.

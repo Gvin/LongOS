@@ -10,7 +10,7 @@ ApplicationsManager = Class(function(a)
 
 	local getApplicationByName = function(_, applicationName)
 		for i = 1, #applications do
-			if (applications[i].Name == applicationName) then
+			if (applications[i]:GetName() == applicationName) then
 				return applications[i], i;
 			end
 		end
@@ -19,7 +19,7 @@ ApplicationsManager = Class(function(a)
 
 	local getApplicationById = function(applicationId)
 		for i = 1, #applications do
-			if (applications[i].Id == applicationId) then
+			if (applications[i]:GetId() == applicationId) then
 				return applications[i], i;
 			end
 		end
@@ -41,15 +41,15 @@ ApplicationsManager = Class(function(a)
 
 	-- Add new applications to the applications collection.
 	a.AddApplication = function(_, application)
-		if (application.IsUnique) then
-			local oldApplication, index = getApplicationByName(application.Name);
+		if (application:GetIsUnique()) then
+			local oldApplication, index = getApplicationByName(application:GetName());
 			if (oldApplication ~= nil) then
 				currentApplication = oldApplication;
 				return;
 			end
 		end
 
-		application.Id = generateId();
+		application:SetId(generateId());
 		table.insert(applications, application);
 		currentApplication = application;
 	end
@@ -58,10 +58,10 @@ ApplicationsManager = Class(function(a)
 	a.DeleteApplication = function(_, applicationId)
 		local applicationToDelete, indexToDelete = getApplicationById(applicationId);
 
-		if (indexToDelete ~= nil and applicationToDelete.Name ~= 'Init') then
+		if (indexToDelete ~= nil and applicationToDelete:GetName() ~= 'Init') then
 			table.insert(applicationsToDelete, applicationId);
 		end
-		if (applicationToDelete ~= nil and applicationToDelete.Name == 'Init') then
+		if (applicationToDelete ~= nil and applicationToDelete:GetName() == 'Init') then
 			System:ShowMessage('Warning', '  You cannot delete initial             application.');
 		end
 	end
@@ -70,12 +70,12 @@ ApplicationsManager = Class(function(a)
 	a.Draw = function(_, videoBuffer)
 		for i = 1, #applications do
 			if (applications[i] ~= currentApplication) then
-				applications[i].Enabled = false;
+				applications[i]:SetEnabled(false);
 				applications[i]:Draw(videoBuffer);
 			end
 		end
 
-		currentApplication.Enabled = true;
+		currentApplication:SetEnabled(true);
 		currentApplication:Draw(videoBuffer);
 	end
 
@@ -92,13 +92,13 @@ ApplicationsManager = Class(function(a)
 	-- Update state of all applications.
 	a.Update = function(_)
 		if (currentApplication:GetWindowsCount() == 0) then
-			a.SwitchApplication(currentApplication);
+			a.SwitchApplication();
 		end
 			
 		if (#applicationsToDelete > 0) then
 			local applicationToDelete, indexToDelete = getApplicationById(applicationsToDelete[1]);
 			table.remove(applications, indexToDelete);
-			if (currentApplication.Name == applicationToDelete.Name) then
+			if (currentApplication:GetName() == applicationToDelete:GetName()) then
 				selectNextAvailableApplication();
 			end
 			table.remove(applicationsToDelete, 1);
@@ -117,7 +117,7 @@ ApplicationsManager = Class(function(a)
 	-- Switch to the next application (like Alt + Tab).
 	a.SwitchApplication = function(_)
 		if (currentApplication ~= nil) then
-			local application, index = getApplicationById(currentApplication.Id);
+			local application, index = getApplicationById(currentApplication:GetId());
 			index = index + 1;
 			if (index > #applications) then
 				index = 1;
@@ -184,9 +184,9 @@ ApplicationsManager = Class(function(a)
 		local result = {};
 		for i = 1, #applications do
 			local app = {};
-			app.Id = applications[i].Id;
-			app.Name = applications[i].Name;
-			app.IsUnique = applications[i].IsUnique;
+			app.Id = applications[i]:GetId();
+			app.Name = applications[i]:GetName();
+			app.IsUnique = applications[i]:GetIsUnique();
 			app.WindowsCount = applications[i]:GetWindowsCount();
 			table.insert(result, app);
 		end

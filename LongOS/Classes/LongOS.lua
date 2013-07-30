@@ -219,13 +219,13 @@ LongOS = Class(function(this)
 
 	-- Show message window with selected title, message and text color.
 	this.ShowMessage = function(_, title, text, textColor)
-		applicationsManager:SetCurrentApplication(initApplication.Id);
+		applicationsManager:SetCurrentApplication(initApplication:GetId());
 		local messageWindow = MessageWindow(initApplication, title, text, textColor);
 		messageWindow:Show();
 	end
 
 	this.ShowModalMessage = function(_, application, title, text, textColor)
-		applicationsManager:SetCurrentApplication(application.Id);
+		applicationsManager:SetCurrentApplication(application:GetId());
 		local messageWindow = MessageWindow(application, title, text, textColor);
 		messageWindow:Show();
 	end
