@@ -1,4 +1,9 @@
 Application = Class(function(a, applicationName, isUnique, _shutdownWhenNoWindows)
+	
+	a.GetClassName = function()
+		return 'Application';
+	end
+
 	a.Name = applicationName;
 	a.IsUnique = isUnique;
 	a.Enabled = true;

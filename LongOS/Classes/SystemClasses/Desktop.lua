@@ -1,4 +1,5 @@
 Desktop = Class(function(this)
+	
 	this.GetClassName = function()
 		return "Desktop";
 	end

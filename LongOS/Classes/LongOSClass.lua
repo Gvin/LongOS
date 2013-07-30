@@ -1,5 +1,8 @@
 LongOS = Class(function(this)
-	this.ClassName = 'LongOS';
+	
+	this.GetClassName = function()
+		return 'LongOS';
+	end
 
 	local updateLock = false;
 

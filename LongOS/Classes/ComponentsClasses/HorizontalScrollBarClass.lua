@@ -9,6 +9,10 @@ end
 HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, width, barColor, rollerColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
+	this.GetClassName = function()
+		return 'HorizontalScrollBar';
+	end
+
 	local maxValue = _maxValue;
 	local minValue = _minValue;
 

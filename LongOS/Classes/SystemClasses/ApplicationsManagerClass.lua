@@ -1,4 +1,9 @@
 ApplicationsManager = Class(function(a)
+
+	a.GetClassName = function()
+		return 'ApplicationsManager';
+	end
+
 	local applications = {};
 	local applicationsToDelete = {};
 	local currentApplication = nil;

@@ -1,6 +1,10 @@
 ProgressBar = Class(Component, function(this, _minValue, _maxValue, width, filledColor, emptyColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
+	this.GetClassName = function()
+		return 'ProgressBar';
+	end
+
 	local maxValue = _maxValue;
 	local minValue = _minValue;
 

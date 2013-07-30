@@ -1,6 +1,9 @@
 Button = Class(Component, function(this, text, backgroundColor, textColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
-	this.ClassName = 'Button';
+	
+	this.GetClassName = function()
+		return 'Button';
+	end
 
 	if (type(text) ~= 'string') then
 		error('Button: Constructor - String required (variable "text").');

@@ -1,4 +1,9 @@
 Timer = Class(function(this, interval)
+
+	this.GetClassName = function()
+		return 'Timer';
+	end
+
 	this.Interval = interval;
 	local enabled = false;
 	this.OnTick = nil;

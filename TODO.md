@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 22 registered features.
+Currently there are 25 registered features.
 
 TODO
 ========
@@ -19,19 +19,19 @@ For v0.2
 - [ ] F7: Create class diagrams for all classes.
 - [X] F9: Create stringExtAPI.
 - [ ] F10: Rename all files to be equal with class names.
-- [ ] F11: Add packets manager.
 - [X] F12: Improve configuration acess.
-- [ ] F13: Add events manager.
+- [X] F13: Add events manager.
 - [ ] F18: Update GvinPaint.
 - [ ] F18.1: Use Image class instead of direct file working.
 - [ ] F18.2: Add more tools.
 - [ ] F18.3: Add custom dialogs.
-- [ ] F21: Add GetClassName function to all classes.
+- [X] F21: Add GetClassName function to all classes.
 - [X] F22: Remove ModemMonitor.
 
 Further features
 --------
 - [ ] F8: Add terminal programs support.
+- [ ] F11: Add packets manager.
 - [ ] F14: Add drag-n-drop support.
 - [ ] F15: Improve PopupMenu to support submenues.
 - [ ] F16: Improve components ierarchy.
@@ -40,6 +40,9 @@ Further features
 - [ ] F19.1: Add Icon class.
 - [ ] F19.2: Add DesktopIcon class.
 - [ ] F20: Add program to draw icons.
+- [ ] F23: Add real threads.
+- [ ] F24: Create application for components testing.
+- [ ] F25: Separate configuration manager into single application.
 
 History
 ========

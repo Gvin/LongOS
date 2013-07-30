@@ -1,4 +1,9 @@
 WindowsManager = Class(function(this)
+
+	this.GetClassName = function()
+		return 'WindowsManager';
+	end
+
 	this.Enabled = true;
 	local windows = {};
 	local currentWindow = nil;

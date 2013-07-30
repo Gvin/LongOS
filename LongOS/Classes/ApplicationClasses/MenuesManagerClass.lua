@@ -2,6 +2,11 @@
 -- It takes care abount opening and closing menues,
 -- drawing them to the buffer and events processing.
 MenuesManager = Class(function(this)
+
+	this.GetClassName = function()
+		return 'MenuesManager';
+	end
+
 	local menues = {};
 
 	-- Add new menu to the collection.

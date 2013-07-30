@@ -1,6 +1,11 @@
 -- Components manager manages all components of the owner.
 -- It takes care about correct events processing and drawing.
 ComponentsManager = Class(function(this)
+
+	this.GetClassName = function()
+		return 'ComponentsManager';
+	end
+
 	local components = {};
 
 	-- Add new component to the manager's collection.

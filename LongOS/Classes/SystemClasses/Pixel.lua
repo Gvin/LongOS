@@ -1,4 +1,5 @@
 Pixel = Class(function(this, initBackColor, initTextColor, initSymbol)
+	
 	this.GetClassName = function()
 		return "Pixel";
 	end

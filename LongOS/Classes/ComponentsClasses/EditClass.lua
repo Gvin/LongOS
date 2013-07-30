@@ -1,6 +1,9 @@
 Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
-	this.ClassName = 'Edit';
+	
+	this.GetClassName = function()
+		return 'Edit';
+	end
 
 	local cursorPosition = 0;
 

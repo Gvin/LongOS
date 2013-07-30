@@ -10,6 +10,11 @@ local function maximizeWindow(params)
 end
 
 Window = Class(function(this, application, x, y, width, height, allowMaximize, allowMove, backgroundColor, name, title, isUnique)
+
+	this.GetClassName = function()
+		return 'Window';
+	end
+
 	this._application = application;
 	this.Name = name;
 	this.IsUnique = isUnique;

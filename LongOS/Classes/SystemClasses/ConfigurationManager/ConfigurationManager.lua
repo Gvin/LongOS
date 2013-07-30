@@ -1,5 +1,10 @@
 -- Cjnfiguration manager class for storing and managing configuration acess.
 ConfigurationManager = Class(function(this)
+
+	this.GetClassName = function()
+		return 'ConfigurationManager';
+	end
+
 	local colorConfiguration = ColorConfiguration('/LongOS/Configuration/color_schema.xml');
 	local interfaceConfiguration = InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
 	local mouseConfiguration = MouseConfiguration('/LongOS/Configuration/mouse_configuration.xml');

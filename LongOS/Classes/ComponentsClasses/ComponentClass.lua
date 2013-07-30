@@ -1,5 +1,8 @@
 Component = Class(function(this, _dX, _dY, _anchorType)
-	this.ClassName = 'Component';
+	
+	this.GetClassName = function()
+		return 'Component';
+	end
 
 	if (type(_anchorType) ~= 'string') then
 		error('Component: Constructor - String required (variable "anchorType").');

@@ -1,6 +1,10 @@
 CheckBox = Class(Component, function(this, backgroundColor, textColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
+	this.GetClassName = function()
+		return 'CheckBox';
+	end
+
 	this.Checked = false;
 
 	this.BackgroundColor = backgroundColor;

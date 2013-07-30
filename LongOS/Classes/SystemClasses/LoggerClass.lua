@@ -1,4 +1,9 @@
 Logger = Class(function(this, _fileName)
+
+	this.GetClassName = function()
+		return 'Logger';
+	end
+
 	local fileName = _fileName;
 	local file = fs.open(fileName, 'w');
 	file.close();

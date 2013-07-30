@@ -27,7 +27,10 @@ local function openMenu(params)
 end
 
 ControlPanel = Class(function(this)
-	this.ClassName = 'ControlPanel';
+	
+	this.GetClassName = function()
+		return 'ControlPanel';
+	end
 
 	this.IsBottom = true;
 

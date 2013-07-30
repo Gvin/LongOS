@@ -1,5 +1,10 @@
 -- Configuration class for interface modification support.
 InterfaceConfiguration = Class(function(this, _fileName)
+
+	this.GetClassName = function()
+		return 'InterfaceConfiguration';
+	end
+
 	if (type(_fileName) ~= 'string') then
 		error('InterfaceConfiguration.Constructor [fileName]: string expected, got '..type(_fileName)..'.');
 	end

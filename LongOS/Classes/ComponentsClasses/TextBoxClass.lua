@@ -1,6 +1,10 @@
 TextBox = Class(Component, function(this, width, height, backgroundColor, textColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
+	this.GetClassName = function()
+		return 'TextBox';
+	end
+
 	this.Width = width;
 	this.Height = height;
 	this.BackgroundColor = backgroundColor;

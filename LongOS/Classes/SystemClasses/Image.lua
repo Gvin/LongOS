@@ -1,4 +1,5 @@
 Image = Class(function(this, param1, param2)
+	
 	this.GetClassName = function()
 		return "Image";
 	end

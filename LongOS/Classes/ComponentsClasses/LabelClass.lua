@@ -1,5 +1,10 @@
 Label = Class(Component, function(this, text, backgroundColor, textColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
+
+	this.GetClassName = function()
+		return 'Label';
+	end
+
 	this.Text = text;
 	this.TextColor = textColor;
 	this.BackgroundColor = backgroundColor;
