@@ -72,7 +72,8 @@ WindowsManager = Class(function(this)
 
 	local windowErrorCheck = function(window, success, errorText, message)
 		if (not success) then
-			System:ShowError(errorText..message);
+			local errorWindow = MessageWindow(window:GetApplication(), 'Error', 'Error message: '..errorText..message, colors.red);
+			errorWindow:Show();
 			this:DeleteWindow(window:GetId());
 		end
 	end

@@ -1,13 +1,5 @@
-local function killProcessButtonClick(params)
-	params[1]:CloseApplication();
-end
-
-local function setActiveButtonClick(params)
-	params[1]:SetActive();
-end
-
-TasksManagerWindow = Class(Window, function(this, application)
-	Window.init(this, application, 'Gvin tasks manager', false, false, 'Gvin tasks manager', 5, 3, 40, 15, nil, true, true);
+TasksManagerWindow = Class(Window, function(this, _application)
+	Window.init(this, _application, 'Gvin tasks manager', false, false, 'Gvin tasks manager', 5, 3, 40, 15, nil, true, true);
 	local scroll = 0;
 	local selectedApplicationId = '';
 
@@ -17,14 +9,21 @@ TasksManagerWindow = Class(Window, function(this, application)
 	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, -2, 2, 'right-top');
 	this:AddComponent(vScrollBar);
 
+	local function killProcessButtonClick(sender, eventArgs)
+		System:DeleteApplication(selectedApplicationId);
+	end
+
 	local killProcessButton = Button('Close application', nil, nil, 2, -2, 'left-bottom');
-	killProcessButton.OnClick = killProcessButtonClick;
-	killProcessButton.OnClickParams = { this };
+	killProcessButton:SetOnClick(EventHandler(killProcessButtonClick));
 	this:AddComponent(killProcessButton);
 
+	local function setActiveButtonClick(sender, eventArgs)
+		error('error');
+		System:SetCurrentApplication(selectedApplicationId);
+	end
+
 	local setActiveButton = Button('Set active', nil, nil, -12, -2, 'right-bottom');
-	setActiveButton.OnClick = setActiveButtonClick;
-	setActiveButton.OnClickParams = { this };
+	setActiveButton:SetOnClick(EventHandler(setActiveButtonClick));
 	this:AddComponent(setActiveButton);
 
 	local drawProcesses = function(videoBuffer)
@@ -70,19 +69,6 @@ TasksManagerWindow = Class(Window, function(this, application)
 		vScrollBar:SetMaxValue(#applications - 1)
 	end
 
-	this.ScrollUp = function(_)
-		if (scroll > 0) then
-			scroll = scroll - 1;
-		end
-	end
-
-	this.ScrollDown = function()
-		local applications = System:GetApplicationsList();
-		if (scroll < #applications - 1) then
-			scroll = scroll + 1;
-		end
-	end
-
 	local getSelectedLine = function(cursorY)
 		local applications = System:GetApplicationsList();
 		return cursorY - this:GetY() - 1 + vScrollBar:GetValue();
@@ -96,13 +82,5 @@ TasksManagerWindow = Class(Window, function(this, application)
 				selectedApplicationId = applications[selectedLine].Id;
 			end
 		end
-	end
-
-	this.CloseApplication = function(_)
-		System:DeleteApplication(selectedApplicationId);
-	end
-
-	this.SetActive = function(_)
-		System:SetCurrentApplication(selectedApplicationId);
 	end
 end)

@@ -52,6 +52,11 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	local closeButton;
 	local maximizeButton;
 
+	local onClose;
+	local onShow;
+	local onMove;
+	local onResize;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -100,7 +105,18 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		return x;
 	end
 
+	local function move(_oldValue, _newValue, _value)
+		if (onMove ~= nil) then
+			local eventArgs = {};
+			eventArgs.Old = _oldValue;
+			eventArgs.New = _newValue;
+			eventArgs.Value = _value;
+			onMove:Invoke(this, eventArgs);
+		end
+	end
+
 	function this.SetX(_, _value)
+		local old = x;
 		x = _value;
 		if (x < 1) then
 			x = 1;
@@ -109,6 +125,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			x = screenWidth;
 		end
 		miniX = x;
+		move(old, x, 'X');
 	end
 
 	function this.GetY()
@@ -116,6 +133,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetY(_, _value)
+		old = y;
 		y = _value;
 		local topLineIndex = System:GetTopLineIndex();
 		if (y < topLineIndex) then
@@ -125,10 +143,21 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			y = screenHeight - 2 + topLineIndex;
 		end
 		miniY = y;
+		move(old, y, 'Y');
 	end
 
 	function this.GetWidth()
 		return width;
+	end
+
+	local function resize(_oldValue, _newValue, _value)
+		if (onResize ~= nil) then
+			local eventArgs = {};
+			eventArgs.Old = _oldValue;
+			eventArgs.New = _newValue;
+			eventArgs.Value = _value;
+			onResize:Invoke(this, eventArgs);
+		end
 	end
 
 	function this.SetWidth(_, _value)
@@ -179,16 +208,40 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		enabled = _value;
 	end
 
+	function this.SetOnClose(_, _value)
+		onClose = _value;
+	end
+
+	function this.SetOnShow(_, _value)
+		onShow = _value;
+	end
+
+	function this.SetOnMove(_, _value)
+		onMove = _value;
+	end
+
+	function this.SetOnResize(_, _value)
+		onResize = _value;
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ---------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 	
 	function this.Close()
 		application:DeleteWindow(id);
+
+		if (onClose ~= nil) then
+			onClose:Invoke(this, {});
+		end
 	end
 
 	function this.Show()
 		application:AddWindow(this);
+
+		if (onShow ~= nil) then
+			onShow:Invoke(this, {});
+		end
 	end
 
 	function this.Maximize()

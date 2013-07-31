@@ -1,33 +1,33 @@
-local function countHeight(text)
-	return 6 + math.floor(string.len(text) / 30);
-end
+MessageWindow = Class(Window, function(this, _application, _title, _text, _textColor)
 
-local function countWidth(text)
-	if (string.len(text) < 30) then
-		return (4 + string.len(text));
+	local function countHeight(_text)
+		return 6 + math.floor(string.len(_text) / 30);
 	end
 
-	return 34;
-end
+	local function countWidth(_text)
+		if (string.len(_text) < 30) then
+			return (4 + string.len(_text));
+		end
 
-local function countXPosition(text)
-	local width = countWidth(text);
-	local screenWidth = term.getSize();
-	return math.floor((screenWidth - width) / 2);
-end
+		return 34;
+	end
 
-local function countYPosition(text)
-	local height = countHeight(text);
-	local _, screenHeight = term.getSize();
-	return math.floor((screenHeight - height) / 2);
-end
+	local function countXPosition(_text)
+		local width = countWidth(_text);
+		local screenWidth = term.getSize();
+		return math.floor((screenWidth - width) / 2);
+	end
 
-MessageWindow = Class(Window, function(this, application, title, text, textColor)
-	Window.init(this, application, countXPosition(text), countYPosition(text), 10, 10, false, false, nil, 'Message window', title, false);
-	this:SetSize(countWidth(text), countHeight(text));
-	this.Text = text;
-	this.TextColor = textColor;
-	this.IsModal = true;
+	local function countYPosition(_text)
+		local height = countHeight(_text);
+		local _, screenHeight = term.getSize();
+		return math.floor((screenHeight - height) / 2);
+	end
+
+	Window.init(this, _application, 'Message Window', false, true, _title, countXPosition(_text), countYPosition(_text), countWidth(_text), countHeight(_text), nil, false, false);
+	
+	this.Text = _text;
+	this.TextColor = _textColor;
 	local colorConfiguration = System:GetColorConfiguration();
 
 	if (this.TextColor == nil) then
@@ -38,7 +38,7 @@ MessageWindow = Class(Window, function(this, application, title, text, textColor
 		this:Close();
 	end
 
-	local okButton = Button(' OK ', nil, nil, math.floor(this.Width / 2 - 2), this.Height - 2, 'left-top');
+	local okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 2), this:GetHeight() - 2, 'left-top');
 	okButton:SetOnClick(EventHandler(okButtonClick));
 	this:AddComponent(okButton);
 
@@ -48,7 +48,7 @@ MessageWindow = Class(Window, function(this, application, title, text, textColor
 		local line = 1;
 		local col = 1;
 		for i = 1, string.len(this.Text) do
-			videoBuffer:WriteAt(this.X + 1 + col, this.Y + 1 + line, string.sub(this.Text, i, i));
+			videoBuffer:WriteAt(this:GetX() + 1 + col, this:GetY() + 1 + line, string.sub(this.Text, i, i));
 			col = col + 1;
 			if (col > 30) then
 				line = line + 1;
