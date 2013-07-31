@@ -7,7 +7,7 @@ local function setActiveButtonClick(params)
 end
 
 TasksManagerWindow = Class(Window, function(this, application)
-	Window.init(this, application, 5, 3, 40, 15, true, true, nil, 'Tasks manager window', 'Gvin tasks manager', true);
+	Window.init(this, application, 'Gvin tasks manager', false, false, 'Gvin tasks manager', 5, 3, 40, 15, nil, true, true);
 	local scroll = 0;
 	local selectedApplicationId = '';
 
@@ -35,8 +35,8 @@ TasksManagerWindow = Class(Window, function(this, application)
 		videoBuffer:SetBackgroundColor(colors.white);
 
 		local drawTo = #applications;
-		if (drawTo > this.Height - 4 + vScrollBar:GetValue()) then
-			drawTo = this.Height - 4 + vScrollBar:GetValue();
+		if (drawTo > this:GetHeight() - 4 + vScrollBar:GetValue()) then
+			drawTo = this:GetHeight() - 4 + vScrollBar:GetValue();
 		end
 
 		for i = vScrollBar:GetValue() + 1, drawTo do
@@ -45,22 +45,22 @@ TasksManagerWindow = Class(Window, function(this, application)
 			else
 				videoBuffer:SetTextColor(colors.black);
 			end
-			videoBuffer:WriteAt(this.X + 3, this.Y + 1 + i - vScrollBar:GetValue(), i..') '..applications[i].Name..' : '..applications[i].WindowsCount);
+			videoBuffer:WriteAt(this:GetX() + 3, this:GetY() + 1 + i - vScrollBar:GetValue(), i..') '..applications[i].Name..' : '..applications[i].WindowsCount);
 		end
 	end
 
 	local drawProcessesGrid = function(videoBuffer)
 		videoBuffer:SetBackgroundColor(colors.white);
-		for i = 2, this.Height - 3 do
-			videoBuffer:SetCursorPos(this.X + 2, this.Y + i);
-			for j = 2, this.Width - 3 do
+		for i = 2, this:GetHeight() - 3 do
+			videoBuffer:SetCursorPos(this:GetX() + 2, this:GetY() + i);
+			for j = 2, this:GetWidth() - 3 do
 				videoBuffer:Write(' ');
 			end
 		end
 	end
 
 	this.Draw = function(_, videoBuffer)
-		vScrollBar.Height = this.Height - 4;
+		vScrollBar.Height = this:GetHeight() - 4;
 		drawProcessesGrid(videoBuffer);
 		drawProcesses(videoBuffer);
 	end
@@ -85,12 +85,12 @@ TasksManagerWindow = Class(Window, function(this, application)
 
 	local getSelectedLine = function(cursorY)
 		local applications = System:GetApplicationsList();
-		return cursorY - this.Y - 1 + vScrollBar:GetValue();
+		return cursorY - this:GetY() - 1 + vScrollBar:GetValue();
 	end
 
 	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
 		local applications = System:GetApplicationsList();
-		if (cursorY >= this.Y + 2 and cursorY <= this.Y + this.Height - 3 and cursorX < this.X + this.Width - 4) then
+		if (cursorY >= this:GetY() + 2 and cursorY <= this:GetY() + this:GetHeight() - 3 and cursorX < this:GetX() + this:GetWidth() - 4) then
 			local selectedLine = getSelectedLine(cursorY);
 			if (applications[selectedLine] ~= nil) then
 				selectedApplicationId = applications[selectedLine].Id;

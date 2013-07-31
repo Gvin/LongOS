@@ -334,7 +334,7 @@ LongOS = Class(function(this)
 
 	-- Show configuration window.
 	this.ShowConfigurationWindow = function()
-		applicationsManager:SetCurrentApplication(initApplication.Id);
+		applicationsManager:SetCurrentApplication(initApplication:GetId());
 		local configurationWindow = ConfigurationWindow(initApplication);
 		configurationWindow:Show();
 	end

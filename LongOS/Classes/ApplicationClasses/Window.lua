@@ -9,336 +9,419 @@ local function maximizeWindow(params)
 	params[1].Maximized = not params[1].Maximized;
 end
 
-Window = Class(function(this, application, x, y, width, height, allowMaximize, allowMove, backgroundColor, name, title, isUnique)
+Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height,  _backgroundColor, _allowMaximize, _allowMove)
 
 	this.GetClassName = function()
 		return 'Window';
 	end
 
-	this._application = application;
-	this.Name = name;
-	this.IsUnique = isUnique;
-	this.Id = 'none';
-	this.Title = title;
-	this.BackgroundColor = backgroundColor;
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local application;
+	local name;
+	local isUnique;
+	local id;
+	local title;
+	local backgroundColor;
+	local isModal;
+
+	local x;
+	local y;
+	local width;
+	local height;
+	local visible;
+	local maximized;
+	local enabled;
+	local allowMove;
+
+	local miniWidth;
+	local miniHeight;
+	local miniX;
+	local miniY;
+	local isMoving;
 
 	local screenWidth, screenHeight = term.getSize();
-	local colorConfiguration = System:GetColorConfiguration();
-	local interfaceConfiguration = System:GetInterfaceConfiguration();
 
-	this.X = x;
-	this.Y = y;
-	this.Width = width;
-	this.Height = height;
-	this.Visible = true;
-	this.Maximized = false;
-	this.Enabled = true;
-	this.AllowMove = allowMove;
-	this.IsModal = false;
+	local colorConfiguration;
+	local interfaceConfiguration;
+	local componentsManager;
+	local menuesManager;
 
-	if (this.X + this.Width - 1 > screenWidth) then
-		this.Width = screenWidth + 1 - this.X;
-	end
-	if (this.Y + this.Height - 1 > screenHeight - 1) then
-		this.Height = screenHeight - this.Y;
+	local closeButton;
+	local maximizeButton;
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this.GetApplication()
+		return application;
 	end
 
-	local componentsManager = ComponentsManager();
-	local menuesManager = MenuesManager();
-	local realWidht = width;
-	local realHeight = height;
-	local isMoving = false;
+	function this.GetName()
+		return name;
+	end
 
-	local titlePosition = this.X + 1;
-	local closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
-	local maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
-	if (interfaceConfiguration:GetOption('WindowButtonsPosition') == 'left') then
-		closeButton = Button('X', colors.black, colors.white, 0, 0, 'left-top');
-		maximizeButton = Button('[]', colors.black, colors.white, 1, 0, 'left-top');
-		titlePosition = this.X + 2;
-		if (allowMaximize) then
-			titlePosition = this.X + 4;
+	function this.GetIsUnique()
+		return isUnique;
+	end
+
+	function this.GetId()
+		return id;
+	end
+
+	function this.SetId(_, _value)
+		id = _value;
+	end
+
+	function this.GetTitle()
+		return title;
+	end
+
+	function this.SetTitle(_, _value)
+		title = _value;
+	end
+
+	function this.GetBackgroundColor()
+		return backgroundColor;
+	end
+
+	function this.SetBackgroundColor(_, _value)
+		backgroundColor = _value;
+	end
+
+	function this.GetIsModal()
+		return isModal;
+	end
+
+	function this.GetX()
+		return x;
+	end
+
+	function this.SetX(_, _value)
+		x = _value;
+		if (x < 1) then
+			x = 1;
+		end
+		if (x > screenWidth) then
+			x = screenWidth;
+		end
+		miniX = x;
+	end
+
+	function this.GetY()
+		return y;
+	end
+
+	function this.SetY(_, _value)
+		y = _value;
+		local topLineIndex = System:GetTopLineIndex();
+		if (y < topLineIndex) then
+			y = topLineIndex;
+		end
+		if (y > screenHeight - 2 + topLineIndex) then
+			y = screenHeight - 2 + topLineIndex;
+		end
+		miniY = y;
+	end
+
+	function this.GetWidth()
+		return width;
+	end
+
+	function this.SetWidth(_, _value)
+		width = _value;
+		if (x + width - 1 > screenWidth) then
+			width = screenWidth + 1 - x;
+		end
+		if (width < 4) then
+			width = 4;
 		end
 	end
-	-- Adding standart buttons
 
-	local closeButtonClick = function(sender, eventArgs)
-		this:Close();
+	function this.GetHeight()
+		return height;
 	end
 
-	componentsManager:AddComponent(closeButton);
-	closeButton:SetOnClick(EventHandler(closeButtonClick));
-
-	if (allowMaximize) then
-		local maximizeButtonClick = function(sender, eventArgs)
-			this.Maximized = not this.Maximized;
+	function this.SetHeight(_, _value)
+		height = _value;
+		if (y + height - 1 > screenHeight - 1) then
+			height = screenHeight - y;
 		end
-
-		componentsManager:AddComponent(maximizeButton);
-		maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
-	end
-
------------------------ Standard window functions -----------------------
-
-	this.Close = function(_)
-		this._application:DeleteWindow(this.Id);
-	end
-
-	this.Show = function(_)
-		this._application:AddWindow(this);
-	end
-
-	this.Maximize = function(_)
-		this.Maximized = true;
-	end
-
-	this.Minimize = function(_)
-		this.Maximized = false;
-	end
-
-	local function updateSize()
-		if (this.Width - 1 > screenWidth) then
-			this.Width = screenWidth;
-		end
-		if (this.Height - 1 > screenHeight) then
-			this.Height = screenHeight;
-		end
-
-		if (this.Maximized) then
-			this.Width = screenWidth;
-			this.Height = screenHeight - 1;
-			this.X = 1;
-			this.Y = System:GetTopLineIndex();
-		else
-			this.Width = realWidht;
-			this.Height = realHeight;
+		if (height < 3) then
+			height = 3;
 		end
 	end
 
-	this.SetSize = function(_, width, height)
-		realWidht = width;
-		realHeight = height;
-		updateSize();
+	function this.GetVisible()
+		return visible;
 	end
 
-	this.Contains = function(_, x, y)
-		return (x >= this.X and x <= this.X + this.Width - 1 and y >= this.Y and y <= this.Y + this.Height - 1) or menuesManager:Contains(x, y);
+	function this.SetVisible(_, _value)
+		visible = _value;
 	end
 
------------------------ Components operations ---------------------------
-
-	this.AddComponent = function(_, component)
-		componentsManager:AddComponent(component);
+	function this.GetMaximized()
+		return maximized;
 	end
 
------------------------ Menues operations -------------------------------
-
-	this.OpenCloseMenu = function(_, name)
-		menuesManager:OpenCloseMenu(name);
+	function this.SetMaximized(_, _value)
+		maximized = _value;
 	end
 
-	this.GetMenu = function(_, name)
-		return menuesManager:GetMenu(name);
+	function this.GetEnabled()
+		return enabled;
 	end
 
-	this.AddMenu = function(_, name, menu)
-		menuesManager:AddMenu(name, menu);
+	function this.SetEnabled(_, _value)
+		enabled = _value;
 	end
 
-	this.OpenMenu = function(_, name)
-		menuesManager:OpenMenu(name);
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ---------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+	
+	function this.Close()
+		application:DeleteWindow(id);
 	end
 
-	this.CloseAllMenues = function(_)
+	function this.Show()
+		application:AddWindow(this);
+	end
+
+	function this.Maximize()
+		maximized = true;
+	end
+
+	function Minimize()
+		maximized = false;
+	end
+
+	function this.Contains(_, _x, _y)
+		return (_x >= x and _x <= x + width - 1 and _y >= y and _y <= y + height - 1) or menuesManager:Contains(_x, _y);
+	end
+
+	function this.AddComponent(_, _component)
+		componentsManager:AddComponent(_component);
+	end
+
+	function this.OpenCloseMenu(_, _menuName)
+		menuesManager:OpenCloseMenu(_menuName);
+	end
+
+	function this.GetMenu(_, _menuName)
+		return menuesManager:GetMenu(_menuName);
+	end
+
+	function this.AddMenu(_, _menuName, _menu)
+		menuesManager:AddMenu(_menuName, _menu);
+	end
+
+	function this.OpenMenu(_, _menuName)
+		menuesManager:OpenMenu(_menuName);
+	end
+
+	function this.CloseAllMenues()
 		menuesManager:CloseAll();
 	end
 
------------------------ Drawing -----------------------------------------
+	-- Drawing
 
-	local function drawTopLine(videoBuffer)
+	local function drawTopLine(_videoBuffer)
 		local topLineColor = colorConfiguration:GetColor('TopLineActiveColor');
-		if (this.Enabled) then
-			videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
+		if (enabled) then
+			_videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 			closeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 			if (maximizeButton ~= nil) then
 				maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 			end
 		else
 			topLineColor = colorConfiguration:GetColor('TopLineInactiveColor');
-			videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
+			_videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 			closeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 			if (maximizeButton ~= nil) then
 				maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 			end
 		end
 
-		videoBuffer:DrawBlock(this.X, this.Y, this.Width, 1, topLineColor);
+		_videoBuffer:DrawBlock(x, y, width, 1, topLineColor);
 
-		titlePosition = this.X + 1;
+		local titlePosition = x + 1;
 		if (interfaceConfiguration:GetOption('WindowButtonsPosition') == 'left') then
-			titlePosition = this.X + 2;
+			titlePosition = x + 2;
 			if (allowMaximize) then
-				titlePosition = this.X + 4;
+				titlePosition = x + 4;
 			end
 		end
 
-		local titleToPrint = this.Title;
-		if (string.len(titleToPrint) > this.Width - 4) then
-			titleToPrint = string.sub(this.Title, 1, this.Width - 7);
+		local titleToPrint = title;
+		if (string.len(titleToPrint) > width - 4) then
+			titleToPrint = string.sub(title, 1, width - 7);
 			titleToPrint = titleToPrint..'...';
 		end
 
-		videoBuffer:SetTextColor(colorConfiguration:GetColor('TopLineTextColor'));
-		videoBuffer:WriteAt(titlePosition, this.Y, titleToPrint);
+		_videoBuffer:SetTextColor(colorConfiguration:GetColor('TopLineTextColor'));
+		_videoBuffer:WriteAt(titlePosition, y, titleToPrint);
 	end
 
-	local function drawCanvas(videoBuffer)
-		videoBuffer:DrawBlock(this.X + 1, this.Y + 1, this.Width - 2, this.Height - 2, this.BackgroundColor, ' ');
+	local function drawCanvas(_videoBuffer)
+		_videoBuffer:DrawBlock(x + 1, y + 1, width - 2, height - 2, backgroundColor, ' ');
 	end
 
-	local function drawFrame(videoBuffer)
-		drawTopLine(videoBuffer);
+	local function drawFrame(_videoBuffer)
+		drawTopLine(_videoBuffer);
 		
-		videoBuffer:SetBackgroundColor(this.BackgroundColor);
-		videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
-		for i = 1, this.Height - 2 do
-			videoBuffer:WriteAt(this.X, this.Y + i, '|');
-			videoBuffer:WriteAt(this.X + this.Width - 1, this.Y + i, '|');
+		_videoBuffer:SetBackgroundColor(backgroundColor);
+		_videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
+		for i = 1, height - 2 do
+			_videoBuffer:WriteAt(x, y + i, '|');
+			_videoBuffer:WriteAt(x + width - 1, y + i, '|');
 		end
 
-		videoBuffer:SetCursorPos(this.X, this.Y + this.Height - 1);
-		videoBuffer:Write('+');
-		for i = 2, this.Width - 1 do
-			videoBuffer:Write('-');
+		_videoBuffer:SetCursorPos(x, y + height - 1);
+		_videoBuffer:Write('+');
+		for i = 2, width - 1 do
+			_videoBuffer:Write('-');
 		end
-		videoBuffer:Write('+');
+		_videoBuffer:Write('+');
 	end
 
-	local function drawComponents(videoBuffer)
-		componentsManager:Draw(videoBuffer, this.X, this.Y, this.Width, this.Height);
+	local function drawComponents(_videoBuffer)
+		componentsManager:Draw(_videoBuffer, x, y, width, height);
 	end
 
-	local function drawMenues(videoBuffer)
-		menuesManager:Draw(videoBuffer);
+	local function drawMenues(_videoBuffer)
+		menuesManager:Draw(_videoBuffer);
 	end
 
-	local function draw(videoBuffer)
-		if (this.Visible) then
-			drawFrame(videoBuffer);
-			drawCanvas(videoBuffer);
-			drawComponents(videoBuffer);
+	local function draw(_videoBuffer)
+		drawFrame(_videoBuffer);
+		drawCanvas(_videoBuffer);
+		drawComponents(_videoBuffer);
+	end
+
+	local function updateSize()
+		if (width - 1 > screenWidth) then
+			width = screenWidth;
+		end
+		if (height - 1 > screenHeight) then
+			height = screenHeight;
+		end
+
+		if (maximized) then
+			width = screenWidth;
+			height = screenHeight - 1;
+			x = 1;
+			y = System:GetTopLineIndex();
+		else
+			width = miniWidth;
+			height = miniHeight;
+			x = miniX;
+			y = miniY;
 		end
 	end
 
-	local function drawBase(videoBuffer)
-		this.BackgroundColor = colorConfiguration:GetColor('WindowColor');
+	local function drawBase(_videoBuffer)
+		backgroundColor = colorConfiguration:GetColor('WindowColor');
 		updateSize();
-		draw(videoBuffer);
+		draw(_videoBuffer);
 	end
 
-	this.DrawBase = function(_, videoBuffer)
-		drawBase(videoBuffer);
-		this:Draw(videoBuffer);
-		drawMenues(videoBuffer);
+	function this.DrawBase(_, _videoBuffer)
+		if (visible) then
+			drawBase(_videoBuffer);
+			this:Draw(_videoBuffer);
+			drawMenues(_videoBuffer);
+		end
 	end
 
-	this.Draw = function(_, videoBuffer)	
+	function this.Draw(_, _videoBuffer)	
 	end
 
------------------------ Updating ----------------------------------------
+	-- Updating
 
-	this.UpdateBase = function(_)
+	function this.UpdateBase()
 		this:Update();
 	end
 
-	this.Update = function(_)
+	function this.Update()
 	end
 
------------------------ Left click processing ---------------------------
+	-- Events processing
 
-	local function processLeftClickEvent(cursorX, cursorY)
-		if (menuesManager:ProcessLeftClickEvent(cursorX, cursorY)) then
+	local function processLeftClickEvent(_cursorX, _cursorY)
+		if (menuesManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (componentsManager:ProcessLeftClickEvent(cursorX, cursorY)) then
+		if (componentsManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (cursorY == this.Y and cursorX >= this.X and cursorX <= this.X + this.Width - 1) then
+		if (_cursorY == y and _cursorX >= x and _cursorX <= x + width - 1) then
 			isMoving = not isMoving;
 			return true;
 		end
 	end
 
-	this.ProcessLeftClickEventBase = function(_, cursorX, cursorY)
-		if (this:Contains(cursorX, cursorY)) then
-			if (processLeftClickEvent(cursorX, cursorY)) then
+	function this.ProcessLeftClickEventBase(_, _cursorX, _cursorY)
+		if (this:Contains(_cursorX, _cursorY)) then
+			if (processLeftClickEvent(_cursorX, _cursorY)) then
 				return true;
 			end
-			this:ProcessLeftClickEvent(cursorX, cursorY);
+			this:ProcessLeftClickEvent(_cursorX, _cursorY);
 		end
 		return false;
 	end
 
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
 	end
 
------------------------ Right click processing --------------------------
-
-	this.ProcessRightClickEventBase = function(_, cursorX, cursorY)
-		if (this:Contains(cursorX, cursorY)) then
-			this:ProcessRightClickEvent(cursorX, cursorY);
+	function this.ProcessRightClickEventBase(_, _cursorX, _cursorY)
+		if (this:Contains(_cursorX, _cursorY)) then
+			this:ProcessRightClickEvent(_cursorX, _cursorY);
 		end
-		return this:Contains(cursorX, cursorY);
+		return this:Contains(_cursorX, _cursorY);
 	end
 
-	this.ProcessRightClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
 	end
 
------------------------ Double click processing -------------------------
-
-	local function processDoubleClickEvent(cursorX, cursorY)
-		return componentsManager:ProcessDoubleClickEvent(cursorX, cursorY);
+	local function processDoubleClickEvent(_cursorX, _cursorY)
+		return componentsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
-	this.ProcessDoubleClickEventBase = function(_, cursorX, cursorY)
-		if (this:Contains(cursorX, cursorY)) then
-			processDoubleClickEvent(cursorX, cursorY);
-			this:ProcessDoubleClickEvent(cursorX, cursorY);
+	function this.ProcessDoubleClickEventBase(_, _cursorX, _cursorY)
+		if (this:Contains(_cursorX, _cursorY)) then
+			processDoubleClickEvent(_cursorX, _cursorY);
+			this:ProcessDoubleClickEvent(_cursorX, _cursorY);
 		end
 	end
 
-	this.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
 	end
 
 ----------------------- Keys processing ---------------------------------
 
 	local function processUpArrowKey()
-		if (this.Y > System:GetTopLineIndex()) then
-			this.Y = this.Y - 1;
-		end
+		this:SetY(y - 1);
 	end
 
 	local function processLeftArrowKey()
-		if (this.X > 1) then
-			this.X = this.X - 1;
-		end
+		this:SetX(x - 1);
 	end
 
 	local function processDownArrowKey()
-		if (this.Y < screenHeight - 2 + System:GetTopLineIndex()) then
-			this.Y = this.Y + 1;
-		end
+		this:SetY(y + 1);
 	end
 
 	local function processRightArrowKey()
-		if (this.X < screenWidth) then
-			this.X = this.X + 1;
-		end
+		this:SetX(x + 1);
 	end
 
-	local function processKeyEvent(key)
-		if (this.AllowMove and isMoving) then
-			local keyName = keys.getName(key);
+	local function processKeyEvent(_key)
+		if (allowMove and isMoving) then
+			local keyName = keys.getName(_key);
 			if (keyName == 'up') then --------- Up arrow
 				processUpArrowKey();
 			elseif (keyName == 'down') then --- Down arrow
@@ -349,39 +432,126 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 				processRightArrowKey();
 			end
 		end
-		componentsManager:ProcessKeyEvent(key);
+		componentsManager:ProcessKeyEvent(_key);
 	end
 
-	this.ProcessKeyEventBase = function(_, key)
-		processKeyEvent(key);
-		this:ProcessKeyEvent(key);
+	function this.ProcessKeyEventBase(_, _key)
+		processKeyEvent(_key);
+		this:ProcessKeyEvent(_key);
 	end
 
-	this.ProcessKeyEvent = function(_, key)
+	function this.ProcessKeyEvent(_, _key)
 	end
 
------------------------ Chars processing --------------------------------
-
-	local function processCharEvent(char)
-		componentsManager:ProcessCharEvent(char);
+	local function processCharEvent(_symbol)
+		componentsManager:ProcessCharEvent(_symbol);
 	end
 
-	this.ProcessCharEventBase = function(_, char)
-		if (processCharEvent(char)) then
+	function this.ProcessCharEventBase(_, _symbol)
+		if (processCharEvent(_symbol)) then
 			return;
 		end
-		this:ProcessCharEvent(char);
+		this:ProcessCharEvent(_symbol);
 	end
 
-	this.ProcessCharEvent = function(_, char)
+	function this.ProcessCharEvent(_, _symbol)
 	end
 
------------------------ Rednet processing -------------------------------
-
-	this.ProcessRednetEventBase = function(_, id, message, distance)
-		this:ProcessRednetEvent(id, message, distance);
+	function this.ProcessRednetEventBase(_, _id, _message, _distance)
+		this:ProcessRednetEvent(_id, _message, _distance);
 	end
 
-	this.ProcessRednetEvent = function(_, id, message, distance)
+	function this.ProcessRednetEvent(_, _id, _message, _distance)
 	end
+
+	local function closeButtonClick(sender, eventArgs)
+		this:Close();
+	end
+
+	local function maximizeButtonClick(sender, eventArgs)
+		maximized = not maximized;
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height,  _backgroundColor, _allowMaximize, _allowMove)
+		if (type(_application) ~= 'table' or _application:GetClassName() ~= 'Application') then
+			error('Window.Constructor [application]: Application expected, got '..type(_application)..'.');
+		end
+		if (type(_name) ~= 'string') then
+			error('Window.Constructor [name]: String expected, got '..type(_name)..'.');
+		end
+		if (type(_isUnique) ~= 'boolean') then
+			error('Window.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		if (type(_isModal) ~= 'boolean') then
+			error('Window.Constructor [isModal]: Boolean expected, got '..type(_isModal)..'.');
+		end
+		if (type(_title) ~= 'string') then
+			error('Window.Constructor [title]: String expected, got '..type(_title)..'.');
+		end
+		if (type(_x) ~= 'number') then
+			error('Window.Constructor [x]: Number expected, got '..type(_x)..'.');
+		end
+		if (type(_y) ~= 'number') then
+			error('Window.Constructor [y]: Number expected, got '..type(_y)..'.');
+		end
+		if (type(_width) ~= 'number') then
+			error('Window.Constructor [width]: Number expected, got '..type(_width)..'.');
+		end
+		if (type(_height) ~= 'number') then
+			error('Window.Constructor [height]: Number expected, got '..type(_height)..'.');
+		end
+		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
+			error('Window.Constructor [backgroundColor]: Number or nil expected, got '..type(_backgroundColor)..'.');
+		end
+		if (type(_allowMaximize) ~= 'boolean') then
+			error('Window.Constructor [allowMaximize]: Boolean expected, got '..type(_allowMaximize)..'.');
+		end
+		if (type(_allowMove) ~= 'boolean') then
+			error('Window.Constructor [allowMove]: Boolean expected, got '..type(_allowMove)..'.');
+		end
+
+		application = _application;
+		name = _name;
+		isUnique = _isUnique;
+		title = _title;
+		this:SetX(_x);
+		this:SetY(_y);
+		this:SetWidth(_width);
+		this:SetHeight(_height);
+		backgroundColor = _backgroundColor;
+		allowMaximize = _allowMaximize;
+		allowMove = _allowMove;
+		isModal = _isModal;
+
+		maximized = false;
+		miniX = x;
+		miniY = y;
+		miniWidth = width;
+		miniHeight = height;
+		isMoving = false;
+		visible = true;
+
+		colorConfiguration = System:GetColorConfiguration();
+		interfaceConfiguration = System:GetInterfaceConfiguration();
+		componentsManager = ComponentsManager();
+		menuesManager = MenuesManager();
+
+		-- Adding standard buttons
+
+		closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
+		componentsManager:AddComponent(closeButton);
+		closeButton:SetOnClick(EventHandler(closeButtonClick));
+
+		if (allowMaximize) then
+			maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
+			componentsManager:AddComponent(maximizeButton);
+			maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
+		end
+	end
+
+	constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _backgroundColor, _allowMaximize, _allowMove);
 end)

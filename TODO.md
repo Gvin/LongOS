@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 31 registered features.
+Currently there are 32 registered features.
 
 TODO
 ========
@@ -19,11 +19,12 @@ For v 0.3
 - [ ] F30: Add drawing methods to the Image class.
 - [ ] F14: Add drag-n-drop support.
 - [X] F31: Update components and system to use EventHandler.
+- [ ] F32: Update dialogs to use EventHandler.
 
 For all versions
 --------
 - [ ] F7: Create class diagrams for all classes.
-- [ ] F1: Make code clean-up.
+- [ ] F1: Make code refactoring.
 
 Further features
 --------

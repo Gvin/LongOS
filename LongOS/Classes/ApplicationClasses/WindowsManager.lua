@@ -14,7 +14,7 @@ WindowsManager = Class(function(this)
 
 	local getWindowById = function(windowId)
 		for i = 1, #windows do
-			if (windows[i].Id == windowId) then
+			if (windows[i]:GetId() == windowId) then
 				return windows[i], i;
 			end
 		end
@@ -23,7 +23,7 @@ WindowsManager = Class(function(this)
 
 	local getWindowByName = function(windowName)
 		for i = 1, #windows do
-			if (windows[i].Name == windowName) then
+			if (windows[i]:GetName() == windowName) then
 				return windows[i], i;
 			end
 		end
@@ -31,14 +31,14 @@ WindowsManager = Class(function(this)
 	end
 
 	this.AddWindow = function(_, window)
-		if (window.IsUnique) then
-			local oldWindow, index = getWindowByName(window.Name);
+		if (window:GetIsUnique()) then
+			local oldWindow, index = getWindowByName(window:GetName());
 			if (oldWindow ~= nil) then
 				currentWindow = oldWindow;
 				return;
 			end
 		end
-		window.Id = System:GenerateId();
+		window:SetId(System:GenerateId());
 		table.insert(windows, window);
 		currentWindow = window;
 	end
@@ -73,14 +73,14 @@ WindowsManager = Class(function(this)
 	local windowErrorCheck = function(window, success, errorText, message)
 		if (not success) then
 			System:ShowError(errorText..message);
-			this:DeleteWindow(window.Id);
+			this:DeleteWindow(window:GetId());
 		end
 	end
 
 	local tryProcessLeftClickEvent = function(window, cursorX, cursorY)
 		local success, message = pcall(window.ProcessLeftClickEventBase, nil, cursorX, cursorY);
 		if (not success) then
-			System:LogRuntimeError('Left click processing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..', cursorX:'..getString(cursorX)..', cursorY:'..getString(cursorY)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Left click processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', cursorX:'..getString(cursorX)..', cursorY:'..getString(cursorY)..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Left click processing error: ', message);
 	end
@@ -90,7 +90,7 @@ WindowsManager = Class(function(this)
 			if (currentWindow:Contains(cursorX, cursorY)) then
 				tryProcessLeftClickEvent(currentWindow, cursorX, cursorY);
 			else
-				if (not currentWindow.IsModal) then
+				if (not currentWindow:GetIsModal()) then
 					for i = 1, #windows do
 						if (windows[i]:Contains(cursorX, cursorY)) then
 							currentWindow = windows[i];
@@ -105,7 +105,7 @@ WindowsManager = Class(function(this)
 	local tryProcessRightClickEvent = function(window, cursorX, cursorY)
 		local success, message = pcall(window.ProcessRightClickEventBase, nil, cursorX, cursorY);
 		if (not success) then
-			System:LogRuntimeError('Right click processing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..', cursorX:'..getString(cursorX)..', cursorY:'..getString(cursorY)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Right click processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', cursorX:'..getString(cursorX)..', cursorY:'..getString(cursorY)..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Right click processing error: ', message);
 		if (success) then
@@ -122,7 +122,7 @@ WindowsManager = Class(function(this)
 	local tryProcessDoubleClickEvent = function(window, cursorX, cursorY)
 		local success, message = pcall(window.ProcessDoubleClickEventBase, nil, cursorX, cursorY);
 		if (not success) then
-			System:LogRuntimeError('Double click processing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..', cursorX:'..getString(cursorX)..', cursorY:'..getString(cursorY)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Double click processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', cursorX:'..getString(cursorX)..', cursorY:'..getString(cursorY)..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Double click processing error: ', message);
 	end
@@ -136,7 +136,7 @@ WindowsManager = Class(function(this)
 	local tryProcessKeyEvent = function(window, key)
 		local success, message = pcall(window.ProcessKeyEventBase, nil, key);
 		if (not success) then
-			System:LogRuntimeError('Key processing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..', key:'..getString(key)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Key processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', key:'..getString(key)..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Key processing error: ', message);
 	end
@@ -150,7 +150,7 @@ WindowsManager = Class(function(this)
 	local tryProcessCharEvent = function(window, char)
 		local success, message = pcall(window.ProcessCharEventBase, nil, char);
 		if (not success) then
-			System:LogRuntimeError('Char processing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..', char:"'..getString(char)..'"). Message:"'..message..'".');
+			System:LogRuntimeError('Char processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', char:"'..getString(char)..'"). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Char processing error: ', message);
 	end
@@ -164,7 +164,7 @@ WindowsManager = Class(function(this)
 	local tryProcessRednetEvent = function(window, id, data, distance)
 		local success, message = pcall(window.ProcessRednetEventBase, nil, id, data, distance);
 		if (not success) then
-			System:LogRuntimeError('Rednet processing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..', id:'..getString(id)..', data:"'..getString(data)..'"", distance:'..getString(distance)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Rednet processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', id:'..getString(id)..', data:"'..getString(data)..'"", distance:'..getString(distance)..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Rednet processing error: ', message);
 	end
@@ -177,7 +177,7 @@ WindowsManager = Class(function(this)
 
 	this.SwitchWindow = function(_)
 		if (currentWindow ~= nil) then
-			local window, index = getWindowById(currentWindow.Id);
+			local window, index = getWindowById(currentWindow:GetId());
 			index = index + 1;
 			if (index > #windows) then
 				index = 1;
@@ -200,7 +200,7 @@ WindowsManager = Class(function(this)
 	local tryDraw = function(window, videoBuffer)
 		local success, message = pcall(window.DrawBase, nil, videoBuffer);
 		if (not success) then
-			System:LogRuntimeError('Drawing error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Drawing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Drawing error: ', message);
 	end
@@ -208,12 +208,12 @@ WindowsManager = Class(function(this)
 	this.Draw = function(_, videoBuffer)
 		for i = 1, #windows do
 			if (windows[i] ~= nil) then
-				windows[i].Enabled = false;
+				windows[i]:SetEnabled(false);
 				tryDraw(windows[i], videoBuffer);
 			end
 		end
 		if (currentWindow ~= nil) then
-			currentWindow.Enabled = this.Enabled;
+			currentWindow:SetEnabled(this.Enabled);
 			tryDraw(currentWindow, videoBuffer);
 		end
 	end
@@ -221,14 +221,18 @@ WindowsManager = Class(function(this)
 	local tryUpdate = function(window)
 		local success, message = pcall(window.UpdateBase, nil, videoBuffer);
 		if (not success) then
-			System:LogRuntimeError('Updating error (WindowName:"'..getString(window.Name)..'", WindowId:'..getString(window.Id)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Updating error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..'). Message:"'..message..'".');
 		end
 		windowErrorCheck(window, success, 'Updating error: ', message);
 	end
 
 	this.Update = function(_)
-		for i = 1, #windows do
-			tryUpdate(windows[i]);
+		if (currentWindow ~= nil and currentWindow:GetIsModal()) then
+			tryUpdate(currentWindow);
+		else
+			for i = 1, #windows do
+				tryUpdate(windows[i]);
+			end
 		end
 	end
 end)
