@@ -1,5 +1,5 @@
 local version = '0.2';
-local operationsCount = 34;
+local operationsCount = 35;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -145,6 +145,8 @@ local function includeSystemClasses()
 	mustBeLoaded(Image, 'Image');
 	include('Classes/SystemClasses/Desktop');
 	mustBeLoaded(Desktop, 'Desktop');
+	include('Classes/SystemClasses/EventHandler');
+	mustBeLoaded(EventHandler, 'EventHandler');
 end
 
 local function includeConfigurationClasses()

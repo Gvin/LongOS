@@ -16,6 +16,8 @@ For v 0.3
 - [ ] F28: Improve CheckBox component.
 - [ ] F24: Create application for components testing.
 - [ ] F29: Add Event class.
+- [ ] F30: Add drawing methods to the Image class.
+- [ ] F14: Add drag-n-drop support.
 
 For all versions
 --------
@@ -26,7 +28,6 @@ Further features
 --------
 - [ ] F8: Add terminal programs support.
 - [ ] F11: Add packets manager.
-- [ ] F14: Add drag-n-drop support.
 - [ ] F15: Improve PopupMenu to support submenues.
 - [ ] F16: Improve components ierarchy.
 - [ ] F19: Add desktop icons.
