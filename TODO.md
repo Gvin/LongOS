@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 29 registered features.
+Currently there are 31 registered features.
 
 TODO
 ========
@@ -15,9 +15,10 @@ For v 0.3
 - [ ] F23: Add real threads.
 - [ ] F28: Improve CheckBox component.
 - [ ] F24: Create application for components testing.
-- [ ] F29: Add Event class.
+- [X] F29: Add Event class.
 - [ ] F30: Add drawing methods to the Image class.
 - [ ] F14: Add drag-n-drop support.
+- [X] F31: Update components and system to use EventHandler.
 
 For all versions
 --------

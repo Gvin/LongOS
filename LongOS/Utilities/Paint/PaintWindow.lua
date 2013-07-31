@@ -1,32 +1,3 @@
-local function newImage(params)
-	local openFileWindow = OpenFileWindow(params[1], params[2], 'New file', params[2].FileName);
-	openFileWindow:Show();
-end
-
-local function saveFile(params)
-	params[1]:SaveFile();
-end
-
-local function loadFile(params)
-	local openFileWindow = OpenFileWindow(params[1], params[3], 'Opening file', '');
-	openFileWindow:Show();
-	params[2].IsLoading = true;
-	params[3].FileName = '';
-end
-
-local function clear(params)
-	params[1]:Clear();
-end
-
-local function selectColorClick(params)
-	local picker = ColorPickerWindow(params[1], params[2].BackgroundColor, params[2]);
-	picker:Show();
-end
-
-local function fillButtonClick(params)
-	params[1].IsFilling = true;
-end
-
 PaintWindow = Class(Window, function(this, application)
 	Window.init(this, application, 5, 2, 41, 17, true, true, nil, 'Paint window', 'Gvin paint', false);
 
@@ -51,39 +22,61 @@ PaintWindow = Class(Window, function(this, application)
 	local additionalColor = {};
 	additionalColor.BackgroundColor = colors.white;
 
+	local newFileButtonClick = function(sender, eventArgs)
+		local openFileWindow = OpenFileWindow(application, this, 'New file', this.FileName);
+		openFileWindow:Show();
+	end
+
 	local newFileButton = Button('New', nil, nil, 1, 1, 'left-top');
-	newFileButton.OnClick = newImage;
-	newFileButton.OnClickParams = { application, this};
+	newFileButton:SetOnClick(EventHandler(newFileButtonClick));
 	this:AddComponent(newFileButton);
 
+	local openFileButtonClick = function(sender, eventArgs)
+		local openFileWindow = OpenFileWindow(application, fileToLoad, 'Opening file', '');
+		openFileWindow:Show();
+		this.IsLoading = true;
+		fileToLoad.FileName = '';
+	end
+
 	local openFileButton = Button('Open', nil, nil, 5, 1, 'left-top');
-	openFileButton.OnClick = loadFile;
-	openFileButton.OnClickParams = { application, this, fileToLoad };
+	openFileButton:SetOnClick(EventHandler(openFileButtonClick));
 	this:AddComponent(openFileButton);
 
+	local saveFileButtonClick = function(sender, eventArgs)
+		this:SaveFile();
+	end
+
 	local saveFileButton = Button('Save', nil, nil, 10, 1, 'left-top');
-	saveFileButton.OnClick = saveFile;
-	saveFileButton.OnClickParams = { this };
+	saveFileButton:SetOnClick(EventHandler(saveFileButtonClick));
 	this:AddComponent(saveFileButton);
 
+	local clearButtonClick = function(sender, eventArgs)
+		this:Clear();
+	end
+
 	local clearButton = Button('Clear', nil, nil, 15, 1, 'left-top');
-	clearButton.OnClick = clear;
-	clearButton.OnClickParams = { this };
+	clearButton:SetOnClick(EventHandler(clearButtonClick));
 	this:AddComponent(clearButton);
 
+	local colorSelectionButtonClick = function(sender, eventArgs)
+		local picker = ColorPickerWindow(application, sender:GetBackgroundColor(), {});
+		picker:Show();
+	end
+
 	local mainColorSelectionButton = Button('  ', mainColor.BackgroundColor, nil, 1, -2, 'left-bottom');
-	mainColorSelectionButton.OnClick = selectColorClick;
-	mainColorSelectionButton.OnClickParams = { application, mainColor };
+	mainColorSelectionButton:SetOnClick(EventHandler(colorSelectionButtonClick));
 	this:AddComponent(mainColorSelectionButton);
 
 	local additionalColorSelectionButton = Button('  ', additionalColor.BackgroundColor, nil, 3, -2, 'left-bottom');
-	additionalColorSelectionButton.OnClick = selectColorClick;
-	additionalColorSelectionButton.OnClickParams = { application, additionalColor };
+	additionalColorSelectionButton:SetOnClick(EventHandler(colorSelectionButtonClick));
 	this:AddComponent(additionalColorSelectionButton);
 
+	local fillToolButtonClick = function(sender, eventArgs)
+		this.IsFilling = true;
+	end
+
 	local fillToolButton = Button('Fill', nil, nil, 6, -2, 'left-bottom');
-	fillToolButton.OnClick = fillButtonClick;
-	fillToolButton.OnClickParams = { this };
+	fillToolButton:SetOnClick(EventHandler(fillToolButtonClick));
 	this:AddComponent(fillToolButton);
 
 	local vScrollBar = VerticalScrollBar(1, 7, 13, nil, nil, -2, 2, 'right-top');

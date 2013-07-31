@@ -1,37 +1,5 @@
-local function copyButtonClick(params)
-	params[1]:Copy();
-end
-
-local function cutButtonClick(params)
-	params[1]:Cut();
-end
-
-local function pasteButtonClick(params)
-	params[1]:Paste();
-end
-
 local function deleteFile(params)
 	params[1]:Delete(params[2]);
-end
-
-local function renameButtonClick(params)
-	params[1]:Rename();
-	local openFileWindow = OpenFileWindow(params[2], params[3], 'Rename file', params[3].OldFileName);
-	openFileWindow:Show();
-end
-
-local function createDirectoryButtonClick(params)
-	params[2].FileName = '';
-	local openFileWindow = OpenFileWindow(params[1], params[2], 'Create directory', '');
-	openFileWindow:Show();
-	params[3].CreatingDirectory = true;
-end
-
-local function createFileButtonClick(params)
-	params[2].FileName = '';
-	local openFileWindow = OpenFileWindow(params[1], params[2], 'Create file', '');
-	openFileWindow:Show();
-	params[3].CreatingFile = true;
 end
 
 FileManagerWindow = Class(Window, function(this, application)
@@ -51,35 +19,56 @@ FileManagerWindow = Class(Window, function(this, application)
 	local vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, -2, 2, 'right-top');
 	this:AddComponent(vScrollBar);
 
+	local pasteButtonClick = function(sender, eventArgs)
+		this:Paste();
+	end
+
 	local pasteButton = Button('Paste', nil, nil, 1, -2, 'left-bottom');
-	pasteButton.OnClick = pasteButtonClick;
-	pasteButton.OnClickParams = { this };
+	pasteButton:SetOnClick(EventHandler(pasteButtonClick));
 	this:AddComponent(pasteButton);
 
+	local createDirectoryButtonClick = function(sender, eventArgs)
+		newDirectory.FileName = '';
+		local openFileWindow = OpenFileWindow(application, newDirectory, 'Create directory', '');
+		openFileWindow:Show();
+		this.CreatingDirectory = true;
+	end
+
 	local createDirectoryButton = Button('Create directory', nil, nil, 7, -2, 'left-bottom');
-	createDirectoryButton.OnClick = createDirectoryButtonClick;
-	createDirectoryButton.OnClickParams = { application, newDirectory, this };
+	createDirectoryButton:SetOnClick(EventHandler(createDirectoryButtonClick));
 	this:AddComponent(createDirectoryButton);
 
+	local createFileButtonClick = function(sender, eventArgs)
+		newFile.FileName = '';
+		local openFileWindow = OpenFileWindow(application, newFile, 'Create file', '');
+		openFileWindow:Show();
+		this.CreatingFile = true;
+	end
+
 	local createFileButton = Button('Create file', nil, nil, 24, -2, 'left-bottom');
-	createFileButton.OnClick = createFileButtonClick;
-	createFileButton.OnClickParams = { application, newFile, this };
+	createFileButton:SetOnClick(EventHandler(createFileButtonClick));
 	this:AddComponent(createFileButton);
 
 	local contextMenu = PopupMenu(1, 1, 10, 9, nil, true);
 	this:AddMenu('ContextMenu', contextMenu);
 
+	local copyButtonClick = function(sender, eventArgs)
+		this:Copy();
+	end
+
 	local copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
-	copyButton.OnClick = copyButtonClick;
-	copyButton.OnClickParams = { this };
+	copyButton:SetOnClick(EventHandler(copyButtonClick));
 	contextMenu:AddComponent(copyButton);
 
+	local cutButtonClick = function(sender, eventArgs)
+		this:Cut();
+	end
+
 	local cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
-	cutButton.OnClick = cutButtonClick;
-	cutButton.OnClickParams = { this };
+	cutButton:SetOnClick(EventHandler(cutButtonClick));
 	contextMenu:AddComponent(cutButton);
 
-	local function deleteButtonClick()
+	local deleteButtonClick = function(sender, eventArgs)
 		local dialogWindow = DialogWindow(application, 'Delete?', 'Do you really want to delete     '..selectedFile..'?');
 		dialogWindow.OnOkClick = deleteFile;
 		dialogWindow.OnOkClickParams = { this, selectedFile };
@@ -87,12 +76,17 @@ FileManagerWindow = Class(Window, function(this, application)
 	end
 
 	local deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
-	deleteButton.OnClick = deleteButtonClick;
+	deleteButton:SetOnClick(EventHandler(deleteButtonClick));
 	contextMenu:AddComponent(deleteButton);
 
+	local renameButtonClick = function(sender, eventArgs)
+		this:Rename();
+		local openFileWindow = OpenFileWindow(application, renamingFile, 'Rename file', renamingFile.OldFileName);
+		openFileWindow:Show();
+	end
+
 	local renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
-	renameButton.OnClick = renameButtonClick;
-	renameButton.OnClickParams = { this, application, renamingFile };
+	renameButton:SetOnClick(EventHandler(renameButtonClick));
 	contextMenu:AddComponent(renameButton);
 
 	local getFiles = function(_)

@@ -10,14 +10,6 @@ local function countWidth(text)
 	return 34;
 end
 
-local function okButtonClick(params)
-	params[1]:Ok();
-end
-
-local function cancelButtonClick(params)
-	params[1]:Cancel();
-end
-
 local function countXPosition(text)
 	local width = countWidth(text);
 	local screenWidth = term.getSize();
@@ -40,23 +32,31 @@ DialogWindow = Class(Window, function(this, application, title, text)
 	this.OnOkClickParams = nil;
 	this.OnCancelClick = nil;
 	this.OnCancelClickParams = nil;
+	
+	local colorConfiguration = System:GetColorConfiguration();
 	if (this.TextColor == nil) then
-		this.TextColor = System:GetSystemColor('SystemLabelsTextColor');
+		this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+	end
+
+	local okButtonClick = function(sender, eventArgs)
+		this:Ok();
 	end
 
 	local okButton = Button(' OK ', nil, nil, 1, -2, 'left-bottom');
-	okButton.OnClick = okButtonClick;
-	okButton.OnClickParams = { this };
+	okButton:SetOnClick(EventHandler(okButtonClick));
 	this:AddComponent(okButton);
 
+	local cancelButtonClick = function(sender, eventArgs)
+		this:Cancel();
+	end
+
 	local cancelButton = Button('Cancel', nil, nil, -7, -2, 'right-bottom');
-	cancelButton.OnClick = cancelButtonClick;
-	cancelButton.OnClickParams = { this };
+	cancelButton:SetOnClick(EventHandler(cancelButtonClick));
 	this:AddComponent(cancelButton);
 
 	this.Draw = function(_, videoBuffer)
 		videoBuffer:SetTextColor(this.TextColor);
-		videoBuffer:SetBackgroundColor(System:GetSystemColor('WindowColor'));
+		videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('WindowColor'));
 		local line = 1;
 		local col = 1;
 		for i = 1, string.len(this.Text) do

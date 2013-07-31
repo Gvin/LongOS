@@ -1,31 +1,3 @@
-local function shutdown()
-	System:Shutdown();
-end
-
-local function reboot()
-	System:Reboot();
-end
-
-local function logOff()
-	System:LogOff();
-end
-
-local function configurationButtonClick()
-	System:ShowConfigurationWindow();
-end
-
-local function tasksManagerButtonClick()
-	System:RunFile('/LongOS/Utilities/TasksManager/GvinTasksManager');
-end
-
-local function launchApplication(params)
-	System:RunFile(params[1]);
-end
-
-local function openMenu(params)
-	params[1]:OpenCloseMenu(params[2]);
-end
-
 ControlPanel = Class(function(this)
 	
 	this.GetClassName = function()
@@ -43,21 +15,36 @@ ControlPanel = Class(function(this)
 	local powerMenu = PopupMenu(40, 12, 15, 7, colors.lightGray);
 	menuesManager:AddMenu('PowerMenu', powerMenu);
 
+	local shutdownButtonClick = function(sender, eventArgs)
+		System:Shutdown();
+	end
+
 	local shutdownButton = Button('Shutdown', colors.red, colors.black, 1, -6, 'left-bottom');
-	shutdownButton.OnClick = shutdown;
+	shutdownButton:SetOnClick(EventHandler(shutdownButtonClick));
 	powerMenu:AddComponent(shutdownButton);
 
-	local rebootButton = Button('Reboot', colors.blue, colors.black, 2, -4, 'left-bottom');
-	rebootButton.OnClick = reboot;
+	local rebootButtonClick = function(sender, eventArgs)
+		System:Reboot();
+	end
+
+	local rebootButton = Button('Reboot', colors.lightBlue, colors.black, 2, -4, 'left-bottom');
+	rebootButton:SetOnClick(EventHandler(rebootButtonClick));
 	powerMenu:AddComponent(rebootButton);
 
+	local logOffButtonClick = function(sender, eventArgs)
+		System:LogOff();
+	end
+
 	local logOffButton = Button('Log  off', colors.lime, colors.black, 1, -2, 'left-bottom');
-	logOffButton.OnClick = logOff;
+	logOffButton:SetOnClick(EventHandler(logOffButtonClick));
 	powerMenu:AddComponent(logOffButton);
 
+	local powerButtonClick = function(sender, eventArgs)
+		menuesManager:OpenCloseMenu('PowerMenu');
+	end
+
 	local powerButton = Button('Power', colors.red, colors.black, -12, 0, 'right-top');
-	powerButton.OnClick = openMenu;
-	powerButton.OnClickParams = { menuesManager, 'PowerMenu' };
+	powerButton:SetOnClick(EventHandler(powerButtonClick));
 	componentsManager:AddComponent(powerButton);
 
 	-- APPLICATIONS
@@ -65,9 +52,12 @@ ControlPanel = Class(function(this)
 	local applicationsMenu = PopupMenu(2, 18, 14, 1, colors.lightGray);
 	menuesManager:AddMenu('ApplicationsMenu', applicationsMenu);
 
+	local applicationsButtonClick = function(sender, eventArgs)
+		menuesManager:OpenCloseMenu('ApplicationsMenu');
+	end
+
 	local applicationsButton = Button('Applications', colors.lime, colors.black, 1, 0, 'left-top');
-	applicationsButton.OnClick = openMenu;
-	applicationsButton.OnClickParams = { menuesManager, 'ApplicationsMenu' };
+	applicationsButton:SetOnClick(EventHandler(applicationsButtonClick));
 	componentsManager:AddComponent(applicationsButton);
 
 	-- SYSTEM
@@ -75,17 +65,28 @@ ControlPanel = Class(function(this)
 	local systemMenu = PopupMenu(15, 14, 15, 5, colors.lightGray);
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
+	local tasksManagerButtonClick = function(sender, eventArgs)
+		System:RunFile('/LongOS/Utilities/TasksManager/GvinTasksManager');
+	end
+
 	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, -2, 'left-bottom');
-	tasksManagerButton.OnClick = tasksManagerButtonClick;
+	tasksManagerButton:SetOnClick(EventHandler(tasksManagerButtonClick));
 	systemMenu:AddComponent(tasksManagerButton);
 
+	local configurationButtonClick = function(sender, eventArgs)
+		System:ShowConfigurationWindow();
+	end
+
 	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, -4, 'left-bottom');
-	configurationButton.OnClick = configurationButtonClick;
+	configurationButton:SetOnClick(EventHandler(configurationButtonClick));
 	systemMenu:AddComponent(configurationButton);
 
+	local systemButtonClick = function(sender, eventArgs)
+		menuesManager:OpenCloseMenu('SystemMenu');
+	end
+
 	local systemButton = Button('System', colors.lime, colors.black, 14, 0, 'left-top');
-	systemButton.OnClick = openMenu;
-	systemButton.OnClickParams = { menuesManager, 'SystemMenu' };
+	systemButton:SetOnClick(EventHandler(systemButtonClick));
 	componentsManager:AddComponent(systemButton);
 
 	-- TIME
@@ -99,29 +100,32 @@ ControlPanel = Class(function(this)
 	local yearLabel = Label('Year ---', colors.lightGray, colors.black, 1, 2, 'left-top');
 	calendarMenu:AddComponent(yearLabel);
 
+	local calendarButtonClick = function(sender, eventArgs)
+		menuesManager:OpenCloseMenu('CalendarMenu');
+	end
+
 	local calendarButton = Button('--:--', colors.green, colors.white, -6, 0, 'right-top');
-	calendarButton.OnClick = openMenu;
-	calendarButton.OnClickParams = { menuesManager, 'CalendarMenu' };
+	calendarButton:SetOnClick(EventHandler(calendarButtonClick));
 	componentsManager:AddComponent(calendarButton);
 	
 	local drawControlPanel = function(videoBuffer)
 		local colorConfiguration = System:GetColorConfiguration();
-		applicationsButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelButtonsColor');
-		systemButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelButtonsColor');
-		powerButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelPowerButtonColor');
-		calendarButton.BackgroundColor = colorConfiguration:GetColor('ControlPanelColor');
-		calendarButton.TextColor = colorConfiguration:GetColor('TimeTextColor');
-		dayLabel.BackgroundColor = colorConfiguration:GetColor('WindowColor');
-		dayLabel.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
-		yearLabel.BackgroundColor = colorConfiguration:GetColor('WindowColor');
-		yearLabel.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+		applicationsButton:SetBackgroundColor(colorConfiguration:GetColor('ControlPanelButtonsColor'));
+		systemButton:SetBackgroundColor(colorConfiguration:GetColor('ControlPanelButtonsColor'));
+		powerButton:SetBackgroundColor(colorConfiguration:GetColor('ControlPanelPowerButtonColor'));
+		calendarButton:SetBackgroundColor(colorConfiguration:GetColor('ControlPanelColor'));
+		calendarButton:SetTextColor(colorConfiguration:GetColor('TimeTextColor'));
+		dayLabel:SetBackgroundColor(colorConfiguration:GetColor('WindowColor'));
+		dayLabel:SetTextColor(colorConfiguration:GetColor('SystemLabelsTextColor'));
+		yearLabel:SetBackgroundColor(colorConfiguration:GetColor('WindowColor'));
+		yearLabel:SetTextColor(colorConfiguration:GetColor('SystemLabelsTextColor'));
 
-		configurationButton.BackgroundColor = colorConfiguration:GetColor('SystemButtonsColor');
-		configurationButton.TextColor = colorConfiguration:GetColor('SystemButtonsTextColor');
-		tasksManagerButton.BackgroundColor = colorConfiguration:GetColor('SystemButtonsColor');
-		tasksManagerButton.TextColor = colorConfiguration:GetColor('SystemButtonsTextColor');
-		powerMenu.X = powerButton.X;
-		calendarMenu.X = calendarButton.X - 4;
+		configurationButton:SetBackgroundColor(colorConfiguration:GetColor('SystemButtonsColor'));
+		configurationButton:SetTextColor(colorConfiguration:GetColor('SystemButtonsTextColor'));
+		tasksManagerButton:SetBackgroundColor(colorConfiguration:GetColor('SystemButtonsColor'));
+		tasksManagerButton:SetTextColor(colorConfiguration:GetColor('SystemButtonsTextColor'));
+		powerMenu.X = powerButton:GetX();
+		calendarMenu.X = calendarButton:GetX() - 4;
 
 		local line = 1;
 		if (this.IsBottom) then
@@ -130,7 +134,7 @@ ControlPanel = Class(function(this)
 
 		videoBuffer:DrawBlock(1, line, screenWidth, 1, colorConfiguration:GetColor('ControlPanelColor'));
 		
-		calendarButton.Text = System:GetCurrentTime();
+		calendarButton:SetText(System:GetCurrentTime());
 
 		local days = os.day();
 		local years = math.floor(days/365);
@@ -181,14 +185,21 @@ ControlPanel = Class(function(this)
 		return false;
 	end
 
+	local applicationButtonClick = function(sender, eventArgs)
+		ERR = sender;
+		System:RunFile(sender.Path);
+	end
+
 	-- Add new applications to the "Applications" menu.
 	-- Added application will only be a new button which runs program at the specified path.
 	this.AddApplication = function(_, applicationName, applicationPath)
 		applicationsMenu.Y = applicationsMenu.Y - 2;
 		applicationsMenu.Height = applicationsMenu.Height + 2;
+
 		local applicationButton = Button(applicationName, nil, nil, 1, -(applicationsMenu.Height - 1), 'left-bottom');
-		applicationButton.OnClick = launchApplication;
-		applicationButton.OnClickParams = { applicationPath };
+		applicationButton.Path = applicationPath;
+		applicationButton:SetOnClick(EventHandler(applicationButtonClick));
+
 		applicationsMenu:AddComponent(applicationButton);
 	end
 end)

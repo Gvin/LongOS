@@ -1,85 +1,83 @@
-local function selectColorClick(params)
-	params[1]:SelectColor(params[2].BackgroundColor);
-end
-
-local function cancelButtonClick(params)
-	params[1]:Close();
-end
-
 ColorPickerWindow = Class(Window, function(this, application, color, receiverTable)
 	Window.init(this, application, 10, 3, 18, 6, false, false, nil, 'Color picker window', 'Select color', true);
 
 	this.Color = color;
 	this.IsModal = true;
 
+	local selectColorClick = function(sender, eventArgs)
+		this:SelectColor(sender:GetBackgroundColor());
+	end
+
 	local white = Button(' ', colors.white, colors.white, 1, 2, 'left-top');
-	white.OnClick = selectColorClick;
-	white.OnClickParams = { this, white };
+	white:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(white);
+
 	local orange = Button(' ', colors.orange, colors.white, 2, 2, 'left-top');
-	orange.OnClick = selectColorClick;
-	orange.OnClickParams = { this, orange };
+	orange:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(orange);
+
 	local magenta = Button(' ', colors.magenta, colors.white, 3, 2, 'left-top');
-	magenta.OnClick = selectColorClick;
-	magenta.OnClickParams = { this, magenta };
+	magenta:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(magenta);
+
 	local lightBlue = Button(' ', colors.lightBlue, colors.white, 4, 2, 'left-top');
-	lightBlue.OnClick = selectColorClick;
-	lightBlue.OnClickParams = { this, lightBlue };
+	lightBlue:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(lightBlue);
+
 	local yellow = Button(' ', colors.yellow, colors.white, 5, 2, 'left-top');
-	yellow.OnClick = selectColorClick;
-	yellow.OnClickParams = { this, yellow };
+	yellow:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(yellow);
+
 	local lime = Button(' ', colors.lime, colors.white, 6, 2, 'left-top');
-	lime.OnClick = selectColorClick;
-	lime.OnClickParams = { this, lime }
+	lime:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(lime);
+
 	local pink = Button(' ', colors.pink, colors.white, 7, 2, 'left-top');
-	pink.OnClick = selectColorClick;
-	pink.OnClickParams = { this, pink };
+	pink:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(pink);
+
 	local gray = Button(' ', colors.gray, colors.white, 8, 2, 'left-top');
-	gray.OnClick = selectColorClick;
-	gray.OnClickParams = { this, gray };
+	gray:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(gray);
+
 	local lightGray = Button(' ', colors.lightGray, colors.white, 9, 2, 'left-top');
-	lightGray.OnClick = selectColorClick;
-	lightGray.OnClickParams = { this, lightGray };
+	lightGray:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(lightGray);
+
 	local cyan = Button(' ', colors.cyan, colors.white, 10, 2, 'left-top');
-	cyan.OnClick = selectColorClick;
-	cyan.OnClickParams = { this, cyan };
+	cyan:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(cyan);
+
 	local purple = Button(' ', colors.purple, colors.white, 11, 2, 'left-top');
-	purple.OnClick = selectColorClick;
-	purple.OnClickParams = { this, purple };
+	purple:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(purple);
+
 	local blue = Button(' ', colors.blue, colors.white, 12, 2, 'left-top');
-	blue.OnClick = selectColorClick;
-	blue.OnClickParams = { this, blue };
+	blue:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(blue);
+
 	local brown = Button(' ', colors.brown, colors.white, 13, 2, 'left-top');
-	brown.OnClick = selectColorClick;
-	brown.OnClickParams = { this, brown };
+	brown:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(brown);
+
 	local green = Button(' ', colors.green, colors.white, 14, 2, 'left-top');
-	green.OnClick = selectColorClick;
-	green.OnClickParams = { this, green };
+	green:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(green);
+
 	local black = Button(' ', colors.black, colors.white, 15, 2, 'left-top');
-	black.OnClick = selectColorClick;
-	black.OnClickParams = { this, black };
+	black:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(black);
+
 	local red = Button(' ', colors.red, colors.white, 16, 2, 'left-top');
-	red.OnClick = selectColorClick;
-	red.OnClickParams = { this, red };
+	red:SetOnClick(EventHandler(selectColorClick));
 	this:AddComponent(red);
 
+	local cancelButtonClick = function(sender, eventArgs)
+		this:Close();
+	end
+
 	local cancelButton = Button('Cancel', nil, nil, 6, -2, 'left-bottom');
-	cancelButton.OnClick = cancelButtonClick;
-	cancelButton.OnClickParams = { this };
+	cancelButton:SetOnClick(EventHandler(cancelButtonClick));
 	this:AddComponent(cancelButton);
 
 	this.SelectColor = function(_, color)

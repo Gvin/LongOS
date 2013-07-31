@@ -1,11 +1,3 @@
-local function scrollUpClick(params)
-	params[1]:ScrollUp();
-end
-
-local function scrollDownClick(params)
-	params[1]:ScrollDown();
-end
-
 VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height, barColor, rollerColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
@@ -25,13 +17,19 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 	this.BarColor = barColor;
 	this.RollerColor = rollerColor;
 
+	local scrollUpButtonClick = function(sender, eventArgs)
+		this:ScrollUp();
+	end
+
 	local scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
-	scrollUpButton.OnClick = scrollUpClick;
-	scrollUpButton.OnClickParams = { this };
+	scrollUpButton:SetOnClick(EventHandler(scrollUpButtonClick));
+
+	local scrollDownButtonClick = function(sender, eventArgs)
+		this:ScrollDown();
+	end
 
 	local scrollDownButton = Button('v', nil, nil, 0, -1, 'left-bottom');
-	scrollDownButton.OnClick = scrollDownClick;
-	scrollDownButton.OnClickParams = { this };
+	scrollDownButton:SetOnClick(EventHandler(scrollDownButtonClick));
 
 	local getRollerY = function()
 		local rollerY = this.Y + 1 + math.floor((value/(maxValue - minValue))*(this.Height - 3));

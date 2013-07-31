@@ -61,14 +61,21 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 		end
 	end
 	-- Adding standart buttons
+
+	local closeButtonClick = function(sender, eventArgs)
+		this:Close();
+	end
+
 	componentsManager:AddComponent(closeButton);
-	closeButton.OnClick = closeWindow;
-	closeButton.OnClickParams = { this };
+	closeButton:SetOnClick(EventHandler(closeButtonClick));
 
 	if (allowMaximize) then
+		local maximizeButtonClick = function(sender, eventArgs)
+			this.Maximized = not this.Maximized;
+		end
+
 		componentsManager:AddComponent(maximizeButton);
-		maximizeButton.OnClick = maximizeWindow;
-		maximizeButton.OnClickParams = { this };
+		maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
 	end
 
 ----------------------- Standard window functions -----------------------
@@ -152,16 +159,16 @@ Window = Class(function(this, application, x, y, width, height, allowMaximize, a
 		local topLineColor = colorConfiguration:GetColor('TopLineActiveColor');
 		if (this.Enabled) then
 			videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
-			closeButton.BackgroundColor = colorConfiguration:GetColor('TopLineActiveColor');
+			closeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 			if (maximizeButton ~= nil) then
-				maximizeButton.BackgroundColor = colorConfiguration:GetColor('TopLineActiveColor');
+				maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 			end
 		else
 			topLineColor = colorConfiguration:GetColor('TopLineInactiveColor');
 			videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
-			closeButton.BackgroundColor = colorConfiguration:GetColor('TopLineInactiveColor');
+			closeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 			if (maximizeButton ~= nil) then
-				maximizeButton.BackgroundColor = colorConfiguration:GetColor('TopLineInactiveColor');
+				maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 			end
 		end
 

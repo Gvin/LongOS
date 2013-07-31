@@ -69,8 +69,8 @@ PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAut
 		if (allowAutoHeight) then
 			local height = 2;
 			for i = 1, componentsManager:GetComponentsCount() do
-				if (componentsManager:GetComponent(i).Y - this.Y > height) then
-					height = componentsManager:GetComponent(i).Y - this.Y + 2;
+				if (componentsManager:GetComponent(i):GetY() - this.Y > height) then
+					height = componentsManager:GetComponent(i):GetY() - this.Y + 2;
 				end
 			end
 
@@ -81,8 +81,8 @@ PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAut
 	local updateWidth = function()
 		local width = 0;
 		for i = 1, componentsManager:GetComponentsCount() do
-			if (string.len(componentsManager:GetComponent(i).Text) > width) then
-				width = string.len(componentsManager:GetComponent(i).Text);
+			if (string.len(componentsManager:GetComponent(i):GetText()) > width) then
+				width = string.len(componentsManager:GetComponent(i):GetText());
 			end
 		end
 

@@ -1,11 +1,3 @@
-local function scrollLeftClick(params)
-	params[1]:ScrollLeft();
-end
-
-local function scrollRightClick(params)
-	params[1]:ScrollRight();
-end
-
 HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, width, barColor, rollerColor, dX, dY, anchorType)
 	Component.init(this, dX, dY, anchorType);
 
@@ -25,13 +17,19 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 	this.BarColor = barColor;
 	this.RollerColor = rollerColor;
 
+	local scrollLeftButtonClick = function(sender, eventArgs)
+		this:ScrollLeft();
+	end
+
 	local scrollLeftButton = Button('<', nil, nil, 0, 0, 'left-top');
-	scrollLeftButton.OnClick = scrollLeftClick;
-	scrollLeftButton.OnClickParams = { this };
+	scrollLeftButton:SetOnClick(EventHandler(scrollLeftButtonClick));
+
+	local scrollRightButtonClick = function(sender, eventArgs)
+		this:ScrollRight();
+	end
 
 	local scrollRightButton = Button('>', nil, nil, -1, 0, 'right-top');
-	scrollRightButton.OnClick = scrollRightClick;
-	scrollRightButton.OnClickParams = { this };
+	scrollRightButton:SetOnClick(EventHandler(scrollRightButtonClick));
 
 	local getRollerX = function()
 		local rollerX = this.X + 1 + math.floor((value/(maxValue - minValue))*(this.Width - 3));

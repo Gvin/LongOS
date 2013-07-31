@@ -10,10 +10,6 @@ local function countWidth(text)
 	return 34;
 end
 
-local function okButtonClick(params)
-	params[1]:Close();
-end
-
 local function countXPosition(text)
 	local width = countWidth(text);
 	local screenWidth = term.getSize();
@@ -38,9 +34,12 @@ MessageWindow = Class(Window, function(this, application, title, text, textColor
 		this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
 	end
 
+	local okButtonClick = function(sender, eventArgs)
+		this:Close();
+	end
+
 	local okButton = Button(' OK ', nil, nil, math.floor(this.Width / 2 - 2), this.Height - 2, 'left-top');
-	okButton.OnClick = okButtonClick;
-	okButton.OnClickParams = { this };
+	okButton:SetOnClick(EventHandler(okButtonClick));
 	this:AddComponent(okButton);
 
 	this.Draw = function(_, videoBuffer)
