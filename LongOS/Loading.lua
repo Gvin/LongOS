@@ -111,10 +111,10 @@ local function includeSystemWindows()
 	shouldBeLoaded(ColorPickerWindow, 'ColorPickerWindow');
 	include('Classes/SystemClasses/Windows/MessageWindow');
 	shouldBeLoaded(MessageWindow, 'MessageWindow');
-	include('Classes/SystemClasses/Windows/OpenFileWindow');
-	shouldBeLoaded(OpenFileWindow, 'OpenFileWindow');
-	include('Classes/SystemClasses/Windows/DialogWindow');
-	shouldBeLoaded(DialogWindow, 'DialogWindow');
+	include('Classes/SystemClasses/Windows/EnterTextDialog');
+	shouldBeLoaded(EnterTextDialog, 'EnterTextDialog');
+	include('Classes/SystemClasses/Windows/QuestionDialog');
+	shouldBeLoaded(QuestionDialog, 'QuestionDialog');
 end
 
 local function includeApplicationClasses()

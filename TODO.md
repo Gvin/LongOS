@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 32 registered features.
+Currently there are 34 registered features.
 
 TODO
 ========
@@ -19,7 +19,7 @@ For v 0.3
 - [ ] F30: Add drawing methods to the Image class.
 - [ ] F14: Add drag-n-drop support.
 - [X] F31: Update components and system to use EventHandler.
-- [ ] F32: Update dialogs to use EventHandler.
+- [X] F32: Update dialogs to use EventHandler.
 
 For all versions
 --------
@@ -37,6 +37,8 @@ Further features
 - [ ] F19.2: Add DesktopIcon class.
 - [ ] F20: Add program to draw icons.
 - [ ] F25: Separate configuration manager into single application.
+- [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
+- [ ] F34: Rename Application to Process.
 
 
 History

@@ -1,132 +1,63 @@
-local function deleteFile(params)
-	params[1]:Delete(params[2]);
-end
+FileManagerWindow = Class(Window, function(this, _application)
 
-FileManagerWindow = Class(Window, function(this, application)
-	Window.init(this, application, 5, 3, 40, 11, true, true, nil, 'File manager window', 'Gvin file manager', false);
+	Window.init(this, _application, 'Gvin file manager', false, false, 'Gvin file manager', 5, 3, 40, 11, nil, true, true);
 
-	local currentDirectory = '/';
-	local selectedFile = '';
-	local copiedFile = '';
-	local cuttedFile = '';
-	local newDirectory = {};
-	local newFile = {};
-	local renamingFile = {};
-	this.CreatingDirectory = false;
-	this.CreatingFile = false;
-	this.Renaming = false;
+	------------------------------------------------------------------------------------------------------------------
+	----- Fields -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, -2, 2, 'right-top');
-	this:AddComponent(vScrollBar);
+	local currentDirectory;
+	local selectedFile;
+	local copiedFile;
+	local cuttedFile;
 
-	local pasteButtonClick = function(sender, eventArgs)
-		this:Paste();
-	end
+	local vScrollBar;
+	local pasteButton;
+	local createDirectoryButton;
+	local contextMenu;
 
-	local pasteButton = Button('Paste', nil, nil, 1, -2, 'left-bottom');
-	pasteButton:SetOnClick(EventHandler(pasteButtonClick));
-	this:AddComponent(pasteButton);
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local createDirectoryButtonClick = function(sender, eventArgs)
-		newDirectory.FileName = '';
-		local openFileWindow = OpenFileWindow(application, newDirectory, 'Create directory', '');
-		openFileWindow:Show();
-		this.CreatingDirectory = true;
-	end
-
-	local createDirectoryButton = Button('Create directory', nil, nil, 7, -2, 'left-bottom');
-	createDirectoryButton:SetOnClick(EventHandler(createDirectoryButtonClick));
-	this:AddComponent(createDirectoryButton);
-
-	local createFileButtonClick = function(sender, eventArgs)
-		newFile.FileName = '';
-		local openFileWindow = OpenFileWindow(application, newFile, 'Create file', '');
-		openFileWindow:Show();
-		this.CreatingFile = true;
-	end
-
-	local createFileButton = Button('Create file', nil, nil, 24, -2, 'left-bottom');
-	createFileButton:SetOnClick(EventHandler(createFileButtonClick));
-	this:AddComponent(createFileButton);
-
-	local contextMenu = PopupMenu(1, 1, 10, 9, nil, true);
-	this:AddMenu('ContextMenu', contextMenu);
-
-	local copyButtonClick = function(sender, eventArgs)
-		this:Copy();
-	end
-
-	local copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
-	copyButton:SetOnClick(EventHandler(copyButtonClick));
-	contextMenu:AddComponent(copyButton);
-
-	local cutButtonClick = function(sender, eventArgs)
-		this:Cut();
-	end
-
-	local cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
-	cutButton:SetOnClick(EventHandler(cutButtonClick));
-	contextMenu:AddComponent(cutButton);
-
-	local deleteButtonClick = function(sender, eventArgs)
-		local dialogWindow = DialogWindow(application, 'Delete?', 'Do you really want to delete     '..selectedFile..'?');
-		dialogWindow.OnOkClick = deleteFile;
-		dialogWindow.OnOkClickParams = { this, selectedFile };
-		dialogWindow:Show();
-	end
-
-	local deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
-	deleteButton:SetOnClick(EventHandler(deleteButtonClick));
-	contextMenu:AddComponent(deleteButton);
-
-	local renameButtonClick = function(sender, eventArgs)
-		this:Rename();
-		local openFileWindow = OpenFileWindow(application, renamingFile, 'Rename file', renamingFile.OldFileName);
-		openFileWindow:Show();
-	end
-
-	local renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
-	renameButton:SetOnClick(EventHandler(renameButtonClick));
-	contextMenu:AddComponent(renameButton);
-
-	local getFiles = function(_)
+	local function getFiles()
 		local files =  fs.list(currentDirectory);
 		table.insert(files, '..');
 		table.sort(files);
 		return files;
 	end
 
-	local findCurrentDirectoryToPrint = function(_)
+	local function findCurrentDirectoryToPrint()
 		local currentDirectoryToPrint = currentDirectory;
-		if (string.len(currentDirectoryToPrint) > this.Width - 4) then
-			local toCut = string.len(currentDirectoryToPrint) - this.Width + 12;
+		if (string.len(currentDirectoryToPrint) > this:GetWidth() - 4) then
+			local toCut = string.len(currentDirectoryToPrint) - this:GetWidth() + 12;
 			currentDirectoryToPrint = '...'..string.sub(currentDirectoryToPrint, toCut, string.len(currentDirectoryToPrint));
 		end
 
 		return currentDirectoryToPrint;
 	end
 
-	local writeCurrentDirectory = function(videoBuffer)
+	local function writeCurrentDirectory(videoBuffer)
 		local colorConfiguration = System:GetColorConfiguration();
 		videoBuffer:SetColorParameters(colors.red, colorConfiguration:GetColor('WindowColor'));
 
 		local currentDirectoryToPrint = findCurrentDirectoryToPrint();
 
-		videoBuffer:WriteAt(this.X + 1, this.Y + this.Height - 3, currentDirectoryToPrint);
+		videoBuffer:WriteAt(this:GetX() + 1, this:GetY() + this:GetHeight() - 3, currentDirectoryToPrint);
 	end
 
-	this.Draw = function(_, videoBuffer)
-		vScrollBar.Height = this.Height - 5;
+	function this.Draw(_, videoBuffer)
+		vScrollBar.Height = this:GetHeight() - 5;
 		local files = getFiles();
 		
 		videoBuffer:SetBackgroundColor(colors.white);
-		videoBuffer:DrawBlock(this.X + 1, this.Y + 2, this.Width - 3, this.Height - 5, colors.white);
+		videoBuffer:DrawBlock(this:GetX() + 1, this:GetY() + 2, this:GetWidth() - 3, this:GetHeight() - 5, colors.white);
 		local lastLine = #files;
-		if (lastLine > this.Height - 5 + vScrollBar:GetValue()) then
-			lastLine = this.Height - 5 + vScrollBar:GetValue();
+		if (lastLine > this:GetHeight() - 5 + vScrollBar:GetValue()) then
+			lastLine = this:GetHeight() - 5 + vScrollBar:GetValue();
 		end
 		for i = vScrollBar:GetValue() + 1, lastLine do
-			videoBuffer:SetCursorPos(this.X + 1, this.Y + i + 1 - vScrollBar:GetValue());
+			videoBuffer:SetCursorPos(this:GetX() + 1, this:GetY() + i + 1 - vScrollBar:GetValue());
 			if (fs.isDir(currentDirectory..'/'..files[i]) or files[i] == '..') then
 				videoBuffer:SetTextColor(colors.blue);
 			else
@@ -143,65 +74,16 @@ FileManagerWindow = Class(Window, function(this, application)
 		writeCurrentDirectory(videoBuffer);
 	end
 
-	local createDirectory = function()
-		local newDirectoryName = currentDirectory..'/'..newDirectory.FileName;
-		if (fs.exists(newDirectoryName)) then
-			System:ShowModalMessage(application, 'Directory exists', '   Directory with such name          allready exists.');
-		else
-			fs.makeDir(newDirectoryName);
-		end
-		this.CreatingDirectory = false;
-		newDirectory.FileName = '';
-	end
-
-	local createFile = function()
-		local newFileName = currentDirectory..'/'..newFile.FileName;
-		if (fs.exists(newFileName)) then
-			System:ShowModalMessage(application, 'File exists', ' File or directory with such     name allready exists.');
-		else
-			local descryptor = fs.open(newFileName, 'w');
-			descryptor.close();
-		end
-		this.CreatingFile = false;
-		newFile.FileName = '';
-	end
-
-	local renameFile = function()
-		local newFileName = currentDirectory..'/'..renamingFile.FileName;
-		local oldFileName = currentDirectory..'/'..renamingFile.OldFileName;
-		if (fs.exists(newFileName)) then
-			System:ShowModalMessage(application, 'File exists', ' File or directory with such     name allready exists.');
-		else
-			fs.copy(oldFileName, newFileName);
-			fs.delete(oldFileName);
-		end
-		this.Renaming = false;
-		renamingFile.FileName = '';
-		renamingFile.OldFileName = '';
-	end
-
-	this.Update = function(_)
+	function this.Update()
 		local files = getFiles();
 		if (#files > 1) then
 			vScrollBar:SetMaxValue(#files - 1);
 		else
 			vScrollBar:SetMaxValue(1);
 		end
-
-		if (this.CreatingDirectory and newDirectory.FileName ~= '') then
-			createDirectory();
-		end
-
-		if (this.CreatingFile and newFile.FileName ~= '') then
-			createFile();
-		end
-
-		if (this.Renaming and renamingFile.FileName ~= '') then
-			renameFile();
-		end
 	end
 
-	local back = function(_)
+	local function back()
 		selectedFile = '';
 		vScrollBar:SetValue(0);
 		if (currentDirectory ~= '/') then
@@ -217,10 +99,10 @@ FileManagerWindow = Class(Window, function(this, application)
 		end
 	end
 
-	local processFileSelection = function(cursorX, cursorY)
-		if (cursorX < this.X + this.Width - 3) then
+	local function processFileSelection(cursorX, cursorY)
+		if (cursorX < this:GetX() + this:GetWidth() - 3) then
 			local files = getFiles();
-			local clickedLine = cursorY - 1 - this.Y + vScrollBar:GetValue();
+			local clickedLine = cursorY - 1 - this:GetY() + vScrollBar:GetValue();
 			if (files[clickedLine] ~= nil) then
 				if (files[clickedLine] == '..') then
 					selectedFile = '';
@@ -233,11 +115,11 @@ FileManagerWindow = Class(Window, function(this, application)
 		end
 	end
 
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessLeftClickEvent(_, cursorX, cursorY)
 		processFileSelection(cursorX, cursorY);
 	end
 
-	this.ProcessRightClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessRightClickEvent(_, cursorX, cursorY)
 		this:CloseAllMenues();
 		processFileSelection(cursorX, cursorY);
 		if (selectedFile ~= '') then
@@ -248,11 +130,11 @@ FileManagerWindow = Class(Window, function(this, application)
 		return this:Contains(cursorX, cursorY);
 	end
 
-	this.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
-		if (cursorX < this.X + this.Width - 3) then
+	function this.ProcessDoubleClickEvent(_, cursorX, cursorY)
+		if (cursorX < this:GetX() + this:GetWidth() - 3) then
 			local files = getFiles();
 
-			local clickedLine = cursorY - 1 - this.Y + vScrollBar:GetValue();
+			local clickedLine = cursorY - 1 - this:GetY() + vScrollBar:GetValue();
 			if (files[clickedLine] ~= nil) then
 				local clickedFile = currentDirectory..'/'..files[clickedLine];
 				if (files[clickedLine] == '..') then
@@ -266,17 +148,40 @@ FileManagerWindow = Class(Window, function(this, application)
 		end
 	end
 
-	this.Copy = function(_)
-		copiedFile = currentDirectory..'/'..selectedFile;
-		cuttedFile = '';
+	local function createDirectory(_directoryName)
+		local newDirectoryName = currentDirectory..'/'.._directoryName;
+		if (fs.exists(newDirectoryName)) then
+			local errorWindow = MessageWindow(this:GetApplication(), 'Directory exists', '   Directory with such name          allready exists.');
+			errorWindow:Show();
+		else
+			fs.makeDir(newDirectoryName);
+		end
 	end
 
-	this.Cut = function(_)
-		cuttedFile =  currentDirectory..'/'..selectedFile;
-		copiedFile = '';
+	local function createFile(_fileName)
+		local newFileName = currentDirectory..'/'.._fileName;
+		if (fs.exists(newFileName)) then
+			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
+			errorWindow:Show();
+		else
+			local descryptor = fs.open(newFileName, 'w');
+			descryptor.close();
+		end
 	end
 
-	local resetCopyCut = function()
+	local function renameFile(_newFileName)
+		local newFileName = currentDirectory..'/'.._newFileName;
+		local oldFileName = currentDirectory..'/'..selectedFile;
+		if (fs.exists(newFileName)) then
+			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
+			errorWindow:Show();
+		else
+			fs.copy(oldFileName, newFileName);
+			fs.delete(oldFileName);
+		end
+	end
+
+	local function resetCopyCut()
 		cuttedFile = '';
 		copiedFile = '';
 	end
@@ -300,7 +205,7 @@ FileManagerWindow = Class(Window, function(this, application)
 		return true;
 	end
 
-	this.Paste = function(_)
+	local function paste()
 		local fileName = '';
 		if (copiedFile ~= '') then
 			fileName = copiedFile;
@@ -312,12 +217,14 @@ FileManagerWindow = Class(Window, function(this, application)
 		if (fileName ~= '') then
 			local accessPath = currentDirectory..'/'..name;
 			if (fs.exists(accessPath)) then
-				System:ShowMessage('File exists', 'File "'..name..'" allready exists in current directory.');
+				local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File "'..name..'" allready exists in current directory.');
+				errorWindow:Show();
 				resetCopyCut();
 				return;
 			end
 			if (not copyFile(fileName, accessPath)) then
-				System:ShowMessage('Wrong operation', "Can't copy directory inside itself.");
+				local errorWindow = MessageWindow(this:GetApplication(), 'Wrong operation', "Can't copy directory inside itself.");
+				errorWindow:Show();
 				resetCopyCut();
 			end
 		end
@@ -327,23 +234,121 @@ FileManagerWindow = Class(Window, function(this, application)
 		resetCopyCut();
 	end
 
-	this.Delete = function(_, fileName)
-		if (fileName ~= '' and fileName ~= nil) then
-			fs.delete(currentDirectory..'/'..fileName);
+	local function pasteButtonClick(sender, eventArgs)
+		paste();
+	end
+
+	local function newDirectoryDialogOk(sender, eventArgs)
+		local directoryName = eventArgs.Text;
+		createDirectory(directoryName);
+	end
+
+	local function createDirectoryButtonClick(sender, eventArgs)
+		local newDirectoryDialog = EnterTextDialog(this:GetApplication(), 'Create directory', 'Enter new directory name:');
+		newDirectoryDialog:SetOnOk(EventHandler(newDirectoryDialogOk));
+		newDirectoryDialog:Show();
+	end
+
+	local function newFileDialogOk(sender, eventArgs)
+		local fileName = eventArgs.Text;
+		createFile(fileName);
+	end
+
+	local function createFileButtonClick(sender, eventArgs)
+		local newFileDialog = EnterTextDialog(this:GetApplication(), 'Create file', 'Enter new file name:');
+		newFileDialog:SetOnOk(EventHandler(newFileDialogOk));
+		newFileDialog:Show();
+	end
+
+	local function copyButtonClick(sender, eventArgs)
+		copiedFile = currentDirectory..'/'..selectedFile;
+		cuttedFile = '';
+	end
+
+	local function cutButtonClick(sender, eventArgs)
+		cuttedFile =  currentDirectory..'/'..selectedFile;
+		copiedFile = '';
+	end
+
+	local function deleteDialogYes(sender, eventArgs)
+		if (selectedFile ~= '' and selectedFile ~= nil) then
+			fs.delete(currentDirectory..'/'..selectedFile);
 		end
 	end
 
-	this.ProcessKeyEvent = function(_, key)
+	local function deleteButtonClick(sender, eventArgs)
+		if (selectedFile ~= '' and selectedFile ~= nil) then
+			local deleteDialog = QuestionDialog(this:GetApplication(), 'Delete?', 'Do you really want to delete     "'..selectedFile..'"?');
+			deleteDialog:SetOnYes(EventHandler(deleteDialogYes));
+			deleteDialog:Show();
+		end
+	end
+
+	local function renameDialogOk(sender, eventArgs)
+		local newFileName = eventArgs.Text;
+		renameFile(newFileName);
+	end
+
+	local function renameButtonClick(sender, eventArgs)
+		local renameDialog = EnterTextDialog(this:GetApplication(), 'Rename', 'Enter new name:', selectedFile);
+		renameDialog:SetOnOk(EventHandler(renameDialogOk));
+		renameDialog:Show();
+	end
+
+	function this.ProcessKeyEvent(_, key)
 		if (keys.getName(key) == 'delete') then
-			deleteButtonClick();
+			deleteButtonClick(nil, nil);
 		end
 	end
 
-	this.Rename = function(_)
-		if (selectedFile ~= '') then
-			this.Renaming = true;
-			renamingFile.OldFileName = selectedFile;
-			renamingFile.FileName = '';
-		end
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function initializeComponents()
+		vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, -2, 2, 'right-top');
+		this:AddComponent(vScrollBar);
+
+		pasteButton = Button('Paste', nil, nil, 1, -2, 'left-bottom');
+		pasteButton:SetOnClick(EventHandler(pasteButtonClick));
+		this:AddComponent(pasteButton);
+
+		createDirectoryButton = Button('Create directory', nil, nil, 7, -2, 'left-bottom');
+		createDirectoryButton:SetOnClick(EventHandler(createDirectoryButtonClick));
+		this:AddComponent(createDirectoryButton);
+
+		createFileButton = Button('Create file', nil, nil, 24, -2, 'left-bottom');
+		createFileButton:SetOnClick(EventHandler(createFileButtonClick));
+		this:AddComponent(createFileButton);
+
+		contextMenu = PopupMenu(1, 1, 10, 9, nil, true);
+		this:AddMenu('ContextMenu', contextMenu);
+
+		copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
+		copyButton:SetOnClick(EventHandler(copyButtonClick));
+		contextMenu:AddComponent(copyButton);
+
+		cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
+		cutButton:SetOnClick(EventHandler(cutButtonClick));
+		contextMenu:AddComponent(cutButton);
+
+		deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
+		deleteButton:SetOnClick(EventHandler(deleteButtonClick));
+		contextMenu:AddComponent(deleteButton);
+
+		renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
+		renameButton:SetOnClick(EventHandler(renameButtonClick));
+		contextMenu:AddComponent(renameButton);
 	end
+
+	local function constructor(_application)
+		currentDirectory = '/';
+		selectedFile = '';
+		copiedFile = '';
+		cuttedFile = '';
+
+		initializeComponents();
+	end
+
+	constructor(_application);
 end)

@@ -1,5 +1,4 @@
-MessageWindow = Class(Window, function(this, _application, _title, _text, _textColor)
-
+QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	local function countHeight(_text)
 		return 6 + math.floor(string.len(_text) / 30);
 	end
@@ -24,16 +23,30 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 		return math.floor((screenHeight - height) / 2);
 	end
 
-	Window.init(this, _application, 'Message Window', false, true, _title, countXPosition(_text), countYPosition(_text), countWidth(_text), countHeight(_text), nil, false, false);
-	
+	Window.init(this, _application, 'Question dialog', false, true, _title, countXPosition(_text), countYPosition(_text), countWidth(_text), countHeight(_text), nil, false, false);
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
+	local onYes;
+	local onNo;
 	local text;
-	local textColor;
 
-	local okButton;
+	local yesButton;
+	local noButton;
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this.SetOnYes(_, _value)
+		onYes = _value;
+	end
+
+	function this.SetOnNo(_, _value)
+		onNo = _value;
+	end
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -41,8 +54,8 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 
 	function this.Draw(_, _videoBuffer)
 		local colorConfiguration = System:GetColorConfiguration();
-		
-		_videoBuffer:SetTextColor(textColor);
+
+		_videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemLabelsTextColor'));
 		_videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('WindowColor'));
 		local line = 1;
 		local col = 1;
@@ -56,38 +69,54 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 		end
 	end
 
-	local function okButtonClick(_sender, _eventArgs)
+	local function yesButtonClick(_sender, _eventArgs)
 		this:Close();
+
+		if (onYes ~= nil) then
+			onYes:Invoke(this, { });
+		end
+	end
+
+	local function noButtonClick(_sender, _eventArgs)
+		this:Close();
+
+		if (onNo ~= nil) then
+			onNo:Invoke(this, { });
+		end
+	end
+
+	function this.ProcessKeyEvent(_, _key)
+		if (keys.getName(_key) == 'enter') then
+			yesButtonClick(nil, nil);
+		end
 	end
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local function initializeComponents()
-		okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 2), this:GetHeight() - 2, 'left-top');
-		okButton:SetOnClick(EventHandler(okButtonClick));
-		this:AddComponent(okButton);
+	local function initializeComponents(_text)
+		yesButton = Button(' Yes ', nil, nil, 1, -2, 'left-bottom');
+		yesButton:SetOnClick(EventHandler(yesButtonClick));
+		this:AddComponent(yesButton);
+
+		noButton = Button(' No ', nil, nil, -5, -2, 'right-bottom');
+		noButton:SetOnClick(EventHandler(noButtonClick));
+		this:AddComponent(noButton);
 	end
 
-	local function constructor(_application, _title, _text, _textColor)
+	local function constructor(_application, _title, _text)
 		if (type(_text) ~= 'string') then
-			error('MessageWindow.Constructor [text]: String expected, got '..type(_text)..'.');
-		end
-		if (_textColor ~= nil and type(_textColor) ~= 'number') then
-			error('MessageWindow.Constructor [textColor]: Number or nil expected, got '..type(_textColor)..'.');
+			error('QuestionDialog.Constructor [text]: String expected, got '..type(_text)..'.');
 		end
 
 		text = _text;
-		textColor = _textColor;
 
-		local colorConfiguration = System:GetColorConfiguration();
-		if (textColor == nil) then
-			textColor = colorConfiguration:GetColor('SystemLabelsTextColor');
-		end
+		onYes = nil;
+		onNo = nil;
 
-		initializeComponents();
+		initializeComponents(_text);
 	end
 
-	constructor(_application, _title, _text, _textColor);
+	constructor(_application, _title, _text);
 end)
