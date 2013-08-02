@@ -101,8 +101,12 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 		windowsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
-	this.ProcessMouseDragEvent = function(_, _newCursorX, _newCursorY)
-		windowsManager:ProcessMouseDragEvent(_newCursorX, _newCursorY);
+	this.ProcessLeftMouseDragEvent = function(_, _newCursorX, _newCursorY)
+		windowsManager:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
+	end
+
+	this.ProcessRightMouseDragEvent = function(_, _newCursorX, _newCursorY)
+		windowsManager:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
 	end
 
 	this.Contains = function(_, _x, _y)

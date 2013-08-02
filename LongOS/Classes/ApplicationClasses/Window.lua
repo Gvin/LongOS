@@ -473,7 +473,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
 	end
 
-	function this.ProcessMouseDragEventBase(_, _newCursorX, _newCursorY)
+	function this.ProcessLeftMouseDragEventBase(_, _newCursorX, _newCursorY)
 		if (oldMouseX ~= nil and oldMouseY ~= nil and allowMove) then
 			local dX = _newCursorX - oldMouseX;
 			local dY = _newCursorY - oldMouseY;
@@ -482,11 +482,18 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			this:SetX(x + dX);
 			this:SetY(y + dY);
 		else
-			this:ProcessMouseDragEvent(_newCursorX, _newCursorY);
+			this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
 		end
 	end
 
-	function this.ProcessMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
+	end
+
+	function this.ProcessRightMouseDragEventBase(_, _newCursorX, _newCursorY)
+		this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
+	end
+
+	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
 	end
 
 ----------------------- Keys processing ---------------------------------

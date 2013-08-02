@@ -176,9 +176,18 @@ ApplicationsManager = Class(function(a)
 		return false;
 	end
 
-	a.ProcessMouseDragEvent = function(_, newCursorX, newCursorY)
+	a.ProcessLeftMouseDragEvent = function(_, newCursorX, newCursorY)
 		if (currentApplication ~= nil) then
-			if (currentApplication:ProcessMouseDragEvent(newCursorX, newCursorY)) then
+			if (currentApplication:ProcessLeftMouseDragEvent(newCursorX, newCursorY)) then
+				return true;
+			end
+		end
+		return false;
+	end
+
+	a.ProcessRightMouseDragEvent = function(_, newCursorX, newCursorY)
+		if (currentApplication ~= nil) then
+			if (currentApplication:ProcessRightMouseDragEvent(newCursorX, newCursorY)) then
 				return true;
 			end
 		end

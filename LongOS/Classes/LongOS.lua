@@ -125,8 +125,9 @@ LongOS = Class(function(this)
 
 	local function processMouseDragEvent(button, newCursorX, newCursorY)
 		if (button == 1) then
-			runtimeLog:LogDebug(newCursorX..':'..newCursorY);
-			applicationsManager:ProcessMouseDragEvent(newCursorX, newCursorY);
+			applicationsManager:ProcessLeftMouseDragEvent(newCursorX, newCursorY);
+		elseif (button == 2) then
+			applicationsManager:ProcessRightMouseDragEvent(newCursorX, newCursorY);
 		end
 	end
 

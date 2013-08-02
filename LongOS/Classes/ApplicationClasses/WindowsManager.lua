@@ -134,17 +134,31 @@ WindowsManager = Class(function(this)
 		end
 	end
 
-	local tryProcessMouseDragEvent = function(window, newCursorX, newCursorY)
-		local success, message = pcall(window.ProcessMouseDragEventBase, nil, newCursorX, newCursorY);
+	local tryProcessLeftMouseDragEvent = function(window, newCursorX, newCursorY)
+		local success, message = pcall(window.ProcessLeftMouseDragEventBase, nil, newCursorX, newCursorY);
 		if (not success) then
-			System:LogRuntimeError('Mouse drag processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', newCursorX:'..getString(newCursorX)..', newCursorY:'..getString(newCursorY)..'). Message:"'..message..'".');
+			System:LogRuntimeError('Left mouse drag processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', newCursorX:'..getString(newCursorX)..', newCursorY:'..getString(newCursorY)..'). Message:"'..message..'".');
 		end
-		windowErrorCheck(window, success, 'Mouse drag processing error: ', message);
+		windowErrorCheck(window, success, 'Left mouse drag processing error: ', message);
 	end
 
-	this.ProcessMouseDragEvent = function(_, newCursorX, newCursorY)
+	this.ProcessLeftMouseDragEvent = function(_, newCursorX, newCursorY)
 		if (currentWindow ~= nil) then
-			tryProcessMouseDragEvent(currentWindow, newCursorX, newCursorY);
+			tryProcessLeftMouseDragEvent(currentWindow, newCursorX, newCursorY);
+		end
+	end
+
+	local tryProcessRightMouseDragEvent = function(window, newCursorX, newCursorY)
+		local success, message = pcall(window.ProcessRightMouseDragEventBase, nil, newCursorX, newCursorY);
+		if (not success) then
+			System:LogRuntimeError('Right mouse drag processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', newCursorX:'..getString(newCursorX)..', newCursorY:'..getString(newCursorY)..'). Message:"'..message..'".');
+		end
+		windowErrorCheck(window, success, 'Right mouse drag processing error: ', message);
+	end
+
+	this.ProcessRightMouseDragEvent = function(_, newCursorX, newCursorY)
+		if (currentWindow ~= nil) then
+			tryProcessRightMouseDragEvent(currentWindow, newCursorX, newCursorY);
 		end
 	end
 
