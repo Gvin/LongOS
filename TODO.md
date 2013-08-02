@@ -16,7 +16,7 @@ For v 0.3
 - [ ] F28: Improve CheckBox component.
 - [ ] F24: Create application for components testing.
 - [X] F29: Add Event class.
-- [ ] F30: Add drawing methods to the Image class.
+- [X] F30: Add drawing methods to the Image class.
 - [X] F14: Add drag-n-drop support.
 - [X] F31: Update components and system to use EventHandler.
 - [X] F32: Update dialogs to use EventHandler.
