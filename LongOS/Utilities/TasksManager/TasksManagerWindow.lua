@@ -18,7 +18,6 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	this:AddComponent(killProcessButton);
 
 	local function setActiveButtonClick(sender, eventArgs)
-		error('error');
 		System:SetCurrentApplication(selectedApplicationId);
 	end
 
