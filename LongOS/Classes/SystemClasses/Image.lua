@@ -52,7 +52,7 @@ Image = Class(function(this, param1, param2)
 	end
 
 
-	this.DrawLine = function(_color,_x1,_y1,_x2,_y2)	
+	this.DrawLine = function(_,_color,_x1,_y1,_x2,_y2)			
 		local xShiftCount = _x2 - _x1;		
 		local yShiftCount = _y2 - _y1;		
 		local count = math.max (math.abs(xShiftCount),math.abs(yShiftCount));
@@ -60,27 +60,27 @@ Image = Class(function(this, param1, param2)
 		yShift = yShiftCount / count;	
 		local x = _x1;	
 		local y = _y1;
-		for i = 0,count do
-			SetPixel(round(x),round(y),color);				
+		for i = 0,count do			
+			this:SetPixel(round(x),round(y),_color);							
 			x = x + xShift;	
 			if (_x1==_x2)  then				
 				y = y + yShift; 		
 			else
-				y = (y1 - y2)*x;		
-				y = y +  (x1*y2 - x2*y1);		
-				y = y/(x1-x2);			
+				y = (_y1 - _y2)*x;		
+				y = y +  (_x1*_y2 - _x2*_y1);		
+				y = y/(_x1 - _x2);			
 			end		
 		end
 	end
 
-	this.DrawRect = function(_color,_x,_y,_width,_height)		
-		DrawLine(_color,_x,_y,_x + _width,_y);
-		DrawLine(_color,_x + _width,_y,_x + _width,_y+_height);
-		DrawLine(_color,_x,_y+_height,_x + _width,_y+_height);
-		DrawLine(_color,_x,_y+_height,_x,_y);	
+	this.DrawRect = function(_, _color,_x,_y,_width,_height)		
+		this:DrawLine(_color,_x,_y,_x + _width,_y);
+		this:DrawLine(_color,_x + _width,_y,_x + _width,_y+_height);
+		this:DrawLine(_color,_x,_y+_height,_x + _width,_y+_height);
+		this:DrawLine(_color,_x,_y+_height,_x,_y);	
 	end
 
-	this.DrawEllipse = function(_color,_x,_y,_width,_height)
+	this.DrawEllipse = function(_, _color,_x,_y,_width,_height)
 		local a = _width/2;
 		local b = _height/2;
 		local xCenter = _x + a;
@@ -91,10 +91,10 @@ Image = Class(function(this, param1, param2)
 			y = 1 - y;
 			y = y * b*b;
 			y = math.sqrt(y);	
-			SetPixel(round(xCenter + i),round(yCenter + y),_color);
-			SetPixel(round(xCenter + i),round(yCenter - y),_color);
-			SetPixel(round(xCenter - i),round(yCenter + y),_color);
-			SetPixel(round(xCenter - i),round(yCenter - y),_color);
+			this:SetPixel(round(xCenter + i),round(yCenter + y),_color);
+			this:SetPixel(round(xCenter + i),round(yCenter - y),_color);
+			this:SetPixel(round(xCenter - i),round(yCenter + y),_color);
+			this:SetPixel(round(xCenter - i),round(yCenter - y),_color);
 			i = i + 0.05
 		end
 	end
