@@ -107,8 +107,8 @@ local function includeSystemWindows()
 	shouldBeLoaded(ConfigurationWindow, 'ConfigurationWindow');
 	include('Classes/SystemClasses//Windows/ColorConfigurationWindow');
 	shouldBeLoaded(ColorConfigurationWindow, 'ColorConfigurationWindow');
-	include('Classes/SystemClasses/Windows/ColorPickerWindow');
-	shouldBeLoaded(ColorPickerWindow, 'ColorPickerWindow');
+	include('Classes/SystemClasses/Windows/ColorPickerDialog');
+	shouldBeLoaded(ColorPickerDialog, 'ColorPickerDialog');
 	include('Classes/SystemClasses/Windows/MessageWindow');
 	shouldBeLoaded(MessageWindow, 'MessageWindow');
 	include('Classes/SystemClasses/Windows/EnterTextDialog');

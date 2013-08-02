@@ -1,8 +1,8 @@
-ConfigurationWindow = Class(Window, function(this, application)
-	Window.init(this, application, 10, 3, 30, 10, false, true, nil, 'Configuration window', 'Configuration', true);
+ConfigurationWindow = Class(Window, function(this, _application)
+	Window.init(this, _application, 'Configuration window', false, false, 'Configuration', 10, 3, 30, 10, nil, false, true);
 
-	local colorConfigurationButtonClick = function(sender, eventArgs)
-		local colorWindow = ColorConfigurationWindow(application);
+	local colorConfigurationButtonClick = function(_sender, _eventArgs)
+		local colorWindow = ColorConfigurationWindow(_application);
 		colorWindow:Show();
 		this:Close();
 	end
