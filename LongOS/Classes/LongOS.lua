@@ -123,6 +123,13 @@ LongOS = Class(function(this)
 		end
 	end
 
+	local function processMouseDragEvent(button, newCursorX, newCursorY)
+		if (button == 1) then
+			runtimeLog:LogDebug(newCursorX..':'..newCursorY);
+			applicationsManager:ProcessMouseDragEvent(newCursorX, newCursorY);
+		end
+	end
+
 	local function processTabKey()
 		applicationsManager:SwitchApplication();
 	end
@@ -149,6 +156,8 @@ LongOS = Class(function(this)
 			local event = eventsQueue[1];
 			if (event.Name == 'mouse_click') then
 				processMouseClickEvent(event.Params[1], event.Params[2], event.Params[3]);
+			elseif (event.Name == 'mouse_drag') then
+				processMouseDragEvent(event.Params[1], event.Params[2], event.Params[3]);
 			elseif (event.Name == 'key') then
 				processKeys(event.Params[1]);
 			elseif (event.Name == 'char') then

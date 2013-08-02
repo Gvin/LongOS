@@ -176,6 +176,15 @@ ApplicationsManager = Class(function(a)
 		return false;
 	end
 
+	a.ProcessMouseDragEvent = function(_, newCursorX, newCursorY)
+		if (currentApplication ~= nil) then
+			if (currentApplication:ProcessMouseDragEvent(newCursorX, newCursorY)) then
+				return true;
+			end
+		end
+		return false;
+	end
+
 	a.GetApplicationsCount = function(_)
 		return #applications;
 	end

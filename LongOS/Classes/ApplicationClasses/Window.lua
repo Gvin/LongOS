@@ -40,7 +40,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	local miniHeight;
 	local miniX;
 	local miniY;
-	local isMoving;
+
+	local oldMouseX;
+	local oldMouseY;
 
 	local screenWidth, screenHeight = term.getSize();
 
@@ -405,6 +407,8 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	-- Events processing
 
 	local function processLeftClickEvent(_cursorX, _cursorY)
+		oldMouseX = nil;
+		oldMouseY = nil;
 		if (menuesManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
@@ -412,7 +416,8 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			return true;
 		end
 		if (_cursorY == y and _cursorX >= x and _cursorX <= x + width - 1) then
-			isMoving = not isMoving;
+			oldMouseX = _cursorX;
+			oldMouseY = _cursorY;
 			return true;
 		end
 	end
@@ -454,37 +459,20 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
 	end
 
+	function this.ProcessMouseDragEventBase(_, _newCursorX, _newCursorY)
+		if (oldMouseX ~= nil and oldMouseY ~= nil and allowMove) then
+			local dX = _newCursorX - oldMouseX;
+			local dY = _newCursorY - oldMouseY;
+			oldMouseX = _newCursorX;
+			oldMouseY = _newCursorY;
+			this:SetX(x + dX);
+			this:SetY(y + dY);
+		end
+	end
+
 ----------------------- Keys processing ---------------------------------
 
-	local function processUpArrowKey()
-		this:SetY(y - 1);
-	end
-
-	local function processLeftArrowKey()
-		this:SetX(x - 1);
-	end
-
-	local function processDownArrowKey()
-		this:SetY(y + 1);
-	end
-
-	local function processRightArrowKey()
-		this:SetX(x + 1);
-	end
-
 	local function processKeyEvent(_key)
-		if (allowMove and isMoving) then
-			local keyName = keys.getName(_key);
-			if (keyName == 'up') then --------- Up arrow
-				processUpArrowKey();
-			elseif (keyName == 'down') then --- Down arrow
-				processDownArrowKey();
-			elseif (keyName == 'left') then --- Left arrow
-				processLeftArrowKey();
-			elseif (keyName == 'right') then -- Right arrow
-				processRightArrowKey();
-			end
-		end
 		componentsManager:ProcessKeyEvent(_key);
 	end
 

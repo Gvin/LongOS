@@ -134,6 +134,20 @@ WindowsManager = Class(function(this)
 		end
 	end
 
+	local tryProcessMouseDragEvent = function(window, newCursorX, newCursorY)
+		local success, message = pcall(window.ProcessMouseDragEventBase, nil, newCursorX, newCursorY);
+		if (not success) then
+			System:LogRuntimeError('Mouse drag processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', newCursorX:'..getString(newCursorX)..', newCursorY:'..getString(newCursorY)..'). Message:"'..message..'".');
+		end
+		windowErrorCheck(window, success, 'Mouse drag processing error: ', message);
+	end
+
+	this.ProcessMouseDragEvent = function(_, newCursorX, newCursorY)
+		if (currentWindow ~= nil) then
+			tryProcessMouseDragEvent(currentWindow, newCursorX, newCursorY);
+		end
+	end
+
 	local tryProcessKeyEvent = function(window, key)
 		local success, message = pcall(window.ProcessKeyEventBase, nil, key);
 		if (not success) then

@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 34 registered features.
+Currently there are 35 registered features.
 
 TODO
 ========
@@ -17,7 +17,7 @@ For v 0.3
 - [ ] F24: Create application for components testing.
 - [X] F29: Add Event class.
 - [ ] F30: Add drawing methods to the Image class.
-- [ ] F14: Add drag-n-drop support.
+- [X] F14: Add drag-n-drop support.
 - [X] F31: Update components and system to use EventHandler.
 - [X] F32: Update dialogs to use EventHandler.
 
@@ -39,6 +39,7 @@ Further features
 - [ ] F25: Separate configuration manager into single application.
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F34: Rename Application to Process.
+- [ ] F35: Add windows resizing.
 
 
 History
