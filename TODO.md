@@ -1,15 +1,11 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 38 registered features.
+Currently there are 39 registered features.
 
 TODO
 ========
 
 For v 0.3
 --------
-- [ ] F18: Update GvinPaint.
-- [ ] F18.1: Use Image class instead of direct file working.
-- [ ] F18.2: Add more tools.
-- [ ] F18.3: Add custom dialogs.
 - [X] F26: Remove Timer class.
 - [ ] F27: Add Canvas class.
 - [ ] F23: Add real threads.
@@ -23,6 +19,8 @@ For v 0.3
 - [X] F36: Add onResize event invoking on window maximizing/minimizing.
 - [X] F37: Update ColorPicker dialog to use EventHandler.
 - [X] F38: Add right and left mouse drag events instead of simple drag event.
+- [ ] F39: Remove GvinPaint and create BiriPaint.
+- [X] #3 Getting mouse click event in window on left clicking the menu.
 
 For all versions
 --------
@@ -71,3 +69,7 @@ For v0.2
 Rejected
 --------
 - [X] F17: [REJECTED] Add TimersManager class.
+- [X] F18: [REJECTED] Update GvinPaint.
+- [X] F18.1: [REJECTED] Use Image class instead of direct file working.
+- [X] F18.2: [REJECTED] Add more tools.
+- [X] F18.3: [REJECTED] Add custom dialogs.

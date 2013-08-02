@@ -111,8 +111,8 @@ PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAut
 		if (this:Contains(cursorX, cursorY)) then
 			if (componentsManager:ProcessLeftClickEvent(cursorX, cursorY)) then
 				this:Close();
-				return true;
 			end
+			return true;
 		else
 			this:Close();
 		end
