@@ -1,6 +1,6 @@
 FileManagerWindow = Class(Window, function(this, _application)
 
-	Window.init(this, _application, 'Gvin file manager', false, false, 'Gvin file manager', 5, 3, 40, 11, nil, true, true);
+	Window.init(this, _application, 'Gvin file manager', false, false, 'Gvin file manager', 5, 3, 40, 12, nil, true, true);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------
@@ -47,7 +47,6 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	function this.Draw(_, videoBuffer)
-		vScrollBar.Height = this:GetHeight() - 5;
 		local files = getFiles();
 		
 		videoBuffer:SetBackgroundColor(colors.white);
@@ -301,6 +300,10 @@ FileManagerWindow = Class(Window, function(this, _application)
 		end
 	end
 
+	local function onWindowResize(_sender, _eventArgs)
+		vScrollBar.Height = this:GetHeight() - 5;
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -339,6 +342,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 		renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
 		renameButton:SetOnClick(EventHandler(renameButtonClick));
 		contextMenu:AddComponent(renameButton);
+
+		this:SetOnResize(EventHandler(onWindowResize));
 	end
 
 	local function constructor(_application)

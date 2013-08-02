@@ -57,8 +57,13 @@ TasksManagerWindow = Class(Window, function(this, _application)
 		end
 	end
 
-	this.Draw = function(_, videoBuffer)
+	local function onWindowResize(_sender, _eventArgs)
 		vScrollBar.Height = this:GetHeight() - 4;
+	end
+
+	this:SetOnResize(EventHandler(onWindowResize));
+
+	this.Draw = function(_, videoBuffer)
 		drawProcessesGrid(videoBuffer);
 		drawProcesses(videoBuffer);
 	end

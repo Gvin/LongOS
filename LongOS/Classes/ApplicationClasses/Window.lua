@@ -135,7 +135,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetY(_, _value)
-		old = y;
+		local old = y;
 		y = _value;
 		local topLineIndex = System:GetTopLineIndex();
 		if (y < topLineIndex) then
@@ -163,6 +163,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetWidth(_, _value)
+		local old = width;
 		width = _value;
 		if (x + width - 1 > screenWidth) then
 			width = screenWidth + 1 - x;
@@ -170,6 +171,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (width < 4) then
 			width = 4;
 		end
+		resize(old, width, 'width');
 	end
 
 	function this.GetHeight()
@@ -177,13 +179,15 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetHeight(_, _value)
+		local old = height;
 		height = _value;
 		if (y + height - 1 > screenHeight - 1) then
-			height = screenHeight - y;
+			height = screenHeight - y + 1;
 		end
 		if (height < 3) then
 			height = 3;
 		end
+		resize(old, height, 'height');
 	end
 
 	function this.GetVisible()
@@ -199,7 +203,29 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetMaximized(_, _value)
+		local changed = (_value ~= maximized);
+
+		local oldHeight = height;
+		local oldWidth = width;
+
 		maximized = _value;
+
+		if (maximized) then
+			width = screenWidth;
+			height = screenHeight - 1;
+			x = 1;
+			y = System:GetTopLineIndex();
+		else
+			width = miniWidth;
+			height = miniHeight;
+			x = miniX;
+			y = miniY;
+		end
+
+		if (changed) then
+			resize(oldWidth, width, 'width');
+			resize(oldHeight, height, 'height');
+		end
 	end
 
 	function this.GetEnabled()
@@ -247,11 +273,11 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.Maximize()
-		maximized = true;
+		this:SetMaximized(true);
 	end
 
 	function Minimize()
-		maximized = false;
+		this:SetMaximized(false);
 	end
 
 	function this.Contains(_, _x, _y)
@@ -363,18 +389,6 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		end
 		if (height - 1 > screenHeight) then
 			height = screenHeight;
-		end
-
-		if (maximized) then
-			width = screenWidth;
-			height = screenHeight - 1;
-			x = 1;
-			y = System:GetTopLineIndex();
-		else
-			width = miniWidth;
-			height = miniHeight;
-			x = miniX;
-			y = miniY;
 		end
 	end
 
@@ -515,7 +529,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	local function maximizeButtonClick(sender, eventArgs)
-		maximized = not maximized;
+		this:SetMaximized(not maximized);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
