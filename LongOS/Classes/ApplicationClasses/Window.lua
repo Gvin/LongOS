@@ -467,7 +467,12 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			oldMouseY = _newCursorY;
 			this:SetX(x + dX);
 			this:SetY(y + dY);
+		else
+			this:ProcessMouseDragEvent(_newCursorX, _newCursorY);
 		end
+	end
+
+	function this.ProcessMouseDragEvent(_, _newCursorX, _newCursorY)
 	end
 
 ----------------------- Keys processing ---------------------------------
