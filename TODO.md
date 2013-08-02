@@ -21,7 +21,7 @@ For v 0.3
 - [X] F31: Update components and system to use EventHandler.
 - [X] F32: Update dialogs to use EventHandler.
 - [X] F36: Add onResize event invoking on window maximizing/minimizing.
-- [ ] F37: Update ColorPicker dialog to use EventHandler.
+- [X] F37: Update ColorPicker dialog to use EventHandler.
 
 For all versions
 --------
