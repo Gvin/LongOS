@@ -43,6 +43,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	local oldMouseX;
 	local oldMouseY;
+	local isMoving;
 
 	local screenWidth, screenHeight = term.getSize();
 
@@ -312,6 +313,10 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	-- Drawing
 
+	local function isOnTopLine(_x, _y)
+		return (_y == y and _x >= x and _x <= x + width - 1);
+	end
+
 	local function drawTopLine(_videoBuffer)
 		local topLineColor = colorConfiguration:GetColor('TopLineActiveColor');
 		if (enabled) then
@@ -430,9 +435,11 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	-- Events processing
 
+	function this.ResetMoving()
+		isMoving = false;
+	end
+
 	local function processLeftClickEvent(_cursorX, _cursorY)
-		oldMouseX = nil;
-		oldMouseY = nil;
 		if (menuesManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
@@ -445,9 +452,10 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (componentsManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (_cursorY == y and _cursorX >= x and _cursorX <= x + width - 1) then
+		if (isOnTopLine(_cursorX, _cursorY)) then
 			oldMouseX = _cursorX;
 			oldMouseY = _cursorY;
+			isMoving = true;
 			return true;
 		end
 	end
@@ -496,7 +504,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.ProcessLeftMouseDragEventBase(_, _newCursorX, _newCursorY)
-		if (oldMouseX ~= nil and oldMouseY ~= nil and allowMove) then
+		if (isMoving and allowMove) then
 			local dX = _newCursorX - oldMouseX;
 			local dY = _newCursorY - oldMouseY;
 			oldMouseX = _newCursorX;
@@ -621,8 +629,8 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		miniY = y;
 		miniWidth = width;
 		miniHeight = height;
-		isMoving = false;
 		visible = true;
+		isMoving = false;
 
 		colorConfiguration = System:GetColorConfiguration();
 		interfaceConfiguration = System:GetInterfaceConfiguration();

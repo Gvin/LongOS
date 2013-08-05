@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 39 registered features.
+Currently there are 43 registered features.
 
 TODO
 ========
@@ -21,6 +21,7 @@ For v 0.3
 - [X] F38: Add right and left mouse drag events instead of simple drag event.
 - [ ] F39: Remove GvinPaint and create BiriPaint.
 - [X] #3 Getting mouse click event in window on left clicking the menu.
+- [X] #4 Dragging outside the window.
 
 For all versions
 --------
@@ -41,6 +42,10 @@ Further features
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F34: Rename Application to Process.
 - [ ] F35: Add windows resizing.
+- [ ] F40: Add posibility to maximize window on double clicking the title.
+- [ ] F41: Add window minimizing when trying to move maximized window.
+- [ ] F42: Change components layouts for better corner coordinates.
+- [ ] F43: Add ability to add programs to the startup.
 
 
 History

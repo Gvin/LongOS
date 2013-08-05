@@ -1,6 +1,6 @@
 ColorPickerDialog = Class(Window, function(this, _application)
 
-	Window.init(this, _application, 'Color picker dialog', false, true, 'Select color', 10, 3, 18, 6, nil, false, false);
+	Window.init(this, _application, 'Color picker dialog', false, true, 'Select color', 10, 3, 18, 6, nil, false, true);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

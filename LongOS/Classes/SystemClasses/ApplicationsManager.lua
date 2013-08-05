@@ -146,12 +146,14 @@ ApplicationsManager = Class(function(a)
 
 	a.ProcessLeftClickEvent = function(_, cursorX, cursorY)
 		if (currentApplication ~= nil) then
+			currentApplication:ResetMoving();
 			if (currentApplication:Contains(cursorX, cursorY)) then
 				if (currentApplication:ProcessLeftClickEvent(cursorX, cursorY)) then
 					return;
 				end
 			else
 				for i = 1, #applications do
+					applications[i]:ResetMoving();
 					if (applications[i]:Contains(cursorX, cursorY)) then
 						currentApplication = applications[i];
 						return;

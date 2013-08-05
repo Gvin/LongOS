@@ -23,7 +23,7 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 		return math.floor((screenHeight - height) / 2);
 	end
 
-	Window.init(this, _application, 'Question dialog', false, true, _title, countXPosition(_text), countYPosition(_text), countWidth(_text), countHeight(_text), nil, false, false);
+	Window.init(this, _application, 'Question dialog', false, true, _title, countXPosition(_text), countYPosition(_text), countWidth(_text), countHeight(_text), nil, false, true);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------

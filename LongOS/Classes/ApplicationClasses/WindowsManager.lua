@@ -103,6 +103,13 @@ WindowsManager = Class(function(this)
 		end
 	end
 
+	this.ResetMoving = function()
+		for i = 1, #windows do
+			windows[i]:ResetMoving();
+		end
+	end
+
+
 	local tryProcessRightClickEvent = function(window, cursorX, cursorY)
 		local success, message = pcall(window.ProcessRightClickEventBase, nil, cursorX, cursorY);
 		if (not success) then
