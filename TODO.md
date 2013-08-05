@@ -22,6 +22,7 @@ For v 0.3
 - [ ] F39: Remove GvinPaint and create BiriPaint.
 - [X] #3 Getting mouse click event in window on left clicking the menu.
 - [X] #4 Dragging outside the window.
+- [X] #6 Wrong window is selected as current after closing subdialog.
 
 For all versions
 --------

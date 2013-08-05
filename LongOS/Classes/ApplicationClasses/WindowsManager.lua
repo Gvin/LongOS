@@ -48,13 +48,14 @@ WindowsManager = Class(function(this)
 		currentWindow = windowToSet;
 	end
 
+
 	this.DeleteWindow = function(_, windowId)
 		local windowToDelete, indexToDelete = getWindowById(windowId);
 		if (indexToDelete ~= nil) then
 			table.remove(windows, indexToDelete);
 			if (currentWindow == windowToDelete) then
 				currentWindow = nil;
-				currentWindow = windows[1];
+				currentWindow = windows[indexToDelete - 1];
 			end
 		end
 	end
