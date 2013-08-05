@@ -3,17 +3,17 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	local scroll = 0;
 	local selectedApplicationId = '';
 
-	local tasksCountLabel = Label('Applications count: '..System:GetApplicationsCount(), nil, nil, 2, 1, 'left-top');
+	local tasksCountLabel = Label('Applications count: '..System:GetApplicationsCount(), nil, nil, 0, 0, 'left-top');
 	this:AddComponent(tasksCountLabel);
 
-	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, -2, 2, 'right-top');
+	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, -1, 1, 'right-top');
 	this:AddComponent(vScrollBar);
 
 	local function killProcessButtonClick(sender, eventArgs)
 		System:DeleteApplication(selectedApplicationId);
 	end
 
-	local killProcessButton = Button('Close application', nil, nil, 2, -2, 'left-bottom');
+	local killProcessButton = Button('Close application', nil, nil, 0, -1, 'left-bottom');
 	killProcessButton:SetOnClick(EventHandler(killProcessButtonClick));
 	this:AddComponent(killProcessButton);
 
@@ -21,7 +21,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 		System:SetCurrentApplication(selectedApplicationId);
 	end
 
-	local setActiveButton = Button('Set active', nil, nil, -12, -2, 'right-bottom');
+	local setActiveButton = Button('Set active', nil, nil, 18, -1, 'left-bottom');
 	setActiveButton:SetOnClick(EventHandler(setActiveButtonClick));
 	this:AddComponent(setActiveButton);
 
@@ -43,15 +43,15 @@ TasksManagerWindow = Class(Window, function(this, _application)
 			else
 				videoBuffer:SetTextColor(colors.black);
 			end
-			videoBuffer:WriteAt(this:GetX() + 3, this:GetY() + 1 + i - vScrollBar:GetValue(), i..') '..applications[i].Name..' : '..applications[i].WindowsCount);
+			videoBuffer:WriteAt(3, 1 + i - vScrollBar:GetValue(), i..') '..applications[i].Name..' : '..applications[i].WindowsCount);
 		end
 	end
 
 	local drawProcessesGrid = function(videoBuffer)
 		videoBuffer:SetBackgroundColor(colors.white);
 		for i = 2, this:GetHeight() - 3 do
-			videoBuffer:SetCursorPos(this:GetX() + 2, this:GetY() + i);
-			for j = 2, this:GetWidth() - 3 do
+			videoBuffer:SetCursorPos(1, i);
+			for j = 2, this:GetWidth() - 2 do
 				videoBuffer:Write(' ');
 			end
 		end

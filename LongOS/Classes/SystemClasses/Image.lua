@@ -152,10 +152,24 @@ Image = Class(function(this, param1, param2)
 		end
 	end
 
+	local constructor3 = function(_image)
+		width = _image:GetWidth();
+		height = _image:GetHeight();		
+		canvas = {};
+		for i = 1, height do
+			canvas[i] = {};
+			for j = 1, width do
+				canvas[i][j] = _image:GetPixel(j,i);
+			end
+		end
+	end
+
 	if (type(param1) == 'string') then -- read file from disk
 		constructor1(param1);
 	elseif (type(param1) == 'number' and type(param2) == 'number') then -- create new image with selected size
 		constructor2(param1,param2);
+	elseif (type(param1) == 'table' and param1:GetClassName() == 'Image') then -- create new image from image
+		constructor3(param1);
 	else
 		error('Image.Constructor: not found constructor with such parameters ('..type(param1)..', '..type(param2)..').');
 	end

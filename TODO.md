@@ -7,7 +7,7 @@ TODO
 For v 0.3
 --------
 - [X] F26: Remove Timer class.
-- [ ] F27: Add Canvas class.
+- [X] F27: Add Canvas class.
 - [ ] F23: Add real threads.
 - [ ] F28: Improve CheckBox component.
 - [ ] F24: Create application for components testing.

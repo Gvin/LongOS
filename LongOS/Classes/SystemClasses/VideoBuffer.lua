@@ -54,6 +54,15 @@ VideoBuffer = Class(function(this)
 		currentBackgroundColor = color;
 	end
 
+	this.SetPixel = function(_, x, y, _pixel)
+		if (isOnScreen(x, y)) then
+			local pixel = pixels[y][x];
+			pixel:SetBackgroundColor(_pixel:GetBackgroundColor());
+			pixel:SetTextColor(_pixel:GetTextColor());
+			pixel:SetSymbol(_pixel:GetSymbol());
+		end
+	end
+
 	this.SetPixelColor = function(_, x, y, color)
 		if (type(x) ~= 'number') then
 			error('VideoBuffer:SetPixelColor - Number required (variable "x").');
@@ -146,6 +155,10 @@ VideoBuffer = Class(function(this)
 				pixel:SetSymbol(string.sub(value, i, i));
 			end
 		end
+	end
+
+	this.GetCoordinates = function(_, _x, _y)
+		return _x, _y;
 	end
 
 	this.Clear = function(_)

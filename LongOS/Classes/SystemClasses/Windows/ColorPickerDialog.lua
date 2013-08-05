@@ -58,72 +58,72 @@ ColorPickerDialog = Class(Window, function(this, _application)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		white = Button(' ', colors.white, colors.white, 1, 2, 'left-top');
+		white = Button(' ', colors.white, colors.white, 0, 1, 'left-top');
 		white:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(white);
 
-		orange = Button(' ', colors.orange, colors.white, 2, 2, 'left-top');
+		orange = Button(' ', colors.orange, colors.white, 1, 1, 'left-top');
 		orange:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(orange);
 
-		magenta = Button(' ', colors.magenta, colors.white, 3, 2, 'left-top');
+		magenta = Button(' ', colors.magenta, colors.white, 2, 1, 'left-top');
 		magenta:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(magenta);
 
-		lightBlue = Button(' ', colors.lightBlue, colors.white, 4, 2, 'left-top');
+		lightBlue = Button(' ', colors.lightBlue, colors.white, 3, 1, 'left-top');
 		lightBlue:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(lightBlue);
 
-		yellow = Button(' ', colors.yellow, colors.white, 5, 2, 'left-top');
+		yellow = Button(' ', colors.yellow, colors.white, 4, 1, 'left-top');
 		yellow:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(yellow);
 
-		lime = Button(' ', colors.lime, colors.white, 6, 2, 'left-top');
+		lime = Button(' ', colors.lime, colors.white, 5, 1, 'left-top');
 		lime:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(lime);
 
-		pink = Button(' ', colors.pink, colors.white, 7, 2, 'left-top');
+		pink = Button(' ', colors.pink, colors.white, 6, 1, 'left-top');
 		pink:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(pink);
 
-		gray = Button(' ', colors.gray, colors.white, 8, 2, 'left-top');
+		gray = Button(' ', colors.gray, colors.white, 7, 1, 'left-top');
 		gray:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(gray);
 
-		lightGray = Button(' ', colors.lightGray, colors.white, 9, 2, 'left-top');
+		lightGray = Button(' ', colors.lightGray, colors.white, 8, 1, 'left-top');
 		lightGray:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(lightGray);
 
-		cyan = Button(' ', colors.cyan, colors.white, 10, 2, 'left-top');
+		cyan = Button(' ', colors.cyan, colors.white, 9, 1, 'left-top');
 		cyan:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(cyan);
 
-		purple = Button(' ', colors.purple, colors.white, 11, 2, 'left-top');
+		purple = Button(' ', colors.purple, colors.white, 10, 1, 'left-top');
 		purple:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(purple);
 
-		blue = Button(' ', colors.blue, colors.white, 12, 2, 'left-top');
+		blue = Button(' ', colors.blue, colors.white, 11, 1, 'left-top');
 		blue:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(blue);
 
-		brown = Button(' ', colors.brown, colors.white, 13, 2, 'left-top');
+		brown = Button(' ', colors.brown, colors.white, 12, 1, 'left-top');
 		brown:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(brown);
 
-		green = Button(' ', colors.green, colors.white, 14, 2, 'left-top');
+		green = Button(' ', colors.green, colors.white, 13, 1, 'left-top');
 		green:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(green);
 
-		black = Button(' ', colors.black, colors.white, 15, 2, 'left-top');
+		black = Button(' ', colors.black, colors.white, 14, 1, 'left-top');
 		black:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(black);
 
-		red = Button(' ', colors.red, colors.white, 16, 2, 'left-top');
+		red = Button(' ', colors.red, colors.white, 15, 1, 'left-top');
 		red:SetOnClick(EventHandler(selectColorClick));
 		this:AddComponent(red);
 
 
-		cancelButton = Button('Cancel', nil, nil, 6, -2, 'left-bottom');
+		cancelButton = Button('Cancel', nil, nil, 5, -1, 'left-bottom');
 		cancelButton:SetOnClick(EventHandler(cancelButtonClick));
 		this:AddComponent(cancelButton);
 	end

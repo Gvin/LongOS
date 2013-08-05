@@ -31,12 +31,12 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 	local scrollRightButton = Button('>', nil, nil, -1, 0, 'right-top');
 	scrollRightButton:SetOnClick(EventHandler(scrollRightButtonClick));
 
-	local getRollerX = function()
-		local rollerX = this.X + 1 + math.floor((value/(maxValue - minValue))*(this.Width - 3));
+	local getRollerX = function(x)
+		local rollerX = x + 1 + math.floor((value/(maxValue - minValue))*(this.Width - 3));
 		if (value == minValue) then
-			rollerX = this.X + 1;
+			rollerX = x + 1;
 		elseif (value == maxValue) then
-			rollerX = this.X + this.Width - 2;
+			rollerX = x + this.Width - 2;
 		end
 		return rollerX;
 	end
@@ -50,15 +50,15 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 			this.RollerColor = colorConfiguration:GetColor('WindowBorderColor');
 		end
 
-		this.X = x;
-		this.Y = y;
-		videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemButtonsColor'));
-		videoBuffer:DrawBlock(this.X, this.Y, this.Width, 1, this.BarColor, '-');
-		scrollLeftButton:Draw(videoBuffer, this.X, this.Y, this.Width, 1);
-		scrollRightButton:Draw(videoBuffer, this.X, this.Y, this.Width, 1);
+		this.X, this.Y = videoBuffer:GetCoordinates(x, y);
 
-		local rollerX = getRollerX();
-		videoBuffer:SetPixelColor(rollerX, this.Y, this.RollerColor);
+		videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemButtonsColor'));
+		videoBuffer:DrawBlock(x, y, this.Width, 1, this.BarColor, '-');
+		scrollLeftButton:Draw(videoBuffer, x, y, this.Width, 1);
+		scrollRightButton:Draw(videoBuffer, x, y, this.Width, 1);
+
+		local rollerX = getRollerX(x);
+		videoBuffer:SetPixelColor(rollerX, y, this.RollerColor);
 	end
 
 	local checkValue = function()
@@ -79,6 +79,14 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 		end
 
 		if (cursorY == this.Y and cursorX >= this.X and cursorX <= this.X + this.Width - 1) then
+			if (cursorX == this.X + 1) then
+				this:SetValue(minValue);
+				return true;
+			end
+			if (cursorX == this.X + this.Width - 2) then
+				this:SetValue(maxValue);
+				return true;
+			end
 			local position = cursorX - this.X + 1;
 			local newValuePersent = (position/this.Width);
 			value = math.floor((maxValue - minValue)*newValuePersent);

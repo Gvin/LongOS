@@ -59,6 +59,8 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	local onMove;
 	local onResize;
 
+	local canvas;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -345,10 +347,15 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('TopLineTextColor'));
 		_videoBuffer:WriteAt(titlePosition, y, titleToPrint);
+
+		closeButton:Draw(_videoBuffer, x, y, width, height);
+		if (maximizeButton ~= nil) then
+			maximizeButton:Draw(_videoBuffer, x, y, width, height);
+		end
 	end
 
-	local function drawCanvas(_videoBuffer)
-		_videoBuffer:DrawBlock(x + 1, y + 1, width - 2, height - 2, backgroundColor, ' ');
+	local function drawBlock(_videoBuffer)
+		canvas:DrawBlock(1, 1, width - 2, height - 2, backgroundColor, ' ');
 	end
 
 	local function drawFrame(_videoBuffer)
@@ -370,7 +377,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	local function drawComponents(_videoBuffer)
-		componentsManager:Draw(_videoBuffer, x, y, width, height);
+		componentsManager:Draw(canvas, 1, 1, canvas:GetWidth(), canvas:GetHeight());
 	end
 
 	local function drawMenues(_videoBuffer)
@@ -379,7 +386,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	local function draw(_videoBuffer)
 		drawFrame(_videoBuffer);
-		drawCanvas(_videoBuffer);
+		drawBlock(_videoBuffer);
 		drawComponents(_videoBuffer);
 	end
 
@@ -400,13 +407,16 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	function this.DrawBase(_, _videoBuffer)
 		if (visible) then
+			canvas:SetWidth(width - 2);
+			canvas:SetHeight(height - 2);
 			drawBase(_videoBuffer);
-			this:Draw(_videoBuffer);
+			this:Draw(canvas);
+			canvas:Draw(_videoBuffer, x, y, width, height);
 			drawMenues(_videoBuffer);
 		end
 	end
 
-	function this.Draw(_, _videoBuffer)	
+	function this.Draw(_, _canvas)	
 	end
 
 	-- Updating
@@ -424,6 +434,12 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		oldMouseX = nil;
 		oldMouseY = nil;
 		if (menuesManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+			return true;
+		end
+		if (closeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+			return true;
+		end
+		if (maximizeButton ~= nil and maximizeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
 		if (componentsManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
@@ -460,6 +476,12 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	local function processDoubleClickEvent(_cursorX, _cursorY)
+		if (closeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
+			return true;
+		end
+		if (maximizeButton ~= nil and maximizeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
+			return true;
+		end
 		return componentsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
@@ -606,16 +628,15 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		interfaceConfiguration = System:GetInterfaceConfiguration();
 		componentsManager = ComponentsManager();
 		menuesManager = MenuesManager();
+		canvas = Canvas(1, 1, width - 2, height - 2, 'left-top');
 
 		-- Adding standard buttons
 
 		closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
-		componentsManager:AddComponent(closeButton);
 		closeButton:SetOnClick(EventHandler(closeButtonClick));
 
 		if (allowMaximize) then
 			maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
-			componentsManager:AddComponent(maximizeButton);
 			maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
 		end
 	end

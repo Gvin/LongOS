@@ -60,7 +60,7 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 		local line = 1;
 		local col = 1;
 		for i = 1, string.len(text) do
-			_videoBuffer:WriteAt(this:GetX() + 1 + col, this:GetY() + 1 + line, string.sub(text, i, i));
+			_videoBuffer:WriteAt(1 + col, 1 + line, string.sub(text, i, i));
 			col = col + 1;
 			if (col > 30) then
 				line = line + 1;
@@ -96,11 +96,11 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_text)
-		yesButton = Button(' Yes ', nil, nil, 1, -2, 'left-bottom');
+		yesButton = Button(' Yes ', nil, nil, 0, -1, 'left-bottom');
 		yesButton:SetOnClick(EventHandler(yesButtonClick));
 		this:AddComponent(yesButton);
 
-		noButton = Button(' No ', nil, nil, -5, -2, 'right-bottom');
+		noButton = Button(' No ', nil, nil, -4, -1, 'right-bottom');
 		noButton:SetOnClick(EventHandler(noButtonClick));
 		this:AddComponent(noButton);
 	end

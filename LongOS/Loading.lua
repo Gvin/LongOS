@@ -1,5 +1,5 @@
 local version = '0.2';
-local operationsCount = 35;
+local operationsCount = 36;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -137,6 +137,8 @@ local function includeSystemClasses()
 	mustBeLoaded(Pixel, 'Pixel');
 	include('Classes/SystemClasses/VideoBuffer');
 	mustBeLoaded(VideoBuffer, 'VideoBuffer');
+	include('Classes/SystemClasses/Canvas');
+	mustBeLoaded(Canvas, 'Canvas');
 	include('Classes/SystemClasses/ApplicationsManager')
 	mustBeLoaded(ApplicationsManager, 'ApplicationsManager');
 	include('Classes/SystemClasses/ControlPanel');

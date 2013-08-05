@@ -27,8 +27,7 @@ Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY
 			this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
 		end
 
-		this.X = x;
-		this.Y = y;
+		this.X, this.Y = videoBuffer:GetCoordinates(x, y);
 
 		videoBuffer:DrawBlock(x, y, this.Width, 1, this.BackgroundColor);
 		videoBuffer:SetColorParameters(this.TextColor, this.BackgroundColor);
@@ -52,7 +51,7 @@ Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY
 			if (realCursorPosition > this.Width - 1) then
 				realCursorPosition = this.Width - 1;
 			end
-			videoBuffer:SetRealCursorPos(this.X + realCursorPosition, this.Y);
+			videoBuffer:SetRealCursorPos(x + realCursorPosition, y);
 			videoBuffer:SetCursorBlink(true);
 		end
 

@@ -43,20 +43,24 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 		local currentDirectoryToPrint = findCurrentDirectoryToPrint();
 
-		videoBuffer:WriteAt(this:GetX() + 1, this:GetY() + this:GetHeight() - 3, currentDirectoryToPrint);
+		videoBuffer:WriteAt(1, this:GetHeight() - 3, currentDirectoryToPrint);
 	end
 
-	function this.Draw(_, videoBuffer)
+	local function drawGrid(videoBuffer)
+		videoBuffer:DrawBlock(0, 2, this:GetWidth() - 2, this:GetHeight() - 5, colors.white);
+	end
+
+	local function drawFiles(videoBuffer)
 		local files = getFiles();
 		
 		videoBuffer:SetBackgroundColor(colors.white);
-		videoBuffer:DrawBlock(this:GetX() + 1, this:GetY() + 2, this:GetWidth() - 3, this:GetHeight() - 5, colors.white);
+		
 		local lastLine = #files;
 		if (lastLine > this:GetHeight() - 5 + vScrollBar:GetValue()) then
 			lastLine = this:GetHeight() - 5 + vScrollBar:GetValue();
 		end
 		for i = vScrollBar:GetValue() + 1, lastLine do
-			videoBuffer:SetCursorPos(this:GetX() + 1, this:GetY() + i + 1 - vScrollBar:GetValue());
+			videoBuffer:SetCursorPos(1, i + 1 - vScrollBar:GetValue());
 			if (fs.isDir(currentDirectory..'/'..files[i]) or files[i] == '..') then
 				videoBuffer:SetTextColor(colors.blue);
 			else
@@ -69,6 +73,11 @@ FileManagerWindow = Class(Window, function(this, _application)
 			end
 			videoBuffer:Write(files[i]);
 		end
+	end
+
+	function this.Draw(_, videoBuffer)
+		drawGrid(videoBuffer);
+		drawFiles(videoBuffer);
 
 		writeCurrentDirectory(videoBuffer);
 	end
@@ -309,18 +318,18 @@ FileManagerWindow = Class(Window, function(this, _application)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, -2, 2, 'right-top');
+		vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, -1, 1, 'right-top');
 		this:AddComponent(vScrollBar);
 
-		pasteButton = Button('Paste', nil, nil, 1, -2, 'left-bottom');
+		pasteButton = Button('Paste', nil, nil, 0, -1, 'left-bottom');
 		pasteButton:SetOnClick(EventHandler(pasteButtonClick));
 		this:AddComponent(pasteButton);
 
-		createDirectoryButton = Button('Create directory', nil, nil, 7, -2, 'left-bottom');
+		createDirectoryButton = Button('Create directory', nil, nil, 6, -1, 'left-bottom');
 		createDirectoryButton:SetOnClick(EventHandler(createDirectoryButtonClick));
 		this:AddComponent(createDirectoryButton);
 
-		createFileButton = Button('Create file', nil, nil, 24, -2, 'left-bottom');
+		createFileButton = Button('Create file', nil, nil, 23, -1, 'left-bottom');
 		createFileButton:SetOnClick(EventHandler(createFileButtonClick));
 		this:AddComponent(createFileButton);
 

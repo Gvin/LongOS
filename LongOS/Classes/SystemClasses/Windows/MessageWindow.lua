@@ -47,7 +47,7 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 		local line = 1;
 		local col = 1;
 		for i = 1, string.len(text) do
-			_videoBuffer:WriteAt(this:GetX() + 1 + col, this:GetY() + 1 + line, string.sub(text, i, i));
+			_videoBuffer:WriteAt(1 + col, 1 + line, string.sub(text, i, i));
 			col = col + 1;
 			if (col > 30) then
 				line = line + 1;
@@ -65,7 +65,7 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 2), this:GetHeight() - 2, 'left-top');
+		okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 3), -1, 'left-bottom');
 		okButton:SetOnClick(EventHandler(okButtonClick));
 		this:AddComponent(okButton);
 	end

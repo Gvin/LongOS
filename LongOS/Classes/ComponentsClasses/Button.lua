@@ -78,11 +78,10 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 			textColor = colorConfiguration:GetColor('SystemButtonsTextColor');
 		end
 
-		x = _x;
-		y = _y;
+		x, y = _videoBuffer:GetCoordinates(_x, _y);
 		_videoBuffer:SetBackgroundColor(backgroundColor);
 		_videoBuffer:SetTextColor(textColor);
-		_videoBuffer:WriteAt(x, y, text);
+		_videoBuffer:WriteAt(_x, _y, text);
 	end
 
 	this.Contains = function(_, _x, _y)
