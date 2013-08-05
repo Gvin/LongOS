@@ -47,6 +47,7 @@ Further features
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F43: Add ability to add programs to the startup.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
+- [ ] F44: Add Enabled property to the components.
 
 
 History
