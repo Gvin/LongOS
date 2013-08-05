@@ -47,8 +47,10 @@ Further features
 - [ ] F41: Add window minimizing when trying to move maximized window.
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F43: Add ability to add programs to the startup.
-- [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] F44: Add Enabled property to the components.
+
+- [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
+- [ ] #7 Cursor from back window's edit is visible on front window
 
 
 History
