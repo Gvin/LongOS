@@ -19,7 +19,7 @@ For v 0.3
 - [X] F36: Add onResize event invoking on window maximizing/minimizing.
 - [X] F37: Update ColorPicker dialog to use EventHandler.
 - [X] F38: Add right and left mouse drag events instead of simple drag event.
-- [ ] F39: Remove GvinPaint and create BiriPaint.
+- [X] F39: Remove GvinPaint and create BiriPaint.
 - [X] #3 Getting mouse click event in window on left clicking the menu.
 - [X] #4 Dragging outside the window.
 - [X] #6 Wrong window is selected as current after closing subdialog.

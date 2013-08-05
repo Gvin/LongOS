@@ -1,9 +1,0 @@
-local function run()
-	shell.run('/LongOS/Utilities/Paint/PaintWindow.lua');
-
-	local application = Application('Paint', false, true);
-	local paintWindow = PaintWindow(application);
-	application:Run(paintWindow);
-end
-
-System:Try(run);
