@@ -196,6 +196,24 @@ ApplicationsManager = Class(function(a)
 		return false;
 	end
 
+	a.ProcessTimerEvent = function(_, timerId)
+		for i = 1, #applications do
+			applications[i]:ProcessTimerEvent(timerId);
+		end
+	end
+
+	a.ProcessRedstoneEvent = function()
+		for i = 1, #applications do
+			applications[i]:ProcessRedstoneEvent();
+		end
+	end
+
+	a.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+		if (currentApplication ~= nil) then
+			currentApplication:ProcessMouseScrollEvent(direction, cursorX, cursorY);
+		end
+	end
+
 	a.GetApplicationsCount = function(_)
 		return #applications;
 	end

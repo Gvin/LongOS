@@ -11,6 +11,7 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 	local enabled;
 	local id;
 	local windowsManager;
+	local threadsManager;
 	local shutdownWhenNoWindows;
 
 	----- Properties -----
@@ -49,6 +50,14 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 		windowsManager:DeleteWindow(_windowId);
 	end
 
+	this.AddThread = function(_, _thread)
+		threadsManager:AddThread(_thread);
+	end
+
+	this.RemoveThread = function(_, _id)
+		threadsManager:RemoveThread(_id);
+	end
+
 	this.Run = function(_, _window)
 		if (_window == nil and shutdownWhenNoWindows) then 
 			return;
@@ -67,6 +76,7 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 
 	this.Update = function(_)
 		windowsManager:Update();
+		threadsManager:Update();
 
 		if (shutdownWhenNoWindows and windowsManager:GetWindowsCount() == 0) then
 			this:Close();
@@ -79,17 +89,21 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 
 	this.ProcessKeyEvent = function(_, _key)
 		windowsManager:ProcessKeyEvent(_key);
+		threadsManager:ProcessKeyEvent(_key);
 	end
 
 	this.ProcessCharEvent = function(_, _char)
 		windowsManager:ProcessCharEvent(_char);
+		threadsManager:ProcessCharEvent(_char);
 	end
 
 	this.ProcessRednetEvent = function(_, _id, _message, _distance)
 		windowsManager:ProcessRednetEvent(_id, _message, _distance);
+		threadsManager:ProcessRednetEvent(_id, _message, _distance);
 	end
 
 	this.ProcessLeftClickEvent = function(_, _cursorX, _cursorY)
+		threadsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 		return windowsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 	end
 
@@ -98,6 +112,7 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 	end
 
 	this.ProcessRightClickEvent = function(_, _cursorX, _cursorY)
+	threadsManager:ProcessRightClickEvent(_cursorX, _cursorY);
 		return windowsManager:ProcessRightClickEvent(_cursorX, _cursorY);
 	end
 
@@ -107,10 +122,26 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 
 	this.ProcessLeftMouseDragEvent = function(_, _newCursorX, _newCursorY)
 		windowsManager:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
+		threadsManager:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
 	end
 
 	this.ProcessRightMouseDragEvent = function(_, _newCursorX, _newCursorY)
 		windowsManager:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
+		threadsManager:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
+	end
+
+	this.ProcessTimerEvent = function(_, _timerId)
+		threadsManager:ProcessTimerEvent(_timerId);
+	end
+
+	this.ProcessRedstoneEvent = function()
+		threadsManager:ProcessRedstoneEvent();
+		--windowsManager:ProcessRedstoneEvent();
+	end
+
+	this.ProcessMouseScrollEvent = function(_, _direction, _cursorX, _cursorY)
+		threadsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
+		--windowsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
 	end
 
 	this.Contains = function(_, _x, _y)
@@ -124,6 +155,16 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 	----- Constructors -----
 
 	local constructor1 = function(_applicationName, _isUnique, _shutdownWhenNoWindows)
+		if (type(_applicationName) ~= 'string') then
+			error('Application.Constructor [applicationName]: String expected, got '..type(_applicationName)..'.');
+		end
+		if (type(_isUnique) ~= 'boolean') then
+			error('Application.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		if (type(_shutdownWhenNoWindows) ~= 'boolean') then
+			error('Application.Constructor [shutdownWhenNoWindows]: Boolean expected, got '..type(_shutdownWhenNoWindows)..'.');
+		end
+
 		name = _applicationName;
 		isUnique = _isUnique;
 		shutdownWhenNoWindows = _shutdownWhenNoWindows;
@@ -131,6 +172,7 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 		enabled = true;
 
 		windowsManager = WindowsManager();
+		threadsManager = ThreadsManager();
 	end
 
 	local constructor2 = function(_applicationName, _isUnique)
@@ -141,26 +183,11 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 		constructor2(_applicationName, false);
 	end
 
-	if (type(_applicationName) ~= 'string') then
-		error('Application.Constructor [applicationName]: String expected, got '..type(_applicationName)..'.');
-	end
-
 	if (_shutdownWhenNoWindows == nil and _isUnique == nil) then
 		constructor3(_applicationName);
 	elseif (_isUnique ~= nil and _shutdownWhenNoWindows == nil) then
-		if (type(_isUnique) ~= 'boolean') then
-			error('Application.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
-		end
-
 		constructor2(_applicationName, _isUnique);
 	elseif (_isUnique ~= nil and _shutdownWhenNoWindows ~= nil) then
-		if (type(_isUnique) ~= 'boolean') then
-			error('Application.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
-		end
-		if (type(_shutdownWhenNoWindows) ~= 'boolean') then
-			error('Application.Constructor [shutdownWhenNoWindows]: Boolean expected, got '..type(_shutdownWhenNoWindows)..'.');
-		end
-
 		constructor1(_applicationName, _isUnique, _shutdownWhenNoWindows);
 	else
 		error('Application.Constructor: Not found constructor with such parameters.');

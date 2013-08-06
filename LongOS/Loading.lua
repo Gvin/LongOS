@@ -1,5 +1,5 @@
 local version = '0.2';
-local operationsCount = 36;
+local operationsCount = 38;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -127,6 +127,10 @@ local function includeApplicationClasses()
 	mustBeLoaded(Window, 'Window');
 	include('Classes/ApplicationClasses/WindowsManager');
 	mustBeLoaded(WindowsManager, 'WindowsManager');
+	include('Classes/ApplicationClasses/Thread');
+	mustBeLoaded(Thread, 'Thread');
+	include('Classes/ApplicationClasses/ThreadsManager');
+	mustBeLoaded(ThreadsManager, 'ThreadsManager');
 	include('Classes/ApplicationClasses/Application');
 	mustBeLoaded(Application, 'Application');
 end
@@ -175,6 +179,10 @@ end
 os.loadAPI('/LongOS/APIs/stringExtAPI');
 if (stringExtAPI == nil) then
 	error('stringExtAPI not found in location /LongOS/APIs/');
+end
+os.loadAPI('/LongOS/APIs/tableExtAPI');
+if (tableExtAPI == nil) then
+	error('tableExtAPI not found in location /LongOS/APIs/');
 end
 
 includeSystemClasses();

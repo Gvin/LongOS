@@ -31,6 +31,8 @@ LongOS = Class(function(this)
 
 	local eventsQueue = {};
 
+	local allowedTimers = {};
+
 	this.LogRuntimeError = function(_, errorText)
 		runtimeLog:LogError(errorText);
 	end
@@ -38,6 +40,22 @@ LongOS = Class(function(this)
 	-- Get if system is still working.
 	this.GetWorking = function()
 		return working;
+	end
+
+	this.AddTimer = function(_, timer)
+		table.insert(allowedTimers, timer);
+	end
+
+	this.RemoveTimer = function(_, timer)
+		local index;
+		for i = 1, #allowedTimers do
+			if (allowedTimers[i] == timer) then
+				index = i;
+			end
+		end
+		if (index ~= nil) then
+			table.remove(allowedTimers, index);
+		end
 	end
 
 	-- Add new applications to the applications manager.
@@ -151,6 +169,18 @@ LongOS = Class(function(this)
 		applicationsManager:ProcessRednetEvent(id, message, distance);
 	end
 
+	local function processTimerEvent(timerId)
+		applicationsManager:ProcessTimerEvent(timerId);
+	end
+
+	local function processRedstoneEvent()
+		applicationsManager:ProcessRedstoneEvent();
+	end
+
+	local function processMouseScrollEvent(scrollDirection, cursorX, cursorY)
+		applicationsManager:ProcessMouseScrollEvent(scrollDirection, cursorX, cursorY);
+	end
+
 	-- Process events from events queue.
 	this.ProcessEvents = function()
 		if (#eventsQueue > 0) then
@@ -165,10 +195,16 @@ LongOS = Class(function(this)
 				processCharEvent(event.Params[1]);
 			elseif (event.Name == 'modem_message') then
 				processRednetEvent(event.Params[3], event.Params[4], event.Params[5]);
+			elseif (event.Name == 'timer') then
+				processTimerEvent(event.Params[1]);
+			elseif (event.Name == 'redstone') then
+				processRedstoneEvent();
+			elseif (event.Name == 'mouse_scroll') then
+				processMouseScrollEvent(event.Params[1], event.Params[2], event.Params[3]);
 			end
 			table.remove(eventsQueue, 1);
 		else
-			os.sleep(0.1);
+			oldSleep(0.1);
 		end
 	end
 
@@ -182,6 +218,10 @@ LongOS = Class(function(this)
 	-- Catch incoming events.
 	this.CatchEvents = function()
 		local event, param1, param2, param3, param4, param5 = os.pullEvent();
+
+		if (event == 'timer' and not tableExtAPI.contains(allowedTimers, param1)) then
+			return;
+		end
 		addEvent(event, { param1, param2, param3, param4, param5 });
 	end
 

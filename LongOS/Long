@@ -1,14 +1,24 @@
+oldSleep = os.sleep;
+os.sleep = function(time)
+	local timer = os.startTimer(time);
+	System:AddTimer(timer);
+	repeat
+		local _, eventTimer = os.pullEvent('timer');
+	until eventTimer == timer;
+	System:RemoveTimer(timer);
+end
+
 local function draw()
 	while (System:GetWorking()) do
 		System:Draw();
-		os.sleep(0.1);
+		oldSleep(0.1);
 	end
 end
 
 local function update()
 	while (System:GetWorking()) do
 		System:Update();
-		os.sleep(0.1);
+		oldSleep(0.1);
 	end
 end
 
@@ -38,7 +48,7 @@ local function drawGlobalErrorScreen(errorText)
 	print("If you continue seeing this screen please contact developer and describe your problem.")
 	print("You can post your issue on https://github.com/Gvin/LongOS/");
 	print("Press ENTER key to reboot the system...");
-	os.sleep(1);
+	oldSleep(1);
 	repeat
 		local event, key = os.pullEvent('key');
 	until (keys.getName(key) == 'enter');
