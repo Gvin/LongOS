@@ -1,7 +1,48 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 43 registered features.
+Currently there are 48 registered features.
 
 TODO
+========
+
+For v 0.4
+--------
+- [ ] F28: Refactor components.
+- [ ] F24: Create application for components testing.
+- [ ] F45: Add Image resizing.
+- [ ] F46: Refactor window title drawing.
+- [ ] F47: Move wallpapers to the "Wallpapers" folder.
+- [ ] F34: Rename Application to Process.
+- [ ] F25: Separate configuration manager into single application.
+- [ ] F48: Add minimal window size.
+- [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
+- [ ] F42: Change components layouts for better corner coordinates.
+- [ ] F35: Add windows resizing.
+- [ ] F40: Add posibility to maximize window on double clicking the title.
+- [ ] F41: Add window minimizing when trying to move maximized window.
+- [ ] F44: Add Enabled property to the components.
+- [ ] F16: Improve components ierarchy.
+- [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
+- [ ] #7 Cursor from back window's edit is visible on front window
+
+For all versions
+--------
+- [ ] F7: Create class diagrams for all classes.
+- [ ] F1: Make code refactoring.
+
+Further features
+--------
+- [ ] F8: Add terminal programs support.
+- [ ] F11: Add packets manager.
+- [ ] F15: Improve PopupMenu to support submenues.
+- [ ] F19: Add desktop icons.
+- [ ] F19.1: Add Icon class.
+- [ ] F19.2: Add DesktopIcon class.
+- [ ] F20: Add program to draw icons.
+- [ ] F43: Add ability to add programs to the startup
+
+
+
+History
 ========
 
 For v 0.3
@@ -9,8 +50,6 @@ For v 0.3
 - [X] F26: Remove Timer class.
 - [X] F27: Add Canvas class.
 - [X] F23: Add real threads.
-- [ ] F28: Improve CheckBox component.
-- [ ] F24: Create application for components testing.
 - [X] F29: Add Event class.
 - [X] F30: Add drawing methods to the Image class.
 - [X] F14: Add drag-n-drop support.
@@ -23,38 +62,6 @@ For v 0.3
 - [X] #3 Getting mouse click event in window on left clicking the menu.
 - [X] #4 Dragging outside the window.
 - [X] #6 Wrong window is selected as current after closing subdialog.
-
-For all versions
---------
-- [ ] F7: Create class diagrams for all classes.
-- [ ] F1: Make code refactoring.
-
-Further features
---------
-- [ ] F8: Add terminal programs support.
-- [ ] F11: Add packets manager.
-- [ ] F15: Improve PopupMenu to support submenues.
-- [ ] F16: Improve components ierarchy.
-- [ ] F19: Add desktop icons.
-- [ ] F19.1: Add Icon class.
-- [ ] F19.2: Add DesktopIcon class.
-- [ ] F20: Add program to draw icons.
-- [ ] F25: Separate configuration manager into single application.
-- [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
-- [ ] F34: Rename Application to Process.
-- [ ] F35: Add windows resizing.
-- [ ] F40: Add posibility to maximize window on double clicking the title.
-- [ ] F41: Add window minimizing when trying to move maximized window.
-- [ ] F42: Change components layouts for better corner coordinates.
-- [ ] F43: Add ability to add programs to the startup.
-- [ ] F44: Add Enabled property to the components.
-
-- [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
-- [ ] #7 Cursor from back window's edit is visible on front window
-
-
-History
-========
 
 For v0.2
 --------

@@ -23,7 +23,7 @@ LongOS = Class(function(this)
 
 	local working = true;
 
-	local currentVersion = '0.2';
+	local currentVersion = '0.3';
 
 	local dblClickTimer = 0;
 	local clickX = 0;
