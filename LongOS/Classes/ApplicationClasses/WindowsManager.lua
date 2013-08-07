@@ -104,9 +104,9 @@ WindowsManager = Class(function(this)
 		end
 	end
 
-	this.ResetMoving = function()
+	this.ResetDragging = function()
 		for i = 1, #windows do
-			windows[i]:ResetMoving();
+			windows[i]:ResetDragging();
 		end
 	end
 

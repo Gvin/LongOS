@@ -107,8 +107,8 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 		return windowsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 	end
 
-	this.ResetMoving = function()
-		windowsManager:ResetMoving();
+	this.ResetDragging = function()
+		windowsManager:ResetDragging();
 	end
 
 	this.ProcessRightClickEvent = function(_, _cursorX, _cursorY)

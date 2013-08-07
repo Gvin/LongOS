@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 48 registered features.
+Currently there are 49 registered features.
 
 TODO
 ========
@@ -16,7 +16,7 @@ For v 0.4
 - [X] F48: Add minimal window size.
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F42: Change components layouts for better corner coordinates.
-- [ ] F35: Add windows resizing.
+- [X] F35: Add windows resizing.
 - [X] F40: Add posibility to maximize window on double clicking the title.
 - [X] F41: Add window minimizing when trying to move maximized window.
 - [ ] F44: Add Enabled property to the components.
@@ -39,6 +39,7 @@ Further features
 - [ ] F19.2: Add DesktopIcon class.
 - [ ] F20: Add program to draw icons.
 - [ ] F43: Add ability to add programs to the startup
+- [ ] F49: Add window size and position storing on application closing.
 
 
 

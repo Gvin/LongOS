@@ -1,6 +1,6 @@
 FileManagerWindow = Class(Window, function(this, _application)
 
-	Window.init(this, _application, 'Gvin file manager', false, false, 'Gvin file manager', 5, 3, 40, 12, 40, 12, nil, true, true);
+	Window.init(this, _application, 'Gvin file manager', false, false, 'Gvin file manager', 5, 3, 40, 12, 36, 8, nil, true, true, true);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------

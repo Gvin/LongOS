@@ -1,6 +1,6 @@
 BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight)
 
-	Window.init(this, _application, 'Paint new dialog', false, true, _title, 10, 7, 30, 9, 30, 9, nil, false, true);
+	Window.init(this, _application, 'Paint new dialog', false, true, _title, 10, 7, 30, 9, 30, 9, nil, false, true, false);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

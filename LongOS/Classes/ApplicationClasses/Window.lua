@@ -1,7 +1,7 @@
 -- Window class. Contains all window data, draw and update functions.
 -- For creating programs with windows, you should create child classes
 -- from this class.
-Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight,  _backgroundColor, _allowMaximize, _allowMove)
+Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight,  _backgroundColor, _allowMaximize, _allowMove, _allowResize)
 
 	this.GetClassName = function()
 		return 'Window';
@@ -29,6 +29,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	local maximized;
 	local enabled;
 	local allowMove;
+	local allowResize;
 	local allowMaximize;
 
 	local miniWidth;
@@ -39,6 +40,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	local oldMouseX;
 	local oldMouseY;
 	local isMoving;
+	local isResizing;
 
 	local screenWidth, screenHeight = term.getSize();
 
@@ -161,15 +163,18 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetWidth(_, _value)
-		local old = width;
-		width = _value;
-		if (x + width - 1 > screenWidth) then
-			width = screenWidth + 1 - x;
+		if (allowResize) then
+			local old = width;
+			width = _value;
+			if (x + width - 1 > screenWidth) then
+				width = screenWidth + 1 - x;
+			end
+			if (width < minimalWidth) then
+				width = minimalWidth;
+			end
+			miniWidth = width;
+			resize(old, width, 'width');
 		end
-		if (width < minimalWidth) then
-			width = minimalWidth;
-		end
-		resize(old, width, 'width');
 	end
 
 	function this.GetHeight()
@@ -177,15 +182,18 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetHeight(_, _value)
-		local old = height;
-		height = _value;
-		if (y + height - 1 > screenHeight - 1) then
-			height = screenHeight - y + 1;
+		if (allowResize) then
+			local old = height;
+			height = _value;
+			if (y + height - 1 > screenHeight - 1) then
+				height = screenHeight - y + 1;
+			end
+			if (height < minimalHeight) then
+				height = minimalHeight;
+			end
+			miniHeight = height;
+			resize(old, height, 'height');
 		end
-		if (height < minimalHeight) then
-			height = minimalHeight;
-		end
-		resize(old, height, 'height');
 	end
 
 	function this.GetVisible()
@@ -314,6 +322,10 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		return (_y == y and _x >= x and _x <= x + width - 1);
 	end
 
+	local function isOnRightBottomCorner(_x, _y)
+		return (_y == y + height - 1 and _x == x + width - 1);
+	end
+
 	local function drawTopLine(_videoBuffer)
 		local topLineColor = colorConfiguration:GetColor('TopLineActiveColor');
 		if (enabled) then
@@ -375,7 +387,11 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		for i = 2, width - 1 do
 			_videoBuffer:Write('-');
 		end
-		_videoBuffer:Write('+');
+		if (allowResize) then
+			_videoBuffer:Write('#');
+		else
+			_videoBuffer:Write('+');
+		end
 	end
 
 	local function drawComponents(_videoBuffer)
@@ -432,8 +448,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	-- Events processing
 
-	function this.ResetMoving()
+	function this.ResetDragging()
 		isMoving = false;
+		isResizing = false;
 	end
 
 	local function processLeftClickEvent(_cursorX, _cursorY)
@@ -453,6 +470,12 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			oldMouseX = _cursorX;
 			oldMouseY = _cursorY;
 			isMoving = true;
+			return true;
+		end
+		if (isOnRightBottomCorner(_cursorX, _cursorY)) then
+			oldMouseX = _cursorX;
+			oldMouseY = _cursorY;
+			isResizing = true;
 			return true;
 		end
 	end
@@ -515,6 +538,13 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			oldMouseY = _newCursorY;
 			this:SetX(x + dX);
 			this:SetY(y + dY);
+		elseif (isResizing and allowResize) then
+			local dX = _newCursorX - oldMouseX;
+			local dY = _newCursorY - oldMouseY;
+			oldMouseX = _newCursorX;
+			oldMouseY = _newCursorY;
+			this:SetWidth(width + dX);
+			this:SetHeight(height + dY);
 		else
 			this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
 		end
@@ -577,7 +607,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local function constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height,  _backgroundColor, _allowMaximize, _allowMove)
+	local function constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight, _backgroundColor, _allowMaximize, _allowMove, _allowResize)
 		if (type(_application) ~= 'table' or _application:GetClassName() ~= 'Application') then
 			error('Window.Constructor [application]: Application expected, got '..type(_application)..'.');
 		end
@@ -620,6 +650,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (type(_allowMove) ~= 'boolean') then
 			error('Window.Constructor [allowMove]: Boolean expected, got '..type(_allowMove)..'.');
 		end
+		if (type(_allowResize) ~= 'boolean') then
+			error('Window.Constructor [allowResize]: Boolean expected, got '..type(_allowResize)..'.');
+		end
 
 		application = _application;
 		name = _name;
@@ -639,11 +672,12 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 			minimalHeight = 3;
 		end
 
-		this:SetWidth(_width);
-		this:SetHeight(_height);
+		width = _width;
+		height = _height;
 		backgroundColor = _backgroundColor;
 		allowMaximize = _allowMaximize;
 		allowMove = _allowMove;
+		allowResize = _allowResize;
 		isModal = _isModal;
 
 		maximized = false;
@@ -671,5 +705,6 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		end
 	end
 
-	constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _backgroundColor, _allowMaximize, _allowMove);
+	ERR = _allowResize;
+	constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight, _backgroundColor, _allowMaximize, _allowMove, _allowResize);
 end)
