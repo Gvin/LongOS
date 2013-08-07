@@ -13,7 +13,7 @@ For v 0.4
 - [ ] F47: Move wallpapers to the "Wallpapers" folder.
 - [ ] F34: Rename Application to Process.
 - [ ] F25: Separate configuration manager into single application.
-- [ ] F48: Add minimal window size.
+- [X] F48: Add minimal window size.
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F35: Add windows resizing.

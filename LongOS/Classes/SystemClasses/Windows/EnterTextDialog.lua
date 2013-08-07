@@ -1,6 +1,6 @@
 EnterTextDialog = Class(Window, function(this, _application, _title, _text, _initialText)
 
-	Window.init(this, _application, 'Enter text dialog', false, true, _title, 10, 7, 30, 7, nil, false, true);
+	Window.init(this, _application, 'Enter text dialog', false, true, _title, 10, 7, 30, 7, 30, 7, nil, false, true);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

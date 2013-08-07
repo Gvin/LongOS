@@ -1,5 +1,5 @@
 ColorConfigurationWindow = Class(Window, function(this, _application)
-	Window.init(this, _application, 'Color configuration window', false, false, 'Color configuration', 7, 3, 36, 16, nil, false, true);
+	Window.init(this, _application, 'Color configuration window', false, false, 'Color configuration', 7, 3, 36, 16, 36, 16, nil, false, true);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------

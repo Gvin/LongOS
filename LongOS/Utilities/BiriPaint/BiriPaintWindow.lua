@@ -1,6 +1,6 @@
 BiriPaintWindow = Class(Window, function(this, _application)
 	
-	Window.init(this, _application, 'Biribitum Paint', false, false, 'Biribitum Paint', 0, 2, 41, 17, nil, true, true);
+	Window.init(this, _application, 'Biribitum Paint', false, false, 'Biribitum Paint', 0, 2, 41, 17, 41, 17, nil, true, true);
 
 
 	------------------------------------------------------------------------------------------------------------------

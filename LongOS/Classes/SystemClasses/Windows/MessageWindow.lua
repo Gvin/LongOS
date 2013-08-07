@@ -24,7 +24,10 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 		return math.floor((screenHeight - height) / 2);
 	end
 
-	Window.init(this, _application, 'Message Window', false, true, _title, countXPosition(_text), countYPosition(_text), countWidth(_text), countHeight(_text), nil, false, true);
+	local width = countWidth(_text);
+	local height = countHeight(_text);
+
+	Window.init(this, _application, 'Message Window', false, true, _title, countXPosition(_text), countYPosition(_text), width, height, width, height, nil, false, true);
 	
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------

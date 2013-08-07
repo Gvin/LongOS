@@ -1,15 +1,7 @@
 -- Window class. Contains all window data, draw and update functions.
 -- For creating programs with windows, you should create child classes
 -- from this class.
-local function closeWindow(params)
-	params[1]:Close();
-end
-
-local function maximizeWindow(params)
-	params[1].Maximized = not params[1].Maximized;
-end
-
-Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height,  _backgroundColor, _allowMaximize, _allowMove)
+Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight,  _backgroundColor, _allowMaximize, _allowMove)
 
 	this.GetClassName = function()
 		return 'Window';
@@ -31,10 +23,13 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	local y;
 	local width;
 	local height;
+	local minimalWidth;
+	local minimalHeight;
 	local visible;
 	local maximized;
 	local enabled;
 	local allowMove;
+	local allowMaximize;
 
 	local miniWidth;
 	local miniHeight;
@@ -171,8 +166,8 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (x + width - 1 > screenWidth) then
 			width = screenWidth + 1 - x;
 		end
-		if (width < 4) then
-			width = 4;
+		if (width < minimalWidth) then
+			width = minimalWidth;
 		end
 		resize(old, width, 'width');
 	end
@@ -187,8 +182,8 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (y + height - 1 > screenHeight - 1) then
 			height = screenHeight - y + 1;
 		end
-		if (height < 3) then
-			height = 3;
+		if (height < minimalHeight) then
+			height = minimalHeight;
 		end
 		resize(old, height, 'height');
 	end
@@ -206,28 +201,30 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetMaximized(_, _value)
-		local changed = (_value ~= maximized);
+		if (allowMaximize) then
+			local changed = (_value ~= maximized);
 
-		local oldHeight = height;
-		local oldWidth = width;
+			local oldHeight = height;
+			local oldWidth = width;
 
-		maximized = _value;
+			maximized = _value;
 
-		if (maximized) then
-			width = screenWidth;
-			height = screenHeight - 1;
-			x = 1;
-			y = System:GetTopLineIndex();
-		else
-			width = miniWidth;
-			height = miniHeight;
-			x = miniX;
-			y = miniY;
-		end
+			if (maximized) then
+				width = screenWidth;
+				height = screenHeight - 1;
+				x = 1;
+				y = System:GetTopLineIndex();
+			else
+				width = miniWidth;
+				height = miniHeight;
+				x = miniX;
+				y = miniY;
+			end
 
-		if (changed) then
-			resize(oldWidth, width, 'width');
-			resize(oldHeight, height, 'height');
+			if (changed) then
+				resize(oldWidth, width, 'width');
+				resize(oldHeight, height, 'height');
+			end
 		end
 	end
 
@@ -601,6 +598,12 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (type(_height) ~= 'number') then
 			error('Window.Constructor [height]: Number expected, got '..type(_height)..'.');
 		end
+		if (type(_minimalWidth) ~= 'number') then
+			error('Window.Constructor [minimalWidth]: Number expected, got '..type(_minimalWidth)..'.');
+		end
+		if (type(_minimalHeight) ~= 'number') then
+			error('Window.Constructor [minimalHeight]: Number expected, got '..type(_minimalHeight)..'.');
+		end
 		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
 			error('Window.Constructor [backgroundColor]: Number or nil expected, got '..type(_backgroundColor)..'.');
 		end
@@ -617,6 +620,18 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		title = _title;
 		this:SetX(_x);
 		this:SetY(_y);
+
+		if (_minimalWidth > 7) then
+			minimalWidth = _minimalWidth;
+		else
+			minimalWidth = 7;
+		end
+		if (_minimalHeight > 3) then
+			minimalHeight = _minimalHeight;
+		else
+			minimalHeight = 3;
+		end
+
 		this:SetWidth(_width);
 		this:SetHeight(_height);
 		backgroundColor = _backgroundColor;
