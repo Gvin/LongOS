@@ -1,26 +1,26 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 49 registered features.
+Currently there are 52 registered features.
 
 TODO
 ========
 
 For v 0.4
 --------
-- [ ] F28: Refactor components.
-- [ ] F24: Create application for components testing.
-- [ ] F45: Add Image resizing.
-- [ ] F46: Refactor window title drawing.
 - [X] F47: Move wallpapers to the "Wallpapers" folder.
-- [ ] F34: Rename Application to Process.
-- [ ] F25: Separate configuration manager into single application.
 - [X] F48: Add minimal window size.
-- [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
-- [ ] F42: Change components layouts for better corner coordinates.
 - [X] F35: Add windows resizing.
 - [X] F40: Add posibility to maximize window on double clicking the title.
 - [X] F41: Add window minimizing when trying to move maximized window.
+- [ ] F28: Refactor components.
+- [ ] F24: Create application for components testing.
+- [ ] F45: Add Image resizing.
+- [ ] F25: Separate configuration manager into single application.
+- [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
+- [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F44: Add Enabled property to the components.
 - [ ] F16: Improve components ierarchy.
+- [ ] F51: Extend stringExtAPI with trim function.
+- [ ] F52: Update calculator program.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
 
@@ -40,6 +40,7 @@ Further features
 - [ ] F20: Add program to draw icons.
 - [ ] F43: Add ability to add programs to the startup
 - [ ] F49: Add window size and position storing on application closing.
+- [ ] F50: Change applications configuration extension to XML.
 
 
 
@@ -91,3 +92,5 @@ Rejected
 - [X] F18.1: [REJECTED] Use Image class instead of direct file working.
 - [X] F18.2: [REJECTED] Add more tools.
 - [X] F18.3: [REJECTED] Add custom dialogs.
+- [X] F46: [REJECTED] Refactor window title drawing.
+- [X] F34: [REJECTED] Rename Application to Process.
