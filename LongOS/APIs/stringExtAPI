@@ -18,3 +18,7 @@ function separate(text, separator, ignoreEmptyLines)
 
 	return result;
 end
+
+function trim(text)
+  return (text:gsub("^%s*(.-)%s*$", "%1"))
+end

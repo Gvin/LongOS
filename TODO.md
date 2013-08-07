@@ -19,7 +19,7 @@ For v 0.4
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F44: Add Enabled property to the components.
 - [ ] F16: Improve components ierarchy.
-- [ ] F51: Extend stringExtAPI with trim function.
+- [X] F51: Extend stringExtAPI with trim function.
 - [ ] F52: Update calculator program.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
