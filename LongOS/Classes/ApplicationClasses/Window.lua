@@ -487,6 +487,10 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (maximizeButton ~= nil and maximizeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
+		if (isOnTopLine(_cursorX, _cursorY)) then
+			this:SetMaximized(not maximized);
+			return true;
+		end
 		return componentsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 

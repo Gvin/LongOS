@@ -17,7 +17,7 @@ For v 0.4
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F35: Add windows resizing.
-- [ ] F40: Add posibility to maximize window on double clicking the title.
+- [X] F40: Add posibility to maximize window on double clicking the title.
 - [ ] F41: Add window minimizing when trying to move maximized window.
 - [ ] F44: Add Enabled property to the components.
 - [ ] F16: Improve components ierarchy.
