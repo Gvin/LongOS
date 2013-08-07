@@ -18,7 +18,7 @@ For v 0.4
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F35: Add windows resizing.
 - [X] F40: Add posibility to maximize window on double clicking the title.
-- [ ] F41: Add window minimizing when trying to move maximized window.
+- [X] F41: Add window minimizing when trying to move maximized window.
 - [ ] F44: Add Enabled property to the components.
 - [ ] F16: Improve components ierarchy.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit

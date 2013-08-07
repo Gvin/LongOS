@@ -276,7 +276,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		this:SetMaximized(true);
 	end
 
-	function Minimize()
+	function this.Minimize()
 		this:SetMaximized(false);
 	end
 
@@ -506,6 +506,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 
 	function this.ProcessLeftMouseDragEventBase(_, _newCursorX, _newCursorY)
 		if (isMoving and allowMove) then
+			if (maximized) then
+				this:Minimize();
+			end
 			local dX = _newCursorX - oldMouseX;
 			local dY = _newCursorY - oldMouseY;
 			oldMouseX = _newCursorX;
