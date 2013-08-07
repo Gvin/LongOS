@@ -10,7 +10,7 @@ For v 0.4
 - [ ] F24: Create application for components testing.
 - [ ] F45: Add Image resizing.
 - [ ] F46: Refactor window title drawing.
-- [ ] F47: Move wallpapers to the "Wallpapers" folder.
+- [X] F47: Move wallpapers to the "Wallpapers" folder.
 - [ ] F34: Rename Application to Process.
 - [ ] F25: Separate configuration manager into single application.
 - [X] F48: Add minimal window size.
