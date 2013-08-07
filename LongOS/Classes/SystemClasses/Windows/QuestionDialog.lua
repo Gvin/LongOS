@@ -26,7 +26,15 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	local width = countWidth(_text);
 	local height = countHeight(_text);
 
-	Window.init(this, _application, 'Question dialog', false, true, _title, countXPosition(_text), countYPosition(_text), width, height, width, height, nil, false, true);
+	Window.init(this, _application, 'Question dialog', false);
+	this:SetIsModal(true);
+	this:SetTitle(_title);
+	this:SetX(countXPosition(_text));
+	this:SetY(countYPosition(_text));
+	this:SetWidth(width);
+	this:SetHeight(height);
+	this:SetAllowMaximize(false);
+	this:SetAllowResize(false);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------

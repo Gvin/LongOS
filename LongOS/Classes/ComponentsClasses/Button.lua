@@ -11,6 +11,7 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 	local backgroundColor;
 	local textColor;
 	local enabled;
+	local visible;
 
 	local onClick;
 	
@@ -51,6 +52,14 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 		enabled = _value;
 	end
 
+	this.GetVisible = function()
+		return visible;
+	end
+
+	this.SetVisible = function(_, _value)
+		visible = _value;
+	end
+
 	this.SetOnClick = function(_, _value)
 		if (type(_value) ~= 'table' or _value:GetClassName() ~= 'EventHandler') then
 			error('Button.SetOnClick [value]: EventHandler expected, got '..type(_value)..'.');
@@ -79,9 +88,12 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 		end
 
 		x, y = _videoBuffer:GetCoordinates(_x, _y);
-		_videoBuffer:SetBackgroundColor(backgroundColor);
-		_videoBuffer:SetTextColor(textColor);
-		_videoBuffer:WriteAt(_x, _y, text);
+
+		if (visible) then
+			_videoBuffer:SetBackgroundColor(backgroundColor);
+			_videoBuffer:SetTextColor(textColor);
+			_videoBuffer:WriteAt(_x, _y, text);
+		end
 	end
 
 	this.Contains = function(_, _x, _y)
@@ -112,7 +124,7 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 			error('Button: ProcessClickEvent - Number required (variable "cursorY").');
 		end
 
-		if (not enabled) then return false; end
+		if (not enabled or not visible) then return false; end
 		
 		if (this:Contains(cursorX, cursorY)) then
 			click(cursorX, cursorY);
@@ -138,6 +150,7 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 		x = _dX;
 		y = _dY;
 		enabled = true;
+		visible = true;
 		onClick = nil;
 	end
 

@@ -1,6 +1,14 @@
 EnterTextDialog = Class(Window, function(this, _application, _title, _text, _initialText)
 
-	Window.init(this, _application, 'Enter text dialog', false, true, _title, 10, 7, 30, 7, 30, 7, nil, false, true);
+	Window.init(this, _application, 'Enter text dialog', false);
+	this:SetIsModal(true);
+	this:SetTitle(_title);
+	this:SetX(10);
+	this:SetY(7);
+	this:SetWidth(30);
+	this:SetHeight(7);
+	this:SetAllowMaximize(false);
+	this:SetAllowResize(false);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

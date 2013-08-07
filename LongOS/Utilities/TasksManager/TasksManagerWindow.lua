@@ -1,5 +1,13 @@
 TasksManagerWindow = Class(Window, function(this, _application)
-	Window.init(this, _application, 'Gvin tasks manager', false, false, 'Gvin tasks manager', 5, 3, 40, 15, 30, 7, nil, true, true, true);
+	Window.init(this, _application, 'Gvin tasks manager', false);
+	this:SetTitle('Gvin tasks manager');
+	this:SetX(5);
+	this:SetY(3);
+	this:SetWidth(40);
+	this:SetHeight(15);
+	this:SetMinimalWidth(30);
+	this:SetMinimalHeight(7);
+
 	local scroll = 0;
 	local selectedApplicationId = '';
 

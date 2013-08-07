@@ -1,7 +1,13 @@
 BiriPaintWindow = Class(Window, function(this, _application)
 	
-	Window.init(this, _application, 'Biribitum Paint', false, false, 'Biribitum Paint', 0, 2, 41, 17, 15, 8, nil, true, true, true);
-
+	Window.init(this, _application, 'Biribitum Paint', false);
+	this:SetTitle('Biribitum Paint');
+	this:SetX(1);
+	this:SetY(2);
+	this:SetWidth(41);
+	this:SetHeight(17);
+	this:SetMinimalWidth(15);
+	this:SetMinimalHeight(8);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------

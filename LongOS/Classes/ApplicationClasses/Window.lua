@@ -1,7 +1,7 @@
 -- Window class. Contains all window data, draw and update functions.
 -- For creating programs with windows, you should create child classes
 -- from this class.
-Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight,  _backgroundColor, _allowMaximize, _allowMove, _allowResize)
+Window = Class(function(this, _application, _name, _isUnique)
 
 	this.GetClassName = function()
 		return 'Window';
@@ -80,6 +80,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetId(_, _value)
+		if (type(_value) ~= 'string') then
+			error('Window.SetId [value]: String expected, got '..type(_isUnique)..'.');
+		end
 		id = _value;
 	end
 
@@ -88,6 +91,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetTitle(_, _value)
+		if (type(_value) ~= 'string') then
+			error('Window.SetTitle [value]: String expected, got '..type(_isUnique)..'.');
+		end
 		title = _value;
 	end
 
@@ -96,11 +102,83 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetBackgroundColor(_, _value)
+		if (_value ~= nil or type(_value) ~= 'number') then
+			error('Window.SetBackgroundColor [value]: Number or nil expected, got '..type(_isUnique)..'.');
+		end
 		backgroundColor = _value;
 	end
 
 	function this.GetIsModal()
 		return isModal;
+	end
+
+	function this.SetIsModal(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetIsModal [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		isModal = _value;
+	end
+
+	function this.GetAllowMove()
+		return allowMove;
+	end
+
+	function this.SetAllowMove(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetAllowMove [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		allowMove = _value;
+	end
+
+	function this.GetAllowResize()
+		return allowResize;
+	end
+
+	function this.SetAllowResize(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetAllowResize [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		allowResize = _value;
+	end
+
+	function this.GetMinimalWidth()
+		return minimalWidth;
+	end
+
+	function this.SetMinimalWidth(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Window.SetMinimalWidth [value]: Number expected, got '..type(_isUnique)..'.');
+		end
+		minimalWidth = _value;
+		if (minimalWidth < 7) then
+			minimalWidth = 7;
+		end
+	end
+
+	function this.GetMinimalHeight()
+		return minimalHeight;
+	end
+
+	function this.SetMinimalHeight(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Window.SetMinimalHeight [value]: Number expected, got '..type(_isUnique)..'.');
+		end
+		minimalHeight = _value;
+		if (minimalHeight < 3) then
+			minimalHeight = 3;
+		end
+	end
+
+	function this.GetAllowMaximize()
+		return allowMaximize;
+	end
+
+	function this.SetAllowMaximize(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetAllowMaximize [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
+		allowMaximize = _value;
+		maximizeButton:SetVisible(allowMaximize);
 	end
 
 	function this.GetX()
@@ -118,6 +196,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetX(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Window.SetX [value]: Number expected, got '..type(_isUnique)..'.');
+		end
 		local old = x;
 		x = _value;
 		if (x < 1) then
@@ -135,6 +216,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetY(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Window.SetY [value]: Number expected, got '..type(_isUnique)..'.');
+		end
 		local old = y;
 		y = _value;
 		local topLineIndex = System:GetTopLineIndex();
@@ -163,18 +247,19 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetWidth(_, _value)
-		if (allowResize) then
-			local old = width;
-			width = _value;
-			if (x + width - 1 > screenWidth) then
-				width = screenWidth + 1 - x;
-			end
-			if (width < minimalWidth) then
-				width = minimalWidth;
-			end
-			miniWidth = width;
-			resize(old, width, 'width');
+		if (type(_value) ~= 'number') then
+			error('Window.SetWidth [value]: Number expected, got '..type(_isUnique)..'.');
 		end
+		local old = width;
+		width = _value;
+		if (x + width - 1 > screenWidth) then
+			width = screenWidth + 1 - x;
+		end
+		if (width < minimalWidth) then
+			width = minimalWidth;
+		end
+		miniWidth = width;
+		resize(old, width, 'width');
 	end
 
 	function this.GetHeight()
@@ -182,18 +267,19 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetHeight(_, _value)
-		if (allowResize) then
-			local old = height;
-			height = _value;
-			if (y + height - 1 > screenHeight - 1) then
-				height = screenHeight - y + 1;
-			end
-			if (height < minimalHeight) then
-				height = minimalHeight;
-			end
-			miniHeight = height;
-			resize(old, height, 'height');
+		if (type(_value) ~= 'number') then
+			error('Window.SetHeight [value]: Number expected, got '..type(_isUnique)..'.');
 		end
+		local old = height;
+		height = _value;
+		if (y + height - 1 > screenHeight - 1) then
+			height = screenHeight - y + 1;
+		end
+		if (height < minimalHeight) then
+			height = minimalHeight;
+		end
+		miniHeight = height;
+		resize(old, height, 'height');
 	end
 
 	function this.GetVisible()
@@ -201,6 +287,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetVisible(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetVisible [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
 		visible = _value;
 	end
 
@@ -209,6 +298,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetMaximized(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetMaximized [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
 		if (allowMaximize) then
 			local changed = (_value ~= maximized);
 
@@ -241,6 +333,9 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	end
 
 	function this.SetEnabled(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Window.SetEnabled [value]: Boolean expected, got '..type(_isUnique)..'.');
+		end
 		enabled = _value;
 	end
 
@@ -607,7 +702,7 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local function constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight, _backgroundColor, _allowMaximize, _allowMove, _allowResize)
+	local function constructor(_application, _name, _isUnique)
 		if (type(_application) ~= 'table' or _application:GetClassName() ~= 'Application') then
 			error('Window.Constructor [application]: Application expected, got '..type(_application)..'.');
 		end
@@ -617,68 +712,24 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		if (type(_isUnique) ~= 'boolean') then
 			error('Window.Constructor [isUnique]: Boolean expected, got '..type(_isUnique)..'.');
 		end
-		if (type(_isModal) ~= 'boolean') then
-			error('Window.Constructor [isModal]: Boolean expected, got '..type(_isModal)..'.');
-		end
-		if (type(_title) ~= 'string') then
-			error('Window.Constructor [title]: String expected, got '..type(_title)..'.');
-		end
-		if (type(_x) ~= 'number') then
-			error('Window.Constructor [x]: Number expected, got '..type(_x)..'.');
-		end
-		if (type(_y) ~= 'number') then
-			error('Window.Constructor [y]: Number expected, got '..type(_y)..'.');
-		end
-		if (type(_width) ~= 'number') then
-			error('Window.Constructor [width]: Number expected, got '..type(_width)..'.');
-		end
-		if (type(_height) ~= 'number') then
-			error('Window.Constructor [height]: Number expected, got '..type(_height)..'.');
-		end
-		if (type(_minimalWidth) ~= 'number') then
-			error('Window.Constructor [minimalWidth]: Number expected, got '..type(_minimalWidth)..'.');
-		end
-		if (type(_minimalHeight) ~= 'number') then
-			error('Window.Constructor [minimalHeight]: Number expected, got '..type(_minimalHeight)..'.');
-		end
-		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
-			error('Window.Constructor [backgroundColor]: Number or nil expected, got '..type(_backgroundColor)..'.');
-		end
-		if (type(_allowMaximize) ~= 'boolean') then
-			error('Window.Constructor [allowMaximize]: Boolean expected, got '..type(_allowMaximize)..'.');
-		end
-		if (type(_allowMove) ~= 'boolean') then
-			error('Window.Constructor [allowMove]: Boolean expected, got '..type(_allowMove)..'.');
-		end
-		if (type(_allowResize) ~= 'boolean') then
-			error('Window.Constructor [allowResize]: Boolean expected, got '..type(_allowResize)..'.');
-		end
 
 		application = _application;
 		name = _name;
 		isUnique = _isUnique;
-		title = _title;
-		this:SetX(_x);
-		this:SetY(_y);
 
-		if (_minimalWidth > 7) then
-			minimalWidth = _minimalWidth;
-		else
-			minimalWidth = 7;
-		end
-		if (_minimalHeight > 3) then
-			minimalHeight = _minimalHeight;
-		else
-			minimalHeight = 3;
-		end
-
-		width = _width;
-		height = _height;
-		backgroundColor = _backgroundColor;
-		allowMaximize = _allowMaximize;
-		allowMove = _allowMove;
-		allowResize = _allowResize;
-		isModal = _isModal;
+		-- default values
+		title = 'Window';
+		x = 2;
+		y = 2;
+		width = 20;
+		height = 10;
+		minimalWidth = 7;
+		minimalHeight = 3;
+		backgroundColor = nil;
+		allowMaximize = true;
+		allowMove = true;
+		allowResize = true;
+		isModal = false;
 
 		maximized = false;
 		miniX = x;
@@ -694,17 +745,13 @@ Window = Class(function(this, _application, _name, _isUnique, _isModal, _title, 
 		menuesManager = MenuesManager();
 		canvas = Canvas(1, 1, width - 2, height - 2, 'left-top');
 
-		-- Adding standard buttons
-
+		-- creating components
 		closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
 		closeButton:SetOnClick(EventHandler(closeButtonClick));
 
-		if (allowMaximize) then
-			maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
-			maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
-		end
+		maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
+		maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
 	end
 
-	ERR = _allowResize;
-	constructor(_application, _name, _isUnique, _isModal, _title, _x, _y, _width, _height, _minimalWidth, _minimalHeight, _backgroundColor, _allowMaximize, _allowMove, _allowResize);
+	constructor(_application, _name, _isUnique);
 end)

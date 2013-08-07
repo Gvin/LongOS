@@ -1,6 +1,14 @@
 ColorPickerDialog = Class(Window, function(this, _application)
 
-	Window.init(this, _application, 'Color picker dialog', false, true, 'Select color', 10, 3, 18, 6, 18, 6, nil, false, true);
+	Window.init(this, _application, 'Color picker dialog', false);
+	this:SetIsModal(true);
+	this:SetTitle('Select color');
+	this:SetX(10);
+	this:SetY(3);
+	this:SetWidth(18);
+	this:SetHeight(6);
+	this:SetAllowMaximize(false);
+	this:SetAllowResize(false);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

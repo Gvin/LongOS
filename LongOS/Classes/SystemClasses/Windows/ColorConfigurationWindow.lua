@@ -1,5 +1,12 @@
 ColorConfigurationWindow = Class(Window, function(this, _application)
-	Window.init(this, _application, 'Color configuration window', false, false, 'Color configuration', 7, 3, 36, 16, 36, 16, nil, false, true);
+	Window.init(this, _application, 'Color configuration window', false);
+	this:SetTitle('Color configuration');
+	this:SetX(7);
+	this:SetY(3);
+	this:SetWidth(36);
+	this:SetHeight(16);
+	this:SetAllowMaximize(false);
+	this:SetAllowResize(false);
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------
