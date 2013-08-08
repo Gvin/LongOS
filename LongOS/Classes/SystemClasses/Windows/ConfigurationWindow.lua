@@ -15,6 +15,6 @@ ConfigurationWindow = Class(Window, function(this, _application)
 	end
 
 	local colorConfigurationButton = Button('Open color configuration', nil, nil, 0, 1, 'left-top');
-	colorConfigurationButton:SetOnClick(EventHandler(colorConfigurationButtonClick));
+	colorConfigurationButton:SetOnClick(colorConfigurationButtonClick);
 	this:AddComponent(colorConfigurationButton);
 end)

@@ -29,11 +29,11 @@ BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWi
 	------------------------------------------------------------------------------------------------------------------
 
 	function this.SetOnOk(_, _value)
-		onOk = _value;
+		onOk:AddHandler(_value);
 	end
 
 	function this.SetOnCancel(_, _value)
-		onCancel = _value;
+		onCancel:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -45,12 +45,10 @@ BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWi
 		local height = tonumber(heightEdit.Text);
 		if (width and height ~= nil ) then
 			this:Close();
-			if (onOk ~= nil) then
-				local eventArgs = {};
-				eventArgs.Width = width;
-				eventArgs.Height = height;
-				onOk:Invoke(this, eventArgs);
-			end					
+			local eventArgs = {};
+			eventArgs.Width = width;
+			eventArgs.Height = height;
+			onOk:Invoke(this, eventArgs);				
 		else
 			local errorWindow = MessageWindow(this:GetApplication(), 'Not a number', 'Width and height must be a number');			
 			errorWindow:Show();	
@@ -59,9 +57,7 @@ BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWi
 
 	local function cancelButtonClick(_sender, _eventArgs)
 		this:Close();
-		if (onCancel ~= nil) then
-			onCancel:Invoke(this, { });
-		end
+		onCancel:Invoke(this, { });
 	end
 
 	function this.ProcessKeyEvent(_, _key)
@@ -76,11 +72,11 @@ BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWi
 
 	local function initializeComponents(_initialWidth, _initialHeight)
 		okButton = Button(' OK ', nil, nil, 0, -1, 'left-bottom');
-		okButton:SetOnClick(EventHandler(okButtonClick));
+		okButton:SetOnClick(okButtonClick);
 		this:AddComponent(okButton);
 
 		local cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
-		cancelButton:SetOnClick(EventHandler(cancelButtonClick));
+		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
 		widthLabel = Label('Width', nil, nil, 1, 1, 'left-top');
@@ -105,8 +101,8 @@ BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWi
 	end
 
 	local function constructor(_application, _title, _initialWidth, _initialHeight)
-		onOk = nil;
-		onCancel = nil;
+		onOk = EventHandler();
+		onCancel = EventHandler();
 
 		initializeComponents(_initialWidth, _initialHeight);
 	end

@@ -22,14 +22,14 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 	end
 
 	local scrollLeftButton = Button('<', nil, nil, 0, 0, 'left-top');
-	scrollLeftButton:SetOnClick(EventHandler(scrollLeftButtonClick));
+	scrollLeftButton:SetOnClick(scrollLeftButtonClick);
 
 	local scrollRightButtonClick = function(sender, eventArgs)
 		this:ScrollRight();
 	end
 
 	local scrollRightButton = Button('>', nil, nil, -1, 0, 'right-top');
-	scrollRightButton:SetOnClick(EventHandler(scrollRightButtonClick));
+	scrollRightButton:SetOnClick(scrollRightButtonClick);
 
 	local getRollerX = function(x)
 		local rollerX = x + 1 + math.floor((value/(maxValue - minValue))*(this.Width - 3));

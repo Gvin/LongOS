@@ -22,7 +22,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local killProcessButton = Button('Close application', nil, nil, 0, -1, 'left-bottom');
-	killProcessButton:SetOnClick(EventHandler(killProcessButtonClick));
+	killProcessButton:SetOnClick(killProcessButtonClick);
 	this:AddComponent(killProcessButton);
 
 	local function setActiveButtonClick(sender, eventArgs)
@@ -30,7 +30,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local setActiveButton = Button('Set active', nil, nil, 18, -1, 'left-bottom');
-	setActiveButton:SetOnClick(EventHandler(setActiveButtonClick));
+	setActiveButton:SetOnClick(setActiveButtonClick);
 	this:AddComponent(setActiveButton);
 
 	local drawProcesses = function(videoBuffer)
@@ -69,7 +69,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 		vScrollBar.Height = this:GetHeight() - 4;
 	end
 
-	this:SetOnResize(EventHandler(onWindowResize));
+	this:SetOnResize(onWindowResize);
 
 	this.Draw = function(_, videoBuffer)
 		drawProcessesGrid(videoBuffer);

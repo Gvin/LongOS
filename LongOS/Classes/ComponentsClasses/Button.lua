@@ -61,11 +61,7 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 	end
 
 	this.SetOnClick = function(_, _value)
-		if (type(_value) ~= 'table' or _value:GetClassName() ~= 'EventHandler') then
-			error('Button.SetOnClick [value]: EventHandler expected, got '..type(_value)..'.');
-		end
-
-		onClick = _value;
+		onClick:AddHandler(_value);
 	end
 
 	this.GetX = function()
@@ -108,12 +104,10 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 	end
 
 	local click = function(cursorX, cursorY)
-		if (onClick ~= nil) then
-			local eventArgs = {};
-			eventArgs['X'] = cursorX;
-			eventArgs['Y'] = cursorY;
-			onClick:Invoke(this, eventArgs);
-		end
+		local eventArgs = {};
+		eventArgs['X'] = cursorX;
+		eventArgs['Y'] = cursorY;
+		onClick:Invoke(this, eventArgs);
 	end
 
 	local processClickEvent = function(cursorX, cursorY)
@@ -144,6 +138,16 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 	----- Constructors -----
 
 	local constructor = function(_text, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+		if (type(_text) ~= 'string') then
+			error('Button.Constructor [text]: String expected, got '..type(_text)..'.');
+		end
+		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
+			error('Button.Constructor [backgroundColor]: Number expected, got '..type(_backgroundColor)..'.');
+		end
+		if (_textColor ~= nil and type(_textColor) ~= 'number') then
+			error('Button.Constructor [textColor]: Number expected, got '..type(_textColor)..'.');
+		end
+
 		text = _text;
 		backgroundColor = _backgroundColor;
 		textColor = _textColor;
@@ -151,17 +155,8 @@ Button = Class(Component, function(this, _text, _backgroundColor, _textColor, _d
 		y = _dY;
 		enabled = true;
 		visible = true;
-		onClick = nil;
-	end
 
-	if (type(_text) ~= 'string') then
-		error('Button.Constructor [text]: String expected, got '..type(_text)..'.');
-	end
-	if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
-		error('Button.Constructor [backgroundColor]: Number expected, got '..type(_backgroundColor)..'.');
-	end
-	if (_textColor ~= nil and type(_textColor) ~= 'number') then
-		error('Button.Constructor [textColor]: Number expected, got '..type(_textColor)..'.');
+		onClick = EventHandler();
 	end
 
 	constructor(_text, _backgroundColor, _textColor, _dX, _dY, _anchorType);

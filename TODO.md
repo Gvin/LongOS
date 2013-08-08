@@ -13,6 +13,7 @@ For v 0.4
 - [X] F41: Add window minimizing when trying to move maximized window.
 - [X] F51: Extend stringExtAPI with trim function.
 - [X] F53: Rewrite Window constructor.
+- [X] F54: Add support for multiple event handlers.
 - [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
 - [ ] F45: Add Image resizing.
@@ -22,7 +23,6 @@ For v 0.4
 - [ ] F44: Add Enabled property to the components.
 - [ ] F16: Improve components ierarchy.
 - [ ] F52: Update calculator program.
-- [ ] F54: Add support for multiple event handlers.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
 

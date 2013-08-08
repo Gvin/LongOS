@@ -27,11 +27,11 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 	------------------------------------------------------------------------------------------------------------------
 
 	function this.SetOnOk(_, _value)
-		onOk = _value;
+		onOk:AddHandler(_value);
 	end
 
 	function this.SetOnCancel(_, _value)
-		onCancel = _value;
+		onCancel:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -43,19 +43,15 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 
 		this:Close();
 
-		if (onOk ~= nil) then
-			local eventArgs = {};
-			eventArgs.Text = text;
-			onOk:Invoke(this, eventArgs);
-		end
+		local eventArgs = {};
+		eventArgs.Text = text;
+		onOk:Invoke(this, eventArgs);
 	end
 
 	local function cancelButtonClick(_sender, _eventArgs)
 		this:Close();
 
-		if (onCancel ~= nil) then
-			onCancel:Invoke(this, { });
-		end
+		onCancel:Invoke(this, { });
 	end
 
 	function this.ProcessKeyEvent(_, _key)
@@ -70,11 +66,11 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 
 	local function initializeComponents(_text, _initialText)
 		okButton = Button(' OK ', nil, nil, 0, -1, 'left-bottom');
-		okButton:SetOnClick(EventHandler(okButtonClick));
+		okButton:SetOnClick(okButtonClick);
 		this:AddComponent(okButton);
 
 		local cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
-		cancelButton:SetOnClick(EventHandler(cancelButtonClick));
+		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
 		textLabel = Label(_text, nil, nil, 1, 1, 'left-top');
@@ -89,8 +85,8 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 	end
 
 	local function constructor(_application, _title, _text, _initialText)
-		onOk = nil;
-		onCancel = nil;
+		onOk = EventHandler();
+		onCancel = EventHandler();
 
 		initializeComponents(_text, _initialText);
 	end

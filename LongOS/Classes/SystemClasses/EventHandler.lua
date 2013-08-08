@@ -1,28 +1,41 @@
-EventHandler = Class(function(this, _operation)
+EventHandler = Class(function(this)
 
-	this.GetClassName = function()
+	function this.GetClassName()
 		return 'EventHandler';
 	end
 
-	----- Fields -----
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local operation;
+	local operations;
 
-	----- Methods -----
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	this.Invoke = function(_, _sender, _eventArgs)
-		operation(_sender, _eventArgs);
+	function this.AddHandler(_, _operation)
+		if (type(_operation) ~= 'function') then
+			error('EventHandler.AddHandler [operation]: Function expected, got '..type(_operation)..'.');
+		end
+
+		table.insert(operations, _operation);
 	end
 
-	----- Constructors -----
-
-	local constructor = function(_operation)
-		operation = _operation;
+	function this.Invoke(_, _sender, _eventArgs)
+		for i = 1, #operations do
+			local operation = operations[i];
+			operation(_sender, _eventArgs);
+		end
 	end
 
-	if (type(_operation) ~= 'function') then
-		error('EventHandler.Constructor [operation]: Function expected, got '..type(_operation)..'.');
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor()
+		operations = {};
 	end
 
-	constructor(_operation);
+	constructor();
 end)

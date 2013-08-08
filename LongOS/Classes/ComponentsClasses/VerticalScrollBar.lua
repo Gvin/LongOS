@@ -22,14 +22,14 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 	end
 
 	local scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
-	scrollUpButton:SetOnClick(EventHandler(scrollUpButtonClick));
+	scrollUpButton:SetOnClick(scrollUpButtonClick);
 
 	local scrollDownButtonClick = function(sender, eventArgs)
 		this:ScrollDown();
 	end
 
 	local scrollDownButton = Button('v', nil, nil, 0, -1, 'left-bottom');
-	scrollDownButton:SetOnClick(EventHandler(scrollDownButtonClick));
+	scrollDownButton:SetOnClick(scrollDownButtonClick);
 
 	local getRollerY = function(y)
 		local rollerY = y + 1 + math.floor((value/(maxValue - minValue))*(this.Height - 3));

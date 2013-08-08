@@ -1,3 +1,4 @@
+
 QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	local function countHeight(_text)
 		return 6 + math.floor(string.len(_text) / 30);
@@ -52,11 +53,11 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	------------------------------------------------------------------------------------------------------------------
 
 	function this.SetOnYes(_, _value)
-		onYes = _value;
+		onYes:AddHandler(_value);
 	end
 
 	function this.SetOnNo(_, _value)
-		onNo = _value;
+		onNo:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -83,17 +84,13 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	local function yesButtonClick(_sender, _eventArgs)
 		this:Close();
 
-		if (onYes ~= nil) then
-			onYes:Invoke(this, { });
-		end
+		onYes:Invoke(this, { });
 	end
 
 	local function noButtonClick(_sender, _eventArgs)
 		this:Close();
 
-		if (onNo ~= nil) then
-			onNo:Invoke(this, { });
-		end
+		onNo:Invoke(this, { });
 	end
 
 	function this.ProcessKeyEvent(_, _key)
@@ -108,11 +105,11 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 
 	local function initializeComponents(_text)
 		yesButton = Button(' Yes ', nil, nil, 0, -1, 'left-bottom');
-		yesButton:SetOnClick(EventHandler(yesButtonClick));
+		yesButton:SetOnClick(yesButtonClick);
 		this:AddComponent(yesButton);
 
 		noButton = Button(' No ', nil, nil, -4, -1, 'right-bottom');
-		noButton:SetOnClick(EventHandler(noButtonClick));
+		noButton:SetOnClick(noButtonClick);
 		this:AddComponent(noButton);
 	end
 
@@ -123,8 +120,8 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 
 		text = _text;
 
-		onYes = nil;
-		onNo = nil;
+		onYes = EventHandler();
+		onNo = EventHandler();
 
 		initializeComponents(_text);
 	end

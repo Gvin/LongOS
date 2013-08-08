@@ -82,13 +82,13 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local mainColorSelectionButtonClick = function(_sender, _eventArgs)
 		local picker = ColorPickerDialog(this:GetApplication());
-		picker:SetOnOk(EventHandler(mainColorPickerOnOk));
+		picker:SetOnOk(mainColorPickerOnOk);
 		picker:Show();
 	end
 
 	local additionalColorSelectionButtonClick = function(_sender, _eventArgs)
 		local colorPickerDialog = ColorPickerDialog(this:GetApplication());
-		colorPickerDialog:SetOnOk(EventHandler(additionalColorPickerOnOk));
+		colorPickerDialog:SetOnOk(additionalColorPickerOnOk);
 		colorPickerDialog:Show();
 	end
 
@@ -109,7 +109,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local newButtonClick = function(_sender, _eventArgs)
 		local newDialog = BiriPaintNewImage(this:GetApplication(),'New image',''..image:GetWidth(),''..image:GetHeight());
-		newDialog:SetOnOk(EventHandler(newDialogOnOk));
+		newDialog:SetOnOk(newDialogOnOk);
 		newDialog:Show();		
 	end
 
@@ -128,7 +128,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local openButtonClick = function(_sender, _eventArgs)
 		local openDialog = EnterTextDialog(this:GetApplication(),'Open file','Enter file name','/');
-		openDialog:SetOnOk(EventHandler(openDialogOnOk));
+		openDialog:SetOnOk(openDialogOnOk);
 		openDialog:Show();	
 	end
 	
@@ -141,7 +141,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local saveButtonClick = function(_sender, _eventArgs)
 		local saveDialog = EnterTextDialog(this:GetApplication(),'Save file','Enter file name','/');
-		saveDialog:SetOnOk(EventHandler(saveDialogOnOk));
+		saveDialog:SetOnOk(saveDialogOnOk);
 		saveDialog:Show();		
 	end
 
@@ -373,11 +373,11 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		image = Image(51,19);
 
 		mainColorSelectionButton = Button('  ', colors.black, nil, 0, -1, 'left-bottom');
-		mainColorSelectionButton:SetOnClick(EventHandler(mainColorSelectionButtonClick));		
+		mainColorSelectionButton:SetOnClick(mainColorSelectionButtonClick);		
 		this:AddComponent(mainColorSelectionButton);
 
 		additionalColorSelectionButton = Button('  ', colors.white, nil, 2, -1, 'left-bottom');		
-		additionalColorSelectionButton:SetOnClick(EventHandler(additionalColorSelectionButtonClick));
+		additionalColorSelectionButton:SetOnClick(additionalColorSelectionButtonClick);
 		this:AddComponent(additionalColorSelectionButton);		
 
 		----------------------
@@ -388,27 +388,27 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		this:AddMenu('ModeMenu', modeMenu);
 
 		modeButton = Button('Pen    ', nil, nil, 5, -1, 'left-bottom');
-		modeButton:SetOnClick(EventHandler(modeButtonClick));
+		modeButton:SetOnClick(modeButtonClick);
 		this:AddComponent(modeButton);
 
 		penButton = Button('Pen    ', nil, nil, 1, 1, 'left-top');
-		penButton:SetOnClick(EventHandler(toolButtonClick));
+		penButton:SetOnClick(toolButtonClick);
 		modeMenu:AddComponent(penButton);
 
 		lineButton = Button('Line   ', nil, nil, 1, 3, 'left-top');
-		lineButton:SetOnClick(EventHandler(toolButtonClick));
+		lineButton:SetOnClick(toolButtonClick);
 		modeMenu:AddComponent(lineButton);
 
 		rectButton = Button('Rect   ', nil, nil, 1, 5, 'left-top');
-		rectButton:SetOnClick(EventHandler(toolButtonClick));
+		rectButton:SetOnClick(toolButtonClick);
 		modeMenu:AddComponent(rectButton);
 
 		ellipseButton = Button('Ellipse', nil, nil, 1, 7, 'left-top');
-		ellipseButton:SetOnClick(EventHandler(toolButtonClick));
+		ellipseButton:SetOnClick(toolButtonClick);
 		modeMenu:AddComponent(ellipseButton);
 
 		fillButton = Button('Fill   ', nil, nil, 1, 9, 'left-top');
-		fillButton:SetOnClick(EventHandler(toolButtonClick));
+		fillButton:SetOnClick(toolButtonClick);
 		modeMenu:AddComponent(fillButton);
 
 		----------------------
@@ -419,19 +419,19 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		this:AddMenu('FileMenu', fileMenu);		
 
 		fileButton = Button('File', nil, nil, 0, 0, 'left-top');
-		fileButton:SetOnClick(EventHandler(fileButtonClick));
+		fileButton:SetOnClick(fileButtonClick);
 		this:AddComponent(fileButton);
 
 		newButton = Button('New', nil, nil, 1, 1, 'left-top');
-		newButton:SetOnClick(EventHandler(newButtonClick));
+		newButton:SetOnClick(newButtonClick);
 		fileMenu:AddComponent(newButton);
 
 		openButton = Button('Open', nil, nil, 1, 3, 'left-top');
-		openButton:SetOnClick(EventHandler(openButtonClick));
+		openButton:SetOnClick(openButtonClick);
 		fileMenu:AddComponent(openButton);
 
 		saveButton = Button('Save', nil, nil, 1, 5, 'left-top');
-		saveButton:SetOnClick(EventHandler(saveButtonClick));
+		saveButton:SetOnClick(saveButtonClick);
 		fileMenu:AddComponent(saveButton);
 		
 		----------------------
@@ -442,19 +442,19 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		this:AddMenu('EditMenu', editMenu);	
 
 		editButton = Button('Edit', nil, nil, 5, 0, 'left-top');
-		editButton:SetOnClick(EventHandler(editButtonClick));
+		editButton:SetOnClick(editButtonClick);
 		this:AddComponent(editButton);
 
 		clearButton = Button('Clear all', nil, nil, 1, 1, 'left-top');
-		clearButton:SetOnClick(EventHandler(clearButtonClick));
+		clearButton:SetOnClick(clearButtonClick);
 		editMenu:AddComponent(clearButton);
 		
 		undoButton = Button('Undo', nil, nil, 1, 3, 'left-top');
-		undoButton:SetOnClick(EventHandler(undoButtonClick));
+		undoButton:SetOnClick(undoButtonClick);
 		editMenu:AddComponent(undoButton);
 
 
-		this:SetOnResize(EventHandler(onWindowResize));
+		this:SetOnResize(onWindowResize);
 
 	end
 

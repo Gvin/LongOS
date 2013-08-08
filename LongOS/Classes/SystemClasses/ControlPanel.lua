@@ -20,7 +20,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local shutdownButton = Button('Shutdown', colors.red, colors.black, 1, -6, 'left-bottom');
-	shutdownButton:SetOnClick(EventHandler(shutdownButtonClick));
+	shutdownButton:SetOnClick(shutdownButtonClick);
 	powerMenu:AddComponent(shutdownButton);
 
 	local rebootButtonClick = function(sender, eventArgs)
@@ -28,7 +28,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local rebootButton = Button('Reboot', colors.lightBlue, colors.black, 2, -4, 'left-bottom');
-	rebootButton:SetOnClick(EventHandler(rebootButtonClick));
+	rebootButton:SetOnClick(rebootButtonClick);
 	powerMenu:AddComponent(rebootButton);
 
 	local logOffButtonClick = function(sender, eventArgs)
@@ -36,7 +36,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local logOffButton = Button('Log  off', colors.lime, colors.black, 1, -2, 'left-bottom');
-	logOffButton:SetOnClick(EventHandler(logOffButtonClick));
+	logOffButton:SetOnClick(logOffButtonClick);
 	powerMenu:AddComponent(logOffButton);
 
 	local powerButtonClick = function(sender, eventArgs)
@@ -44,7 +44,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local powerButton = Button('Power', colors.red, colors.black, -12, 0, 'right-top');
-	powerButton:SetOnClick(EventHandler(powerButtonClick));
+	powerButton:SetOnClick(powerButtonClick);
 	componentsManager:AddComponent(powerButton);
 
 	-- APPLICATIONS
@@ -57,7 +57,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local applicationsButton = Button('Applications', colors.lime, colors.black, 1, 0, 'left-top');
-	applicationsButton:SetOnClick(EventHandler(applicationsButtonClick));
+	applicationsButton:SetOnClick(applicationsButtonClick);
 	componentsManager:AddComponent(applicationsButton);
 
 	-- SYSTEM
@@ -70,7 +70,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, -2, 'left-bottom');
-	tasksManagerButton:SetOnClick(EventHandler(tasksManagerButtonClick));
+	tasksManagerButton:SetOnClick(tasksManagerButtonClick);
 	systemMenu:AddComponent(tasksManagerButton);
 
 	local configurationButtonClick = function(sender, eventArgs)
@@ -78,7 +78,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, -4, 'left-bottom');
-	configurationButton:SetOnClick(EventHandler(configurationButtonClick));
+	configurationButton:SetOnClick(configurationButtonClick);
 	systemMenu:AddComponent(configurationButton);
 
 	local systemButtonClick = function(sender, eventArgs)
@@ -86,7 +86,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local systemButton = Button('System', colors.lime, colors.black, 14, 0, 'left-top');
-	systemButton:SetOnClick(EventHandler(systemButtonClick));
+	systemButton:SetOnClick(systemButtonClick);
 	componentsManager:AddComponent(systemButton);
 
 	-- TIME
@@ -105,7 +105,7 @@ ControlPanel = Class(function(this)
 	end
 
 	local calendarButton = Button('--:--', colors.green, colors.white, -6, 0, 'right-top');
-	calendarButton:SetOnClick(EventHandler(calendarButtonClick));
+	calendarButton:SetOnClick(calendarButtonClick);
 	componentsManager:AddComponent(calendarButton);
 	
 	local drawControlPanel = function(videoBuffer)
@@ -198,7 +198,7 @@ ControlPanel = Class(function(this)
 
 		local applicationButton = Button(applicationName, nil, nil, 1, -(applicationsMenu.Height - 1), 'left-bottom');
 		applicationButton.Path = applicationPath;
-		applicationButton:SetOnClick(EventHandler(applicationButtonClick));
+		applicationButton:SetOnClick(applicationButtonClick);
 
 		applicationsMenu:AddComponent(applicationButton);
 	end

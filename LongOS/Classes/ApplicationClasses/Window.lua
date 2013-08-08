@@ -185,14 +185,12 @@ Window = Class(function(this, _application, _name, _isUnique)
 		return x;
 	end
 
-	local function move(_oldValue, _newValue, _value)
-		if (onMove ~= nil) then
-			local eventArgs = {};
-			eventArgs.Old = _oldValue;
-			eventArgs.New = _newValue;
-			eventArgs.Value = _value;
-			onMove:Invoke(this, eventArgs);
-		end
+	local function raiseMoveEvent(_oldValue, _newValue, _value)
+		local eventArgs = {};
+		eventArgs.Old = _oldValue;
+		eventArgs.New = _newValue;
+		eventArgs.Value = _value;
+		onMove:Invoke(this, eventArgs);
 	end
 
 	function this.SetX(_, _value)
@@ -208,7 +206,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 			x = screenWidth;
 		end
 		miniX = x;
-		move(old, x, 'X');
+		raiseMoveEvent(old, x, 'X');
 	end
 
 	function this.GetY()
@@ -229,21 +227,19 @@ Window = Class(function(this, _application, _name, _isUnique)
 			y = screenHeight - 2 + topLineIndex;
 		end
 		miniY = y;
-		move(old, y, 'Y');
+		raiseMoveEvent(old, y, 'Y');
 	end
 
 	function this.GetWidth()
 		return width;
 	end
 
-	local function resize(_oldValue, _newValue, _value)
-		if (onResize ~= nil) then
-			local eventArgs = {};
-			eventArgs.Old = _oldValue;
-			eventArgs.New = _newValue;
-			eventArgs.Value = _value;
-			onResize:Invoke(this, eventArgs);
-		end
+	local function raiseResizeEvent(_oldValue, _newValue, _value)
+		local eventArgs = {};
+		eventArgs.Old = _oldValue;
+		eventArgs.New = _newValue;
+		eventArgs.Value = _value;
+		onResize:Invoke(this, eventArgs);
 	end
 
 	function this.SetWidth(_, _value)
@@ -259,7 +255,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 			width = minimalWidth;
 		end
 		miniWidth = width;
-		resize(old, width, 'width');
+		raiseResizeEvent(old, width, 'width');
 	end
 
 	function this.GetHeight()
@@ -279,7 +275,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 			height = minimalHeight;
 		end
 		miniHeight = height;
-		resize(old, height, 'height');
+		raiseResizeEvent(old, height, 'height');
 	end
 
 	function this.GetVisible()
@@ -322,8 +318,8 @@ Window = Class(function(this, _application, _name, _isUnique)
 			end
 
 			if (changed) then
-				resize(oldWidth, width, 'width');
-				resize(oldHeight, height, 'height');
+				raiseResizeEvent(oldWidth, width, 'width');
+				raiseResizeEvent(oldHeight, height, 'height');
 			end
 		end
 	end
@@ -340,19 +336,19 @@ Window = Class(function(this, _application, _name, _isUnique)
 	end
 
 	function this.SetOnClose(_, _value)
-		onClose = _value;
+		onClose:AddHandler(_value);
 	end
 
 	function this.SetOnShow(_, _value)
-		onShow = _value;
+		onShow:AddHandler(_value);
 	end
 
 	function this.SetOnMove(_, _value)
-		onMove = _value;
+		onMove:AddHandler(_value);
 	end
 
 	function this.SetOnResize(_, _value)
-		onResize = _value;
+		onResize:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -362,17 +358,13 @@ Window = Class(function(this, _application, _name, _isUnique)
 	function this.Close()
 		application:DeleteWindow(id);
 
-		if (onClose ~= nil) then
-			onClose:Invoke(this, {});
-		end
+		onClose:Invoke(this, {});
 	end
 
 	function this.Show()
 		application:AddWindow(this);
 
-		if (onShow ~= nil) then
-			onShow:Invoke(this, {});
-		end
+		onShow:Invoke(this, {});
 	end
 
 	function this.Maximize()
@@ -739,6 +731,11 @@ Window = Class(function(this, _application, _name, _isUnique)
 		visible = true;
 		isMoving = false;
 
+		onShow = EventHandler();
+		onClose = EventHandler();
+		onMove = EventHandler();
+		onResize = EventHandler();
+
 		colorConfiguration = System:GetColorConfiguration();
 		interfaceConfiguration = System:GetInterfaceConfiguration();
 		componentsManager = ComponentsManager();
@@ -747,10 +744,10 @@ Window = Class(function(this, _application, _name, _isUnique)
 
 		-- creating components
 		closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
-		closeButton:SetOnClick(EventHandler(closeButtonClick));
+		closeButton:SetOnClick(closeButtonClick);
 
 		maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
-		maximizeButton:SetOnClick(EventHandler(maximizeButtonClick));
+		maximizeButton:SetOnClick(maximizeButtonClick);
 	end
 
 	constructor(_application, _name, _isUnique);

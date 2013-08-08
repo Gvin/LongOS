@@ -43,7 +43,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	local function selectColorButtonClick(_sender, _eventArgs)
 		selectedButton = _sender;
 		local picker = ColorPickerDialog(this:GetApplication());
-		picker:SetOnOk(EventHandler(colorPickerOnOk));
+		picker:SetOnOk(colorPickerOnOk);
 		picker:Show();
 	end
 
@@ -66,93 +66,93 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		this:AddComponent(windowColorLabel);
 
 		windowColorButton = Button(' ', colorConfiguration:GetColor('WindowColor'), nil, -1, 0, 'right-top');
-		windowColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		windowColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(windowColorButton);
 
 		windowBorderColorLabel = Label('Window border color:', nil, nil, 0, 1, 'left-top');
 		this:AddComponent(windowBorderColorLabel);
 
 		windowBorderColorButton = Button(' ', colorConfiguration:GetColor('WindowBorderColor'), nil, -1, 1, 'right-top');
-		windowBorderColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		windowBorderColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(windowBorderColorButton);
 
 		topLineActiveColorLabel = Label('Top line active color:', nil, nil, 0, 2, 'left-top');
 		this:AddComponent(topLineActiveColorLabel);
 
 		topLineActiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineActiveColor'), nil, -1, 2, 'right-top');
-		topLineActiveColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		topLineActiveColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(topLineActiveColorButton);
 
 		topLineInactiveColorLabel = Label('Top line inactive color:', nil, nil, 0, 3, 'left-top');
 		this:AddComponent(topLineInactiveColorLabel);
 
 		topLineInactiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineInactiveColor'), nil, -1, 3, 'right-top');
-		topLineInactiveColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		topLineInactiveColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(topLineInactiveColorButton);
 
 		topLineTextColorLabel = Label('Top line text color:', nil, nil, 0, 4, 'left-top');
 		this:AddComponent(topLineTextColorLabel);
 
 		topLineTextColorButton = Button(' ', colorConfiguration:GetColor('TopLineTextColor'), nil, -1, 4, 'right-top');
-		topLineTextColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		topLineTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(topLineTextColorButton);
 
 		controlPanelColorLabel = Label('Control panel color:', nil, nil, 0, 5, 'left-top');
 		this:AddComponent(controlPanelColorLabel);
 
 		controlPanelColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelColor'), nil, -1, 5, 'right-top');
-		controlPanelColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		controlPanelColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelColorButton);
 
 		timeTextColorLabel = Label('Time text color:', nil, nil, 0, 6, 'left-top');
 		this:AddComponent(timeTextColorLabel);
 
 		timeTextColorButton = Button(' ', colorConfiguration:GetColor('TimeTextColor'), nil, -1, 6, 'right-top');
-		timeTextColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		timeTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(timeTextColorButton);
 
 		controlPanelButtonsColorLabel = Label('Control panel buttons color:', nil, nil, 0, 7, 'left-top');
 		this:AddComponent(controlPanelButtonsColorLabel);
 
 		controlPanelButtonsColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelButtonsColor'), nil, -1, 7, 'right-top');
-		controlPanelButtonsColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		controlPanelButtonsColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelButtonsColorButton);
 
 		controlPanelPowerButtonColorLabel = Label('Control panel power button color:', nil, nil, 0, 8, 'left-top');
 		this:AddComponent(controlPanelPowerButtonColorLabel);
 
 		controlPanelPowerButtonColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelPowerButtonColor'), nil, -1, 8, 'right-top');
-		controlPanelPowerButtonColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		controlPanelPowerButtonColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelPowerButtonColorButton);
 
 		systemButtonsColorLabel = Label('System buttons color:', nil, nil, 0, 9, 'left-top');
 		this:AddComponent(systemButtonsColorLabel);
 
 		systemButtonsColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsColor'), nil, -1, 9, 'right-top');
-		systemButtonsColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		systemButtonsColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemButtonsColorButton);
 
 		systemButtonsTextColorLabel = Label('System buttons text color:', nil, nil, 0, 10, 'left-top');
 		this:AddComponent(systemButtonsTextColorLabel);
 
 		systemButtonsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsTextColor'), nil, -1, 10, 'right-top');
-		systemButtonsTextColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		systemButtonsTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemButtonsTextColorButton);
 
 		systemLabelsTextColorLabel = Label('System labels text color:', nil, nil, 0, 11, 'left-top');
 		this:AddComponent(systemLabelsTextColorLabel);
 
 		systemLabelsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemLabelsTextColor'), nil, -1, 11, 'right-top');
-		systemLabelsTextColorButton:SetOnClick(EventHandler(selectColorButtonClick));
+		systemLabelsTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemLabelsTextColorButton);
 
 
 		saveChangesButton = Button('Save changes', nil, nil, 0, -1, 'left-bottom');
-		saveChangesButton:SetOnClick(EventHandler(saveChangesButtonClick));
+		saveChangesButton:SetOnClick(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
 		cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
-		cancelButton:SetOnClick(EventHandler(cancelButtonClick));
+		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
 
