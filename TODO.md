@@ -16,7 +16,7 @@ For v 0.4
 - [X] F54: Add support for multiple event handlers.
 - [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
-- [ ] F45: Add Image resizing.
+- [X] F45: Add Image resizing.
 - [ ] F25: Separate configuration manager into single application.
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F42: Change components layouts for better corner coordinates.
