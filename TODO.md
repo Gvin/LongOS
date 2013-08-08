@@ -25,6 +25,7 @@ For v 0.4
 - [ ] F52: Update calculator program.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
+- [ ] #8 System error appears when calling "error" function without parameters.
 
 For all versions
 --------
