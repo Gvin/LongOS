@@ -1,5 +1,5 @@
 local function run()
-	shell.run('/LongOS/Utilities/BiriPaint/BiriPaintNewImage.lua');
+	shell.run('/LongOS/Utilities/BiriPaint/BiriPaintImageSizeDialog.lua');
 	shell.run('/LongOS/Utilities/BiriPaint/BiriPaintWindow.lua');
 	local application = Application('BiriPaint', false, true);
 	local biriPaintWindow = BiriPaintWindow(application);

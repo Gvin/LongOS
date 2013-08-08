@@ -1,4 +1,4 @@
-BiriPaintWindow = Class(Window, function(this, _application)
+BiriPaintWindow = Class(Window, function(this, _application)	
 	
 	Window.init(this, _application, 'Biribitum Paint', false);
 	this:SetTitle('Biribitum Paint');
@@ -8,6 +8,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	this:SetHeight(17);
 	this:SetMinimalWidth(15);
 	this:SetMinimalHeight(8);
+
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fields -----------------------------------------------------------------------------------------------------
@@ -31,6 +32,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	local editButton;
 	local clearButton;
 	local undoButton;
+	local sizeButton;
 
 	local modeMenu;
 	local modeButton;
@@ -103,12 +105,12 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		local width = _eventArgs.Width;	
 		local height = _eventArgs.Height;		
 		image = Image(width,height);	
-		scrollUpdate()
+		scrollUpdate();
 	end
 
 
 	local newButtonClick = function(_sender, _eventArgs)
-		local newDialog = BiriPaintNewImage(this:GetApplication(),'New image',''..image:GetWidth(),''..image:GetHeight());
+		local newDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image',''..image:GetWidth(),''..image:GetHeight());
 		newDialog:SetOnOk(newDialogOnOk);
 		newDialog:Show();		
 	end
@@ -159,6 +161,20 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		
 	local undoButtonClick = function(_sender, _eventArgs)
 		undo();	
+	end
+
+	local function sizeDialogOnOk(_sender, _eventArgs)
+		local width = tonumber(_eventArgs.Width);	
+		local height = tonumber(_eventArgs.Height);	
+		imageBackup = Image(image);	
+		image:SetSize(width,height);					
+		scrollUpdate();
+	end
+
+	local sizeButtonClick = function(_sender, _eventArgs)
+		local sizeDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image size',''..image:GetWidth(),''..image:GetHeight());
+		sizeDialog:SetOnOk(sizeDialogOnOk);
+		sizeDialog:Show();		
 	end
 
 
@@ -257,7 +273,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		scrollUpdate();	
 	end
 
-	this.ProcessLeftClickEvent = function(_, _cursorX, _cursorY)
+	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
 		imageBackup = Image(image);	
 		if (mode == 'Pen    ') then	
 			return paintPixel(getXOnImage(_cursorX), getYOnImage(_cursorY), mainColorSelectionButton:GetBackgroundColor());
@@ -275,7 +291,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		end
 	end
 
-	this.ProcessRightClickEvent = function(_, _cursorX, _cursorY)
+	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
 		imageBackup = Image(image);
 		if (mode == 'Pen    ') then
 			return paintPixel(getXOnImage(_cursorX), getYOnImage(_cursorY), additionalColorSelectionButton:GetBackgroundColor());
@@ -293,7 +309,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		end
 	end
 	
-	this.ProcessLeftMouseDragEvent = function(_, _newCursorX, _newCursorY)
+	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
 		if (mode == 'Pen    ') then
 			return paintPixel(getXOnImage(_newCursorX), getYOnImage(_newCursorY), mainColorSelectionButton:GetBackgroundColor());	
 		elseif(mode == 'Line   ') then
@@ -308,7 +324,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		end	
 	end
 
-	this.ProcessRightMouseDragEvent = function(_, _newCursorX, _newCursorY)
+	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
 		if (mode == 'Pen    ') then
 			return paintPixel(getXOnImage(_newCursorX), getYOnImage(_newCursorY), additionalColorSelectionButton:GetBackgroundColor());	
 		elseif(mode == 'Line   ') then
@@ -346,8 +362,8 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		end
 		for i = scrollY, bottom do
 			for j = scrollX, right do
-				local color = image:GetPixel(j, i);
-				videoBuffer:SetPixelColor(j + 1 - scrollX, i + 2 - scrollY, color);
+				local color = image:GetPixel(j, i);				
+				videoBuffer:SetPixelColor(j + 1 - scrollX, i + 2 - scrollY, color);				
 			end
 		end
 	end
@@ -438,7 +454,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		---Edit menu
 		----------------------
 		
-		editMenu = PopupMenu(2, 4, 15, 5, nil);
+		editMenu = PopupMenu(2, 4, 15, 7, nil);
 		this:AddMenu('EditMenu', editMenu);	
 
 		editButton = Button('Edit', nil, nil, 5, 0, 'left-top');
@@ -452,6 +468,10 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		undoButton = Button('Undo', nil, nil, 1, 3, 'left-top');
 		undoButton:SetOnClick(undoButtonClick);
 		editMenu:AddComponent(undoButton);
+
+		sizeButton = Button('Set size', nil, nil, 1, 5, 'left-top');
+		sizeButton:SetOnClick(sizeButtonClick);
+		editMenu:AddComponent(sizeButton);
 
 
 		this:SetOnResize(onWindowResize);

@@ -1,4 +1,4 @@
-BiriPaintNewImage = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight)
+BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight)
 
 	Window.init(this, _application, 'Paint new dialog', false);
 	this:SetIsModal(true);
