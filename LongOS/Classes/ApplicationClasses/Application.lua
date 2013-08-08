@@ -141,7 +141,7 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 
 	this.ProcessMouseScrollEvent = function(_, _direction, _cursorX, _cursorY)
 		threadsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
-		--windowsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
+		windowsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
 	end
 
 	this.Contains = function(_, _x, _y)

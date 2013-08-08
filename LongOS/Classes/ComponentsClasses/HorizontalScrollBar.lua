@@ -38,6 +38,12 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 		elseif (value == maxValue) then
 			rollerX = x + this.Width - 2;
 		end
+		if (value ~= maxValue and (rollerX == x + this.Width - 2) and this.Width > 4) then
+			rollerX = x + this.Width - 3;
+		end
+		if (value ~= minValue and (rollerX == x + 1) and this.Width > 4) then
+			rollerX = x + 2;
+		end
 		return rollerX;
 	end
 
@@ -95,6 +101,22 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, widt
 		end
 
 		return false;
+	end
+
+	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+		if (this:Contains(cursorX, cursorY)) then
+			if (direction < 0) then
+				this:ScrollLeft();
+			else
+				this:ScrollRight();
+			end
+			return true;
+		end
+		return false;
+	end
+
+	this.Contains = function(_, x, y)
+		return (y == this.Y and x >= this.X and x <= this.X + this.Width - 1);
 	end
 
 	this.GetValue = function(_)

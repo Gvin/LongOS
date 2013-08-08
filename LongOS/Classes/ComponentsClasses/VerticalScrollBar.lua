@@ -38,6 +38,12 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 		elseif (value == maxValue) then
 			rollerY = y + this.Height - 2;
 		end
+		if (value ~= maxValue and (rollerY == y + this.Height - 2) and this.Height > 4) then
+			rollerY = y + this.Height - 3;
+		end
+		if (value ~= minValue and (rollerY == y + 1) and this.Height > 4) then
+			rollerY = y + 2;
+		end
 		return rollerY;
 	end
 
@@ -95,6 +101,22 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 		end
 
 		return false;
+	end
+
+	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+		if (this:Contains(cursorX, cursorY)) then
+			if (direction < 0) then
+				this:ScrollUp();
+			else
+				this:ScrollDown();
+			end
+			return true;
+		end
+		return false;
+	end
+
+	this.Contains = function(_, x, y)
+		return (x == this.X and y >= this.Y and y <= this.Y + this.Height - 1);
 	end
 
 	this.GetValue = function(_)

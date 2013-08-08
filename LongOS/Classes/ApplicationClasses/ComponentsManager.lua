@@ -62,6 +62,15 @@ ComponentsManager = Class(function(this)
 		return false;
 	end
 
+	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+		for i = 1, #components do
+			if (components[i]:ProcessMouseScrollEvent(direction, cursorX, cursorY)) then
+				return true;
+			end
+		end
+		return false;
+	end
+
 	-- Gets components count for iteration or some other usages.
 	this.GetComponentsCount = function(_)
 		return #components;

@@ -170,6 +170,20 @@ WindowsManager = Class(function(this)
 		end
 	end
 
+	local tryProcessMouseScrollEvent = function(window, direction, cursorX, cursorY)
+		local success, message = pcall(window.ProcessMouseScrollEventBase, nil, direction, cursorX, cursorY);
+		if (not success) then
+			System:LogRuntimeError('Mouse scroll processing error (WindowName:"'..getString(window:GetName())..'", WindowId:'..getString(window:GetId())..', direction:'..getString(direction)..', cursorX:'..getString(newCursorX)..', cursorY:'..getString(newCursorY)..'). Message:"'..message..'".');
+		end
+		windowErrorCheck(window, success, 'Mouse scroll processing error: ', message);
+	end
+
+	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+		if (currentWindow ~= nil) then
+			tryProcessMouseScrollEvent(currentWindow, direction, cursorX, cursorY);
+		end
+	end
+
 	local tryProcessKeyEvent = function(window, key)
 		local success, message = pcall(window.ProcessKeyEventBase, nil, key);
 		if (not success) then

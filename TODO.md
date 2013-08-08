@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 54 registered features.
+Currently there are 55 registered features.
 
 TODO
 ========
@@ -11,12 +11,13 @@ For v 0.4
 - [X] F35: Add windows resizing.
 - [X] F40: Add posibility to maximize window on double clicking the title.
 - [X] F41: Add window minimizing when trying to move maximized window.
+- [X] F45: Add Image resizing.
 - [X] F51: Extend stringExtAPI with trim function.
 - [X] F53: Rewrite Window constructor.
 - [X] F54: Add support for multiple event handlers.
+- [X] F55: Add scroll event support.
 - [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
-- [X] F45: Add Image resizing.
 - [ ] F25: Separate configuration manager into single application.
 - [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F42: Change components layouts for better corner coordinates.

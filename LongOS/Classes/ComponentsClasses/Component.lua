@@ -52,14 +52,22 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 	end
 
 	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
+		return false;
 	end
 
 	this.ProcessKeyEvent = function(_, key)
+		return false;
 	end
 
 	this.ProcessCharEvent = function(_, char)
+		return false;
 	end
 
 	this.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
+		return false;
+	end
+
+	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+		return false;
 	end
 end)

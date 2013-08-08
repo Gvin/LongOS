@@ -647,6 +647,17 @@ Window = Class(function(this, _application, _name, _isUnique)
 	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
 	end
 
+	function this.ProcessMouseScrollEventBase(_, _direction, _cursorX, _cursorY)
+		if (this:Contains(_cursorX, _cursorY)) then
+			if (not componentsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)) then
+				this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
+			end
+		end
+	end
+
+	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	end
+
 ----------------------- Keys processing ---------------------------------
 
 	local function processKeyEvent(_key)
