@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 55 registered features.
+Currently there are 56 registered features.
 
 TODO
 ========
@@ -16,6 +16,7 @@ For v 0.4
 - [X] F53: Rewrite Window constructor.
 - [X] F54: Add support for multiple event handlers.
 - [X] F55: Add scroll event support.
+- [X] F56: Move system applications to the SystemUtilities folder.
 - [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
 - [ ] F25: Separate configuration manager into single application.

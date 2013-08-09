@@ -66,7 +66,7 @@ ControlPanel = Class(function(this)
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
 	local tasksManagerButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/Utilities/TasksManager/GvinTasksManager');
+		System:RunFile('/LongOS/SystemUtilities/TasksManager/GvinTasksManager');
 	end
 
 	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, -2, 'left-bottom');
