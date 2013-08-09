@@ -1,5 +1,5 @@
 local function run()
-	shell.run('/LongOS/Utilities/TasksManager/TasksManagerWindow.lua');
+	shell.run('/LongOS/SystemUtilities/TasksManager/TasksManagerWindow.lua');
 
 	local application = Application('Tasks manager', true, true);
 	local tasksManagerWindow = TasksManagerWindow(application);
