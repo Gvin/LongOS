@@ -19,6 +19,8 @@ For v 0.4
 - [X] F56: Move system applications to the SystemUtilities folder.
 - [X] F25: Separate configuration manager into single application.
 - [X] F33: Move errors catching from WindowsManager to the ApplicationsManager.
+- [X] #8 System error appears when calling "error" function without parameters.
+- [X] #9 Close and maximize buttons is on the right position when left position specified in the config.
 - [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
 - [ ] F42: Change components layouts for better corner coordinates.
@@ -27,8 +29,6 @@ For v 0.4
 - [ ] F52: Update calculator program.
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
-- [ ] #8 System error appears when calling "error" function without parameters.
-- [ ] #9 Close and maximize buttons is on the right position when left position specified in the config.
 
 For all versions
 --------

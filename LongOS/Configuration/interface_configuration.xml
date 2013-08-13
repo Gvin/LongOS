@@ -1,5 +1,6 @@
 <configurations>
-	<configuration name="ControlPanelPosition" value="top" />
-	<configuration name="WindowButtonsPosition" value="right" />
-	<configuration name="WallpaperFileName" value="/LongOS/Wallpapers/creaper.image" />
-</configurations>
+	<configuration value="right" name="WindowButtonsPosition" />
+	<configuration value="/LongOS/Wallpapers/creaper.image" name="WallpaperFileName" />
+	<configuration value="top" name="ControlPanelPosition" />
+</configurations>
+

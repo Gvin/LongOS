@@ -23,6 +23,10 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 
 	local anchorType = _anchorType;
 
+	this.SetAnchor = function(_, value)
+		anchorType = value;
+	end
+
 	this._draw = function(videoBuffer, x, y)
 	end
 

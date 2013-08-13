@@ -418,26 +418,32 @@ Window = Class(function(this, _application, _name, _isUnique)
 		if (enabled) then
 			_videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 			closeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
-			if (maximizeButton ~= nil) then
-				maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
-			end
+			maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineActiveColor'));
 		else
 			topLineColor = colorConfiguration:GetColor('TopLineInactiveColor');
 			_videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 			closeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
-			if (maximizeButton ~= nil) then
-				maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
-			end
+			maximizeButton:SetBackgroundColor(colorConfiguration:GetColor('TopLineInactiveColor'));
 		end
 
 		_videoBuffer:DrawBlock(x, y, width, 1, topLineColor);
 
 		local titlePosition = x + 1;
 		if (interfaceConfiguration:GetOption('WindowButtonsPosition') == 'left') then
+			closeButton:SetAnchor('left-top');
+			closeButton.dX = 0;
+			maximizeButton:SetAnchor('left-top');
+			maximizeButton.dX = 1;
+
 			titlePosition = x + 2;
 			if (allowMaximize) then
 				titlePosition = x + 4;
 			end
+		else
+			closeButton:SetAnchor('right-top');
+			closeButton.dX = -1;
+			maximizeButton:SetAnchor('right-top');
+			maximizeButton.dX = -3;
 		end
 
 		local titleToPrint = title;
@@ -450,9 +456,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 		_videoBuffer:WriteAt(titlePosition, y, titleToPrint);
 
 		closeButton:Draw(_videoBuffer, x, y, width, height);
-		if (maximizeButton ~= nil) then
-			maximizeButton:Draw(_videoBuffer, x, y, width, height);
-		end
+		maximizeButton:Draw(_videoBuffer, x, y, width, height);
 	end
 
 	local function drawBlock(_videoBuffer)
@@ -547,7 +551,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 		if (closeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (maximizeButton ~= nil and maximizeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+		if (maximizeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
 		if (componentsManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
@@ -594,7 +598,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 		if (closeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (maximizeButton ~= nil and maximizeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
+		if (maximizeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
 		if (isOnTopLine(_cursorX, _cursorY)) then
