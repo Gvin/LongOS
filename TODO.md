@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 56 registered features.
+Currently there are 58 registered features.
 
 TODO
 ========
@@ -35,10 +35,9 @@ For all versions
 - [ ] F7: Create class diagrams for all classes.
 - [ ] F1: Make code refactoring.
 
-Further features
+Further releases
 --------
 - [ ] F8: Add terminal programs support.
-- [ ] F11: Add packets manager.
 - [ ] F15: Improve PopupMenu to support submenues.
 - [ ] F19: Add desktop icons.
 - [ ] F19.1: Add Icon class.
@@ -47,6 +46,8 @@ Further features
 - [ ] F43: Add ability to add programs to the startup
 - [ ] F49: Add window size and position storing on application closing.
 - [ ] F50: Change applications configuration extension to XML.
+- [ ] F57: Create application for desktop wallpapers changing.
+- [ ] F58: Create application for changing applications configuration.
 - [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 
 
@@ -101,3 +102,4 @@ Rejected
 - [X] F18.3: [REJECTED] Add custom dialogs.
 - [X] F46: [REJECTED] Refactor window title drawing.
 - [X] F34: [REJECTED] Rename Application to Process.
+- [X] F11: [REJECTED] Add packets manager.
