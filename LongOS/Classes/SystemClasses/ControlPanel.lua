@@ -74,7 +74,7 @@ ControlPanel = Class(function(this)
 	systemMenu:AddComponent(tasksManagerButton);
 
 	local configurationButtonClick = function(sender, eventArgs)
-		System:ShowConfigurationWindow();
+		System:RunFile('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManager');
 	end
 
 	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, -4, 'left-bottom');
