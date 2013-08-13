@@ -1,77 +1,137 @@
 Component = Class(function(this, _dX, _dY, _anchorType)
 	
-	this.GetClassName = function()
+	function this.GetClassName()
 		return 'Component';
 	end
 
-	if (type(_anchorType) ~= 'string') then
-		error('Component: Constructor - String required (variable "anchorType").');
-	end
-	if (type(_dX) ~= 'number') then
-		error('Component: Constructor - Number required (variable "dX").');
-	end
-	if (type(_dY) ~= 'number') then
-		error('Component: Constructor - Number required (variable "dY").');
-	end
-	
-	this.dX = _dX;
-	this.dY = _dY;
-	
-	if (_anchorType ~= 'left-top' and _anchorType ~= 'right-top' and _anchorType ~= 'left-bottom' and _anchorType ~= 'right-bottom') then
-		error('Component: Constructor - Invalid parameter value. "anchorType" must be in range [left-top, right-top, left-bottom, right-bottom].');
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local dX;
+	local dY;
+	local anchorType;
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this.GetdX()
+		return dX;
 	end
 
-	local anchorType = _anchorType;
-
-	this.SetAnchor = function(_, value)
-		anchorType = value;
-	end
-
-	this._draw = function(videoBuffer, x, y)
-	end
-
-	this.Draw = function(_, videoBuffer, ownerX, ownerY, ownerWidth, ownerHeight)
-		if (type(ownerX) ~= 'number') then
-			error('Component: Draw - Number required (variable "ownerX").');
+	function this.SetdX(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Component.SetdX [value]: Number expected, got '..type(_value)..'.');
 		end
-		if (type(ownerY) ~= 'number') then
-			error('Component: Draw - Number required (variable "ownerY").');
+
+		dX = _value;
+	end
+
+	function this.GetdY()
+		return dY;
+	end
+
+	function this.SetdY(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Component.SetdY [value]: Number expected, got '..type(_value)..'.');
 		end
-		if (type(ownerWidth) ~= 'number') then
-			error('Component: Draw - Number required (variable "ownerWidth").');
+
+		dY = _value;
+	end
+
+	function this.GetAnchor()
+		return anchorType;
+	end
+
+	function this.SetAnchor(_, _value)
+		if (type(_value) ~= 'string') then
+			error('Component.SetAnchor [value]: String expected, got '..type(_value)..'.');
 		end
-		if (type(ownerHeight) ~= 'number') then
-			error('Component: Draw - Number required (variable "ownerHeight").');
+		if (_value ~= 'left-top' and _value ~= 'right-top' and _value ~= 'left-bottom' and _value ~= 'right-bottom') then
+			error('Component.SetAnchor [value]: Invalid parameter value. Must be in range [left-top, right-top, left-bottom, right-bottom].');
+		end
+
+		anchorType = _value;
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this._draw(_, _videoBuffer, _x, _y)
+	end
+
+	function this.Draw(_, _videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
+		if (type(_ownerX) ~= 'number') then
+			error('Component.Draw [ownerX]: Number expected, got '..type(_ownerX)..'.');
+		end
+		if (type(_ownerY) ~= 'number') then
+			error('Component.Draw [ownerY]: Number expected, got '..type(_ownerY)..'.');
+		end
+		if (type(_ownerWidth) ~= 'number') then
+			error('Component.Draw [ownerWidth]: Number expected, got '..type(_ownerWidth)..'.');
+		end
+		if (type(_ownerHeight) ~= 'number') then
+			error('Component.Draw [ownerHeight]: Number expected, got '..type(_ownerHeight)..'.');
 		end
 
 		if (anchorType == 'left-top') then
-			this._draw(videoBuffer, ownerX + this.dX, ownerY + this.dY);
+			this:_draw(_videoBuffer, _ownerX + dX, _ownerY + dY);
 		elseif (anchorType == 'right-top') then
-			this._draw(videoBuffer, ownerX + ownerWidth + this.dX, ownerY + this.dY);
+			this:_draw(_videoBuffer, _ownerX + _ownerWidth + dX, _ownerY + dY);
 		elseif (anchorType == 'left-bottom') then
-			this._draw(videoBuffer, ownerX + this.dX, ownerY + ownerHeight + this.dY);
+			this:_draw(_videoBuffer, _ownerX + dX, _ownerY + _ownerHeight + dY);
 		elseif (anchorType == 'right-bottom') then
-			this._draw(videoBuffer, ownerX + ownerWidth + this.dX, ownerY + ownerHeight + this.dY);
+			this:_draw(_videoBuffer, _ownerX + _ownerWidth + dX, _ownerY + _ownerHeight + dY);
 		end
 	end
 
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
+	
+
+	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
 		return false;
 	end
 
-	this.ProcessKeyEvent = function(_, key)
+	function this.ProcessKeyEvent(_, _key)
 		return false;
 	end
 
-	this.ProcessCharEvent = function(_, char)
+	function this.ProcessCharEvent(_, _char)
 		return false;
 	end
 
-	this.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
 		return false;
 	end
 
-	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
 		return false;
 	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor(_dX, _dY, _anchorType)
+		if (type(_dX) ~= 'number') then
+			error('Component.Constructor [dX]: Number expected, got '..type(_dX)..'.');
+		end
+		if (type(_dY) ~= 'number') then
+			error('Component.Constructor [dY]: Number expected, got '..type(_dY)..'.');
+		end
+		if (type(_anchorType) ~= 'string') then
+			error('Component.Constructor [anchorType]: String expected, got '..type(_anchorType)..'.');
+		end
+
+		if (_anchorType ~= 'left-top' and _anchorType ~= 'right-top' and _anchorType ~= 'left-bottom' and _anchorType ~= 'right-bottom') then
+			error('Component.Constructor [anchorType]: Invalid parameter value. Must be in range [left-top, right-top, left-bottom, right-bottom].');
+		end
+
+		dX = _dX;
+		dY = _dY;
+		anchorType = _anchorType;
+	end
+
+	constructor(_dX, _dY, _anchorType);
 end)

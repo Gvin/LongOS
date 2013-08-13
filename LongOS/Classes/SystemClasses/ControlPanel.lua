@@ -148,8 +148,8 @@ ControlPanel = Class(function(this)
 		while (string.len(year) < 3) do
 			year = ' '..year;
 		end
-		dayLabel.Text = 'Day '..day;
-		yearLabel.Text = 'Year '..year;
+		dayLabel:SetText('Day '..day);
+		yearLabel:SetText('Year '..year);
 
 		componentsManager:Draw(videoBuffer, 1, line, screenWidth, 1);
 	end

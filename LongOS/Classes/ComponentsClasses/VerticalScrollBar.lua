@@ -1,73 +1,33 @@
-VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height, barColor, rollerColor, dX, dY, anchorType)
-	Component.init(this, dX, dY, anchorType);
+VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _height, _barColor, _rollerColor, _dX, _dY, _anchorType)
+	Component.init(this, _dX, _dY, _anchorType);
 
-	this.GetClassName = function()
+	function this.GetClassName()
 		return 'VerticalScrollBar';
 	end
 
-	local maxValue = _maxValue;
-	local minValue = _minValue;
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	if (minValue > maxValue) then
-		error('VerticalScrollBar: Constructor - Invalid values. minValue must be less then maxValue.');
-	end
+	local maxValue;
+	local minValue;
 
-	this.Height = height;
-	local value = minValue;
-	this.BarColor = barColor;
-	this.RollerColor = rollerColor;
+	local height;
+	local value;
+	local barColor;
+	local rollerColor;
 
-	local scrollUpButtonClick = function(sender, eventArgs)
-		this:ScrollUp();
-	end
+	local x;
+	local y;
 
-	local scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
-	scrollUpButton:SetOnClick(scrollUpButtonClick);
+	local scrollUpButton;
+	local scrollDownButton;
 
-	local scrollDownButtonClick = function(sender, eventArgs)
-		this:ScrollDown();
-	end
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local scrollDownButton = Button('v', nil, nil, 0, -1, 'left-bottom');
-	scrollDownButton:SetOnClick(scrollDownButtonClick);
-
-	local getRollerY = function(y)
-		local rollerY = y + 1 + math.floor((value/(maxValue - minValue))*(this.Height - 3));
-		if (value == minValue) then
-			rollerY = y + 1;
-		elseif (value == maxValue) then
-			rollerY = y + this.Height - 2;
-		end
-		if (value ~= maxValue and (rollerY == y + this.Height - 2) and this.Height > 4) then
-			rollerY = y + this.Height - 3;
-		end
-		if (value ~= minValue and (rollerY == y + 1) and this.Height > 4) then
-			rollerY = y + 2;
-		end
-		return rollerY;
-	end
-
-	this._draw = function(videoBuffer, x, y)
-		local colorConfiguration = System:GetColorConfiguration();
-		if (barColor == nil) then
-			this.BarColor = colorConfiguration:GetColor('SystemButtonsTextColor');
-		end
-		if (rollerColor == nil) then
-			this.RollerColor = colorConfiguration:GetColor('WindowBorderColor');
-		end
-
-		this.X, this.Y = videoBuffer:GetCoordinates(x, y);
-		
-		videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemButtonsColor'));
-		videoBuffer:DrawBlock(x, y, 1, this.Height, this.BarColor, '|');
-		scrollDownButton:Draw(videoBuffer, x, y, 1, this.Height);
-		scrollUpButton:Draw(videoBuffer, x, y, 1, this.Height);
-
-		local rollerY = getRollerY(y);
-		videoBuffer:SetPixelColor(x, rollerY, this.RollerColor);
-	end
-
-	local checkValue = function()
+	local function checkValue()
 		if (value > maxValue) then
 			value = maxValue;
 		end
@@ -76,36 +36,99 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 		end
 	end
 
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
-		if (scrollUpButton:ProcessLeftClickEvent(cursorX, cursorY)) then
+	function this.GetValue()
+		return value;
+	end
+
+	function this.SetValue(_, _value)
+		value = _value;
+		checkValue();
+	end
+
+	function this.SetMaxValue(_, _value)
+		maxValue = _value;
+		checkValue();
+	end
+
+	function this.SetMinValue(_, _value)
+		minValue = _value;
+		checkValue();
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this.Contains(_, _x, _y)
+		return (_x == x and _y >= y and _y <= y + height - 1);
+	end
+
+	function this.ScrollUp()
+		this:SetValue(value - 1);
+	end
+
+	function this.ScrollDown()
+		this:SetValue(value + 1);
+	end
+
+	local function getRollerY(_y)
+		local rollerY = _y + 1 + math.floor((value/(maxValue - minValue))*(height - 3));
+		if (value == minValue) then
+			rollerY = _y + 1;
+		elseif (value == maxValue) then
+			rollerY = _y + height - 2;
+		end
+		if (value ~= maxValue and (rollerY == _y + height - 2) and height > 4) then
+			rollerY = _y + height - 3;
+		end
+		if (value ~= minValue and (rollerY == _y + 1) and height > 4) then
+			rollerY = _y + 2;
+		end
+		return rollerY;
+	end
+
+	function this._draw(_, _videoBuffer, _x, _y)
+		x, y = _videoBuffer:GetCoordinates(_x, _y);
+		
+		local colorConfiguration = System:GetColorConfiguration();
+		_videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
+		_videoBuffer:DrawBlock(_x, _y, 1, height, barColor, '|');
+		scrollDownButton:Draw(_videoBuffer, _x, _y, 1, height);
+		scrollUpButton:Draw(_videoBuffer, _x, _y, 1, height);
+
+		local rollerY = getRollerY(_y);
+		_videoBuffer:SetPixelColor(_x, rollerY, rollerColor);
+	end
+
+	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+		if (scrollUpButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (scrollDownButton:ProcessLeftClickEvent(cursorX, cursorY)) then
+		if (scrollDownButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
 
-		if (cursorX == this.X and cursorY >= this.Y and cursorY <= this.Y + this.Height - 1) then
-			if (cursorY == this.Y + 1) then
+		if (this:Contains(_cursorX, _cursorY)) then
+			if (_cursorY == y + 1) then
 				this:SetValue(minValue);
 				return true;
 			end
-			if (cursorY == this.Y + this.Height - 2) then
+			if (_cursorY == y + height - 2) then
 				this:SetValue(maxValue);
 				return true;
 			end
-			local position = cursorY - this.Y + 1;
-			local newValuePersent = (position/this.Height);
-			value = math.floor((maxValue - minValue)*newValuePersent);
-			checkValue();
+			local position = _cursorY - y + 1;
+			local newValuePersent = (position/height);
+			this:SetValue(math.floor((maxValue - minValue)*newValuePersent));
 			return true;
 		end
 
 		return false;
 	end
 
-	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
-		if (this:Contains(cursorX, cursorY)) then
-			if (direction < 0) then
+	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+		if (this:Contains(_cursorX, _cursorY)) then
+			if (_direction < 0) then
 				this:ScrollUp();
 			else
 				this:ScrollDown();
@@ -115,36 +138,67 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, height
 		return false;
 	end
 
-	this.Contains = function(_, x, y)
-		return (x == this.X and y >= this.Y and y <= this.Y + this.Height - 1);
+	local function scrollUpButtonClick(_sender, _eventArgs)
+		this:ScrollUp();
 	end
 
-	this.GetValue = function(_)
-		return value;
+	local function scrollDownButtonClick(_sender, _eventArgs)
+		this:ScrollDown();
 	end
 
-	this.SetValue = function(_, newValue)
-		value = newValue;
-		checkValue();
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function initializeComponents()
+		scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
+		scrollUpButton:SetOnClick(scrollUpButtonClick);
+
+		scrollDownButton = Button('v', nil, nil, 0, -1, 'left-bottom');
+		scrollDownButton:SetOnClick(scrollDownButtonClick);
 	end
 
-	this.SetMaxValue = function(_, _maxValue)
-		maxValue = _maxValue;
-		checkValue();
-	end
+	local function constructor(_minValue, _maxValue, _height, _barColor, _rollerColor)
+		if (type(_minValue) ~= 'number') then
+			error('VerticalScrollBar.Constructor [minValue]: Number expected, got '..type(_minValue)..'.');
+		end
+		if (type(_maxValue) ~= 'number') then
+			error('VerticalScrollBar.Constructor [maxValue]: Number expected, got '..type(_maxValue)..'.');
+		end
+		if (type(_height) ~= 'number') then
+			error('VerticalScrollBar.Constructor [height]: Number expected, got '..type(_height)..'.');
+		end
+		if (_barColor ~= nil and type(_barColor) ~= 'number') then
+			error('VerticalScrollBar.Constructor [barColor]: Number expected, got '..type(_barColor)..'.');
+		end
+		if (_rollerColor ~= nil and type(_rollerColor) ~= 'number') then
+			error('VerticalScrollBar.Constructor [rollerColor]: Number expected, got '..type(_rollerColor)..'.');
+		end
+		if (_minValue > _maxValue) then
+			error('VerticalScrollBar.Constructor [minValue]: Invalid values. minValue must be less then maxValue.');
+		end
 
-	this.SetMinValue = function(_, _minValue)
 		minValue = _minValue;
-		checkValue();
+		maxValue = _maxValue;
+		height = _height;
+		value = minValue;
+		barColor = _barColor;
+		rollerColor = _rollerColor;
+
+		if (barColor == nil) then
+			local colorConfiguration = System:GetColorConfiguration();
+			barColor = colorConfiguration:GetColor('SystemButtonsTextColor');
+		end
+		if (rollerColor == nil) then
+			local colorConfiguration = System:GetColorConfiguration();
+			rollerColor = colorConfiguration:GetColor('WindowBorderColor');
+		end
+
+		x = 0;
+		y = 0;
+
+		initializeComponents();
 	end
 
-	this.ScrollUp = function(_)
-		value = value - 1;
-		checkValue();
-	end
-
-	this.ScrollDown = function(_)
-		value = value + 1;
-		checkValue();
-	end
+	constructor(_minValue, _maxValue, _height, _barColor, _rollerColor);
 end)

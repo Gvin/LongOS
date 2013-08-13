@@ -431,9 +431,9 @@ Window = Class(function(this, _application, _name, _isUnique)
 		local titlePosition = x + 1;
 		if (interfaceConfiguration:GetOption('WindowButtonsPosition') == 'left') then
 			closeButton:SetAnchor('left-top');
-			closeButton.dX = 0;
+			closeButton:SetdX(0);
 			maximizeButton:SetAnchor('left-top');
-			maximizeButton.dX = 1;
+			maximizeButton:SetdX(1);
 
 			titlePosition = x + 2;
 			if (allowMaximize) then
@@ -441,9 +441,9 @@ Window = Class(function(this, _application, _name, _isUnique)
 			end
 		else
 			closeButton:SetAnchor('right-top');
-			closeButton.dX = -1;
+			closeButton:SetdX(-1);
 			maximizeButton:SetAnchor('right-top');
-			maximizeButton.dX = -3;
+			maximizeButton:SetdX(-3);
 		end
 
 		local titleToPrint = title;
