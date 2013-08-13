@@ -1,5 +1,5 @@
 local version = '0.3';
-local operationsCount = 38;
+local operationsCount = 36;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -103,10 +103,6 @@ end
 
 local function includeSystemWindows()
 	loadingLog:AddDivider('Loading system windows');
-	include('Classes/SystemClasses/Windows/ConfigurationWindow');
-	shouldBeLoaded(ConfigurationWindow, 'ConfigurationWindow');
-	include('Classes/SystemClasses//Windows/ColorConfigurationWindow');
-	shouldBeLoaded(ColorConfigurationWindow, 'ColorConfigurationWindow');
 	include('Classes/SystemClasses/Windows/ColorPickerDialog');
 	shouldBeLoaded(ColorPickerDialog, 'ColorPickerDialog');
 	include('Classes/SystemClasses/Windows/MessageWindow');

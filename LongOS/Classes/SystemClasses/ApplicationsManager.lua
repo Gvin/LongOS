@@ -1,36 +1,44 @@
-ApplicationsManager = Class(function(a)
+ApplicationsManager = Class(function(this)
 
-	a.GetClassName = function()
+	function this.GetClassName()
 		return 'ApplicationsManager';
 	end
 
-	local applications = {};
-	local applicationsToDelete = {};
-	local currentApplication = nil;
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local getApplicationByName = function(_, applicationName)
+	local applications;
+	local applicationsToDelete;
+	local currentApplication;
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function getApplicationByName(_applicationName)
 		for i = 1, #applications do
-			if (applications[i]:GetName() == applicationName) then
+			if (applications[i]:GetName() == _applicationName) then
 				return applications[i], i;
 			end
 		end
 		return nil, nil;
 	end
 
-	local getApplicationById = function(applicationId)
+	local function getApplicationById(_applicationId)
 		for i = 1, #applications do
-			if (applications[i]:GetId() == applicationId) then
+			if (applications[i]:GetId() == _applicationId) then
 				return applications[i], i;
 			end
 		end
 		return nil, nil;
 	end
 
-	local generateIdPart = function()
+	local function generateIdPart()
 		return string.char(math.random(48, 122));
 	end
 
-	local generateId = function()
+	local function generateId()
 		local result = '';
 		for i = 1, 20 do
 			result = result..generateIdPart();
@@ -39,47 +47,88 @@ ApplicationsManager = Class(function(a)
 		return result;
 	end
 
-	-- Add new applications to the applications collection.
-	a.AddApplication = function(_, application)
-		if (application:GetIsUnique()) then
-			local oldApplication, index = getApplicationByName(application:GetName());
+	function this.AddApplication(_, _application)
+		if (_application:GetIsUnique()) then
+			local oldApplication, index = getApplicationByName(_application:GetName());
 			if (oldApplication ~= nil) then
 				currentApplication = oldApplication;
 				return;
 			end
 		end
 
-		application:SetId(generateId());
-		table.insert(applications, application);
-		currentApplication = application;
+		_application:SetId(generateId());
+		table.insert(applications, _application);
+		currentApplication = _application;
 	end
 
-	-- Delete application from the applications collection.
-	a.DeleteApplication = function(_, applicationId)
-		local applicationToDelete, indexToDelete = getApplicationById(applicationId);
+	function this.RemoveApplication(_, _applicationId)
+		local applicationToDelete, indexToDelete = getApplicationById(_applicationId);
 
 		if (indexToDelete ~= nil and applicationToDelete:GetName() ~= 'Init') then
-			table.insert(applicationsToDelete, applicationId);
+			table.insert(applicationsToDelete, _applicationId);
 		end
 		if (applicationToDelete ~= nil and applicationToDelete:GetName() == 'Init') then
 			System:ShowMessage('Warning', '  You cannot delete initial             application.');
 		end
 	end
 
-	-- Draw all applications to the video buffer.
-	a.Draw = function(_, videoBuffer)
+	function this.SetCurrentApplication(_, _applicationId)
+		local applicationToSet = getApplicationById(_applicationId);
+		currentApplication = applicationToSet;
+	end
+
+	function this.SwitchApplication()
+		if (currentApplication ~= nil) then
+			local application, index = getApplicationById(currentApplication:GetId());
+			index = index + 1;
+			if (index > #applications) then
+				index = 1;
+			end
+			currentApplication = applications[index];
+		end
+	end
+
+	local function getString(_variable)
+		if (_variable == nil) then
+			return 'nil';
+		elseif (type(_variable) == 'table') then
+			return 'table';
+		elseif (type(_variable) == 'function') then
+			return 'function';
+		end
+		return ''.._variable;
+	end
+
+	local function showError(_application, _errorText, _message)
+		_application:Clear();
+		local errorWindow = MessageWindow(_application, 'Error', 'Error message: '.._errorText.._message, colors.red);
+		errorWindow:Show();
+	end
+
+	local function tryDraw(_application, _videoBuffer)
+		local success, message = pcall(_application.Draw, _application, _videoBuffer);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Drawing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..'). Message:"'..message..'".');
+			showError(_application, 'Drawing error: ', message);
+		end
+	end
+
+	function this.Draw(_, _videoBuffer)
 		for i = 1, #applications do
 			if (applications[i] ~= currentApplication) then
 				applications[i]:SetEnabled(false);
-				applications[i]:Draw(videoBuffer);
+				tryDraw(applications[i], _videoBuffer);
 			end
 		end
 
 		currentApplication:SetEnabled(true);
-		currentApplication:Draw(videoBuffer);
+		tryDraw(currentApplication, _videoBuffer);
 	end
 
-	local selectNextAvailableApplication = function()
+	local function selectNextAvailableApplication()
 		currentApplication = applications[1];
 
 		for i = 1, #applications do
@@ -89,10 +138,20 @@ ApplicationsManager = Class(function(a)
 		end
 	end
 
-	-- Update state of all applications.
-	a.Update = function(_)
+	local function tryUpdate(_application)
+		local success, message = pcall(_application.Update, _application);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Updating error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..'). Message:"'..message..'".');
+			showError(_application, 'Updating error: ', message);
+		end
+	end
+
+	function this.Update()
 		if (currentApplication:GetWindowsCount() == 0) then
-			a.SwitchApplication();
+			this.SwitchApplication();
 		end
 			
 		if (#applicationsToDelete > 0) then
@@ -104,57 +163,85 @@ ApplicationsManager = Class(function(a)
 			table.remove(applicationsToDelete, 1);
 		end
 		for i = 1, #applications do
-			applications[i]:Update();
+			tryUpdate(applications[i])
 		end
 	end
 
-	-- Set selected application as current application.
-	a.SetCurrentApplication = function(_, applicationId)
-		local applicationToSet = getApplicationById(applicationId);
-		currentApplication = applicationToSet;
-	end
-
-	-- Switch to the next application (like Alt + Tab).
-	a.SwitchApplication = function(_)
-		if (currentApplication ~= nil) then
-			local application, index = getApplicationById(currentApplication:GetId());
-			index = index + 1;
-			if (index > #applications) then
-				index = 1;
+	local function tryProcessKeyEvent(_application, _key)
+		local success, message = pcall(_application.ProcessKeyEvent, _application, _key);
+		if (not success) then
+			if (message == nil) then
+				message = '';
 			end
-			currentApplication = applications[index];
+			System:LogRuntimeError('Key processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', Key:'..getString(_key)..'). Message:"'..message..'".');
+			showError(_application, 'Key processing error: ', message);
 		end
 	end
 
-	a.ProcessKeyEvent = function(_, key)
+	function this.ProcessKeyEvent(_, _key)
 		if currentApplication ~= nil then
-			currentApplication:ProcessKeyEvent(key);
+			tryProcessKeyEvent(currentApplication, _key);
 		end
 	end
 
-	a.ProcessCharEvent = function(_, char)
+	local function tryProcessCharEvent(_application, _char)
+		local success, message = pcall(_application.ProcessCharEvent, _application, _char);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Char processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', Char:'..getString(_char)..'). Message:"'..message..'".');
+			showError(_application, 'Char processing error: ', message);	
+		end
+	end
+
+	function this.ProcessCharEvent(_, _char)
 		if currentApplication ~= nil then
-			currentApplication:ProcessCharEvent(char);
+			tryProcessCharEvent(currentApplication, _char);
 		end
 	end
 
-	a.ProcessRednetEvent = function(_, id, message, distance)
+	local function tryProcessRednetEvent(_application, _id, _message, _distance)
+		local success, message = pcall(_application.ProcessRednetEvent, _application, _id, _message, _distance);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Rednet processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', Id:'..getString(_id)..', Message:'..getString(_message)..', Distance:'..getString(_distance)..'). Message:"'..message..'".');
+			showError(_application, 'Rednet processing error: ', message);
+		end
+	end
+
+	function this.ProcessRednetEvent(_, _id, _message, _distance)
 		for i = 1, #applications do
-			applications[i]:ProcessRednetEvent(id, message, distance);
+			tryProcessRednetEvent(applications[i], _id, _message, _distance);
 		end
 	end
 
-	a.ProcessLeftClickEvent = function(_, cursorX, cursorY)
+	local function tryProcessLeftClickEvent(_application, _cursorX, _cursorY)
+		local success, message = pcall(_application.ProcessLeftClickEvent, _application, _cursorX, _cursorY);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Left click processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', CursorX:'..getString(_cursorX)..', CursorY:'..getString(_cursorY)..'). Message:"'..message..'".');
+			showError(_application, 'Left click processing error: ', message);
+		end
+
+		return message;
+	end
+
+	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
 		if (currentApplication ~= nil) then
 			currentApplication:ResetDragging();
-			if (currentApplication:Contains(cursorX, cursorY)) then
-				if (currentApplication:ProcessLeftClickEvent(cursorX, cursorY)) then
+			if (currentApplication:Contains(_cursorX, _cursorY)) then
+				if (tryProcessLeftClickEvent(currentApplication, _cursorX, _cursorY)) then
 					return;
 				end
 			else
 				for i = 1, #applications do
 					applications[i]:ResetDragging();
-					if (applications[i]:Contains(cursorX, cursorY)) then
+					if (applications[i]:Contains(_cursorX, _cursorY)) then
 						currentApplication = applications[i];
 						return;
 					end
@@ -163,62 +250,147 @@ ApplicationsManager = Class(function(a)
 		end
 	end
 
-	a.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
-		if (currentApplication ~= nil) then
-			currentApplication:ProcessDoubleClickEvent(cursorX, cursorY);
+	local function tryProcessDoubleClickEvent(_application, _cursorX, _cursorY)
+		local success, message = pcall(_application.ProcessDoubleClickEvent, _application, _cursorX, _cursorY);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Double click processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', CursorX:'..getString(_cursorX)..', CursorY:'..getString(_cursorY)..'). Message:"'..message..'".');
+			showError(_application, 'Double click processing error: ', message);
 		end
 	end
 
-	a.ProcessRightClickEvent = function(_, cursorX, cursorY)
+	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
 		if (currentApplication ~= nil) then
-			if (currentApplication:ProcessRightClickEvent(cursorX, cursorY)) then
+			tryProcessDoubleClickEvent(currentApplication, _cursorX, _cursorY);
+		end
+	end
+
+	local function tryProcessRightClickEvent(_application, _cursorX, _cursorY)
+		local success, message = pcall(_application.ProcessRightClickEvent, _application, _cursorX, _cursorY);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Right click processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', CursorX:'..getString(_cursorX)..', CursorY:'..getString(_cursorY)..'). Message:"'..message..'".');
+			showError(_application, 'Right click processing error: ', message);
+		end
+
+		return message;
+	end
+
+	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
+		if (currentApplication ~= nil and currentApplication:Contains(_cursorX, _cursorY)) then
+			if (tryProcessRightClickEvent(currentApplication, _cursorX, _cursorY)) then
 				return true;
 			end
 		end
 		return false;
 	end
 
-	a.ProcessLeftMouseDragEvent = function(_, newCursorX, newCursorY)
+	local function tryProcessLeftMouseDragEvent(_application, _newCursorX, _newCursorY)
+		local success, message = pcall(_application.ProcessLeftMouseDragEvent, _application, _newCursorX, _newCursorY);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Left mouse drag processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', NewCursorX:'..getString(_newCursorX)..', NewCursorY:'..getString(_newCursorY)..'). Message:"'..message..'".');
+			showError(_application, 'Left mouse drag processing error: ', message);
+		end
+
+		return message;
+	end
+
+	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
 		if (currentApplication ~= nil) then
-			if (currentApplication:ProcessLeftMouseDragEvent(newCursorX, newCursorY)) then
+			if (tryProcessLeftMouseDragEvent(currentApplication, _newCursorX, _newCursorY)) then
 				return true;
 			end
 		end
 		return false;
 	end
 
-	a.ProcessRightMouseDragEvent = function(_, newCursorX, newCursorY)
+	local function tryProcessRightMouseDragEvent(_application, _newCursorX, _newCursorY)
+		local success, message = pcall(_application.ProcessRightMouseDragEvent, _application, _newCursorX, _newCursorY);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Right mouse drag processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', NewCursorX:'..getString(_newCursorX)..', NewCursorY:'..getString(_newCursorY)..'). Message:"'..message..'".');
+			showError(_application, 'Right mouse drag processing error: ', message);
+		end
+
+		return message;
+	end
+
+	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
 		if (currentApplication ~= nil) then
-			if (currentApplication:ProcessRightMouseDragEvent(newCursorX, newCursorY)) then
+			if (currentApplication:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)) then
 				return true;
 			end
 		end
 		return false;
 	end
 
-	a.ProcessTimerEvent = function(_, timerId)
+	local function tryProcessTimerEvent(_application, _timerId)
+		local success, message = pcall(_application.ProcessCharEvent, _application, _timerId);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Timer processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', TimerId:'..getString(_timerId)..'). Message:"'..message..'".');
+			showError(_application, 'Timer processing error: ', message);
+		end
+	end
+
+	function this.ProcessTimerEvent(_, _timerId)
 		for i = 1, #applications do
-			applications[i]:ProcessTimerEvent(timerId);
+			tryProcessTimerEvent(applications[i], _timerId);
 		end
 	end
 
-	a.ProcessRedstoneEvent = function()
+	local function tryProcessRedstoneEvent(_application)
+		local success, message = pcall(_application.ProcessRedstoneEvent, _application);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Redstone processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..'). Message:"'..message..'".');
+			showError(_application, 'Redstone processing error: ', message);
+		end
+	end
+
+	function this.ProcessRedstoneEvent()
 		for i = 1, #applications do
-			applications[i]:ProcessRedstoneEvent();
+			tryProcessRedstoneEvent(applications[i]);
 		end
 	end
 
-	a.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
+	local function tryProcessMouseScrollEvent(_application, _direction, _cursorX, _cursorY)
+		local success, message = pcall(_application.ProcessRightClickEvent, _application, _direction, _cursorX, _cursorY);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Mouse scroll processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', Direction:'..getString(_direction)..', CursorX:'..getString(_cursorX)..', CursorY:'..getString(_cursorY)..'). Message:"'..message..'".');
+			showError(_application, 'Mouse scroll processing error: ', message);
+		end
+
+		return message;
+	end
+
+	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
 		if (currentApplication ~= nil) then
-			currentApplication:ProcessMouseScrollEvent(direction, cursorX, cursorY);
+			tryProcessMouseScrollEvent(currentApplication, _direction, _cursorX, _cursorY);
 		end
 	end
 
-	a.GetApplicationsCount = function(_)
+	function this.GetApplicationsCount()
 		return #applications;
 	end
 
-	a.GetApplicationsList = function(_)
+	function this.GetApplicationsList()
 		local result = {};
 		for i = 1, #applications do
 			local app = {};
@@ -231,4 +403,16 @@ ApplicationsManager = Class(function(a)
 
 		return result;
 	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Constuctors ------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor()
+		applications = {};
+		applicationsToDelete = {};
+		currentApplication = nil;
+	end
+
+	constructor();
 end)

@@ -1,3 +1,4 @@
+
 Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
 	
 	this.GetClassName = function()
@@ -58,6 +59,11 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 		threadsManager:RemoveThread(_id);
 	end
 
+	this.Clear = function()
+		threadsManager:Clear();
+		windowsManager:Clear();
+	end
+
 	this.Run = function(_, _window)
 		if (_window == nil and shutdownWhenNoWindows) then 
 			return;
@@ -84,7 +90,7 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 	end
 
 	this.Close = function(_)
-		System:DeleteApplication(id);
+		System:RemoveApplication(id);
 	end
 
 	this.ProcessKeyEvent = function(_, _key)

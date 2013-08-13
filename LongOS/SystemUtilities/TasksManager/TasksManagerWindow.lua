@@ -18,7 +18,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	this:AddComponent(vScrollBar);
 
 	local function killProcessButtonClick(sender, eventArgs)
-		System:DeleteApplication(selectedApplicationId);
+		System:RemoveApplication(selectedApplicationId);
 	end
 
 	local killProcessButton = Button('Close application', nil, nil, 0, -1, 'left-bottom');

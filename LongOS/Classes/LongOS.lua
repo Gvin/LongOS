@@ -64,8 +64,8 @@ LongOS = Class(function(this)
 	end
 
 	-- Delete existing application from the applications manager.
-	this.DeleteApplication = function(_, applicationId)
-		applicationsManager:DeleteApplication(applicationId);
+	this.RemoveApplication = function(_, applicationId)
+		applicationsManager:RemoveApplication(applicationId);
 	end
 
 	this.SetCurrentApplication = function(_, applicationId)

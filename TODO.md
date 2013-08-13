@@ -17,10 +17,10 @@ For v 0.4
 - [X] F54: Add support for multiple event handlers.
 - [X] F55: Add scroll event support.
 - [X] F56: Move system applications to the SystemUtilities folder.
+- [X] F25: Separate configuration manager into single application.
+- [X] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
-- [ ] F25: Separate configuration manager into single application.
-- [ ] F33: Move errors catching from WindowsManager to the ApplicationsManager.
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F44: Add Enabled property to the components.
 - [ ] F16: Improve components ierarchy.
@@ -28,6 +28,7 @@ For v 0.4
 - [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
 - [ ] #8 System error appears when calling "error" function without parameters.
+- [ ] #9 Close and maximize buttons is on the right position when left position specified in the config.
 
 For all versions
 --------
@@ -46,6 +47,7 @@ Further features
 - [ ] F43: Add ability to add programs to the startup
 - [ ] F49: Add window size and position storing on application closing.
 - [ ] F50: Change applications configuration extension to XML.
+- [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 
 
 

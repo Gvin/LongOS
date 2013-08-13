@@ -59,6 +59,12 @@ ThreadsManager = Class(function(this)
 		end
 	end
 
+	function this.Clear()
+		threads = {};
+		threadsToDelete = {};
+		tFilters = {};
+	end
+
 	function this.Update()
 		local event = events[1];
 		table.remove(events, 1);
