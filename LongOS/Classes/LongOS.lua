@@ -380,14 +380,11 @@ LongOS = Class(function(this)
 
 	this.GetInterfaceConfiguration = function()
 		return configurationManager:GetInterfaceConfiguration();
-	end
+	end	
 
-	-- Show configuration window.
-	this.ShowConfigurationWindow = function()
-		applicationsManager:SetCurrentApplication(initApplication:GetId());
-		local configurationWindow = ConfigurationWindow(initApplication);
-		configurationWindow:Show();
-	end
+	this.GetMouseConfiguration = function()
+		return configurationManager:GetMouseConfiguration();
+	end	
 
 	this.GetTopLineIndex = function()
 		if (controlPanel.IsBottom) then

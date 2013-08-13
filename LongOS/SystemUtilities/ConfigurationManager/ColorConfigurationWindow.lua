@@ -1,10 +1,11 @@
 ColorConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Color configuration window', false);
+	this:SetIsModal(true);
 	this:SetTitle('Color configuration');
 	this:SetX(7);
 	this:SetY(3);
 	this:SetWidth(36);
-	this:SetHeight(16);
+	this:SetHeight(17);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
 
@@ -26,13 +27,15 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		colorConfiguration:SetColor('TopLineActiveColor', topLineActiveColorButton:GetBackgroundColor());
 		colorConfiguration:SetColor('TopLineInactiveColor', topLineInactiveColorButton:GetBackgroundColor());
 		colorConfiguration:SetColor('TopLineTextColor', topLineTextColorButton:GetBackgroundColor());
-		colorConfiguration:SetColor('ControlPanelColor', controlPanelColorButton:GetBackgroundColor());
-		colorConfiguration:SetColor('TimeTextColor', timeTextColorButton:GetBackgroundColor());
+		colorConfiguration:SetColor('ControlPanelColor', controlPanelColorButton:GetBackgroundColor());		
 		colorConfiguration:SetColor('ControlPanelButtonsColor', controlPanelButtonsColorButton:GetBackgroundColor());
 		colorConfiguration:SetColor('ControlPanelPowerButtonColor', controlPanelPowerButtonColorButton:GetBackgroundColor());
+		colorConfiguration:SetColor('TimeTextColor', timeTextColorButton:GetBackgroundColor());
 		colorConfiguration:SetColor('SystemButtonsColor', systemButtonsColorButton:GetBackgroundColor());
 		colorConfiguration:SetColor('SystemButtonsTextColor', systemButtonsTextColorButton:GetBackgroundColor());
-		colorConfiguration:SetColor('SystemLabelsTextColor', systemLabelsTextColorButton:GetBackgroundColor());
+		colorConfiguration:SetColor('SystemLabelsTextColor', systemLabelsTextColorButton:GetBackgroundColor());	
+		colorConfiguration:SetColor('SystemEditsBackgroundColor', systemEditsBackgroundColorButton:GetBackgroundColor());
+	
 	end
 
 	local function colorPickerOnOk(_sender, _eventArgs)
@@ -47,12 +50,12 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		picker:Show();
 	end
 
-	local function saveChangesButtonClick(params)
+	local function saveChangesButtonClick(_sender, _eventArgs)
 		colorConfiguration:WriteConfiguration();
 		this:Close();
 	end
 
-	local function cancelButtonClick(params)
+	local function cancelButtonClick(_sender, _eventArgs)
 		colorConfiguration:ReadConfiguration();
 		this:Close();
 	end
@@ -102,28 +105,28 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 
 		controlPanelColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelColor'), nil, -1, 5, 'right-top');
 		controlPanelColorButton:SetOnClick(selectColorButtonClick);
-		this:AddComponent(controlPanelColorButton);
+		this:AddComponent(controlPanelColorButton);		
 
-		timeTextColorLabel = Label('Time text color:', nil, nil, 0, 6, 'left-top');
-		this:AddComponent(timeTextColorLabel);
-
-		timeTextColorButton = Button(' ', colorConfiguration:GetColor('TimeTextColor'), nil, -1, 6, 'right-top');
-		timeTextColorButton:SetOnClick(selectColorButtonClick);
-		this:AddComponent(timeTextColorButton);
-
-		controlPanelButtonsColorLabel = Label('Control panel buttons color:', nil, nil, 0, 7, 'left-top');
+		controlPanelButtonsColorLabel = Label('Control panel buttons color:', nil, nil, 0, 6, 'left-top');
 		this:AddComponent(controlPanelButtonsColorLabel);
 
-		controlPanelButtonsColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelButtonsColor'), nil, -1, 7, 'right-top');
+		controlPanelButtonsColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelButtonsColor'), nil, -1, 6, 'right-top');
 		controlPanelButtonsColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelButtonsColorButton);
 
-		controlPanelPowerButtonColorLabel = Label('Control panel power button color:', nil, nil, 0, 8, 'left-top');
+		controlPanelPowerButtonColorLabel = Label('Control panel power button color:', nil, nil, 0, 7, 'left-top');
 		this:AddComponent(controlPanelPowerButtonColorLabel);
 
-		controlPanelPowerButtonColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelPowerButtonColor'), nil, -1, 8, 'right-top');
+		controlPanelPowerButtonColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelPowerButtonColor'), nil, -1, 7, 'right-top');
 		controlPanelPowerButtonColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelPowerButtonColorButton);
+
+		timeTextColorLabel = Label('Time text color:', nil, nil, 0, 8, 'left-top');
+		this:AddComponent(timeTextColorLabel);
+
+		timeTextColorButton = Button(' ', colorConfiguration:GetColor('TimeTextColor'), nil, -1, 8, 'right-top');
+		timeTextColorButton:SetOnClick(selectColorButtonClick);
+		this:AddComponent(timeTextColorButton);
 
 		systemButtonsColorLabel = Label('System buttons color:', nil, nil, 0, 9, 'left-top');
 		this:AddComponent(systemButtonsColorLabel);
@@ -144,7 +147,14 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 
 		systemLabelsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemLabelsTextColor'), nil, -1, 11, 'right-top');
 		systemLabelsTextColorButton:SetOnClick(selectColorButtonClick);
-		this:AddComponent(systemLabelsTextColorButton);
+		this:AddComponent(systemLabelsTextColorButton);	
+
+		systemEditsBackgroundColorLabel = Label('System edits background color:', nil, nil, 0, 12, 'left-top');
+		this:AddComponent(systemEditsBackgroundColorLabel);
+
+		systemEditsBackgroundColorButton = Button(' ', colorConfiguration:GetColor('SystemEditsBackgroundColor'), nil, -1, 12, 'right-top');
+		systemEditsBackgroundColorButton:SetOnClick(selectColorButtonClick);
+		this:AddComponent(systemEditsBackgroundColorButton);
 
 
 		saveChangesButton = Button('Save changes', nil, nil, 0, -1, 'left-bottom');

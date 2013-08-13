@@ -1,0 +1,12 @@
+local function run()
+	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ColorConfigurationWindow.lua');
+	shell.run('/LongOS/SystemUtilities/ConfigurationManager/MouseConfigurationWindow.lua');
+	shell.run('/LongOS/SystemUtilities/ConfigurationManager/InterfaceConfigurationWindow.lua');
+	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManagerWindow.lua');
+	
+	local application = Application('Configuration Manager', true, true);
+	local configurationManagerWindow = ConfigurationManagerWindow(application);
+	application:Run(configurationManagerWindow);
+end
+
+System:Try(run);
