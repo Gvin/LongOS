@@ -16,6 +16,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 	local value;
 	local barColor;
 	local rollerColor;
+	local enabled;
 
 	local scrollUpButton;
 	local scrollDownButton;
@@ -41,9 +42,10 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		if (type(_value) ~= 'number') then
 			error('VerticalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
 		end
-
-		value = _value;
-		checkValue();
+		if (enabled) then
+			value = _value;
+			checkValue();
+		end
 	end
 
 	function this.SetMaxValue(_, _value)
@@ -74,6 +76,18 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		end
 
 		height = _value;
+	end
+
+	function this.GetEnabled()
+		return enabled;
+	end
+
+	function this.SetEnabled(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('VerticalScrollBar.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
+		enabled = _value;
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -116,33 +130,35 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 	end
 
 	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
-		if (scrollUpButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
-			return true;
-		end
-		if (scrollDownButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
-			return true;
-		end
+		if (enabled) then
+			if (scrollUpButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+				return true;
+			end
+			if (scrollDownButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+				return true;
+			end
 
-		if (this:Contains(_cursorX, _cursorY)) then
-			if (_cursorY == this:GetY() + 1) then
-				this:SetValue(minValue);
+			if (this:Contains(_cursorX, _cursorY)) then
+				if (_cursorY == this:GetY() + 1) then
+					this:SetValue(minValue);
+					return true;
+				end
+				if (_cursorY == this:GetY() + height - 2) then
+					this:SetValue(maxValue);
+					return true;
+				end
+				local position = _cursorY - this:GetY() + 1;
+				local newValuePersent = (position/height);
+				this:SetValue(math.floor((maxValue - minValue)*newValuePersent));
 				return true;
 			end
-			if (_cursorY == this:GetY() + height - 2) then
-				this:SetValue(maxValue);
-				return true;
-			end
-			local position = _cursorY - this:GetY() + 1;
-			local newValuePersent = (position/height);
-			this:SetValue(math.floor((maxValue - minValue)*newValuePersent));
-			return true;
 		end
 
 		return false;
 	end
 
 	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
-		if (this:Contains(_cursorX, _cursorY)) then
+		if (enabled and this:Contains(_cursorX, _cursorY)) then
 			if (_direction < 0) then
 				this:ScrollUp();
 			else
@@ -199,6 +215,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		value = minValue;
 		barColor = _barColor;
 		rollerColor = _rollerColor;
+		enabled = true;
 
 		if (barColor == nil) then
 			local colorConfiguration = System:GetColorConfiguration();

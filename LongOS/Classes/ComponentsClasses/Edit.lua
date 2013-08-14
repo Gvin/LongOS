@@ -17,6 +17,7 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 	local width;
 
 	local focus;
+	local enabled;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
@@ -81,6 +82,24 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 		end
 
 		focus = _value;
+		if (not enabled) then
+			focus = false;
+		end
+	end
+
+	function this.GetEnabled()
+		return enabled;
+	end
+
+	function this.SetEnabled(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Edit.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
+		enabled = _value;
+		if (not enabled) then
+			focus = false;
+		end
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -118,7 +137,7 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 	end
 
 	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
-		if (this:Contains(_cursorX, _cursorY)) then
+		if (enabled and this:Contains(_cursorX, _cursorY)) then
 			focus = true;
 		else
 			focus = false;
@@ -142,7 +161,7 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 	end
 
 	function this.ProcessKeyEvent(_, _key)
-		if (focus) then
+		if (enabled and focus) then
 			local keyName = keys.getName(_key);
 			if (keyName == 'backspace') then
 				processBackspaceKey();
@@ -165,7 +184,7 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 	end
 
 	function this.ProcessCharEvent(_, _char)
-		if (focus) then
+		if (enabled and focus) then
 			local textBefore = ''..string.sub(text, 1, cursorPosition);
 			local textAfter = ''..string.sub(text, cursorPosition + 1, string.len(text));
 			text = textBefore.._char..textAfter;
@@ -194,6 +213,7 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 		text = '';
 		width = _width;
 		focus = false;
+		enabled = true;
 
 		local colorConfiguration = System:GetColorConfiguration();
 		if (backgroundColor == nil) then

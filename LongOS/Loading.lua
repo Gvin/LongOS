@@ -86,13 +86,13 @@ local function includeComponents()
 	include('Classes/ComponentsClasses/Label');
 	mustBeLoaded(Label, 'Label');
 	include('Classes/ComponentsClasses/Edit');
-	shouldBeLoaded(Edit, 'Edit');
+	mustBeLoaded(Edit, 'Edit');
 	include('Classes/ComponentsClasses/PopupMenu');
 	mustBeLoaded(PopupMenu, 'PopupMenu');
 	include('Classes/ComponentsClasses/VerticalScrollBar');
-	shouldBeLoaded(VerticalScrollBar, 'VerticalScrollBar');
+	mustBeLoaded(VerticalScrollBar, 'VerticalScrollBar');
 	include('Classes/ComponentsClasses/HorizontalScrollBar');
-	shouldBeLoaded(HorizontalScrollBar, 'HorizontalScrollBar');
+	mustBeLoaded(HorizontalScrollBar, 'HorizontalScrollBar');
 	include('Classes/ComponentsClasses/ProgressBar');
 	shouldBeLoaded(ProgressBar, 'ProgressBar');
 	include('Classes/ComponentsClasses/TextBox');
@@ -104,13 +104,13 @@ end
 local function includeSystemWindows()
 	loadingLog:AddDivider('Loading system windows');
 	include('Classes/SystemClasses/Windows/ColorPickerDialog');
-	shouldBeLoaded(ColorPickerDialog, 'ColorPickerDialog');
+	mustBeLoaded(ColorPickerDialog, 'ColorPickerDialog');
 	include('Classes/SystemClasses/Windows/MessageWindow');
-	shouldBeLoaded(MessageWindow, 'MessageWindow');
+	mustBeLoaded(MessageWindow, 'MessageWindow');
 	include('Classes/SystemClasses/Windows/EnterTextDialog');
-	shouldBeLoaded(EnterTextDialog, 'EnterTextDialog');
+	mustBeLoaded(EnterTextDialog, 'EnterTextDialog');
 	include('Classes/SystemClasses/Windows/QuestionDialog');
-	shouldBeLoaded(QuestionDialog, 'QuestionDialog');
+	mustBeLoaded(QuestionDialog, 'QuestionDialog');
 end
 
 local function includeApplicationClasses()

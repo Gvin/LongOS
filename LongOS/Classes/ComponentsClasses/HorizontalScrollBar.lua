@@ -16,6 +16,7 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _wid
 	local value;
 	local barColor;
 	local rollerColor;
+	local enabled;
 
 	local scrollRightButton;
 	local scrollLeftButton;
@@ -42,8 +43,10 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _wid
 			error('HorizontalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
 		end
 
-		value = _value;
-		checkValue();
+		if (enabled) then
+			value = _value;
+			checkValue();
+		end
 	end
 
 	function this.SetMaxValue(_, _value)
@@ -74,6 +77,18 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _wid
 		end
 
 		width = _value;
+	end
+
+	function this.GetEnabled()
+		return enabled;
+	end
+
+	function this.SetEnabled(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('HorizontalScrollBar.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
+		enabled = _value;
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -116,33 +131,35 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _wid
 	end
 
 	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
-		if (scrollLeftButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
-			return true;
-		end
-		if (scrollRightButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
-			return true;
-		end
+		if (enabled) then
+			if (scrollLeftButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+				return true;
+			end
+			if (scrollRightButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+				return true;
+			end
 
-		if (this:Contains(_cursorX, _cursorY)) then
-			if (_cursorX == this:GetX() + 1) then
-				this:SetValue(minValue);
+			if (this:Contains(_cursorX, _cursorY)) then
+				if (_cursorX == this:GetX() + 1) then
+					this:SetValue(minValue);
+					return true;
+				end
+				if (_cursorX == this:GetX() + width - 2) then
+					this:SetValue(maxValue);
+					return true;
+				end
+				local position = _cursorX - this:GetX() + 1;
+				local newValuePersent = (position/width);
+				this:SetValue(math.floor((maxValue - minValue)*newValuePersent));
 				return true;
 			end
-			if (_cursorX == this:GetX() + width - 2) then
-				this:SetValue(maxValue);
-				return true;
-			end
-			local position = _cursorX - this:GetX() + 1;
-			local newValuePersent = (position/width);
-			this:SetValue(math.floor((maxValue - minValue)*newValuePersent));
-			return true;
 		end
 
 		return false;
 	end
 
 	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
-		if (this:Contains(_cursorX, _cursorY)) then
+		if (enabled and this:Contains(_cursorX, _cursorY)) then
 			if (_direction < 0) then
 				this:ScrollLeft();
 			else
@@ -199,6 +216,7 @@ HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _wid
 		value = minValue;
 		barColor = _barColor;
 		rollerColor = _rollerColor;
+		enabled = true;
 
 		if (barColor == nil) then
 			local colorConfiguration = System:GetColorConfiguration();

@@ -22,11 +22,11 @@ For v 0.4
 - [X] F28: Refactor components.
 - [X] F16: Improve components ierarchy.
 - [X] F42: Change components layouts for better corner coordinates.
+- [X] F44: Add Enabled property to the components.
 - [X] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [X] #8 System error appears when calling "error" function without parameters.
 - [X] #9 Close and maximize buttons is on the right position when left position specified in the config.
 - [ ] F24: Create application for components testing.
-- [ ] F44: Add Enabled property to the components.
 - [ ] F52: Update calculator program.
 - [ ] #7 Cursor from back window's edit is visible on front window
 
