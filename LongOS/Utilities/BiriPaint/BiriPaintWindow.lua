@@ -57,8 +57,8 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	local function scrollUpdate()	
 		vScrollBar:SetValue(1);
 		hScrollBar:SetValue(1);
-		vScrollBar.Height = this:GetHeight() - 5;
-		hScrollBar.Width = this:GetWidth() - 3;
+		vScrollBar:SetHeight(this:GetHeight() - 5);
+		hScrollBar:SetWidth(this:GetWidth() - 3);
 		vScrollBar:SetMaxValue(image:GetHeight() - this:GetHeight() + 7);
 		hScrollBar:SetMaxValue(image:GetWidth() - this:GetWidth() + 5);	
 	end
@@ -380,19 +380,19 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local function initializeComponents()		
 
-		vScrollBar = VerticalScrollBar(1, 9, 12, nil, nil, -1, 1, 'right-top');	
+		vScrollBar = VerticalScrollBar(1, 9, 12, nil, nil, 0, 1, 'right-top');	
 		this:AddComponent(vScrollBar);
 
-		hScrollBar = HorizontalScrollBar(1,15, 38, nil, nil, 0, -2, 'left-bottom');	
+		hScrollBar = HorizontalScrollBar(1,15, 38, nil, nil, 0, 1, 'left-bottom');	
 		this:AddComponent(hScrollBar);		
 		
 		image = Image(51,19);
 
-		mainColorSelectionButton = Button('  ', colors.black, nil, 0, -1, 'left-bottom');
+		mainColorSelectionButton = Button('  ', colors.black, nil, 0, 0, 'left-bottom');
 		mainColorSelectionButton:SetOnClick(mainColorSelectionButtonClick);		
 		this:AddComponent(mainColorSelectionButton);
 
-		additionalColorSelectionButton = Button('  ', colors.white, nil, 2, -1, 'left-bottom');		
+		additionalColorSelectionButton = Button('  ', colors.white, nil, 2, 0, 'left-bottom');		
 		additionalColorSelectionButton:SetOnClick(additionalColorSelectionButtonClick);
 		this:AddComponent(additionalColorSelectionButton);		
 
@@ -403,7 +403,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		modeMenu = PopupMenu(6, 4, 15, 11, nil);
 		this:AddMenu('ModeMenu', modeMenu);
 
-		modeButton = Button('Pen    ', nil, nil, 5, -1, 'left-bottom');
+		modeButton = Button('Pen    ', nil, nil, 5, 0, 'left-bottom');
 		modeButton:SetOnClick(modeButtonClick);
 		this:AddComponent(modeButton);
 

@@ -50,15 +50,15 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 		this:AddComponent(doubleClickLabel);
 	
 		doubleClickEdit = Edit(10, nil, nil, 22, 1, 'left-top');	
-		doubleClickEdit.Text = mouseConfiguration:GetOption('DoubleClickSpeed');					
+		doubleClickEdit:SetText(mouseConfiguration:GetOption('DoubleClickSpeed'));					
 		doubleClickEdit:SetFocus(true);
 		this:AddComponent(doubleClickEdit);
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, -1, 'left-bottom');
+		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:SetOnClick(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
+		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end

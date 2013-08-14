@@ -68,100 +68,100 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		windowColorLabel = Label('Window color:', nil, nil, 0, 0, 'left-top');
 		this:AddComponent(windowColorLabel);
 
-		windowColorButton = Button(' ', colorConfiguration:GetColor('WindowColor'), nil, -1, 0, 'right-top');
+		windowColorButton = Button(' ', colorConfiguration:GetColor('WindowColor'), nil, 0, 0, 'right-top');
 		windowColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(windowColorButton);
 
 		windowBorderColorLabel = Label('Window border color:', nil, nil, 0, 1, 'left-top');
 		this:AddComponent(windowBorderColorLabel);
 
-		windowBorderColorButton = Button(' ', colorConfiguration:GetColor('WindowBorderColor'), nil, -1, 1, 'right-top');
+		windowBorderColorButton = Button(' ', colorConfiguration:GetColor('WindowBorderColor'), nil, 0, 1, 'right-top');
 		windowBorderColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(windowBorderColorButton);
 
 		topLineActiveColorLabel = Label('Top line active color:', nil, nil, 0, 2, 'left-top');
 		this:AddComponent(topLineActiveColorLabel);
 
-		topLineActiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineActiveColor'), nil, -1, 2, 'right-top');
+		topLineActiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineActiveColor'), nil, 0, 2, 'right-top');
 		topLineActiveColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(topLineActiveColorButton);
 
 		topLineInactiveColorLabel = Label('Top line inactive color:', nil, nil, 0, 3, 'left-top');
 		this:AddComponent(topLineInactiveColorLabel);
 
-		topLineInactiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineInactiveColor'), nil, -1, 3, 'right-top');
+		topLineInactiveColorButton = Button(' ', colorConfiguration:GetColor('TopLineInactiveColor'), nil, 0, 3, 'right-top');
 		topLineInactiveColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(topLineInactiveColorButton);
 
 		topLineTextColorLabel = Label('Top line text color:', nil, nil, 0, 4, 'left-top');
 		this:AddComponent(topLineTextColorLabel);
 
-		topLineTextColorButton = Button(' ', colorConfiguration:GetColor('TopLineTextColor'), nil, -1, 4, 'right-top');
+		topLineTextColorButton = Button(' ', colorConfiguration:GetColor('TopLineTextColor'), nil, 0, 4, 'right-top');
 		topLineTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(topLineTextColorButton);
 
 		controlPanelColorLabel = Label('Control panel color:', nil, nil, 0, 5, 'left-top');
 		this:AddComponent(controlPanelColorLabel);
 
-		controlPanelColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelColor'), nil, -1, 5, 'right-top');
+		controlPanelColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelColor'), nil, 0, 5, 'right-top');
 		controlPanelColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelColorButton);		
 
 		controlPanelButtonsColorLabel = Label('Control panel buttons color:', nil, nil, 0, 6, 'left-top');
 		this:AddComponent(controlPanelButtonsColorLabel);
 
-		controlPanelButtonsColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelButtonsColor'), nil, -1, 6, 'right-top');
+		controlPanelButtonsColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelButtonsColor'), nil, 0, 6, 'right-top');
 		controlPanelButtonsColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelButtonsColorButton);
 
 		controlPanelPowerButtonColorLabel = Label('Control panel power button color:', nil, nil, 0, 7, 'left-top');
 		this:AddComponent(controlPanelPowerButtonColorLabel);
 
-		controlPanelPowerButtonColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelPowerButtonColor'), nil, -1, 7, 'right-top');
+		controlPanelPowerButtonColorButton = Button(' ', colorConfiguration:GetColor('ControlPanelPowerButtonColor'), nil, 0, 7, 'right-top');
 		controlPanelPowerButtonColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(controlPanelPowerButtonColorButton);
 
 		timeTextColorLabel = Label('Time text color:', nil, nil, 0, 8, 'left-top');
 		this:AddComponent(timeTextColorLabel);
 
-		timeTextColorButton = Button(' ', colorConfiguration:GetColor('TimeTextColor'), nil, -1, 8, 'right-top');
+		timeTextColorButton = Button(' ', colorConfiguration:GetColor('TimeTextColor'), nil, 0, 8, 'right-top');
 		timeTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(timeTextColorButton);
 
 		systemButtonsColorLabel = Label('System buttons color:', nil, nil, 0, 9, 'left-top');
 		this:AddComponent(systemButtonsColorLabel);
 
-		systemButtonsColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsColor'), nil, -1, 9, 'right-top');
+		systemButtonsColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsColor'), nil, 0, 9, 'right-top');
 		systemButtonsColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemButtonsColorButton);
 
 		systemButtonsTextColorLabel = Label('System buttons text color:', nil, nil, 0, 10, 'left-top');
 		this:AddComponent(systemButtonsTextColorLabel);
 
-		systemButtonsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsTextColor'), nil, -1, 10, 'right-top');
+		systemButtonsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemButtonsTextColor'), nil, 0, 10, 'right-top');
 		systemButtonsTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemButtonsTextColorButton);
 
 		systemLabelsTextColorLabel = Label('System labels text color:', nil, nil, 0, 11, 'left-top');
 		this:AddComponent(systemLabelsTextColorLabel);
 
-		systemLabelsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemLabelsTextColor'), nil, -1, 11, 'right-top');
+		systemLabelsTextColorButton = Button(' ', colorConfiguration:GetColor('SystemLabelsTextColor'), nil, 0, 11, 'right-top');
 		systemLabelsTextColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemLabelsTextColorButton);	
 
 		systemEditsBackgroundColorLabel = Label('System edits background color:', nil, nil, 0, 12, 'left-top');
 		this:AddComponent(systemEditsBackgroundColorLabel);
 
-		systemEditsBackgroundColorButton = Button(' ', colorConfiguration:GetColor('SystemEditsBackgroundColor'), nil, -1, 12, 'right-top');
+		systemEditsBackgroundColorButton = Button(' ', colorConfiguration:GetColor('SystemEditsBackgroundColor'), nil, 0, 12, 'right-top');
 		systemEditsBackgroundColorButton:SetOnClick(selectColorButtonClick);
 		this:AddComponent(systemEditsBackgroundColorButton);
 
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, -1, 'left-bottom');
+		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:SetOnClick(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
+		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end

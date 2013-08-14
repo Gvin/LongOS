@@ -17,9 +17,6 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 	local barColor;
 	local rollerColor;
 
-	local x;
-	local y;
-
 	local scrollUpButton;
 	local scrollDownButton;
 
@@ -41,27 +38,47 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 	end
 
 	function this.SetValue(_, _value)
+		if (type(_value) ~= 'number') then
+			error('VerticalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
+		end
+
 		value = _value;
 		checkValue();
 	end
 
 	function this.SetMaxValue(_, _value)
+		if (type(_value) ~= 'number') then
+			error('VerticalScrollBar.SetMaxValue [value]: Number expected, got '..type(_value)..'.');
+		end
+
 		maxValue = _value;
 		checkValue();
 	end
 
 	function this.SetMinValue(_, _value)
+		if (type(_value) ~= 'number') then
+			error('VerticalScrollBar.SetMinValue [value]: Number expected, got '..type(_value)..'.');
+		end
+
 		minValue = _value;
 		checkValue();
+	end
+
+	function this.GetHeight()
+		return height;
+	end
+
+	function this.SetHeight(_, _value)
+		if (type(_value) ~= 'number') then
+			error('VerticalScrollBar.SetHeight [value]: Number expected, got '..type(_value)..'.');
+		end
+
+		height = _value;
 	end
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
-
-	function this.Contains(_, _x, _y)
-		return (_x == x and _y >= y and _y <= y + height - 1);
-	end
 
 	function this.ScrollUp()
 		this:SetValue(value - 1);
@@ -88,8 +105,6 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 	end
 
 	function this._draw(_, _videoBuffer, _x, _y)
-		x, y = _videoBuffer:GetCoordinates(_x, _y);
-		
 		local colorConfiguration = System:GetColorConfiguration();
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
 		_videoBuffer:DrawBlock(_x, _y, 1, height, barColor, '|');
@@ -109,15 +124,15 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		end
 
 		if (this:Contains(_cursorX, _cursorY)) then
-			if (_cursorY == y + 1) then
+			if (_cursorY == this:GetY() + 1) then
 				this:SetValue(minValue);
 				return true;
 			end
-			if (_cursorY == y + height - 2) then
+			if (_cursorY == this:GetY() + height - 2) then
 				this:SetValue(maxValue);
 				return true;
 			end
-			local position = _cursorY - y + 1;
+			local position = _cursorY - this:GetY() + 1;
 			local newValuePersent = (position/height);
 			this:SetValue(math.floor((maxValue - minValue)*newValuePersent));
 			return true;
@@ -154,7 +169,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
 		scrollUpButton:SetOnClick(scrollUpButtonClick);
 
-		scrollDownButton = Button('v', nil, nil, 0, -1, 'left-bottom');
+		scrollDownButton = Button('v', nil, nil, 0, 0, 'left-bottom');
 		scrollDownButton:SetOnClick(scrollDownButtonClick);
 	end
 
@@ -193,9 +208,6 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 			local colorConfiguration = System:GetColorConfiguration();
 			rollerColor = colorConfiguration:GetColor('WindowBorderColor');
 		end
-
-		x = 0;
-		y = 0;
 
 		initializeComponents();
 	end

@@ -334,7 +334,7 @@ ApplicationsManager = Class(function(this)
 	end
 
 	local function tryProcessTimerEvent(_application, _timerId)
-		local success, message = pcall(_application.ProcessCharEvent, _application, _timerId);
+		local success, message = pcall(_application.ProcessTimerEvent, _application, _timerId);
 		if (not success) then
 			if (message == nil) then
 				message = '';
@@ -368,7 +368,7 @@ ApplicationsManager = Class(function(this)
 	end
 
 	local function tryProcessMouseScrollEvent(_application, _direction, _cursorX, _cursorY)
-		local success, message = pcall(_application.ProcessRightClickEvent, _application, _direction, _cursorX, _cursorY);
+		local success, message = pcall(_application.ProcessMouseScrollEvent, _application, _direction, _cursorX, _cursorY);
 		if (not success) then
 			if (message == nil) then
 				message = '';

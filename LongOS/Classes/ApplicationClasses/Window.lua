@@ -441,9 +441,9 @@ Window = Class(function(this, _application, _name, _isUnique)
 			end
 		else
 			closeButton:SetAnchor('right-top');
-			closeButton:SetdX(-1);
+			closeButton:SetdX(0);
 			maximizeButton:SetAnchor('right-top');
-			maximizeButton:SetdX(-3);
+			maximizeButton:SetdX(1);
 		end
 
 		local titleToPrint = title;
@@ -758,10 +758,10 @@ Window = Class(function(this, _application, _name, _isUnique)
 		canvas = Canvas(1, 1, width - 2, height - 2, 'left-top');
 
 		-- creating components
-		closeButton = Button('X', colors.black, colors.white, -1, 0, 'right-top');
+		closeButton = Button('X', colors.black, colors.white, 0, 0, 'right-top');
 		closeButton:SetOnClick(closeButtonClick);
 
-		maximizeButton = Button('[]', colors.black, colors.white, -3, 0, 'right-top');
+		maximizeButton = Button('[]', colors.black, colors.white, 1, 0, 'right-top');
 		maximizeButton:SetOnClick(maximizeButtonClick);
 	end
 

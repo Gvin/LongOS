@@ -316,8 +316,16 @@ FileManagerWindow = Class(Window, function(this, _application)
 		end
 	end
 
+	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+		if (_direction < 0) then
+			vScrollBar:ScrollUp();
+		else
+			vScrollBar:ScrollDown();
+		end
+	end
+
 	local function onWindowResize(_sender, _eventArgs)
-		vScrollBar.Height = this:GetHeight() - 5;
+		vScrollBar:SetHeight(this:GetHeight() - 5);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -325,18 +333,18 @@ FileManagerWindow = Class(Window, function(this, _application)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, -1, 1, 'right-top');
+		vScrollBar = VerticalScrollBar(0, 10, 7, nil, nil, 0, 1, 'right-top');
 		this:AddComponent(vScrollBar);
 
-		pasteButton = Button('Paste', nil, nil, 0, -1, 'left-bottom');
+		pasteButton = Button('Paste', nil, nil, 0, 0, 'left-bottom');
 		pasteButton:SetOnClick(pasteButtonClick);
 		this:AddComponent(pasteButton);
 
-		createDirectoryButton = Button('Create directory', nil, nil, 6, -1, 'left-bottom');
+		createDirectoryButton = Button('Create directory', nil, nil, 6, 0, 'left-bottom');
 		createDirectoryButton:SetOnClick(createDirectoryButtonClick);
 		this:AddComponent(createDirectoryButton);
 
-		createFileButton = Button('Create file', nil, nil, 23, -1, 'left-bottom');
+		createFileButton = Button('Create file', nil, nil, 23, 0, 'left-bottom');
 		createFileButton:SetOnClick(createFileButtonClick);
 		this:AddComponent(createFileButton);
 

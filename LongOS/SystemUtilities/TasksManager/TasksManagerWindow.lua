@@ -14,14 +14,14 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	local tasksCountLabel = Label('Applications count: '..System:GetApplicationsCount(), nil, nil, 0, 0, 'left-top');
 	this:AddComponent(tasksCountLabel);
 
-	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, -1, 1, 'right-top');
+	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, 0, 1, 'right-top');
 	this:AddComponent(vScrollBar);
 
 	local function killProcessButtonClick(sender, eventArgs)
 		System:RemoveApplication(selectedApplicationId);
 	end
 
-	local killProcessButton = Button('Close application', nil, nil, 0, -1, 'left-bottom');
+	local killProcessButton = Button('Close application', nil, nil, 0, 0, 'left-bottom');
 	killProcessButton:SetOnClick(killProcessButtonClick);
 	this:AddComponent(killProcessButton);
 
@@ -29,7 +29,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 		System:SetCurrentApplication(selectedApplicationId);
 	end
 
-	local setActiveButton = Button('Set active', nil, nil, 18, -1, 'left-bottom');
+	local setActiveButton = Button('Set active', nil, nil, 18, 0, 'left-bottom');
 	setActiveButton:SetOnClick(setActiveButtonClick);
 	this:AddComponent(setActiveButton);
 
@@ -66,7 +66,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function onWindowResize(_sender, _eventArgs)
-		vScrollBar.Height = this:GetHeight() - 4;
+		vScrollBar:SetHeight(this:GetHeight() - 4);
 	end
 
 	this:SetOnResize(onWindowResize);
@@ -93,6 +93,14 @@ TasksManagerWindow = Class(Window, function(this, _application)
 			if (applications[selectedLine] ~= nil) then
 				selectedApplicationId = applications[selectedLine].Id;
 			end
+		end
+	end
+
+	this.ProcessMouseScrollEvent = function(_, _direction, _cursorX, _cursorY)
+		if (_direction < 0) then
+			vScrollBar:ScrollUp();
+		else
+			vScrollBar:ScrollDown();
 		end
 	end
 end)

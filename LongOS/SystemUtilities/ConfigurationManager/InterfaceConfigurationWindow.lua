@@ -67,25 +67,25 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 
 	local function initializeComponents()
 
-		controlPanelPositionButton = Button(interfaceConfiguration:GetOption('ControlPanelPosition'), nil, nil, -6, 1, 'right-top');
+		controlPanelPositionButton = Button(interfaceConfiguration:GetOption('ControlPanelPosition'), nil, nil, 0, 1, 'right-top');
 		controlPanelPositionButton:SetOnClick(controlPanelPositionButtonClick);			
 		this:AddComponent(controlPanelPositionButton);
 
 		controlPanelPositionLabel = Label('Control Panel Position:', nil, nil, 0, 1, 'left-top');
 		this:AddComponent(controlPanelPositionLabel);
 
-		windowButtonsPositionButton = Button(interfaceConfiguration:GetOption('WindowButtonsPosition'), nil, nil, -6, 3, 'right-top');
+		windowButtonsPositionButton = Button(interfaceConfiguration:GetOption('WindowButtonsPosition'), nil, nil, 0, 3, 'right-top');
 		windowButtonsPositionButton:SetOnClick(windowButtonsPositionButtonClick);			
 		this:AddComponent(windowButtonsPositionButton);	
 
 		windowButtonsPositionLabel = Label('Window Buttons Position:', nil, nil, 0, 3, 'left-top');
 		this:AddComponent(windowButtonsPositionLabel);
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, -1, 'left-bottom');
+		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:SetOnClick(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
+		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end

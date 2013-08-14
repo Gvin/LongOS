@@ -39,7 +39,7 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 	------------------------------------------------------------------------------------------------------------------
 
 	local function okButtonClick(_sender, _eventArgs)
-		local text = textEdit.Text;
+		local text = textEdit:GetText();
 
 		this:Close();
 
@@ -65,11 +65,11 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_text, _initialText)
-		okButton = Button(' OK ', nil, nil, 0, -1, 'left-bottom');
+		okButton = Button(' OK ', nil, nil, 0, 0, 'left-bottom');
 		okButton:SetOnClick(okButtonClick);
 		this:AddComponent(okButton);
 
-		local cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
+		local cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
@@ -78,7 +78,7 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 
 		textEdit = Edit(26, colors.white, colors.black, 1, 2, 'left-top');
 		if (_initialText ~= nil) then
-			textEdit.Text = _initialText;
+			textEdit:SetText(_initialText);
 		end
 		textEdit:SetFocus(true);
 		this:AddComponent(textEdit);

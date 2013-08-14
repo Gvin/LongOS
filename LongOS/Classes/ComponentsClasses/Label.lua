@@ -14,9 +14,6 @@ Label = Class(Component, function(this, _text, _backgroundColor, _textColor, _dX
 	local backgroundColor;
 	local visible;
 
-	local x;
-	local y;
-
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -33,12 +30,8 @@ Label = Class(Component, function(this, _text, _backgroundColor, _textColor, _dX
 		text = _value;
 	end
 
-	function this.GetY()
-		return y;
-	end
-
-	function this.GetX()
-		return x;
+	function this.GetWidth()
+		return string.len(text);
 	end
 
 	function this.GetBackgroundColor()
@@ -82,24 +75,11 @@ Label = Class(Component, function(this, _text, _backgroundColor, _textColor, _dX
 	------------------------------------------------------------------------------------------------------------------
 
 	function this._draw(_, _videoBuffer, _x, _y)
-		x, y = _videoBuffer:GetCoordinates(_x, _y);
-
 		if (visible) then
 			_videoBuffer:SetTextColor(textColor);
 			_videoBuffer:SetBackgroundColor(backgroundColor);
 			_videoBuffer:WriteAt(_x, _y, text);
 		end
-	end
-
-	function this.Contains(_, _x, _y)
-		if (type(_x) ~= 'number') then
-			error('Label.Contains [x]: Number required, got '..type(_x)..'.');
-		end
-		if (type(_y) ~= 'number') then
-			error('Label.Contains [y]: Number required, got '..type(_y)..'.');
-		end
-
-		return (_y == y and _x >= x and _x <= x + string.len(text) - 1);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -117,8 +97,6 @@ Label = Class(Component, function(this, _text, _backgroundColor, _textColor, _dX
 			error('Label.Constructor [textColor]: Number or nil expected, got '..type(_textColor)..'.');
 		end
 
-		x = 0;
-		y = 0;
 		text = _text;
 		textColor = _textColor;
 		backgroundColor = _backgroundColor;

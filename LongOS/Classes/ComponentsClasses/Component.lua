@@ -10,6 +10,8 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 
 	local dX;
 	local dY;
+	local x;
+	local y;
 	local anchorType;
 
 	------------------------------------------------------------------------------------------------------------------
@@ -55,9 +57,36 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 		anchorType = _value;
 	end
 
+	function this.GetWidth()
+		return 1;
+	end
+
+	function this.GetHeight()
+		return 1;
+	end
+
+	function this.GetX()
+		return x;
+	end
+
+	function this.GetY()
+		return y;
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
+
+	function this.Contains(_, _x, _y)
+		if (type(_x) ~= 'number') then
+			error('Component.Contains [x]: Number required, got '..type(_x)..'.');
+		end
+		if (type(_y) ~= 'number') then
+			error('Component.Contains [y]: Number required, got '..type(_y)..'.');
+		end
+
+		return (_y >= this:GetY() and _y <= this:GetY() + this:GetHeight() - 1 and _x >= this:GetX() and _x <= this:GetX() + this:GetWidth() - 1);
+	end
 
 	function this._draw(_, _videoBuffer, _x, _y)
 	end
@@ -76,18 +105,26 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 			error('Component.Draw [ownerHeight]: Number expected, got '..type(_ownerHeight)..'.');
 		end
 
-		if (anchorType == 'left-top') then
-			this:_draw(_videoBuffer, _ownerX + dX, _ownerY + dY);
-		elseif (anchorType == 'right-top') then
-			this:_draw(_videoBuffer, _ownerX + _ownerWidth + dX, _ownerY + dY);
-		elseif (anchorType == 'left-bottom') then
-			this:_draw(_videoBuffer, _ownerX + dX, _ownerY + _ownerHeight + dY);
-		elseif (anchorType == 'right-bottom') then
-			this:_draw(_videoBuffer, _ownerX + _ownerWidth + dX, _ownerY + _ownerHeight + dY);
-		end
-	end
+		local altX = 0;
+		local altY = 0;
 
-	
+		if (anchorType == 'left-top') then
+			altX = _ownerX + dX;
+			altY = _ownerY + dY;
+		elseif (anchorType == 'right-top') then
+			altX = _ownerX + _ownerWidth - dX - this:GetWidth();
+			altY = _ownerY + dY;
+		elseif (anchorType == 'left-bottom') then
+			altX = _ownerX + dX;
+			altY = _ownerY + _ownerHeight - dY - this:GetHeight();
+		elseif (anchorType == 'right-bottom') then
+			altX = _ownerX + _ownerWidth - dX - this:GetWidth();
+			altY = _ownerY + _ownerHeight - dY - this:GetHeight();
+		end
+
+		x, y = _videoBuffer:GetCoordinates(altX, altY);
+		this:_draw(_videoBuffer, altX, altY);
+	end
 
 	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
 		return false;
@@ -130,6 +167,8 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 
 		dX = _dX;
 		dY = _dY;
+		x = 0;
+		y = 0;
 		anchorType = _anchorType;
 	end
 

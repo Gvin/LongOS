@@ -104,11 +104,11 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_text)
-		yesButton = Button(' Yes ', nil, nil, 0, -1, 'left-bottom');
+		yesButton = Button(' Yes ', nil, nil, 0, 0, 'left-bottom');
 		yesButton:SetOnClick(yesButtonClick);
 		this:AddComponent(yesButton);
 
-		noButton = Button(' No ', nil, nil, -4, -1, 'right-bottom');
+		noButton = Button(' No ', nil, nil, 0, 0, 'right-bottom');
 		noButton:SetOnClick(noButtonClick);
 		this:AddComponent(noButton);
 	end

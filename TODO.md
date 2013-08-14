@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 58 registered features.
+Currently there are 59 registered features.
 
 TODO
 ========
@@ -19,15 +19,15 @@ For v 0.4
 - [X] F56: Move system applications to the SystemUtilities folder.
 - [X] F25: Separate configuration manager into single application.
 - [X] F33: Move errors catching from WindowsManager to the ApplicationsManager.
+- [X] F28: Refactor components.
+- [X] F16: Improve components ierarchy.
+- [X] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [X] #8 System error appears when calling "error" function without parameters.
 - [X] #9 Close and maximize buttons is on the right position when left position specified in the config.
-- [ ] F28: Refactor components.
 - [ ] F24: Create application for components testing.
 - [ ] F42: Change components layouts for better corner coordinates.
 - [ ] F44: Add Enabled property to the components.
-- [ ] F16: Improve components ierarchy.
 - [ ] F52: Update calculator program.
-- [ ] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [ ] #7 Cursor from back window's edit is visible on front window
 
 For all versions
@@ -48,6 +48,7 @@ Further releases
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
+- [ ] F59: Add namespaces with standard classes.
 - [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 
 

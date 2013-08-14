@@ -1,96 +1,155 @@
-Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY, anchorType)
-	Component.init(this, dX, dY, anchorType);
+Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+	Component.init(this, _dX, _dY, _anchorType);
 	
-	this.GetClassName = function()
+	function this.GetClassName()
 		return 'Edit';
 	end
 
-	local cursorPosition = 0;
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	this.BackgroundColor = backgroundColor;
-	this.TextColor = textColor;
+	local cursorPosition;
 
-	this.Text = '';
-	this.X = dX;
-	this.Y = dY;
-	this.Width = width;
+	local backgroundColor;
+	local textColor;
+	local text;
+	local width;
 
-	local focus = false;
-	local mig = 0;
+	local focus;
 
-	this._draw = function(videoBuffer, x, y)
-		local colorConfiguration = System:GetColorConfiguration();
-		if (backgroundColor == nil) then
-			this.BackgroundColor = colorConfiguration:GetColor('SystemEditsBackgroundColor');
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this.GetText()
+		return text;
+	end
+
+	function this.SetText(_, _value)
+		if (type(_value) ~= 'string') then
+			error('Edit.SetText [value]: String expected, got '..type(_value)..'.');
 		end
-		if (textColor == nil) then
-			this.TextColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+
+		text = _value;
+		cursorPosition = string.len(text);
+	end
+
+	function this.GetWidth()
+		return width;
+	end
+
+	function this.SetWidth(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Edit.SetWidth [value] Number expected, got '..type(_value)..'.');
 		end
 
-		this.X, this.Y = videoBuffer:GetCoordinates(x, y);
+		width = _value;
+	end
 
-		videoBuffer:DrawBlock(x, y, this.Width, 1, this.BackgroundColor);
-		videoBuffer:SetColorParameters(this.TextColor, this.BackgroundColor);
+	function this.GetBackgroundColor()
+		return backgroundColor;
+	end
 
-		local toPrint = this.Text;
+	function this.SetBackgroundColor(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Edit.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
+		end
+
+		backgroundColor = _value;
+	end
+
+	function this.GetTextColor()
+		return textColor;
+	end
+
+	function this.SetTextColor(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Edit.SetTextColor [value]: Number expected, got '..type(_value)..'.');
+		end
+
+		textColor = _value;
+	end
+
+	function this.GetFocus()
+		return focus;
+	end
+
+	function this.SetFocus(_, _value)
+		if (type(_value) ~= 'boolean') then
+			error('Edit.SetFocus [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
+		focus = _value;
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this._draw(_, _videoBuffer, _x, _y)
+		_videoBuffer:DrawBlock(_x, _y, width, 1, backgroundColor);
+		_videoBuffer:SetColorParameters(textColor, backgroundColor);
+
+		local toPrint = text;
 
 		if (cursorPosition > string.len(toPrint)) then
 			cursorPosition = string.len(toPrint);
 		end
 
-		if (cursorPosition > this.Width - 2) then
-			toPrint = ''..string.sub(toPrint, cursorPosition - this.Width + 2, cursorPosition);
+		if (cursorPosition > width - 2) then
+			toPrint = ''..string.sub(toPrint, cursorPosition - width + 2, cursorPosition);
 		end
 
-		if (string.len(toPrint) > this.Width - 2) then
-			toPrint = ''..string.sub(toPrint, 1, this.Width - 1);
+		if (string.len(toPrint) > width - 2) then
+			toPrint = ''..string.sub(toPrint, 1, width - 1);
 		end
 
 		if (focus) then
 			local realCursorPosition = cursorPosition;
-			if (realCursorPosition > this.Width - 1) then
-				realCursorPosition = this.Width - 1;
+			if (realCursorPosition > width - 1) then
+				realCursorPosition = width - 1;
 			end
-			videoBuffer:SetRealCursorPos(x + realCursorPosition, y);
-			videoBuffer:SetCursorBlink(true);
+			_videoBuffer:SetRealCursorPos(_x + realCursorPosition, _y);
+			_videoBuffer:SetCursorBlink(true);
 		end
 
-		videoBuffer:WriteAt(x, y, toPrint);
+		_videoBuffer:WriteAt(_x, _y, toPrint);
 	end
 
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
-		if (cursorX >= this.X and cursorX < this.X + this.Width and cursorY == this.Y) then
+	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+		if (this:Contains(_cursorX, _cursorY)) then
 			focus = true;
 		else
 			focus = false;
 		end
 	end
 
-	local processBackspaceKey = function()
-		if (string.len(this.Text) <= 1 and cursorPosition ~= 0) then
-			this.Text = '';
+	local function processBackspaceKey()
+		if (string.len(text) <= 1 and cursorPosition ~= 0) then
+			text = '';
 			cursorPosition = 0;
 		elseif (cursorPosition ~= 0) then
-			this.Text = ''..string.sub(this.Text, 1, cursorPosition - 1)..string.sub(this.Text, cursorPosition + 1, string.len(this.Text));
+			text = ''..string.sub(text, 1, cursorPosition - 1)..string.sub(text, cursorPosition + 1, string.len(text));
 			cursorPosition = cursorPosition - 1;
 		end
 	end
 
-	local processDeleteKey = function()
-		if (string.len(this.Text) > cursorPosition) then
-			this.Text = ''..string.sub(this.Text, 1, cursorPosition)..string.sub(this.Text, cursorPosition + 2, string.len(this.Text));
+	local function processDeleteKey()
+		if (string.len(text) > cursorPosition) then
+			text = ''..string.sub(text, 1, cursorPosition)..string.sub(text, cursorPosition + 2, string.len(text));
 		end
 	end
 
-	this.ProcessKeyEvent = function(_, key)
+	function this.ProcessKeyEvent(_, _key)
 		if (focus) then
-			local keyName = keys.getName(key);
+			local keyName = keys.getName(_key);
 			if (keyName == 'backspace') then
 				processBackspaceKey();
 			elseif (keyName == 'delete') then
 				processDeleteKey();
 			elseif (keyName == 'right') then
-				if (cursorPosition < string.len(this.Text)) then
+				if (cursorPosition < string.len(text)) then
 					cursorPosition = cursorPosition + 1;
 				end
 			elseif (keyName == 'left') then
@@ -100,21 +159,50 @@ Edit = Class(Component, function(this, width, backgroundColor, textColor, dX, dY
 			elseif (keyName == 'home') then
 				cursorPosition = 0;
 			elseif (keyName == 'end') then
-				cursorPosition = string.len(this.Text);
+				cursorPosition = string.len(text);
 			end
 		end
 	end
 
-	this.ProcessCharEvent = function(_, char)
+	function this.ProcessCharEvent(_, _char)
 		if (focus) then
-			local textBefore = ''..string.sub(this.Text, 1, cursorPosition);
-			local textAfter = ''..string.sub(this.Text, cursorPosition + 1, string.len(this.Text));
-			this.Text = textBefore..char..textAfter;
+			local textBefore = ''..string.sub(text, 1, cursorPosition);
+			local textAfter = ''..string.sub(text, cursorPosition + 1, string.len(text));
+			text = textBefore.._char..textAfter;
 			cursorPosition = cursorPosition + 1;
 		end
 	end
 
-	this.SetFocus = function(_, newFocus)
-		focus = newFocus;
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor(_width, _backgroundColor, _textColor)
+		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
+			error('Edit.Constructor [backgroundColor] Number or nil expected, got '..type(_backgroundColor)..'.');
+		end
+		if (_textColor ~= nil and type(_textColor) ~= 'number') then
+			error('Edit.Constructor [textColor] Number or nil expected, got '..type(_textColor)..'.');
+		end
+		if (type(_width) ~= 'number') then
+			error('Edit.Constructor [width] Number expected, got '..type(_width)..'.');
+		end
+
+		cursorPosition = 0;
+		backgroundColor = _backgroundColor;
+		textColor = _textColor;
+		text = '';
+		width = _width;
+		focus = false;
+
+		local colorConfiguration = System:GetColorConfiguration();
+		if (backgroundColor == nil) then
+			backgroundColor = colorConfiguration:GetColor('SystemEditsBackgroundColor');
+		end
+		if (textColor == nil) then
+			textColor = colorConfiguration:GetColor('SystemLabelsTextColor');
+		end
 	end
+
+	constructor(_width, _backgroundColor, _textColor);
 end)

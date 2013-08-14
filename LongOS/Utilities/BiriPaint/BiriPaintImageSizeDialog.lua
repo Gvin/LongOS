@@ -41,8 +41,8 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 	------------------------------------------------------------------------------------------------------------------
 	
 	local function okButtonClick(_sender, _eventArgs)
-		local width = tonumber(widthEdit.Text);
-		local height = tonumber(heightEdit.Text);
+		local width = tonumber(widthEdit:GetText());
+		local height = tonumber(heightEdit:GetText());
 		if (width and height ~= nil ) then
 			this:Close();
 			local eventArgs = {};
@@ -71,11 +71,11 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_initialWidth, _initialHeight)
-		okButton = Button(' OK ', nil, nil, 0, -1, 'left-bottom');
+		okButton = Button(' OK ', nil, nil, 0, 0, 'left-bottom');
 		okButton:SetOnClick(okButtonClick);
 		this:AddComponent(okButton);
 
-		local cancelButton = Button('Cancel', nil, nil, -6, -1, 'right-bottom');
+		local cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
@@ -84,7 +84,7 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 
 		widthEdit = Edit(26, colors.white, colors.black, 1, 2, 'left-top');
 		if (_initialWidth ~= nil) then
-			widthEdit.Text = _initialWidth;
+			widthEdit:SetText(_initialWidth);
 		end
 		widthEdit:SetFocus(true);
 		this:AddComponent(widthEdit);
@@ -94,7 +94,7 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 
 		heightEdit = Edit(26, colors.white, colors.black, 1, 4, 'left-top');
 		if (_initialHeight ~= nil) then
-			heightEdit.Text = _initialHeight;
+			heightEdit:SetText(_initialHeight);
 		end
 
 		this:AddComponent(heightEdit);

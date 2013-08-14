@@ -76,7 +76,7 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 3), -1, 'left-bottom');
+		okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 3), 0, 'left-bottom');
 		okButton:SetOnClick(okButtonClick);
 		this:AddComponent(okButton);
 	end

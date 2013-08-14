@@ -19,7 +19,7 @@ ControlPanel = Class(function(this)
 		System:Shutdown();
 	end
 
-	local shutdownButton = Button('Shutdown', colors.red, colors.black, 1, -6, 'left-bottom');
+	local shutdownButton = Button('Shutdown', colors.red, colors.black, 1, 1, 'left-top');
 	shutdownButton:SetOnClick(shutdownButtonClick);
 	powerMenu:AddComponent(shutdownButton);
 
@@ -27,7 +27,7 @@ ControlPanel = Class(function(this)
 		System:Reboot();
 	end
 
-	local rebootButton = Button('Reboot', colors.lightBlue, colors.black, 2, -4, 'left-bottom');
+	local rebootButton = Button('Reboot', colors.lightBlue, colors.black, 2, 3, 'left-top');
 	rebootButton:SetOnClick(rebootButtonClick);
 	powerMenu:AddComponent(rebootButton);
 
@@ -35,7 +35,7 @@ ControlPanel = Class(function(this)
 		System:LogOff();
 	end
 
-	local logOffButton = Button('Log  off', colors.lime, colors.black, 1, -2, 'left-bottom');
+	local logOffButton = Button('Log  off', colors.lime, colors.black, 1, 5, 'left-top');
 	logOffButton:SetOnClick(logOffButtonClick);
 	powerMenu:AddComponent(logOffButton);
 
@@ -43,7 +43,7 @@ ControlPanel = Class(function(this)
 		menuesManager:OpenCloseMenu('PowerMenu');
 	end
 
-	local powerButton = Button('Power', colors.red, colors.black, -12, 0, 'right-top');
+	local powerButton = Button('Power', colors.red, colors.black, 7, 0, 'right-top');
 	powerButton:SetOnClick(powerButtonClick);
 	componentsManager:AddComponent(powerButton);
 
@@ -69,7 +69,7 @@ ControlPanel = Class(function(this)
 		System:RunFile('/LongOS/SystemUtilities/TasksManager/GvinTasksManager');
 	end
 
-	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, -2, 'left-bottom');
+	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, 3, 'left-top');
 	tasksManagerButton:SetOnClick(tasksManagerButtonClick);
 	systemMenu:AddComponent(tasksManagerButton);
 
@@ -77,7 +77,7 @@ ControlPanel = Class(function(this)
 		System:RunFile('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManager');
 	end
 
-	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, -4, 'left-bottom');
+	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, 1, 'left-top');
 	configurationButton:SetOnClick(configurationButtonClick);
 	systemMenu:AddComponent(configurationButton);
 
@@ -104,7 +104,7 @@ ControlPanel = Class(function(this)
 		menuesManager:OpenCloseMenu('CalendarMenu');
 	end
 
-	local calendarButton = Button('--:--', colors.green, colors.white, -6, 0, 'right-top');
+	local calendarButton = Button('--:--', colors.green, colors.white, 1, 0, 'right-top');
 	calendarButton:SetOnClick(calendarButtonClick);
 	componentsManager:AddComponent(calendarButton);
 	
@@ -196,7 +196,7 @@ ControlPanel = Class(function(this)
 		applicationsMenu.Y = applicationsMenu.Y - 2;
 		applicationsMenu.Height = applicationsMenu.Height + 2;
 
-		local applicationButton = Button(applicationName, nil, nil, 1, -(applicationsMenu.Height - 1), 'left-bottom');
+		local applicationButton = Button(applicationName, nil, nil, 1, applicationsMenu.Height - 2, 'left-bottom');
 		applicationButton.Path = applicationPath;
 		applicationButton:SetOnClick(applicationButtonClick);
 

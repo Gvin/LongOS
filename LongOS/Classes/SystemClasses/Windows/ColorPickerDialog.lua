@@ -129,7 +129,7 @@ ColorPickerDialog = Class(Window, function(this, _application)
 		this:AddComponent(red);
 
 
-		cancelButton = Button('Cancel', nil, nil, 5, -1, 'left-bottom');
+		cancelButton = Button('Cancel', nil, nil, 5, 0, 'left-bottom');
 		cancelButton:SetOnClick(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
