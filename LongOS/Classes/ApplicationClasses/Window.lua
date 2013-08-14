@@ -520,6 +520,9 @@ Window = Class(function(this, _application, _name, _isUnique)
 			canvas:SetHeight(height - 2);
 			drawBase(_videoBuffer);
 			this:Draw(canvas);
+			if (not enabled) then
+				canvas:SetCursorBlink(false);
+			end
 			canvas:Draw(_videoBuffer, x, y, width, height);
 			drawMenues(_videoBuffer);
 		end
