@@ -8,6 +8,7 @@ VideoBuffer = Class(function(this)
 
 	local currentBackgroundColor = colors.black;
 	local currentTextColor = colors.white;
+	local cursorColor = colors.white;
 	local cursorX = 1;
 	local cursorY = 1;
 	local realCursorX = 1;
@@ -18,7 +19,7 @@ VideoBuffer = Class(function(this)
 	for i = 1, screenHeight do
 		pixels[i] = {};
 		for j = 1, screenWidth do
-			pixels[i][j] = Pixel();
+			pixels[i][j] = Classes.System.Graphics.Pixel();
 		end
 	end
 
@@ -118,6 +119,10 @@ VideoBuffer = Class(function(this)
 		cursorBlink = value;
 	end
 
+	this.SetCursorColor = function(_, value)
+		cursorColor = value;
+	end
+
 	this.Write = function(_, value)
 		if (type(value) ~= 'string') then
 			error('VideoBuffer:Write - String required (variable "value").');
@@ -178,6 +183,7 @@ VideoBuffer = Class(function(this)
 				pixels[i][j]:DrawAt(j, i);
 			end
 		end
+		term.setTextColor(cursorColor);
 		term.setCursorPos(realCursorX, realCursorY);
 		term.setCursorBlink(cursorBlink);
 		this:Clear();

@@ -1,3 +1,5 @@
+local Pixel = Classes.System.Graphics.Pixel;
+
 Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 
 	function this.GetClassName()
@@ -11,6 +13,7 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 	local pixels;
 	local currentBackgroundColor;
 	local currentTextColor;
+	local cursorColor;
 	local cursorX;
 	local cursorY;
 	local realCursorX;
@@ -68,14 +71,6 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 		updateSize();
 	end
 
-	------------------------------------------------------------------------------------------------------------------
-	----- Methods ----------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------
-
-	local function isOnCanvas(_x, _y)
-		return (_x >= 1 and _x <= width and _y >= 1 and _y <= height);
-	end
-
 	function this.SetRealCursorPos(_, _x, _y)
 		if (type(_x) ~= 'number') then
 			error('Canvas.SetRealCursorPos [x]: Number expected, got '..type(_x)..'.');
@@ -86,6 +81,10 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 
 		realCursorX = _x;
 		realCursorY = _y;
+	end
+
+	function this.GetCursorPos()
+		return cursorX, cursorY;
 	end
 
 	function this.SetCursorPos(_, _x, _y)
@@ -127,6 +126,34 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 		end
 
 		cursorBlink = _value;
+	end
+
+	function this.SetCursorColor(_, _value)
+		if (type(_value) ~= 'number') then
+			error('Canvas.SetCursorColor [value]: Number expected, got '..type(_value)..'.');
+		end
+
+		cursorColor = _value;
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function isOnCanvas(_x, _y)
+		return (_x >= 1 and _x <= width and _y >= 1 and _y <= height);
+	end
+
+	function this.Scroll(_, _value)
+		for i = 1, _value do
+			for j = 2, height do
+				pixels[j - 1] = pixels[j];
+			end
+			pixels[height] = {};
+			for j = 1, width do
+				pixels[height][j] = Pixel();
+			end
+		end
 	end
 
 	function this.SetPixelColor(_, _x, _y, _color)
@@ -236,9 +263,25 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 		end
 	end
 
+	function this.ClearLine()
+		for i = 1, width do
+			pixels[cursorY][i]:Clear();
+		end
+	end
+
+	function this.SetPixel(_, _x, _y, _pixel)
+		if (isOnCanvas(_x, _y)) then
+			local pixel = pixels[_y][_x];
+			pixel:SetBackgroundColor(_pixel:GetBackgroundColor());
+			pixel:SetTextColor(_pixel:GetTextColor());
+			pixel:SetSymbol(_pixel:GetSymbol());
+		end
+	end
+
 	local function draw(_videoBuffer)
 		if (cursorBlink) then
 			_videoBuffer:SetRealCursorPos(realCursorX + x - 1, realCursorY + y - 1);
+			_videoBuffer:SetCursorColor(cursorColor);
 			_videoBuffer:SetCursorBlink(cursorBlink);
 		end
 
@@ -250,7 +293,7 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 	end
 
 	function this.Draw(_, _videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
-		if (type(_videoBuffer) ~= 'table' or _videoBuffer.GetClassName == nil or _videoBuffer:GetClassName() ~= 'VideoBuffer') then
+		if (type(_videoBuffer) ~= 'table' and _videoBuffer.GetClassName == nil and _videoBuffer:GetClassName() ~= 'VideoBuffer' and _videoBuffer:GetClassName() ~= 'Canvas') then
 			error('Canvas.Draw [videoBuffer]: VideoBuffer expected, got '..type(_videoBuffer)..'.');
 		end
 		if (type(_ownerX) ~= 'number') then
@@ -281,8 +324,6 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 		end
 
 		draw(_videoBuffer);
-
-		this:Clear();
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -329,6 +370,7 @@ Canvas = Class(function(this, _dX, _dY, _width, _height, _anchor)
 		realCursorX = 1;
 		realCursorY = 1;
 		cursorBlink = false;
+		cursorColor = colors.white;
 	end
 
 	constructor(_dX, _dY, _width, _height, _anchor);
