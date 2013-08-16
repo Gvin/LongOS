@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 65 registered features.
+Currently there are 66 registered features.
 
 TODO
 ========
@@ -8,6 +8,7 @@ For v 0.5
 --------
 - [X] F8: Add terminal programs support.
 - [X] F59: Add namespaces with standard classes.
+- [X] F66: Refactor loading.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.

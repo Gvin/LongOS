@@ -77,8 +77,8 @@ if (not success) then
 	drawGlobalErrorScreen(message);
 end
 
-System = LongOS();
-LongOS = nil;
+System = Classes.System.LongOS();
+Classes.System.LongOS = nil;
 System:ReadConfiguration();
 
 success, message = pcall(parallel.waitForAny, update, draw, catchEvents, processEvents);
