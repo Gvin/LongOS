@@ -1,0 +1,25 @@
+local tArgs = { ... };
+
+local function getLauncherString(_table)
+	local launcherString = '';
+	for key, v in pairs(_table) do
+		launcherString = launcherString.._table[key]..' ';
+	end
+	if (launcherString == '') then
+		return nil;
+	end
+	return launcherString;
+end
+
+local launcherString = getLauncherString(tArgs);
+
+local function run()
+	shell.run('/LongOS/SystemUtilities/Terminal/GvinTerminalWindow.lua');
+	shell.run('/LongOS/SystemUtilities/Terminal/RedirectorGenerator.lua');
+
+	local application = Classes.Application.Application('Gvin terminal', false, true);
+	local terminalWindow = GvinTerminalWindow(application, launcherString);
+	application:Run(terminalWindow);
+end
+
+System:Try(run);
