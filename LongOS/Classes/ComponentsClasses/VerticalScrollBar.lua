@@ -1,3 +1,6 @@
+local Button = Classes.Components.Button;
+local Component = Classes.Components.Component;
+
 VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _height, _barColor, _rollerColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 

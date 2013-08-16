@@ -1,3 +1,6 @@
+local Label = Classes.Components.Label;
+local EventHandler = Classes.System.EventHandler;
+
 Button = Class(Label, function(this, _text, _backgroundColor, _textColor, _dX, _dY, _anchorType)
 
 	if (_backgroundColor == nil) then

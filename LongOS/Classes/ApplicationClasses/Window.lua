@@ -1,3 +1,9 @@
+local Button = Classes.Components.Button;
+local MenuesManager = Classes.Application.MenuesManager;
+local ComponentsManager = Classes.Application.ComponentsManager;
+local EventHandler = Classes.System.EventHandler;
+local Canvas = Classes.System.Graphics.Canvas;
+
 -- Window class. Contains all window data, draw and update functions.
 -- For creating programs with windows, you should create child classes
 -- from this class.
@@ -524,6 +530,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 				canvas:SetCursorBlink(false);
 			end
 			canvas:Draw(_videoBuffer, x, y, width, height);
+			canvas:Clear();
 			drawMenues(_videoBuffer);
 		end
 	end
@@ -698,6 +705,13 @@ Window = Class(function(this, _application, _name, _isUnique)
 	end
 
 	function this.ProcessRednetEvent(_, _id, _message, _distance)
+	end
+
+	function this.ProcessTimerEventBase(_, _timerId)
+		this:ProcessTimerEvent(_timerId);
+	end
+
+	function this.ProcessTimerEvent(_, _timerId)
 	end
 
 	local function closeButtonClick(sender, eventArgs)

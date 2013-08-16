@@ -1,5 +1,5 @@
-Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
-	Component.init(this, _dX, _dY, _anchorType);
+Edit = Class(Classes.Components.Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+	Classes.Components.Component.init(this, _dX, _dY, _anchorType);
 	
 	function this.GetClassName()
 		return 'Edit';
@@ -131,6 +131,7 @@ Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX
 			end
 			_videoBuffer:SetRealCursorPos(_x + realCursorPosition, _y);
 			_videoBuffer:SetCursorBlink(true);
+			_videoBuffer:SetCursorColor(textColor);
 		end
 
 		_videoBuffer:WriteAt(_x, _y, toPrint);

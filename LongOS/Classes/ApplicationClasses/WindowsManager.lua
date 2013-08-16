@@ -136,6 +136,18 @@ WindowsManager = Class(function(this)
 		end
 	end
 
+	this.ProcessRedstoneEvent = function()
+		for i = 1, #windows do
+			windows[i]:ProcessRedstoneEvent();
+		end
+	end
+
+	this.ProcessTimerEvent = function(_, _timerId)
+		for i = 1, #windows do
+			windows[i]:ProcessTimerEventBase(_timerId);
+		end
+	end
+
 	this.SwitchWindow = function(_)
 		if (currentWindow ~= nil) then
 			local window, index = getWindowById(currentWindow:GetId());

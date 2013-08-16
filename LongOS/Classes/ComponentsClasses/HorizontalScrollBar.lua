@@ -1,3 +1,6 @@
+local Button = Classes.Components.Button;
+local Component = Classes.Components.Component;
+
 HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _width, _barColor, _rollerColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 

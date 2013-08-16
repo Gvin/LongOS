@@ -59,6 +59,10 @@ ThreadsManager = Class(function(this)
 		end
 	end
 
+	function this.GetThreadsCount()
+		return #threads;
+	end
+
 	function this.Clear()
 		threads = {};
 		threadsToDelete = {};
@@ -66,36 +70,39 @@ ThreadsManager = Class(function(this)
 	end
 
 	function this.Update()
-		local event = events[1];
-		table.remove(events, 1);
-		if (event == nil) then
-			event = { 'timer', 0 };
+		if (#events == 0) then
+			this:ProcessTimerEvent(0);
 		end
 
-		for i = 1, #threads do
-			local thread = threads[i];
-			local id = thread:GetId();
-			if (tFilters[id] == nil or tFilters[id] == event[1]) then
-				local ok, params = thread:Resume(event);
-				if (not ok) then
-					error(params);
-				else
-					tFilters[id] = params;
-				end
-				if (thread:GetStatus() == 'dead') then
-					this:RemoveThread(id);
+		while (#events > 0) do
+			local event = events[1];
+			table.remove(events, 1);
+
+			for i = 1, #threads do
+				local thread = threads[i];
+				local id = thread:GetId();
+				if (tFilters[id] == nil or tFilters[id] == event[1] or event[1] == 'terminate') then
+					local ok, params = thread:Resume(event);
+					if (not ok) then
+						error(params);
+					else
+						tFilters[id] = params;
+					end
+					if (thread:GetStatus() == 'dead') then
+						this:RemoveThread(id);
+					end
 				end
 			end
-		end
 
-		for i = 1, #threadsToDelete do
-			local _, index = getThread(threadsToDelete[i]);
-			if (index ~= nil) then
-				table.remove(threads, index);
+			for i = 1, #threadsToDelete do
+				local _, index = getThread(threadsToDelete[i]);
+				if (index ~= nil) then
+					table.remove(threads, index);
+				end
 			end
-		end
 
-		threadsToDelete = {};
+			threadsToDelete = {};
+		end
 	end
 
 	-- Events
@@ -125,13 +132,13 @@ ThreadsManager = Class(function(this)
 		table.insert(events, event);
 	end
 
-	function this.ProcessLeftMouseDragEvent(_, newCursorX, _newCursorY)
-		local event = { 'mouse_drag', 1, _newCursorX, _newCursorX };
+	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
+		local event = { 'mouse_drag', 1, _newCursorX, _newCursorY };
 		table.insert(events, event);
 	end
 
-	function this.ProcessRightMouseDragEvent(_, newCursorX, _newCursorY)
-		local event = { 'mouse_drag', 2, _newCursorX, _newCursorX };
+	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
+		local event = { 'mouse_drag', 2, _newCursorX, _newCursorY };
 		table.insert(events, event);
 	end
 
@@ -147,6 +154,11 @@ ThreadsManager = Class(function(this)
 
 	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
 		local event = { 'mouse_scroll', _direction, _cursorX, _cursorY };
+		table.insert(events, event);
+	end
+
+	function this.ProcessTerminateEvent()
+		event = { 'terminate' };
 		table.insert(events, event);
 	end
 

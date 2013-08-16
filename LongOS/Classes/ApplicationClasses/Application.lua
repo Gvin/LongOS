@@ -138,11 +138,12 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 
 	this.ProcessTimerEvent = function(_, _timerId)
 		threadsManager:ProcessTimerEvent(_timerId);
+		windowsManager:ProcessTimerEvent(_timerId);
 	end
 
 	this.ProcessRedstoneEvent = function()
 		threadsManager:ProcessRedstoneEvent();
-		--windowsManager:ProcessRedstoneEvent();
+		windowsManager:ProcessRedstoneEvent();
 	end
 
 	this.ProcessMouseScrollEvent = function(_, _direction, _cursorX, _cursorY)
@@ -177,8 +178,8 @@ Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoW
 
 		enabled = true;
 
-		windowsManager = WindowsManager();
-		threadsManager = ThreadsManager();
+		windowsManager = Classes.Application.WindowsManager();
+		threadsManager = Classes.Application.ThreadsManager();
 	end
 
 	local constructor2 = function(_applicationName, _isUnique)

@@ -11,7 +11,7 @@ PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAut
 	this.BackgroundColor = backgroundColor;
 
 	local isOpened = false;
-	local componentsManager = ComponentsManager();
+	local componentsManager = Classes.Application.ComponentsManager();
 	local allowAutoHeight = _allowAutoHeight;
 	if (allowAutoHeight == nil) then
 		allowAutoHeight = false;
