@@ -1,3 +1,5 @@
+local MessageWindow = Classes.System.Windows.MessageWindow;
+
 ApplicationsManager = Class(function(this)
 
 	function this.GetClassName()

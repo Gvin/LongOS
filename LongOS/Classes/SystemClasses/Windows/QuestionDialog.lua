@@ -1,3 +1,7 @@
+local Window = Classes.Application.Window;
+local Button = Classes.Components.Button;
+local EventHandler = Classes.System.EventHandler;
+
 
 QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	local function countHeight(_text)

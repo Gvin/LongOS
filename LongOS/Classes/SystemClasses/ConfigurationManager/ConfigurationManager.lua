@@ -5,9 +5,9 @@ ConfigurationManager = Class(function(this)
 		return 'ConfigurationManager';
 	end
 
-	local colorConfiguration = ColorConfiguration('/LongOS/Configuration/color_schema.xml');
-	local interfaceConfiguration = InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
-	local mouseConfiguration = MouseConfiguration('/LongOS/Configuration/mouse_configuration.xml');
+	local colorConfiguration = Classes.System.Configuration.ColorConfiguration('/LongOS/Configuration/color_schema.xml');
+	local interfaceConfiguration = Classes.System.Configuration.InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
+	local mouseConfiguration = Classes.System.Configuration.MouseConfiguration('/LongOS/Configuration/mouse_configuration.xml');
 	-- Gets color configuration.
 	this.GetColorConfiguration = function()
 		return colorConfiguration;

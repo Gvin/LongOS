@@ -1,3 +1,6 @@
+local Window = Classes.Application.Window;
+local Button = Classes.Components.Button;
+
 MessageWindow = Class(Window, function(this, _application, _title, _text, _textColor)
 
 	local function countHeight(_text)

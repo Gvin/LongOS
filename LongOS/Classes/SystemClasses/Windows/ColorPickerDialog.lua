@@ -1,3 +1,7 @@
+local Window = Classes.Application.Window;
+local Button = Classes.Components.Button;
+local EventHandler = Classes.System.EventHandler;
+
 ColorPickerDialog = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Color picker dialog', false);

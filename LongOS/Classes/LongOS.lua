@@ -1,3 +1,15 @@
+local ConfigurationManager = Classes.System.Configuration.ConfigurationManager;
+local Logger = Classes.System.Logger;
+local VideoBuffer = Classes.System.Graphics.VideoBuffer;
+local ApplicationsManager = Classes.System.ApplicationsManager;
+local Desktop = Classes.System.Desktop;
+local ControlPanel = Classes.System.ControlPanel;
+
+local Application = Classes.Application.Application;
+
+local MessageWindow = Classes.System.Windows.MessageWindow;
+
+
 LongOS = Class(function(this)
 	
 	this.GetClassName = function()
@@ -23,7 +35,7 @@ LongOS = Class(function(this)
 
 	local working = true;
 
-	local currentVersion = '0.4';
+	local currentVersion = '0.3';
 
 	local dblClickTimer = 0;
 	local clickX = 0;
@@ -219,9 +231,14 @@ LongOS = Class(function(this)
 	this.CatchEvents = function()
 		local event, param1, param2, param3, param4, param5 = os.pullEvent();
 
-		if (event == 'timer' and not tableExtAPI.contains(allowedTimers, param1)) then
-			return;
+		if (event == 'timer') then
+			if (not tableExtAPI.contains(allowedTimers, param1)) then
+				return;
+			end
+
+			this:RemoveTimer(param1);
 		end
+
 		addEvent(event, { param1, param2, param3, param4, param5 });
 	end
 

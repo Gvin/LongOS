@@ -1,3 +1,11 @@
+local Button = Classes.Components.Button;
+local PopupMenu = Classes.Components.PopupMenu;
+local Label = Classes.Components.Label;
+
+local ComponentsManager = Classes.Application.ComponentsManager;
+local MenuesManager = Classes.Application.MenuesManager;
+
+
 ControlPanel = Class(function(this)
 	
 	this.GetClassName = function()
@@ -62,7 +70,7 @@ ControlPanel = Class(function(this)
 
 	-- SYSTEM
 
-	local systemMenu = PopupMenu(15, 14, 15, 5, colors.lightGray);
+	local systemMenu = PopupMenu(15, 14, 15, 7, colors.lightGray);
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
 	local tasksManagerButtonClick = function(sender, eventArgs)
@@ -80,6 +88,14 @@ ControlPanel = Class(function(this)
 	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, 1, 'left-top');
 	configurationButton:SetOnClick(configurationButtonClick);
 	systemMenu:AddComponent(configurationButton);
+
+	local terminalButtonClick = function(sender, eventArgs)
+		System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal');
+	end
+
+	local terminalButton = Button('Terminal', colors.gray, colors.white, 3, 5, 'left-top');
+	terminalButton:SetOnClick(terminalButtonClick);
+	systemMenu:AddComponent(terminalButton);
 
 	local systemButtonClick = function(sender, eventArgs)
 		menuesManager:OpenCloseMenu('SystemMenu');
