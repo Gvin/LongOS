@@ -1,7 +1,41 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 59 registered features.
+Currently there are 63 registered features.
 
 TODO
+========
+
+For v 0.5
+--------
+- [ ] F8: Add terminal programs support.
+- [ ] F50: Change applications configuration extension to XML.
+- [ ] F57: Create application for desktop wallpapers changing.
+- [ ] F58: Create application for changing applications configuration.
+- [ ] F43: Add ability to add programs to the startup
+- [ ] F59: Add namespaces with standard classes.
+- [ ] F60: GvinFileManager: Add posibility to run programs.
+- [ ] F62: GvinFileManager: Add posibility to launch programs with "exec" extension.
+- [ ] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
+- [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
+- [ ] #11 System error when using Ctrl + T keys combination.
+
+For all versions
+--------
+- [ ] F7: Create class diagrams for all classes.
+- [ ] F1: Make code refactoring.
+
+Further releases
+--------
+- [ ] F15: Improve PopupMenu to support submenues.
+- [ ] F19: Add desktop icons.
+- [ ] F19.1: Add Icon class.
+- [ ] F19.2: Add DesktopIcon class.
+- [ ] F20: Add program to draw icons.
+- [ ] F49: Add window size and position storing on application closing.
+- [ ] F61: Create file browsing component.
+
+
+
+History
 ========
 
 For v 0.4
@@ -23,38 +57,11 @@ For v 0.4
 - [X] F16: Improve components ierarchy.
 - [X] F42: Change components layouts for better corner coordinates.
 - [X] F44: Add Enabled property to the components.
+- [X] F52: Update calculator program.
 - [X] #5 Edit's cursor isn't setted to the last position when opening window with text in edit
 - [X] #7 Cursor from back window's edit is visible on front window
 - [X] #8 System error appears when calling "error" function without parameters.
 - [X] #9 Close and maximize buttons is on the right position when left position specified in the config.
-- [ ] F24: Create application for components testing.
-- [X] F52: Update calculator program.
-
-For all versions
---------
-- [ ] F7: Create class diagrams for all classes.
-- [ ] F1: Make code refactoring.
-
-Further releases
---------
-- [ ] F8: Add terminal programs support.
-- [ ] F15: Improve PopupMenu to support submenues.
-- [ ] F19: Add desktop icons.
-- [ ] F19.1: Add Icon class.
-- [ ] F19.2: Add DesktopIcon class.
-- [ ] F20: Add program to draw icons.
-- [ ] F43: Add ability to add programs to the startup
-- [ ] F49: Add window size and position storing on application closing.
-- [ ] F50: Change applications configuration extension to XML.
-- [ ] F57: Create application for desktop wallpapers changing.
-- [ ] F58: Create application for changing applications configuration.
-- [ ] F59: Add namespaces with standard classes.
-- [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
-
-
-
-History
-========
 
 For v 0.3
 --------
@@ -104,3 +111,4 @@ Rejected
 - [X] F46: [REJECTED] Refactor window title drawing.
 - [X] F34: [REJECTED] Rename Application to Process.
 - [X] F11: [REJECTED] Add packets manager.
+- [X] F24: [REJECTED] Create application for components testing.
