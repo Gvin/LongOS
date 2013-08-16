@@ -28,7 +28,7 @@ For v 0.4
 - [X] #8 System error appears when calling "error" function without parameters.
 - [X] #9 Close and maximize buttons is on the right position when left position specified in the config.
 - [ ] F24: Create application for components testing.
-- [ ] F52: Update calculator program.
+- [X] F52: Update calculator program.
 
 For all versions
 --------
