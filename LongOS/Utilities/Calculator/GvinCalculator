@@ -1,7 +1,7 @@
 local function run()
 	shell.run('/LongOS/Utilities/Calculator/CalculatorWindow.lua');
 
-	local application = Application('Calculator');
+	local application = Classes.Application.Application('Calculator');
 	local calculatorWindow = CalculatorWindow(application);
 	application:Run(calculatorWindow);
 end

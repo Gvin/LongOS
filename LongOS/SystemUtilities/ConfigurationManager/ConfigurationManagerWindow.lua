@@ -1,3 +1,6 @@
+local Window = Classes.Application.Window;
+local Button = Classes.Components.Button;
+
 ConfigurationManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Configuration window', false);	
 	this:SetTitle('Configuration');

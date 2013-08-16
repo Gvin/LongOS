@@ -1,3 +1,8 @@
+local Window = Classes.Application.Window;
+local Button = Classes.Components.Button;
+local Label = Classes.Components.Label;
+local VerticalScrollBar = Classes.Components.VerticalScrollBar;
+
 TasksManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Gvin tasks manager', false);
 	this:SetTitle('Gvin tasks manager');

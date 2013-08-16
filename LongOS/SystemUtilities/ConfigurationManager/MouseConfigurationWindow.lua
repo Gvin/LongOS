@@ -1,3 +1,9 @@
+local Window = Classes.Application.Window;
+local Label = Classes.Components.Label;
+local Button = Classes.Components.Button;
+local Edit = Classes.Components.Edit;
+local MessageWindow = Classes.System.Windows.MessageWindow;
+
 MouseConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Mouse configuration window', false);
 	this:SetIsModal(true);

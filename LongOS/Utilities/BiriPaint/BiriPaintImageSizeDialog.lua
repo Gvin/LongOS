@@ -1,3 +1,14 @@
+local Window = Classes.Application.Window;
+
+local EventHandler = Classes.System.EventHandler;
+
+local Button = Classes.Components.Button;
+local Label = Classes.Components.Label;
+local Edit = Classes.Components.Edit;
+
+local MessageWindow = Classes.System.Windows.MessageWindow;
+
+
 BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight)
 
 	Window.init(this, _application, 'Paint new dialog', false);

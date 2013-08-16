@@ -1,3 +1,17 @@
+local Window = Classes.Application.Window;
+
+local Button = Classes.Components.Button;
+local VerticalScrollBar = Classes.Components.VerticalScrollBar;
+local HorizontalScrollBar = Classes.Components.HorizontalScrollBar;
+local PopupMenu = Classes.Components.PopupMenu;
+
+local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
+local ColorPickerDialog = Classes.System.Windows.ColorPickerDialog;
+local MessageWindow = Classes.System.Windows.MessageWindow;
+
+local Image = Classes.System.Graphics.Image;
+
+
 BiriPaintWindow = Class(Window, function(this, _application)	
 	
 	Window.init(this, _application, 'Biribitum Paint', false);
@@ -487,5 +501,4 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	end
 
 	constructor(_application);
-
 end)

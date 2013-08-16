@@ -1,7 +1,7 @@
 local function run()
 	shell.run('/LongOS/SystemUtilities/TasksManager/TasksManagerWindow.lua');
 
-	local application = Application('Tasks manager', true, true);
+	local application = Classes.Application.Application('Tasks manager', true, true);
 	local tasksManagerWindow = TasksManagerWindow(application);
 	application:Run(tasksManagerWindow);
 end

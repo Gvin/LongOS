@@ -1,20 +1,21 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 63 registered features.
+Currently there are 65 registered features.
 
 TODO
 ========
 
 For v 0.5
 --------
-- [ ] F8: Add terminal programs support.
+- [X] F8: Add terminal programs support.
+- [X] F59: Add namespaces with standard classes.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
 - [ ] F43: Add ability to add programs to the startup
-- [ ] F59: Add namespaces with standard classes.
 - [ ] F60: GvinFileManager: Add posibility to run programs.
 - [ ] F62: GvinFileManager: Add posibility to launch programs with "exec" extension.
 - [ ] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
+- [ ] F65: Add more events to the components, windows and dialogs.
 - [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [ ] #11 System error when using Ctrl + T keys combination.
 
@@ -32,6 +33,7 @@ Further releases
 - [ ] F20: Add program to draw icons.
 - [ ] F49: Add window size and position storing on application closing.
 - [ ] F61: Create file browsing component.
+- [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 
 
 

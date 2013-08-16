@@ -4,7 +4,7 @@ local function run()
 	shell.run('/LongOS/SystemUtilities/ConfigurationManager/InterfaceConfigurationWindow.lua');
 	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManagerWindow.lua');
 	
-	local application = Application('Configuration Manager', true, true);
+	local application = Classes.Application.Application('Configuration Manager', true, true);
 	local configurationManagerWindow = ConfigurationManagerWindow(application);
 	application:Run(configurationManagerWindow);
 end

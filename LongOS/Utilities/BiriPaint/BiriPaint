@@ -1,7 +1,7 @@
 local function run()
 	shell.run('/LongOS/Utilities/BiriPaint/BiriPaintImageSizeDialog.lua');
 	shell.run('/LongOS/Utilities/BiriPaint/BiriPaintWindow.lua');
-	local application = Application('BiriPaint', false, true);
+	local application = Classes.Application.Application('BiriPaint', false, true);
 	local biriPaintWindow = BiriPaintWindow(application);
 	application:Run(biriPaintWindow);
 end

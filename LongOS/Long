@@ -1,11 +1,19 @@
+oldStartTimer = os.startTimer;
+
+os.startTimer = function(time)
+	local timer = oldStartTimer(time);
+	System:AddTimer(timer);
+	return timer;
+end
+
 oldSleep = os.sleep;
+
 os.sleep = function(time)
-	local timer = os.startTimer(time);
+	local timer = oldStartTimer(time);
 	System:AddTimer(timer);
 	repeat
 		local _, eventTimer = os.pullEvent('timer');
 	until eventTimer == timer;
-	System:RemoveTimer(timer);
 end
 
 local function draw()
@@ -70,6 +78,7 @@ if (not success) then
 end
 
 System = LongOS();
+LongOS = nil;
 System:ReadConfiguration();
 
 success, message = pcall(parallel.waitForAny, update, draw, catchEvents, processEvents);

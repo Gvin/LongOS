@@ -1,3 +1,7 @@
+local Window = Classes.Application.Window;
+local Label = Classes.Components.Label;
+local Button = Classes.Components.Button;
+
 InterfaceConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Interface configuration window', false);
 	this:SetIsModal(true);

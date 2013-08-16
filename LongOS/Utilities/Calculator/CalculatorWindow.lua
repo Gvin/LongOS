@@ -1,5 +1,9 @@
+local Window = Classes.Application.Window;
+local Button = Classes.Components.Button;
+local Edit = Classes.Components.Edit;
+
 CalculatorWindow = Class(Window, function(this, _application)
-	Window.init(this, _application, 'Calculator window', false); --, false, true, '', 3, 5, 25, 12,  25, 12, nil,  false,  true,  false);
+	Window.init(this, _application, 'Calculator window', false);
 	this:SetTitle('Calculator');
 	this:SetX(3);
 	this:SetY(5);

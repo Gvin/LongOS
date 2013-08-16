@@ -1,3 +1,14 @@
+local Window = Classes.Application.Window;
+
+local Button = Classes.Components.Button;
+local VerticalScrollBar = Classes.Components.VerticalScrollBar; 
+local PopupMenu = Classes.Components.PopupMenu;
+
+local MessageWindow = Classes.System.Windows.MessageWindow;
+local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
+local QuestionDialog = Classes.System.Windows.QuestionDialog;
+
+
 FileManagerWindow = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Gvin file manager', false);
