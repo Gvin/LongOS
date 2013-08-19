@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 68 registered features.
+Currently there are 69 registered features.
 
 TODO
 ========
@@ -12,6 +12,7 @@ For v 0.5
 - [X] F67: Update BiriPaint.
 - [X] F65: Add more events to the components, windows and dialogs.
 - [X] F68: Add ToString method to all classes.
+- [X] F69: Refactor terminal programm for better errors catching.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.

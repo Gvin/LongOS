@@ -75,7 +75,7 @@ ThreadsManager = Class(Object, function(this)
 		while (#events > 0) do
 			local event = events[1];
 			table.remove(events, 1);
-
+			
 			for i = 1, #threads do
 				local thread = threads[i];
 				local id = thread:GetId();

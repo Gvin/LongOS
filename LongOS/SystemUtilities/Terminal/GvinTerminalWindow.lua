@@ -26,6 +26,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	local redirector;
 	local threadsManager;
 	local paused;
+	local executing;
 
 	local terminateButton;
 	local pauseResumeButton;
@@ -136,8 +137,10 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	local function terminateButtonClick(_sender, _eventArgs)
-		threadsManager:ProcessTerminateEvent();
-		update();
+		if (executing) then
+			threadsManager:ProcessTerminateEvent();
+			update();
+		end
 	end
 
 	local function pauseResumeButtonClick(_sender, _eventArgs)
@@ -150,12 +153,16 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	local function start()
+		term.setTextColor(colors.lime);
+		print('LongOS terminal emulator v1.0');
+		term.setTextColor(colors.white);
 		if (_fileName ~= nil and type(_fileName) == 'string') then
 			shell.run(_fileName);
 		else
 			shell.run('shell');
 		end
 
+		executing = false;
 		os.sleep(1);
 		term.setBackgroundColor(colors.black);
 		term.clear();
@@ -197,6 +204,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 
 	local function constructor()
 		paused = false;
+		executing = true;
 		redirector = RedirectorGenerator():GenerateRedirector(this:GetWidth() - 2, this:GetHeight() - 3);
 		this:AddOnResizeEventHandler(windowOnResize);
 
