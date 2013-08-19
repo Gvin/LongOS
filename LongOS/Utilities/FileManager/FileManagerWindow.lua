@@ -32,6 +32,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local vScrollBar;
 	local pasteButton;
 	local createDirectoryButton;
+	local createFileButton;
 	local contextMenu;
 
 	local EXECUTABLE_FILE_EXTENSION = '.exec';
@@ -352,6 +353,17 @@ FileManagerWindow = Class(Window, function(this, _application)
 		vScrollBar:SetHeight(this:GetHeight() - 5);
 	end
 
+	local function runInTerminalButtonClick(_sender, _eventArgs)
+		local fullPath = currentDirectory..'/'..selectedFile;
+		fullPath = string.sub(fullPath, 2, fullPath:len());
+		if (selectedFile ~= '' and selectedFile ~= '..' and not fs.isDir(fullPath) and not isExecutable(fullPath)) then
+			System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
+		else
+			local errorMessage = MessageWindow(this:GetApplication(), "Can't launch", 'Unable to lauch selected file.');
+			errorMessage:ShowModal();
+		end
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -372,29 +384,33 @@ FileManagerWindow = Class(Window, function(this, _application)
 		createFileButton:AddOnClickEventHandler(createFileButtonClick);
 		this:AddComponent(createFileButton);
 
-		contextMenu = PopupMenu(1, 1, 10, 9, nil, true);
+		contextMenu = PopupMenu(1, 1, 10, 11, nil, false);
 		this:AddMenu('ContextMenu', contextMenu);
 
-		copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
+		local copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
 		copyButton:AddOnClickEventHandler(copyButtonClick);
 		contextMenu:AddComponent(copyButton);
 
-		cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
+		local cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
 		cutButton:AddOnClickEventHandler(cutButtonClick);
 		contextMenu:AddComponent(cutButton);
 
-		deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
+		local deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
 		deleteButton:AddOnClickEventHandler(deleteButtonClick);
 		contextMenu:AddComponent(deleteButton);
 
-		renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
+		local renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
 		renameButton:AddOnClickEventHandler(renameButtonClick);
 		contextMenu:AddComponent(renameButton);
+
+		local runInTerminalButton = Button('Run in terminal', nil, nil, 1, 9, 'left-top');
+		runInTerminalButton:AddOnClickEventHandler(runInTerminalButtonClick);
+		contextMenu:AddComponent(runInTerminalButton);
 
 		this:AddOnResizeEventHandler(onWindowResize);
 	end
 
-	local function constructor(_application)
+	local function constructor()
 		currentDirectory = '/';
 		selectedFile = '';
 		copiedFile = '';
@@ -403,5 +419,5 @@ FileManagerWindow = Class(Window, function(this, _application)
 		initializeComponents();
 	end
 
-	constructor(_application);
+	constructor();
 end)

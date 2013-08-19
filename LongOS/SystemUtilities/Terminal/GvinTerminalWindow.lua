@@ -156,6 +156,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		term.setTextColor(colors.lime);
 		print('LongOS terminal emulator v1.0');
 		term.setTextColor(colors.white);
+		executing = true;
 		if (_fileName ~= nil and type(_fileName) == 'string') then
 			shell.run(_fileName);
 		else

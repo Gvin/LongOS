@@ -15,12 +15,12 @@ For v 0.5
 - [X] F69: Refactor terminal programm for better errors catching.
 - [X] F71: Rework isModal property setting for windows.
 - [X] F62: GvinFileManager: Add posibility to launch programs with "exec" extension.
+- [X] F60: GvinFileManager: Add posibility to run programs.
+- [X] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
 - [ ] F43: Add ability to add programs to the startup
-- [ ] F60: GvinFileManager: Add posibility to run programs.
-- [ ] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
 - [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [ ] #11 System error when using Ctrl + T keys combination.
 - [ ] #12 GvinFileManager: Error whet trying to create files or folders with some names.
