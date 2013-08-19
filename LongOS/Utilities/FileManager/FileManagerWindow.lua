@@ -215,6 +215,9 @@ FileManagerWindow = Class(Window, function(this, _application)
 		if (fs.exists(newFileName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
 			errorWindow:ShowModal();
+		elseif (fs.isReadOnly(oldFileName)) then
+			local errorWindow = MessageWindow(this:GetApplication(), 'File is read-only', 'Selected file is read-only, it cannot be renamed or deleted.');
+			errorWindow:ShowModal();
 		else
 			fs.copy(oldFileName, newFileName);
 			fs.delete(oldFileName);
@@ -258,6 +261,12 @@ FileManagerWindow = Class(Window, function(this, _application)
 			local accessPath = currentDirectory..'/'..name;
 			if (fs.exists(accessPath)) then
 				local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File "'..name..'" allready exists in current directory.');
+				errorWindow:ShowModal();
+				resetCopyCut();
+				return;
+			end
+			if (cuttedFile ~= '' and fs.isReadOnly(cuttedFile)) then
+				local errorWindow = MessageWindow(this:GetApplication(), 'File is read-only', 'Selected file is read-only, it cannot be renamed or deleted.');
 				errorWindow:ShowModal();
 				resetCopyCut();
 				return;
@@ -312,7 +321,12 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function deleteDialogYes(sender, eventArgs)
 		if (selectedFile ~= '' and selectedFile ~= nil) then
-			fs.delete(currentDirectory..'/'..selectedFile);
+			if (fs.isReadOnly(currentDirectory..'/'..selectedFile)) then
+				local errorWindow = MessageWindow(this:GetApplication(), 'File is read-only', 'Selected file is read-only, it cannot be renamed or deleted.');
+				errorWindow:ShowModal();
+			else
+				fs.delete(currentDirectory..'/'..selectedFile);
+			end
 		end
 	end
 
@@ -387,25 +401,25 @@ FileManagerWindow = Class(Window, function(this, _application)
 		contextMenu = PopupMenu(1, 1, 10, 11, nil, false);
 		this:AddMenu('ContextMenu', contextMenu);
 
-		local copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
+		local runInTerminalButton = Button('Run in terminal', nil, nil, 1, 1, 'left-top');
+		runInTerminalButton:AddOnClickEventHandler(runInTerminalButtonClick);
+		contextMenu:AddComponent(runInTerminalButton);
+
+		local copyButton = Button('Copy', nil, nil, 6, 3, 'left-top');
 		copyButton:AddOnClickEventHandler(copyButtonClick);
 		contextMenu:AddComponent(copyButton);
 
-		local cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
+		local cutButton = Button('Cut ', nil, nil, 6, 5, 'left-top');
 		cutButton:AddOnClickEventHandler(cutButtonClick);
 		contextMenu:AddComponent(cutButton);
 
-		local deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
+		local deleteButton = Button('Delete', nil, nil, 5, 7, 'left-top');
 		deleteButton:AddOnClickEventHandler(deleteButtonClick);
 		contextMenu:AddComponent(deleteButton);
 
-		local renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
+		local renameButton = Button('Rename', nil, nil, 5, 9, 'left-top');
 		renameButton:AddOnClickEventHandler(renameButtonClick);
 		contextMenu:AddComponent(renameButton);
-
-		local runInTerminalButton = Button('Run in terminal', nil, nil, 1, 9, 'left-top');
-		runInTerminalButton:AddOnClickEventHandler(runInTerminalButtonClick);
-		contextMenu:AddComponent(runInTerminalButton);
 
 		this:AddOnResizeEventHandler(onWindowResize);
 	end
