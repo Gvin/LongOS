@@ -80,6 +80,7 @@ end
 System = Classes.System.LongOS();
 Classes.System.LongOS = nil;
 System:ReadConfiguration();
+System:ReadAutoexec();
 
 success, message = pcall(parallel.waitForAny, update, draw, catchEvents, processEvents);
 if (not success) then

@@ -407,4 +407,18 @@ LongOS = Class(Object, function(this)
 			return 2;
 		end
 	end
+
+	this.ReadAutoexec = function()
+		local file = fs.open('/LongOS/Configuration/autoexec', 'r');
+
+		local line = file.readLine();
+		while (line) do
+			if (fs.exists(line)) then
+				System:RunFile(line);
+			end
+			line = file.readLine();
+		end
+
+		file.close();
+	end
 end)

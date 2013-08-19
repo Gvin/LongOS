@@ -17,11 +17,11 @@ For v 0.5
 - [X] F62: GvinFileManager: Add posibility to launch programs with "exec" extension.
 - [X] F60: GvinFileManager: Add posibility to run programs.
 - [X] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
+- [X] F43: Add ability to add programs to the startup.
 - [X] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
-- [ ] F43: Add ability to add programs to the startup.
 - [ ] #11 System error when using Ctrl + T keys combination.
 - [ ] #12 GvinFileManager: Error whet trying to create files or folders with some names.
 
