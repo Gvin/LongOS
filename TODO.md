@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 72 registered features.
+Currently there are 73 registered features.
 
 TODO
 ========
@@ -22,6 +22,7 @@ For v 0.5
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
+- [ ] F73: Rework rednet support for proper parameters pathing.
 - [ ] #11 System error when using Ctrl + T keys combination.
 - [ ] #12 GvinFileManager: Error whet trying to create files or folders with some names.
 
