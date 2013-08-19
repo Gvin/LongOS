@@ -31,7 +31,6 @@ MessageWindow = Class(Window, function(this, _application, _title, _text, _textC
 	local height = countHeight(_text);
 
 	Window.init(this, _application, 'Message Window', false);
-	this:SetIsModal(true);
 	this:SetTitle(_title);
 	this:SetX(countXPosition(_text));
 	this:SetY(countYPosition(_text));

@@ -5,7 +5,6 @@ local EventHandler = Classes.System.EventHandler;
 ColorPickerDialog = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Color picker dialog', false);
-	this:SetIsModal(true);
 	this:SetTitle('Select color');
 	this:SetX(10);
 	this:SetY(3);

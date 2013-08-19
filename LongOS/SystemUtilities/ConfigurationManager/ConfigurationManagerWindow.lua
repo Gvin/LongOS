@@ -19,17 +19,17 @@ ConfigurationManagerWindow = Class(Window, function(this, _application)
 
 	local function colorConfigurationButtonClick(_sender, _eventArgs)
 		local colorWindow = ColorConfigurationWindow(_application);
-		colorWindow:Show();		
+		colorWindow:ShowModal();		
 	end	
 
 	local function mouseConfigurationButtonClick(_sender, _eventArgs)
 		local mouseWindow = MouseConfigurationWindow(_application);
-		mouseWindow:Show();		
+		mouseWindow:ShowModal();		
 	end	
 
 	local function interfaceConfigurationButtonClick (_sender, _eventArgs)
 		local interfaceWindow = InterfaceConfigurationWindow(_application);
-		interfaceWindow:Show();		
+		interfaceWindow:ShowModal();		
 	end	
 
 	------------------------------------------------------------------------------------------------------------------

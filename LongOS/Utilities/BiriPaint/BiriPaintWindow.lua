@@ -99,13 +99,13 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	local mainColorSelectionButtonClick = function(_sender, _eventArgs)
 		local picker = ColorPickerDialog(this:GetApplication());
 		picker:AddOnOkEventHandler(mainColorPickerOnOk);
-		picker:Show();
+		picker:ShowModal();
 	end
 
 	local additionalColorSelectionButtonClick = function(_sender, _eventArgs)
 		local colorPickerDialog = ColorPickerDialog(this:GetApplication());
 		colorPickerDialog:AddOnOkEventHandler(additionalColorPickerOnOk);
-		colorPickerDialog:Show();
+		colorPickerDialog:ShowModal();
 	end
 
 
@@ -126,7 +126,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	local newButtonClick = function(_sender, _eventArgs)
 		local newDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image',''..image:GetWidth(),''..image:GetHeight());
 		newDialog:AddOnOkEventHandler(newDialogOnOk);
-		newDialog:Show();		
+		newDialog:ShowModal();		
 	end
 
 	local function openDialogOnOk(_sender, _eventArgs)
@@ -135,30 +135,30 @@ BiriPaintWindow = Class(Window, function(this, _application)
 			image:LoadFromFile(fileName);	
 			scrollUpdate()	
 			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
-			openWindow:Show();	
+			openWindow:ShowModal();	
 		else
 			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'..fileName..' not exist');
-			errorWindow:Show();
+			errorWindow:ShowModal();
 		end				
 	end
 
 	local openButtonClick = function(_sender, _eventArgs)
 		local openDialog = EnterTextDialog(this:GetApplication(),'Open file','Enter file name','/');
 		openDialog:AddOnOkEventHandler(openDialogOnOk);
-		openDialog:Show();	
+		openDialog:ShowModal();	
 	end
 	
 	local function saveDialogOnOk(_sender, _eventArgs)
 		local fileName = _eventArgs.Text..'.image';		
 		image:SaveToFile(fileName);	
 		local openWindow = MessageWindow(this:GetApplication(), 'File saved', 'File successfully saved.');
-		openWindow:Show();					
+		openWindow:ShowModal();					
 	end
 
 	local saveButtonClick = function(_sender, _eventArgs)
 		local saveDialog = EnterTextDialog(this:GetApplication(),'Save file','Enter file name','/');
 		saveDialog:AddOnOkEventHandler(saveDialogOnOk);
-		saveDialog:Show();		
+		saveDialog:ShowModal();		
 	end
 
 
@@ -188,7 +188,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	local sizeButtonClick = function(_sender, _eventArgs)
 		local sizeDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image size',''..image:GetWidth(),''..image:GetHeight());
 		sizeDialog:AddOnOkEventHandler(sizeDialogOnOk);
-		sizeDialog:Show();		
+		sizeDialog:ShowModal();		
 	end
 
 

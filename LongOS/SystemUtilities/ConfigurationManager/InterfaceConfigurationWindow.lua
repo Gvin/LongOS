@@ -4,7 +4,6 @@ local Button = Classes.Components.Button;
 
 InterfaceConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Interface configuration window', false);
-	this:SetIsModal(true);
 	this:SetTitle('Interface configuration');
 	this:SetX(7);
 	this:SetY(3);

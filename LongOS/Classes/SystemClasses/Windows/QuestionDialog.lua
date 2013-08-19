@@ -32,7 +32,6 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	local height = countHeight(_text);
 
 	Window.init(this, _application, 'Question dialog', false);
-	this:SetIsModal(true);
 	this:SetTitle(_title);
 	this:SetX(countXPosition(_text));
 	this:SetY(countYPosition(_text));

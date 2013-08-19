@@ -10,7 +10,6 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight)
 
 	Window.init(this, _application, 'Paint new dialog', false);
-	this:SetIsModal(true);
 	this:SetTitle(_title);
 	this:SetX(10);
 	this:SetY(7);
@@ -60,7 +59,7 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 			onOk:Invoke(this, eventArgs);				
 		else
 			local errorWindow = MessageWindow(this:GetApplication(), 'Not a number', 'Width and height must be a number');			
-			errorWindow:Show();	
+			errorWindow:ShowModal();	
 		end
 	end
 

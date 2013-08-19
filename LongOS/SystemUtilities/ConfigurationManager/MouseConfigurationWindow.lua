@@ -6,7 +6,6 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 
 MouseConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Mouse configuration window', false);
-	this:SetIsModal(true);
 	this:SetTitle('Mouse configuration');
 	this:SetX(7);
 	this:SetY(3);
@@ -36,7 +35,7 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 			this:Close();			
 		else
 			local errorWindow = MessageWindow(this:GetApplication(), 'Not a number', 'Double click speed must be a number');			
-			errorWindow:Show();	
+			errorWindow:ShowModal();	
 		end
 		
 	end

@@ -139,13 +139,6 @@ Window = Class(Object, function(this, _application, _name, _isUnique)
 		return isModal;
 	end
 
-	function this:SetIsModal(_value)
-		if (type(_value) ~= 'boolean') then
-			error('Window.SetIsModal [value]: Boolean expected, got '..type(_isUnique)..'.');
-		end
-		isModal = _value;
-	end
-
 	function this:GetAllowMove()
 		return allowMove;
 	end
@@ -385,9 +378,23 @@ Window = Class(Object, function(this, _application, _name, _isUnique)
 	end
 
 	function this:Show()
+		isModal = false;
+
 		application:AddWindow(this);
 
-		onShow:Invoke(this, {});
+		local eventArgs = {};
+		eventArgs.IsModal = false;
+		onShow:Invoke(this, eventArgs);
+	end
+
+	function this:ShowModal()
+		isModal = true;
+
+		application:AddWindow(this);
+
+		local eventArgs = {};
+		eventArgs.IsModal = true;
+		onShow:Invoke(this, eventArgs);
 	end
 
 	function this:Maximize()

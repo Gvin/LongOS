@@ -5,7 +5,6 @@ local ColorPickerDialog = Classes.System.Windows.ColorPickerDialog;
 
 ColorConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Color configuration window', false);
-	this:SetIsModal(true);
 	this:SetTitle('Color configuration');
 	this:SetX(7);
 	this:SetY(3);
@@ -52,7 +51,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		selectedButton = _sender;
 		local picker = ColorPickerDialog(this:GetApplication());
 		picker:AddOnOkEventHandler(colorPickerOnOk);
-		picker:Show();
+		picker:ShowModal();
 	end
 
 	local function saveChangesButtonClick(_sender, _eventArgs)

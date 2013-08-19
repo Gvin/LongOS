@@ -101,7 +101,7 @@ ApplicationsManager = Class(Object, function(this)
 	local function showError(_application, _errorText, _message)
 		_application:Clear();
 		local errorWindow = MessageWindow(_application, 'Error', 'Error message: '.._errorText.._message, colors.red);
-		errorWindow:Show();
+		errorWindow:ShowModal();
 	end
 
 	local function tryDraw(_application, _videoBuffer)

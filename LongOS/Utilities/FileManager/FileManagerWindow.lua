@@ -178,7 +178,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		local newDirectoryName = currentDirectory..'/'.._directoryName;
 		if (fs.exists(newDirectoryName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'Directory exists', '   Directory with such name          allready exists.');
-			errorWindow:Show();
+			errorWindow:ShowModal();
 		else
 			fs.makeDir(newDirectoryName);
 		end
@@ -188,7 +188,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		local newFileName = currentDirectory..'/'.._fileName;
 		if (fs.exists(newFileName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
-			errorWindow:Show();
+			errorWindow:ShowModal();
 		else
 			local descryptor = fs.open(newFileName, 'w');
 			descryptor.close();
@@ -200,7 +200,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		local oldFileName = currentDirectory..'/'..selectedFile;
 		if (fs.exists(newFileName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
-			errorWindow:Show();
+			errorWindow:ShowModal();
 		else
 			fs.copy(oldFileName, newFileName);
 			fs.delete(oldFileName);
@@ -244,13 +244,13 @@ FileManagerWindow = Class(Window, function(this, _application)
 			local accessPath = currentDirectory..'/'..name;
 			if (fs.exists(accessPath)) then
 				local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File "'..name..'" allready exists in current directory.');
-				errorWindow:Show();
+				errorWindow:ShowModal();
 				resetCopyCut();
 				return;
 			end
 			if (not copyFile(fileName, accessPath)) then
 				local errorWindow = MessageWindow(this:GetApplication(), 'Wrong operation', "Can't copy directory inside itself.");
-				errorWindow:Show();
+				errorWindow:ShowModal();
 				resetCopyCut();
 			end
 		end
@@ -272,7 +272,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function createDirectoryButtonClick(sender, eventArgs)
 		local newDirectoryDialog = EnterTextDialog(this:GetApplication(), 'Create directory', 'Enter new directory name:');
 		newDirectoryDialog:AddOnOkEventHandler(newDirectoryDialogOk);
-		newDirectoryDialog:Show();
+		newDirectoryDialog:ShowModal();
 	end
 
 	local function newFileDialogOk(sender, eventArgs)
@@ -283,7 +283,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function createFileButtonClick(sender, eventArgs)
 		local newFileDialog = EnterTextDialog(this:GetApplication(), 'Create file', 'Enter new file name:');
 		newFileDialog:AddOnOkEventHandler(newFileDialogOk);
-		newFileDialog:Show();
+		newFileDialog:ShowModal();
 	end
 
 	local function copyButtonClick(sender, eventArgs)
@@ -306,7 +306,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		if (selectedFile ~= '' and selectedFile ~= nil) then
 			local deleteDialog = QuestionDialog(this:GetApplication(), 'Delete?', 'Do you really want to delete     "'..selectedFile..'"?');
 			deleteDialog:AddOnYesEventHandler(deleteDialogYes);
-			deleteDialog:Show();
+			deleteDialog:ShowModal();
 		end
 	end
 
@@ -318,7 +318,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function renameButtonClick(sender, eventArgs)
 		local renameDialog = EnterTextDialog(this:GetApplication(), 'Rename', 'Enter new name:', selectedFile);
 		renameDialog:AddOnOkEventHandler(renameDialogOk);
-		renameDialog:Show();
+		renameDialog:ShowModal();
 	end
 
 	function this.ProcessKeyEvent(_, key)

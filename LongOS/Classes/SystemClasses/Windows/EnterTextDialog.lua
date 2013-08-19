@@ -7,7 +7,6 @@ local EventHandler = Classes.System.EventHandler;
 EnterTextDialog = Class(Window, function(this, _application, _title, _text, _initialText)
 
 	Window.init(this, _application, 'Enter text dialog', false);
-	this:SetIsModal(true);
 	this:SetTitle(_title);
 	this:SetX(10);
 	this:SetY(7);
