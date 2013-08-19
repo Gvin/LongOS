@@ -11,7 +11,7 @@ For v 0.5
 - [X] F66: Refactor loading.
 - [X] F67: Update BiriPaint.
 - [X] F65: Add more events to the components, windows and dialogs.
-- [ ] F68: Add ToString method to all classes.
+- [X] F68: Add ToString method to all classes.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.

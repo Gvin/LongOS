@@ -3,11 +3,8 @@ local Button = Classes.Components.Button;
 local PopupMenu = Classes.Components.PopupMenu;
 
 
-Desktop = Class(function(this)
-	
-	this.GetClassName = function()
-		return "Desktop";
-	end
+Desktop = Class(Object, function(this)
+	Object.init(this, 'Desktop');
 
 	----- FIELDS -----
 

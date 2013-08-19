@@ -10,11 +10,8 @@ local Application = Classes.Application.Application;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
 
-LongOS = Class(function(this)
-	
-	this.GetClassName = function()
-		return 'LongOS';
-	end
+LongOS = Class(Object, function(this)
+	Object.init(this, 'LongOS');
 
 	local updateLock = false;
 

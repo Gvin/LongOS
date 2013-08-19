@@ -41,3 +41,26 @@ function Class(base, init)
    setmetatable(c, mt)
    return c
 end
+
+Object = Class(function(this, _className)
+
+   local className;
+
+   function this:GetClassName()
+      return className;
+   end
+
+   function this:ToString()
+      return 'Instance of class "'..className..'".';
+   end
+
+   local function constructor(_className)
+      if (type(_className) ~= 'string') then
+         error('Object.Construnctor [className]: String expected, got '..type(_className)..'.');
+      end
+
+      className = _className;
+   end
+
+   constructor(_className);
+end)

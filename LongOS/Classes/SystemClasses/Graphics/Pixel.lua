@@ -1,8 +1,5 @@
-Pixel = Class(function(this, initBackColor, initTextColor, initSymbol)
-	
-	this.GetClassName = function()
-		return "Pixel";
-	end
+Pixel = Class(Object, function(this, initBackColor, initTextColor, initSymbol)
+	Object.init(this, 'Pixel');
 
 	local backgroundColor = initBackColor;
 	local textColor = initTextColor;

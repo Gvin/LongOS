@@ -1,7 +1,5 @@
-ThreadsManager = Class(function(this)
-	function this.GetClassName()
-		return 'ThreadsManager';
-	end
+ThreadsManager = Class(Object, function(this)
+	Object.init(this, 'ThreadsManager');
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

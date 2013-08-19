@@ -1,7 +1,5 @@
-Thread = Class(function(this, _application, _operation)
-	function this.GetClassName()
-		return 'Thread';
-	end
+Thread = Class(Object, function(this, _application, _operation)
+	Object.init(this, 'Thread');
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

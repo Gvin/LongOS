@@ -7,10 +7,11 @@ local Canvas = Classes.System.Graphics.Canvas;
 -- Window class. Contains all window data, draw and update functions.
 -- For creating programs with windows, you should create child classes
 -- from this class.
-Window = Class(function(this, _application, _name, _isUnique)
+Window = Class(Object, function(this, _application, _name, _isUnique)
+	Object.init(this, 'Window');
 
-	function this:GetClassName()
-		return 'Window';
+	function this:ToString()
+		return this:GetTitle();
 	end
 
 	------------------------------------------------------------------------------------------------------------------

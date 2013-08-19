@@ -1,8 +1,5 @@
-Component = Class(function(this, _dX, _dY, _anchorType)
-	
-	function this:GetClassName()
-		return 'Component';
-	end
+Component = Class(Object, function(this, _dX, _dY, _anchorType)
+	Object.init(this, 'Component');
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

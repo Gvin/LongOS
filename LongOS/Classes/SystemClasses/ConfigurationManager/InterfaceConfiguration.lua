@@ -1,9 +1,6 @@
 -- Configuration class for interface modification support.
-InterfaceConfiguration = Class(function(this, _fileName)
-
-	this.GetClassName = function()
-		return 'InterfaceConfiguration';
-	end
+InterfaceConfiguration = Class(Object, function(this, _fileName)
+	Object.init(this, 'InterfaceConfiguration');
 
 	if (type(_fileName) ~= 'string') then
 		error('InterfaceConfiguration.Constructor [fileName]: string expected, got '..type(_fileName)..'.');

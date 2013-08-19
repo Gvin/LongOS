@@ -1,8 +1,5 @@
-WindowsManager = Class(function(this)
-
-	this.GetClassName = function()
-		return 'WindowsManager';
-	end
+WindowsManager = Class(Object, function(this)
+	Object.init(this, 'WindowsManager');
 
 	this.Enabled = true;
 	local windows = {};

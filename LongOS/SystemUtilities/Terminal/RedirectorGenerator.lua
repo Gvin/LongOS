@@ -1,7 +1,9 @@
 local Canvas = Classes.System.Graphics.Canvas;
 
 
-RedirectorGenerator = Class(function(this)
+RedirectorGenerator = Class(Object, function(this)
+	Object.init(this, 'RedirectorGenerator');
+
 	function this.GenerateRedirector(_, _width, _height)
 		local redirector = {};
 

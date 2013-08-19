@@ -1,8 +1,5 @@
-VideoBuffer = Class(function(this)
-	
-	this.GetClassName = function()
-		return 'VideoBuffer';
-	end
+VideoBuffer = Class(Object, function(this)
+	Object.init(this, 'VideoBuffer');
 
 	local pixels = {};
 

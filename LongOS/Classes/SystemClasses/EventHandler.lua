@@ -1,8 +1,5 @@
-EventHandler = Class(function(this)
-
-	function this.GetClassName()
-		return 'EventHandler';
-	end
+EventHandler = Class(Object, function(this)
+	Object.init(this, 'EventHandler');
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

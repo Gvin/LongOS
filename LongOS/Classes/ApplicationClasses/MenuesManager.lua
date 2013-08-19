@@ -1,11 +1,8 @@
 -- Menues manager manages all menues of the owner.
 -- It takes care abount opening and closing menues,
 -- drawing them to the buffer and events processing.
-MenuesManager = Class(function(this)
-
-	this.GetClassName = function()
-		return 'MenuesManager';
-	end
+MenuesManager = Class(Object, function(this)
+	Object.init(this, 'MenuesManager');
 
 	local menues = {};
 

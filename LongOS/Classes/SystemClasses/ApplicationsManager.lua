@@ -1,10 +1,7 @@
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
-ApplicationsManager = Class(function(this)
-
-	function this.GetClassName()
-		return 'ApplicationsManager';
-	end
+ApplicationsManager = Class(Object, function(this)
+	Object.init(this, 'ApplicationsManager');
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------

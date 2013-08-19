@@ -1,9 +1,6 @@
 -- Configuration class for color schema support.
-ColorConfiguration = Class(function(this, _fileName)
-
-	this.GetClassName = function()
-		return 'ColorConfiguration';
-	end
+ColorConfiguration = Class(Object, function(this, _fileName)
+	Object.init(this, 'ColorConfiguration');
 
 	if (type(_fileName) ~= 'string') then
 		error('ColorConfiguration.Constructor [fileName]: string expected, got '..type(_fileName)..'.');

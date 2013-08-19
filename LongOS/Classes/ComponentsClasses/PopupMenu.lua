@@ -1,8 +1,6 @@
-PopupMenu = Class(function(this, x, y, width, height, backgroundColor, _allowAutoHeight)
-	
-	this.GetClassName = function()
-		return 'PopupMenu';
-	end
+PopupMenu = Class(Object, function(this, x, y, width, height, backgroundColor, _allowAutoHeight)
+	Object.init(this, 'PopupMenu');
+
 
 	this.X = x;
 	this.Y = y;

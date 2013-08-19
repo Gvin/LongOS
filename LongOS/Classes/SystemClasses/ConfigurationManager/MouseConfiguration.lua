@@ -1,9 +1,6 @@
 -- Configuration class for mouse modification support.
-MouseConfiguration = Class(function(this, _fileName)
-
-	this.GetClassName = function()
-		return 'MouseConfiguration';
-	end
+MouseConfiguration = Class(Object, function(this, _fileName)
+	Object.init(this, 'MouseConfiguration');
 
 	if (type(_fileName) ~= 'string') then
 		error('MouseConfiguration.Constructor [fileName]: string expected, got '..type(_fileName)..'.');

@@ -44,7 +44,7 @@ end
 
 include('Classes/SystemClasses/ClassBase');
 
-if (Class == nil) then
+if (Class == nil or Object == nil) then
 	LoadingErrors = LoadingErrors + 1;
 	error('Basic objects system cannot be loaded.');
 end

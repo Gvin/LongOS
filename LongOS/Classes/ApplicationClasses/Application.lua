@@ -1,9 +1,5 @@
-
-Application = Class(function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
-	
-	this.GetClassName = function()
-		return 'Application';
-	end
+Application = Class(Object, function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
+	Object.init(this, 'Application');
 
 	----- Fields -----
 
