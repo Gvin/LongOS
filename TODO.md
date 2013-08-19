@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 66 registered features.
+Currently there are 67 registered features.
 
 TODO
 ========
@@ -17,6 +17,7 @@ For v 0.5
 - [ ] F62: GvinFileManager: Add posibility to launch programs with "exec" extension.
 - [ ] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
 - [ ] F65: Add more events to the components, windows and dialogs.
+- [ ] F67: Update BiriPaint.
 - [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [ ] #11 System error when using Ctrl + T keys combination.
 
