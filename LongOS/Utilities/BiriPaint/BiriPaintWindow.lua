@@ -34,7 +34,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 	local yDown;	
 
 	local vScrollBar;
-	local gScrollBar;
+	local hScrollBar;
 
 	local fileMenu;
 	local fileButton;

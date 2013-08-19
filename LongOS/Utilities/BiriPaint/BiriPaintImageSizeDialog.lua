@@ -1,10 +1,8 @@
-local Window = Classes.Application.Window;
-
 local EventHandler = Classes.System.EventHandler;
-
 local Button = Classes.Components.Button;
 local Label = Classes.Components.Label;
 local Edit = Classes.Components.Edit;
+local Window = Classes.Application.Window;
 
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
@@ -93,7 +91,7 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 		widthLabel = Label('Width', nil, nil, 1, 1, 'left-top');
 		this:AddComponent(widthLabel);
 
-		widthEdit = Edit(26, colors.white, colors.black, 1, 2, 'left-top');
+		widthEdit = Edit(26, nil, nil, 1, 2, 'left-top');
 		if (_initialWidth ~= nil) then
 			widthEdit:SetText(_initialWidth);
 		end
@@ -103,7 +101,7 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 		heightLabel = Label('Height', nil, nil, 1, 3, 'left-top');
 		this:AddComponent(heightLabel);
 
-		heightEdit = Edit(26, colors.white, colors.black, 1, 4, 'left-top');
+		heightEdit = Edit(26, nil, nil, 1, 4, 'left-top');
 		if (_initialHeight ~= nil) then
 			heightEdit:SetText(_initialHeight);
 		end

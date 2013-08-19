@@ -9,6 +9,7 @@ For v 0.5
 - [X] F8: Add terminal programs support.
 - [X] F59: Add namespaces with standard classes.
 - [X] F66: Refactor loading.
+- [X] F67: Update BiriPaint.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
@@ -17,7 +18,6 @@ For v 0.5
 - [ ] F62: GvinFileManager: Add posibility to launch programs with "exec" extension.
 - [ ] F63: GvinFileManager: Add "Run in terminal" option to the popup menu.
 - [ ] F65: Add more events to the components, windows and dialogs.
-- [ ] F67: Update BiriPaint.
 - [ ] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [ ] #11 System error when using Ctrl + T keys combination.
 
