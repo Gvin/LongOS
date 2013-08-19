@@ -71,7 +71,7 @@ ControlPanel = Class(Object, function(this)
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
 	local tasksManagerButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/TasksManager/GvinTasksManager');
+		System:RunFile('/LongOS/SystemUtilities/TasksManager/GvinTasksManager.exec');
 	end
 
 	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, 3, 'left-top');
@@ -79,7 +79,7 @@ ControlPanel = Class(Object, function(this)
 	systemMenu:AddComponent(tasksManagerButton);
 
 	local configurationButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManager');
+		System:RunFile('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManager.exec');
 	end
 
 	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, 1, 'left-top');
@@ -87,7 +87,7 @@ ControlPanel = Class(Object, function(this)
 	systemMenu:AddComponent(configurationButton);
 
 	local terminalButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal');
+		System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal.exec');
 	end
 
 	local terminalButton = Button('Terminal', colors.gray, colors.white, 3, 5, 'left-top');

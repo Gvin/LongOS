@@ -34,6 +34,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local createDirectoryButton;
 	local contextMenu;
 
+	local EXECUTABLE_FILE_EXTENSION = '.exec';
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -43,6 +45,10 @@ FileManagerWindow = Class(Window, function(this, _application)
 		table.insert(files, '..');
 		table.sort(files);
 		return files;
+	end
+
+	local function isExecutable(fileName)
+		return stringExtAPI.endsWith(fileName, EXECUTABLE_FILE_EXTENSION);
 	end
 
 	local function findCurrentDirectoryToPrint()
@@ -79,11 +85,16 @@ FileManagerWindow = Class(Window, function(this, _application)
 		end
 		for i = vScrollBar:GetValue() + 1, lastLine do
 			videoBuffer:SetCursorPos(1, i + 1 - vScrollBar:GetValue());
-			if (fs.isDir(currentDirectory..'/'..files[i]) or files[i] == '..') then
+
+			local currentFile = currentDirectory..'/'..files[i];
+			if (fs.isDir(currentFile) or files[i] == '..') then
 				videoBuffer:SetTextColor(colors.blue);
+			elseif (isExecutable(currentFile)) then
+				videoBuffer:SetTextColor(colors.orange);
 			else
 				videoBuffer:SetTextColor(colors.green);
 			end
+
 			if (selectedFile == files[i]) then
 				videoBuffer:SetBackgroundColor(colors.lightBlue);
 			else
@@ -169,6 +180,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 					currentDirectory = clickedFile;
 					vScrollBar:SetValue(0);
 					selectedFile = '';
+				elseif (isExecutable(clickedFile)) then
+					System:RunFile(clickedFile);
 				end
 			end
 		end

@@ -22,3 +22,8 @@ end
 function trim(text)
   return (text:gsub("^%s*(.-)%s*$", "%1"))
 end
+
+function endsWith(text, endText)
+	local part = text:sub(text:len() - endText:len() + 1, text:len());
+	return (part == endText);
+end
