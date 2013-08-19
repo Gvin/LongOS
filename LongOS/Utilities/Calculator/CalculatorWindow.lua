@@ -196,87 +196,87 @@ CalculatorWindow = Class(Window, function(this, _application)
 	-- Adding numbers buttons
 
 	button1 = Button(' 1 ', nil, nil, 0, 3, 'left-top');
-	button1:SetOnClick(addValueButtonClick);
+	button1:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button1);
 
 	button2 = Button(' 2 ', nil, nil, 4, 3, 'left-top');
-	button2:SetOnClick(addValueButtonClick);
+	button2:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button2);
 
 	button3 = Button(' 3 ', nil, nil, 8, 3, 'left-top');
-	button3:SetOnClick(addValueButtonClick);
+	button3:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button3);
 
 	button4 = Button(' 4 ', nil, nil, 0, 5, 'left-top');
-	button4:SetOnClick(addValueButtonClick);
+	button4:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button4);
 
 	button5 = Button(' 5 ', nil, nil, 4, 5, 'left-top');
-	button5:SetOnClick(addValueButtonClick);
+	button5:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button5);
 
 	button6 = Button(' 6 ', nil, nil, 8, 5, 'left-top');
-	button6:SetOnClick(addValueButtonClick);
+	button6:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button6);
 
 	button7 = Button(' 7 ', nil, nil, 0, 7, 'left-top');
-	button7:SetOnClick(addValueButtonClick);
+	button7:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button7);
 
 	button8 = Button(' 8 ', nil, nil, 4, 7, 'left-top');
-	button8:SetOnClick(addValueButtonClick);
+	button8:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button8);
 
 	button9 = Button(' 9 ', nil, nil, 8, 7, 'left-top');
-	button9:SetOnClick(addValueButtonClick);
+	button9:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button9);
 
 	button0 = Button(' 0 ', nil, nil, 4, 9, 'left-top');
-	button0:SetOnClick(addValueButtonClick);
+	button0:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button0);
 
 	-- Add additional buttons
 
 	buttonDot = Button(' . ', nil, nil, 0, 9, 'left-top');
-	buttonDot:SetOnClick(addValueButtonClick);
+	buttonDot:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(buttonDot);
 
 	buttonClear = Button(' C ', colors.red, nil, 8, 9, 'left-top');
-	buttonClear:SetOnClick(clearButtonClick);	
+	buttonClear:AddOnClickEventHandler(clearButtonClick);	
 	this:AddComponent(buttonClear);
 
 	-- Add operations buttons
 
 	buttonAdd = Button(' + ', nil, nil, 14, 3, 'left-top');
-	buttonAdd:SetOnClick(addValueButtonClick);
+	buttonAdd:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(buttonAdd);
 
 	buttonSubstract = Button(' - ', nil, nil, 14, 5, 'left-top');
-	buttonSubstract:SetOnClick(addValueButtonClick);
+	buttonSubstract:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(buttonSubstract);
 
 	buttonMultiply = Button(' * ', nil, nil, 14, 7, 'left-top');
-	buttonMultiply:SetOnClick(addValueButtonClick);
+	buttonMultiply:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(buttonMultiply);
 
 	buttonDivide = Button(' / ', nil, nil, 14, 9, 'left-top');
-	buttonDivide:SetOnClick(addValueButtonClick);
+	buttonDivide:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(buttonDivide);
 
 	buttonPower = Button(' ^ ', nil, nil, 19, 3, 'left-top');
-	--buttonPower:SetOnClick(addValueButtonClick);
+	--buttonPower:AddOnClickEventHandler(addValueButtonClick);
 	--this:AddComponent(buttonPower);
 
 	buttonLeftBracket = Button(' ( ', nil, nil, 19, 5, 'left-top');
-	--buttonLeftBracket:SetOnClick(addValueButtonClick);
+	--buttonLeftBracket:AddOnClickEventHandler(addValueButtonClick);
 	--this:AddComponent(buttonLeftBracket);
 
 	buttonRightBracket = Button(' ) ', nil, nil, 19, 7, 'left-top');
-	--buttonRightBracket:SetOnClick(addValueButtonClick);
+	--buttonRightBracket:AddOnClickEventHandler(addValueButtonClick);
 	--this:AddComponent(buttonRightBracket);
 
 	buttonEvaluate = Button(' = ', colors.blue, nil, 19, 9, 'left-top');
-	buttonEvaluate:SetOnClick(evaluateButtonClick);	
+	buttonEvaluate:AddOnClickEventHandler(evaluateButtonClick);	
 	this:AddComponent(buttonEvaluate);
 
 	end

@@ -183,22 +183,22 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 
 	local function initializeComponents()
 		terminateButton = Button('Terminate', nil, nil, 0, 0, 'left-top');
-		terminateButton:SetOnClick(terminateButtonClick);
+		terminateButton:AddOnClickEventHandler(terminateButtonClick);
 		this:AddComponent(terminateButton);
 
 		pauseResumeButton = Button('Pause ', nil, nil, 10, 0, 'left-top');
-		pauseResumeButton:SetOnClick(pauseResumeButtonClick);
+		pauseResumeButton:AddOnClickEventHandler(pauseResumeButtonClick);
 		this:AddComponent(pauseResumeButton);
 
 		restartButton = Button('Restart', nil, nil, 17, 0, 'left-top');
-		restartButton:SetOnClick(restartButtonClick);
+		restartButton:AddOnClickEventHandler(restartButtonClick);
 		this:AddComponent(restartButton);
 	end
 
 	local function constructor()
 		paused = false;
 		redirector = RedirectorGenerator():GenerateRedirector(this:GetWidth() - 2, this:GetHeight() - 3);
-		this:SetOnResize(windowOnResize);
+		this:AddOnResizeEventHandler(windowOnResize);
 
 		threadsManager = ThreadsManager();
 		

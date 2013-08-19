@@ -61,11 +61,11 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 		this:AddComponent(doubleClickEdit);
 
 		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
-		saveChangesButton:SetOnClick(saveChangesButtonClick);
+		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
 		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
-		cancelButton:SetOnClick(cancelButtonClick);
+		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
 

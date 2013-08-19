@@ -1,6 +1,6 @@
 Component = Class(function(this, _dX, _dY, _anchorType)
 	
-	function this.GetClassName()
+	function this:GetClassName()
 		return 'Component';
 	end
 
@@ -18,11 +18,11 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.GetdX()
+	function this:GetdX()
 		return dX;
 	end
 
-	function this.SetdX(_, _value)
+	function this:SetdX(_value)
 		if (type(_value) ~= 'number') then
 			error('Component.SetdX [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -30,11 +30,11 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 		dX = _value;
 	end
 
-	function this.GetdY()
+	function this:GetdY()
 		return dY;
 	end
 
-	function this.SetdY(_, _value)
+	function this:SetdY(_value)
 		if (type(_value) ~= 'number') then
 			error('Component.SetdY [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -42,11 +42,11 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 		dY = _value;
 	end
 
-	function this.GetAnchor()
+	function this:GetAnchor()
 		return anchorType;
 	end
 
-	function this.SetAnchor(_, _value)
+	function this:SetAnchor(_value)
 		if (type(_value) ~= 'string') then
 			error('Component.SetAnchor [value]: String expected, got '..type(_value)..'.');
 		end
@@ -57,19 +57,19 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 		anchorType = _value;
 	end
 
-	function this.GetWidth()
+	function this:GetWidth()
 		return 1;
 	end
 
-	function this.GetHeight()
+	function this:GetHeight()
 		return 1;
 	end
 
-	function this.GetX()
+	function this:GetX()
 		return x;
 	end
 
-	function this.GetY()
+	function this:GetY()
 		return y;
 	end
 
@@ -77,7 +77,7 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.Contains(_, _x, _y)
+	function this:Contains(_x, _y)
 		if (type(_x) ~= 'number') then
 			error('Component.Contains [x]: Number required, got '..type(_x)..'.');
 		end
@@ -88,10 +88,10 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 		return (_y >= this:GetY() and _y <= this:GetY() + this:GetHeight() - 1 and _x >= this:GetX() and _x <= this:GetX() + this:GetWidth() - 1);
 	end
 
-	function this._draw(_, _videoBuffer, _x, _y)
+	function this:_draw(_videoBuffer, _x, _y)
 	end
 
-	function this.Draw(_, _videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
+	function this:Draw(_videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
 		if (type(_ownerX) ~= 'number') then
 			error('Component.Draw [ownerX]: Number expected, got '..type(_ownerX)..'.');
 		end
@@ -126,23 +126,23 @@ Component = Class(function(this, _dX, _dY, _anchorType)
 		this:_draw(_videoBuffer, altX, altY);
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		return false;
 	end
 
-	function this.ProcessKeyEvent(_, _key)
+	function this:ProcessKeyEvent(_key)
 		return false;
 	end
 
-	function this.ProcessCharEvent(_, _char)
+	function this:ProcessCharEvent(_char)
 		return false;
 	end
 
-	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
 		return false;
 	end
 
-	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		return false;
 	end
 

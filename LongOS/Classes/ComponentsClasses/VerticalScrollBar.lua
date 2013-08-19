@@ -1,10 +1,11 @@
 local Button = Classes.Components.Button;
 local Component = Classes.Components.Component;
+local EventHandler = Classes.System.EventHandler;
 
 VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _height, _barColor, _rollerColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 
-	function this.GetClassName()
+	function this:GetClassName()
 		return 'VerticalScrollBar';
 	end
 
@@ -24,6 +25,8 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 	local scrollUpButton;
 	local scrollDownButton;
 
+	local onValueChanged;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -37,21 +40,34 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		end
 	end
 
-	function this.GetValue()
+	local function invokeOnValueChangedEvent(_oldValue, _value)
+		local eventArgs = {};
+		eventArgs.ValueBefore = _oldValue;
+		eventArgs.ValueAfter = _value;
+		onValueChanged:Invoke(this, eventArgs);
+	end
+
+	function this:GetValue()
 		return value;
 	end
 
-	function this.SetValue(_, _value)
+	function this:SetValue(_value)
 		if (type(_value) ~= 'number') then
 			error('VerticalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
 		end
 		if (enabled) then
+			local oldValue = value;
+
 			value = _value;
 			checkValue();
+
+			if (value ~= oldValue) then
+				invokeOnValueChangedEvent(oldValue, value);
+			end
 		end
 	end
 
-	function this.SetMaxValue(_, _value)
+	function this:SetMaxValue(_value)
 		if (type(_value) ~= 'number') then
 			error('VerticalScrollBar.SetMaxValue [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -60,7 +76,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		checkValue();
 	end
 
-	function this.SetMinValue(_, _value)
+	function this:SetMinValue(_value)
 		if (type(_value) ~= 'number') then
 			error('VerticalScrollBar.SetMinValue [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -69,11 +85,11 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		checkValue();
 	end
 
-	function this.GetHeight()
+	function this:GetHeight()
 		return height;
 	end
 
-	function this.SetHeight(_, _value)
+	function this:SetHeight(_value)
 		if (type(_value) ~= 'number') then
 			error('VerticalScrollBar.SetHeight [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -81,11 +97,11 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		height = _value;
 	end
 
-	function this.GetEnabled()
+	function this:GetEnabled()
 		return enabled;
 	end
 
-	function this.SetEnabled(_, _value)
+	function this:SetEnabled(_value)
 		if (type(_value) ~= 'boolean') then
 			error('VerticalScrollBar.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
 		end
@@ -93,15 +109,19 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		enabled = _value;
 	end
 
+	function this:AddOnValueChangedEventHandler(_value)
+		onValueChanged:AddHandler(_value);
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.ScrollUp()
+	function this:ScrollUp()
 		this:SetValue(value - 1);
 	end
 
-	function this.ScrollDown()
+	function this:ScrollDown()
 		this:SetValue(value + 1);
 	end
 
@@ -121,7 +141,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		return rollerY;
 	end
 
-	function this._draw(_, _videoBuffer, _x, _y)
+	function this:_draw(_videoBuffer, _x, _y)
 		local colorConfiguration = System:GetColorConfiguration();
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
 		_videoBuffer:DrawBlock(_x, _y, 1, height, barColor, '|');
@@ -132,7 +152,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		_videoBuffer:SetPixelColor(_x, rollerY, rollerColor);
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (enabled) then
 			if (scrollUpButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 				return true;
@@ -160,7 +180,7 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 		return false;
 	end
 
-	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		if (enabled and this:Contains(_cursorX, _cursorY)) then
 			if (_direction < 0) then
 				this:ScrollUp();
@@ -186,10 +206,10 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 
 	local function initializeComponents()
 		scrollUpButton = Button('^', nil, nil, 0, 0, 'left-top');
-		scrollUpButton:SetOnClick(scrollUpButtonClick);
+		scrollUpButton:AddOnClickEventHandler(scrollUpButtonClick);
 
 		scrollDownButton = Button('v', nil, nil, 0, 0, 'left-bottom');
-		scrollDownButton:SetOnClick(scrollDownButtonClick);
+		scrollDownButton:AddOnClickEventHandler(scrollDownButtonClick);
 	end
 
 	local function constructor(_minValue, _maxValue, _height, _barColor, _rollerColor)
@@ -228,6 +248,8 @@ VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _heigh
 			local colorConfiguration = System:GetColorConfiguration();
 			rollerColor = colorConfiguration:GetColor('WindowBorderColor');
 		end
+
+		onValueChanged = EventHandler();
 
 		initializeComponents();
 	end

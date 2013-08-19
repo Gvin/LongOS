@@ -56,11 +56,11 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.SetOnYes(_, _value)
+	function this.AddOnYesEventHandler(_, _value)
 		onYes:AddHandler(_value);
 	end
 
-	function this.SetOnNo(_, _value)
+	function this.AddOnNoEventHandler(_, _value)
 		onNo:AddHandler(_value);
 	end
 
@@ -109,11 +109,11 @@ QuestionDialog = Class(Window, function(this, _application, _title, _text)
 
 	local function initializeComponents(_text)
 		yesButton = Button(' Yes ', nil, nil, 0, 0, 'left-bottom');
-		yesButton:SetOnClick(yesButtonClick);
+		yesButton:AddOnClickEventHandler(yesButtonClick);
 		this:AddComponent(yesButton);
 
 		noButton = Button(' No ', nil, nil, 0, 0, 'right-bottom');
-		noButton:SetOnClick(noButtonClick);
+		noButton:AddOnClickEventHandler(noButtonClick);
 		this:AddComponent(noButton);
 	end
 

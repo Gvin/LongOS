@@ -271,7 +271,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function createDirectoryButtonClick(sender, eventArgs)
 		local newDirectoryDialog = EnterTextDialog(this:GetApplication(), 'Create directory', 'Enter new directory name:');
-		newDirectoryDialog:SetOnOk(newDirectoryDialogOk);
+		newDirectoryDialog:AddOnOkEventHandler(newDirectoryDialogOk);
 		newDirectoryDialog:Show();
 	end
 
@@ -282,7 +282,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function createFileButtonClick(sender, eventArgs)
 		local newFileDialog = EnterTextDialog(this:GetApplication(), 'Create file', 'Enter new file name:');
-		newFileDialog:SetOnOk(newFileDialogOk);
+		newFileDialog:AddOnOkEventHandler(newFileDialogOk);
 		newFileDialog:Show();
 	end
 
@@ -305,7 +305,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function deleteButtonClick(sender, eventArgs)
 		if (selectedFile ~= '' and selectedFile ~= nil) then
 			local deleteDialog = QuestionDialog(this:GetApplication(), 'Delete?', 'Do you really want to delete     "'..selectedFile..'"?');
-			deleteDialog:SetOnYes(deleteDialogYes);
+			deleteDialog:AddOnYesEventHandler(deleteDialogYes);
 			deleteDialog:Show();
 		end
 	end
@@ -317,7 +317,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function renameButtonClick(sender, eventArgs)
 		local renameDialog = EnterTextDialog(this:GetApplication(), 'Rename', 'Enter new name:', selectedFile);
-		renameDialog:SetOnOk(renameDialogOk);
+		renameDialog:AddOnOkEventHandler(renameDialogOk);
 		renameDialog:Show();
 	end
 
@@ -348,37 +348,37 @@ FileManagerWindow = Class(Window, function(this, _application)
 		this:AddComponent(vScrollBar);
 
 		pasteButton = Button('Paste', nil, nil, 0, 0, 'left-bottom');
-		pasteButton:SetOnClick(pasteButtonClick);
+		pasteButton:AddOnClickEventHandler(pasteButtonClick);
 		this:AddComponent(pasteButton);
 
 		createDirectoryButton = Button('Create directory', nil, nil, 6, 0, 'left-bottom');
-		createDirectoryButton:SetOnClick(createDirectoryButtonClick);
+		createDirectoryButton:AddOnClickEventHandler(createDirectoryButtonClick);
 		this:AddComponent(createDirectoryButton);
 
 		createFileButton = Button('Create file', nil, nil, 23, 0, 'left-bottom');
-		createFileButton:SetOnClick(createFileButtonClick);
+		createFileButton:AddOnClickEventHandler(createFileButtonClick);
 		this:AddComponent(createFileButton);
 
 		contextMenu = PopupMenu(1, 1, 10, 9, nil, true);
 		this:AddMenu('ContextMenu', contextMenu);
 
 		copyButton = Button('Copy', nil, nil, 1, 1, 'left-top');
-		copyButton:SetOnClick(copyButtonClick);
+		copyButton:AddOnClickEventHandler(copyButtonClick);
 		contextMenu:AddComponent(copyButton);
 
 		cutButton = Button('Cut', nil, nil, 1, 3, 'left-top');
-		cutButton:SetOnClick(cutButtonClick);
+		cutButton:AddOnClickEventHandler(cutButtonClick);
 		contextMenu:AddComponent(cutButton);
 
 		deleteButton = Button('Delete', nil, nil, 1, 5, 'left-top');
-		deleteButton:SetOnClick(deleteButtonClick);
+		deleteButton:AddOnClickEventHandler(deleteButtonClick);
 		contextMenu:AddComponent(deleteButton);
 
 		renameButton = Button('Rename', nil, nil, 1, 7, 'left-top');
-		renameButton:SetOnClick(renameButtonClick);
+		renameButton:AddOnClickEventHandler(renameButtonClick);
 		contextMenu:AddComponent(renameButton);
 
-		this:SetOnResize(onWindowResize);
+		this:AddOnResizeEventHandler(onWindowResize);
 	end
 
 	local function constructor(_application)

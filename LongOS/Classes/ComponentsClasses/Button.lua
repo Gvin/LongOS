@@ -14,7 +14,7 @@ Button = Class(Label, function(this, _text, _backgroundColor, _textColor, _dX, _
 
 	Label.init(this, _text, _backgroundColor, _textColor, _dX, _dY, _anchorType);
 	
-	function this.GetClassName()
+	function this:GetClassName()
 		return 'Button';
 	end
 
@@ -30,11 +30,11 @@ Button = Class(Label, function(this, _text, _backgroundColor, _textColor, _dX, _
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.GetEnabled()
+	function this:GetEnabled()
 		return enabled;
 	end
 
-	function this.SetEnabled(_, _value)
+	function this:SetEnabled(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Button.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
 		end
@@ -42,7 +42,7 @@ Button = Class(Label, function(this, _text, _backgroundColor, _textColor, _dX, _
 		enabled = _value;
 	end
 
-	function this.SetOnClick(_, _value)
+	function this:AddOnClickEventHandler(_value)
 		onClick:AddHandler(_value);
 	end
 
@@ -67,7 +67,7 @@ Button = Class(Label, function(this, _text, _backgroundColor, _textColor, _dX, _
 		return false;
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (type(_cursorX) ~= 'number') then
 			error('Button.ProcessLeftClickEvent [cursorX]: Number required , got '..type(_cursorX)..'.');
 		end
@@ -78,7 +78,7 @@ Button = Class(Label, function(this, _text, _backgroundColor, _textColor, _dX, _
 		return processClickEvent(_cursorX, _cursorY);
 	end
 
-	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
 		if (type(_cursorX) ~= 'number') then
 			error('Button.ProcessDoubleClickEvent [cursorX]: Number required , got '..type(_cursorX)..'.');
 		end

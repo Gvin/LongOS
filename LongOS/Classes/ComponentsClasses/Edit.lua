@@ -1,5 +1,8 @@
-Edit = Class(Classes.Components.Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
-	Classes.Components.Component.init(this, _dX, _dY, _anchorType);
+local Component = Classes.Components.Component;
+local EventHandler = Classes.System.EventHandler;
+
+Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+	Component.init(this, _dX, _dY, _anchorType);
 	
 	function this.GetClassName()
 		return 'Edit';
@@ -19,9 +22,19 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 	local focus;
 	local enabled;
 
+	local onTextChanged;
+	local onFocus;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
+
+	local function invokeOnTextChangedEvent(_textBefore, _textAfter)
+		local eventArgs = {};
+		eventArgs.TextBefore = _textBefore;
+		eventArgs.TextAfter = _textAfter;
+		onTextChanged:Invoke(this, eventArgs);
+	end
 
 	function this.GetText()
 		return text;
@@ -32,8 +45,12 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 			error('Edit.SetText [value]: String expected, got '..type(_value)..'.');
 		end
 
+		local oldText = text;
+
 		text = _value;
 		cursorPosition = string.len(text);
+
+		invokeOnTextChangedEvent(oldText, text);
 	end
 
 	function this.GetWidth()
@@ -85,6 +102,10 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 		if (not enabled) then
 			focus = false;
 		end
+
+		if (focus) then
+			onFocus:Invoke(this, {});
+		end
 	end
 
 	function this.GetEnabled()
@@ -102,9 +123,25 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 		end
 	end
 
+	function this.AddOnFocusEventHadler(_, _value)
+		onFocus:AddHadler(_value);
+	end
+
+	function this.AddOnTextChangedEventHandler(_, _value)
+		onTextChanged:AddHadler(_value);
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
+
+	function this.Clear()
+		local oldText = text;
+
+		this:SetText('');
+
+		invokeOnTextChangedEvent(oldText, text);
+	end
 
 	function this._draw(_, _videoBuffer, _x, _y)
 		_videoBuffer:DrawBlock(_x, _y, width, 1, backgroundColor);
@@ -138,26 +175,38 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 	end
 
 	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
-		if (enabled and this:Contains(_cursorX, _cursorY)) then
-			focus = true;
+		if (this:Contains(_cursorX, _cursorY)) then
+			this:SetFocus(true);
 		else
-			focus = false;
+			this:SetFocus(false);
 		end
 	end
 
 	local function processBackspaceKey()
 		if (string.len(text) <= 1 and cursorPosition ~= 0) then
+			local oldText = text;
+
 			text = '';
 			cursorPosition = 0;
+
+			invokeOnTextChangedEvent(oldText, text);
 		elseif (cursorPosition ~= 0) then
+			local oldText = text;
+
 			text = ''..string.sub(text, 1, cursorPosition - 1)..string.sub(text, cursorPosition + 1, string.len(text));
 			cursorPosition = cursorPosition - 1;
+
+			invokeOnTextChangedEvent(oldText, text);
 		end
 	end
 
 	local function processDeleteKey()
 		if (string.len(text) > cursorPosition) then
+			local oldText = text;
+
 			text = ''..string.sub(text, 1, cursorPosition)..string.sub(text, cursorPosition + 2, string.len(text));
+
+			invokeOnTextChangedEvent(oldText, text);
 		end
 	end
 
@@ -186,10 +235,14 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 
 	function this.ProcessCharEvent(_, _char)
 		if (enabled and focus) then
+			local oldText = text;
+
 			local textBefore = ''..string.sub(text, 1, cursorPosition);
 			local textAfter = ''..string.sub(text, cursorPosition + 1, string.len(text));
 			text = textBefore.._char..textAfter;
 			cursorPosition = cursorPosition + 1;
+
+			invokeOnTextChangedEvent(oldText, text);
 		end
 	end
 
@@ -223,6 +276,9 @@ Edit = Class(Classes.Components.Component, function(this, _width, _backgroundCol
 		if (textColor == nil) then
 			textColor = colorConfiguration:GetColor('SystemLabelsTextColor');
 		end
+
+		onTextChanged = EventHandler();
+		onFocus = EventHandler();
 	end
 
 	constructor(_width, _backgroundColor, _textColor);

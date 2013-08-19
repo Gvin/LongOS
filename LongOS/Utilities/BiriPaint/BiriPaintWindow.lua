@@ -98,13 +98,13 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local mainColorSelectionButtonClick = function(_sender, _eventArgs)
 		local picker = ColorPickerDialog(this:GetApplication());
-		picker:SetOnOk(mainColorPickerOnOk);
+		picker:AddOnOkEventHandler(mainColorPickerOnOk);
 		picker:Show();
 	end
 
 	local additionalColorSelectionButtonClick = function(_sender, _eventArgs)
 		local colorPickerDialog = ColorPickerDialog(this:GetApplication());
-		colorPickerDialog:SetOnOk(additionalColorPickerOnOk);
+		colorPickerDialog:AddOnOkEventHandler(additionalColorPickerOnOk);
 		colorPickerDialog:Show();
 	end
 
@@ -125,7 +125,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local newButtonClick = function(_sender, _eventArgs)
 		local newDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image',''..image:GetWidth(),''..image:GetHeight());
-		newDialog:SetOnOk(newDialogOnOk);
+		newDialog:AddOnOkEventHandler(newDialogOnOk);
 		newDialog:Show();		
 	end
 
@@ -144,7 +144,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local openButtonClick = function(_sender, _eventArgs)
 		local openDialog = EnterTextDialog(this:GetApplication(),'Open file','Enter file name','/');
-		openDialog:SetOnOk(openDialogOnOk);
+		openDialog:AddOnOkEventHandler(openDialogOnOk);
 		openDialog:Show();	
 	end
 	
@@ -157,7 +157,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local saveButtonClick = function(_sender, _eventArgs)
 		local saveDialog = EnterTextDialog(this:GetApplication(),'Save file','Enter file name','/');
-		saveDialog:SetOnOk(saveDialogOnOk);
+		saveDialog:AddOnOkEventHandler(saveDialogOnOk);
 		saveDialog:Show();		
 	end
 
@@ -187,7 +187,7 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	local sizeButtonClick = function(_sender, _eventArgs)
 		local sizeDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image size',''..image:GetWidth(),''..image:GetHeight());
-		sizeDialog:SetOnOk(sizeDialogOnOk);
+		sizeDialog:AddOnOkEventHandler(sizeDialogOnOk);
 		sizeDialog:Show();		
 	end
 
@@ -403,11 +403,11 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		image = Image(51,19);
 
 		mainColorSelectionButton = Button('  ', colors.black, nil, 0, 0, 'left-bottom');
-		mainColorSelectionButton:SetOnClick(mainColorSelectionButtonClick);		
+		mainColorSelectionButton:AddOnClickEventHandler(mainColorSelectionButtonClick);		
 		this:AddComponent(mainColorSelectionButton);
 
 		additionalColorSelectionButton = Button('  ', colors.white, nil, 2, 0, 'left-bottom');		
-		additionalColorSelectionButton:SetOnClick(additionalColorSelectionButtonClick);
+		additionalColorSelectionButton:AddOnClickEventHandler(additionalColorSelectionButtonClick);
 		this:AddComponent(additionalColorSelectionButton);		
 
 		----------------------
@@ -418,27 +418,27 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		this:AddMenu('ModeMenu', modeMenu);
 
 		modeButton = Button('Pen    ', nil, nil, 5, 0, 'left-bottom');
-		modeButton:SetOnClick(modeButtonClick);
+		modeButton:AddOnClickEventHandler(modeButtonClick);
 		this:AddComponent(modeButton);
 
 		penButton = Button('Pen    ', nil, nil, 1, 1, 'left-top');
-		penButton:SetOnClick(toolButtonClick);
+		penButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(penButton);
 
 		lineButton = Button('Line   ', nil, nil, 1, 3, 'left-top');
-		lineButton:SetOnClick(toolButtonClick);
+		lineButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(lineButton);
 
 		rectButton = Button('Rect   ', nil, nil, 1, 5, 'left-top');
-		rectButton:SetOnClick(toolButtonClick);
+		rectButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(rectButton);
 
 		ellipseButton = Button('Ellipse', nil, nil, 1, 7, 'left-top');
-		ellipseButton:SetOnClick(toolButtonClick);
+		ellipseButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(ellipseButton);
 
 		fillButton = Button('Fill   ', nil, nil, 1, 9, 'left-top');
-		fillButton:SetOnClick(toolButtonClick);
+		fillButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(fillButton);
 
 		----------------------
@@ -449,19 +449,19 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		this:AddMenu('FileMenu', fileMenu);		
 
 		fileButton = Button('File', nil, nil, 0, 0, 'left-top');
-		fileButton:SetOnClick(fileButtonClick);
+		fileButton:AddOnClickEventHandler(fileButtonClick);
 		this:AddComponent(fileButton);
 
 		newButton = Button('New', nil, nil, 1, 1, 'left-top');
-		newButton:SetOnClick(newButtonClick);
+		newButton:AddOnClickEventHandler(newButtonClick);
 		fileMenu:AddComponent(newButton);
 
 		openButton = Button('Open', nil, nil, 1, 3, 'left-top');
-		openButton:SetOnClick(openButtonClick);
+		openButton:AddOnClickEventHandler(openButtonClick);
 		fileMenu:AddComponent(openButton);
 
 		saveButton = Button('Save', nil, nil, 1, 5, 'left-top');
-		saveButton:SetOnClick(saveButtonClick);
+		saveButton:AddOnClickEventHandler(saveButtonClick);
 		fileMenu:AddComponent(saveButton);
 		
 		----------------------
@@ -472,23 +472,23 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		this:AddMenu('EditMenu', editMenu);	
 
 		editButton = Button('Edit', nil, nil, 5, 0, 'left-top');
-		editButton:SetOnClick(editButtonClick);
+		editButton:AddOnClickEventHandler(editButtonClick);
 		this:AddComponent(editButton);
 
 		clearButton = Button('Clear all', nil, nil, 1, 1, 'left-top');
-		clearButton:SetOnClick(clearButtonClick);
+		clearButton:AddOnClickEventHandler(clearButtonClick);
 		editMenu:AddComponent(clearButton);
 		
 		undoButton = Button('Undo', nil, nil, 1, 3, 'left-top');
-		undoButton:SetOnClick(undoButtonClick);
+		undoButton:AddOnClickEventHandler(undoButtonClick);
 		editMenu:AddComponent(undoButton);
 
 		sizeButton = Button('Set size', nil, nil, 1, 5, 'left-top');
-		sizeButton:SetOnClick(sizeButtonClick);
+		sizeButton:AddOnClickEventHandler(sizeButtonClick);
 		editMenu:AddComponent(sizeButton);
 
 
-		this:SetOnResize(onWindowResize);
+		this:AddOnResizeEventHandler(onWindowResize);
 
 	end
 

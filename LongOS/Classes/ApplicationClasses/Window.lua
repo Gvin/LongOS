@@ -9,7 +9,7 @@ local Canvas = Classes.System.Graphics.Canvas;
 -- from this class.
 Window = Class(function(this, _application, _name, _isUnique)
 
-	this.GetClassName = function()
+	function this:GetClassName()
 		return 'Window';
 	end
 
@@ -62,6 +62,8 @@ Window = Class(function(this, _application, _name, _isUnique)
 	local onShow;
 	local onMove;
 	local onResize;
+	local onMaximize;
+	local onMinimize;
 
 	local canvas;
 
@@ -69,89 +71,107 @@ Window = Class(function(this, _application, _name, _isUnique)
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.GetApplication()
+	local function invokeMoveEvent(_oldX, _newX, _oldY, _newY)
+		local eventArgs = {};
+		eventArgs.OldX = _oldX;
+		eventArgs.NewX = _newX;
+		eventArgs.OldY = _oldY;
+		eventArgs.NewY = _newY;
+		onMove:Invoke(this, eventArgs);
+	end
+
+	local function invokeResizeEvent(_oldWidth, _newWidth, _oldHeight, _newHeight)
+		local eventArgs = {};
+		eventArgs.OldWidth = _oldWidth;
+		eventArgs.NewWidth = _newWidth;
+		eventArgs.OldHeight = _oldHeight;
+		eventArgs.NewHeight = _newHeight;
+		onResize:Invoke(this, eventArgs);
+	end
+
+	function this:GetApplication()
 		return application;
 	end
 
-	function this.GetName()
+	function this:GetName()
 		return name;
 	end
 
-	function this.GetIsUnique()
+	function this:GetIsUnique()
 		return isUnique;
 	end
 
-	function this.GetId()
+	function this:GetId()
 		return id;
 	end
 
-	function this.SetId(_, _value)
+	function this:SetId(_value)
 		if (type(_value) ~= 'string') then
 			error('Window.SetId [value]: String expected, got '..type(_isUnique)..'.');
 		end
 		id = _value;
 	end
 
-	function this.GetTitle()
+	function this:GetTitle()
 		return title;
 	end
 
-	function this.SetTitle(_, _value)
+	function this:SetTitle(_value)
 		if (type(_value) ~= 'string') then
 			error('Window.SetTitle [value]: String expected, got '..type(_isUnique)..'.');
 		end
 		title = _value;
 	end
 
-	function this.GetBackgroundColor()
+	function this:GetBackgroundColor()
 		return backgroundColor;
 	end
 
-	function this.SetBackgroundColor(_, _value)
+	function this:SetBackgroundColor(_value)
 		if (_value ~= nil or type(_value) ~= 'number') then
 			error('Window.SetBackgroundColor [value]: Number or nil expected, got '..type(_isUnique)..'.');
 		end
 		backgroundColor = _value;
 	end
 
-	function this.GetIsModal()
+	function this:GetIsModal()
 		return isModal;
 	end
 
-	function this.SetIsModal(_, _value)
+	function this:SetIsModal(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetIsModal [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
 		isModal = _value;
 	end
 
-	function this.GetAllowMove()
+	function this:GetAllowMove()
 		return allowMove;
 	end
 
-	function this.SetAllowMove(_, _value)
+	function this:SetAllowMove(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetAllowMove [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
 		allowMove = _value;
 	end
 
-	function this.GetAllowResize()
+	function this:GetAllowResize()
 		return allowResize;
 	end
 
-	function this.SetAllowResize(_, _value)
+	function this:SetAllowResize(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetAllowResize [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
 		allowResize = _value;
 	end
 
-	function this.GetMinimalWidth()
+	function this:GetMinimalWidth()
 		return minimalWidth;
 	end
 
-	function this.SetMinimalWidth(_, _value)
+	function this:SetMinimalWidth(_value)
 		if (type(_value) ~= 'number') then
 			error('Window.SetMinimalWidth [value]: Number expected, got '..type(_isUnique)..'.');
 		end
@@ -161,11 +181,11 @@ Window = Class(function(this, _application, _name, _isUnique)
 		end
 	end
 
-	function this.GetMinimalHeight()
+	function this:GetMinimalHeight()
 		return minimalHeight;
 	end
 
-	function this.SetMinimalHeight(_, _value)
+	function this:SetMinimalHeight(_value)
 		if (type(_value) ~= 'number') then
 			error('Window.SetMinimalHeight [value]: Number expected, got '..type(_isUnique)..'.');
 		end
@@ -175,11 +195,11 @@ Window = Class(function(this, _application, _name, _isUnique)
 		end
 	end
 
-	function this.GetAllowMaximize()
+	function this:GetAllowMaximize()
 		return allowMaximize;
 	end
 
-	function this.SetAllowMaximize(_, _value)
+	function this:SetAllowMaximize(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetAllowMaximize [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
@@ -187,19 +207,11 @@ Window = Class(function(this, _application, _name, _isUnique)
 		maximizeButton:SetVisible(allowMaximize);
 	end
 
-	function this.GetX()
+	function this:GetX()
 		return x;
 	end
 
-	local function raiseMoveEvent(_oldValue, _newValue, _value)
-		local eventArgs = {};
-		eventArgs.Old = _oldValue;
-		eventArgs.New = _newValue;
-		eventArgs.Value = _value;
-		onMove:Invoke(this, eventArgs);
-	end
-
-	function this.SetX(_, _value)
+	function this:SetX(_value)
 		if (type(_value) ~= 'number') then
 			error('Window.SetX [value]: Number expected, got '..type(_isUnique)..'.');
 		end
@@ -212,14 +224,14 @@ Window = Class(function(this, _application, _name, _isUnique)
 			x = screenWidth;
 		end
 		miniX = x;
-		raiseMoveEvent(old, x, 'X');
+		invokeMoveEvent(old, x, y, y);
 	end
 
-	function this.GetY()
+	function this:GetY()
 		return y;
 	end
 
-	function this.SetY(_, _value)
+	function this:SetY(_value)
 		if (type(_value) ~= 'number') then
 			error('Window.SetY [value]: Number expected, got '..type(_isUnique)..'.');
 		end
@@ -233,22 +245,14 @@ Window = Class(function(this, _application, _name, _isUnique)
 			y = screenHeight - 2 + topLineIndex;
 		end
 		miniY = y;
-		raiseMoveEvent(old, y, 'Y');
+		invokeMoveEvent(x, x, old, y);
 	end
 
-	function this.GetWidth()
+	function this:GetWidth()
 		return width;
 	end
 
-	local function raiseResizeEvent(_oldValue, _newValue, _value)
-		local eventArgs = {};
-		eventArgs.Old = _oldValue;
-		eventArgs.New = _newValue;
-		eventArgs.Value = _value;
-		onResize:Invoke(this, eventArgs);
-	end
-
-	function this.SetWidth(_, _value)
+	function this:SetWidth(_value)
 		if (type(_value) ~= 'number') then
 			error('Window.SetWidth [value]: Number expected, got '..type(_isUnique)..'.');
 		end
@@ -261,14 +265,14 @@ Window = Class(function(this, _application, _name, _isUnique)
 			width = minimalWidth;
 		end
 		miniWidth = width;
-		raiseResizeEvent(old, width, 'width');
+		invokeResizeEvent(old, width, height, height);
 	end
 
-	function this.GetHeight()
+	function this:GetHeight()
 		return height;
 	end
 
-	function this.SetHeight(_, _value)
+	function this:SetHeight(_value)
 		if (type(_value) ~= 'number') then
 			error('Window.SetHeight [value]: Number expected, got '..type(_isUnique)..'.');
 		end
@@ -281,25 +285,25 @@ Window = Class(function(this, _application, _name, _isUnique)
 			height = minimalHeight;
 		end
 		miniHeight = height;
-		raiseResizeEvent(old, height, 'height');
+		invokeResizeEvent(width, width, old, height);
 	end
 
-	function this.GetVisible()
+	function this:GetVisible()
 		return visible;
 	end
 
-	function this.SetVisible(_, _value)
+	function this:SetVisible(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetVisible [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
 		visible = _value;
 	end
 
-	function this.GetMaximized()
+	function this:GetMaximized()
 		return maximized;
 	end
 
-	function this.SetMaximized(_, _value)
+	function this:SetMaximized(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetMaximized [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
@@ -324,88 +328,100 @@ Window = Class(function(this, _application, _name, _isUnique)
 			end
 
 			if (changed) then
-				raiseResizeEvent(oldWidth, width, 'width');
-				raiseResizeEvent(oldHeight, height, 'height');
+				invokeResizeEvent(oldWidth, width, oldHeight, height);
+				if (maximized) then
+					onMaximize:Invoke(this, {});
+				else
+					onMinimize:Invoke(this, {});
+				end
 			end
 		end
 	end
 
-	function this.GetEnabled()
+	function this:GetEnabled()
 		return enabled;
 	end
 
-	function this.SetEnabled(_, _value)
+	function this:SetEnabled(_value)
 		if (type(_value) ~= 'boolean') then
 			error('Window.SetEnabled [value]: Boolean expected, got '..type(_isUnique)..'.');
 		end
 		enabled = _value;
 	end
 
-	function this.SetOnClose(_, _value)
+	function this:AddOnCloseEventHandler(_value)
 		onClose:AddHandler(_value);
 	end
 
-	function this.SetOnShow(_, _value)
+	function this:AddOnShowEventHandler(_value)
 		onShow:AddHandler(_value);
 	end
 
-	function this.SetOnMove(_, _value)
+	function this:AddOnMoveEventHandler(_value)
 		onMove:AddHandler(_value);
 	end
 
-	function this.SetOnResize(_, _value)
+	function this:AddOnResizeEventHandler(_value)
 		onResize:AddHandler(_value);
+	end
+
+	function this:AddOnMaximizeEventHandler(_value)
+		onMaximize:AddHandler(_value);
+	end
+
+	function this:AddOnMinimizeEventHandler(_value)
+		onMinimize:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ---------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 	
-	function this.Close()
+	function this:Close()
 		application:DeleteWindow(id);
 
 		onClose:Invoke(this, {});
 	end
 
-	function this.Show()
+	function this:Show()
 		application:AddWindow(this);
 
 		onShow:Invoke(this, {});
 	end
 
-	function this.Maximize()
+	function this:Maximize()
 		this:SetMaximized(true);
 	end
 
-	function this.Minimize()
+	function this:Minimize()
 		this:SetMaximized(false);
 	end
 
-	function this.Contains(_, _x, _y)
+	function this:Contains(_x, _y)
 		return (_x >= x and _x <= x + width - 1 and _y >= y and _y <= y + height - 1) or menuesManager:Contains(_x, _y);
 	end
 
-	function this.AddComponent(_, _component)
+	function this:AddComponent(_component)
 		componentsManager:AddComponent(_component);
 	end
 
-	function this.OpenCloseMenu(_, _menuName)
+	function this:OpenCloseMenu(_menuName)
 		menuesManager:OpenCloseMenu(_menuName);
 	end
 
-	function this.GetMenu(_, _menuName)
+	function this:GetMenu(_menuName)
 		return menuesManager:GetMenu(_menuName);
 	end
 
-	function this.AddMenu(_, _menuName, _menu)
+	function this:AddMenu(_menuName, _menu)
 		menuesManager:AddMenu(_menuName, _menu);
 	end
 
-	function this.OpenMenu(_, _menuName)
+	function this:OpenMenu(_menuName)
 		menuesManager:OpenMenu(_menuName);
 	end
 
-	function this.CloseAllMenues()
+	function this:CloseAllMenues()
 		menuesManager:CloseAll();
 	end
 
@@ -520,7 +536,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 		draw(_videoBuffer);
 	end
 
-	function this.DrawBase(_, _videoBuffer)
+	function this:DrawBase(_videoBuffer)
 		if (visible) then
 			canvas:SetWidth(width - 2);
 			canvas:SetHeight(height - 2);
@@ -535,21 +551,21 @@ Window = Class(function(this, _application, _name, _isUnique)
 		end
 	end
 
-	function this.Draw(_, _canvas)	
+	function this:Draw(_canvas)	
 	end
 
 	-- Updating
 
-	function this.UpdateBase()
+	function this:UpdateBase()
 		this:Update();
 	end
 
-	function this.Update()
+	function this:Update()
 	end
 
 	-- Events processing
 
-	function this.ResetDragging()
+	function this:ResetDragging()
 		isMoving = false;
 		isResizing = false;
 	end
@@ -581,7 +597,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 		end
 	end
 
-	function this.ProcessLeftClickEventBase(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEventBase(_cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY)) then
 			if (processLeftClickEvent(_cursorX, _cursorY)) then
 				return true;
@@ -591,17 +607,17 @@ Window = Class(function(this, _application, _name, _isUnique)
 		return false;
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 	end
 
-	function this.ProcessRightClickEventBase(_, _cursorX, _cursorY)
+	function this:ProcessRightClickEventBase(_cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY)) then
 			this:ProcessRightClickEvent(_cursorX, _cursorY);
 		end
 		return this:Contains(_cursorX, _cursorY);
 	end
 
-	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
 	end
 
 	local function processDoubleClickEvent(_cursorX, _cursorY)
@@ -618,17 +634,17 @@ Window = Class(function(this, _application, _name, _isUnique)
 		return componentsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
-	function this.ProcessDoubleClickEventBase(_, _cursorX, _cursorY)
+	function this:ProcessDoubleClickEventBase(_cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY)) then
 			processDoubleClickEvent(_cursorX, _cursorY);
 			this:ProcessDoubleClickEvent(_cursorX, _cursorY);
 		end
 	end
 
-	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
 	end
 
-	function this.ProcessLeftMouseDragEventBase(_, _newCursorX, _newCursorY)
+	function this:ProcessLeftMouseDragEventBase(_newCursorX, _newCursorY)
 		if (isMoving and allowMove) then
 			if (maximized) then
 				this:Minimize();
@@ -651,17 +667,17 @@ Window = Class(function(this, _application, _name, _isUnique)
 		end
 	end
 
-	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY)
 	end
 
-	function this.ProcessRightMouseDragEventBase(_, _newCursorX, _newCursorY)
+	function this:ProcessRightMouseDragEventBase(_newCursorX, _newCursorY)
 		this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
 	end
 
-	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)
 	end
 
-	function this.ProcessMouseScrollEventBase(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEventBase(_direction, _cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY)) then
 			if (not componentsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)) then
 				this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
@@ -669,7 +685,7 @@ Window = Class(function(this, _application, _name, _isUnique)
 		end
 	end
 
-	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 	end
 
 ----------------------- Keys processing ---------------------------------
@@ -678,40 +694,40 @@ Window = Class(function(this, _application, _name, _isUnique)
 		componentsManager:ProcessKeyEvent(_key);
 	end
 
-	function this.ProcessKeyEventBase(_, _key)
+	function this:ProcessKeyEventBase(_key)
 		processKeyEvent(_key);
 		this:ProcessKeyEvent(_key);
 	end
 
-	function this.ProcessKeyEvent(_, _key)
+	function this:ProcessKeyEvent(_key)
 	end
 
 	local function processCharEvent(_symbol)
 		componentsManager:ProcessCharEvent(_symbol);
 	end
 
-	function this.ProcessCharEventBase(_, _symbol)
+	function this:ProcessCharEventBase(_symbol)
 		if (processCharEvent(_symbol)) then
 			return;
 		end
 		this:ProcessCharEvent(_symbol);
 	end
 
-	function this.ProcessCharEvent(_, _symbol)
+	function this:ProcessCharEvent(_symbol)
 	end
 
-	function this.ProcessRednetEventBase(_, _id, _message, _distance)
+	function this:ProcessRednetEventBase(_id, _message, _distance)
 		this:ProcessRednetEvent(_id, _message, _distance);
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance)
+	function this:ProcessRednetEvent(_id, _message, _distance)
 	end
 
-	function this.ProcessTimerEventBase(_, _timerId)
+	function this:ProcessTimerEventBase(_timerId)
 		this:ProcessTimerEvent(_timerId);
 	end
 
-	function this.ProcessTimerEvent(_, _timerId)
+	function this:ProcessTimerEvent(_timerId)
 	end
 
 	local function closeButtonClick(sender, eventArgs)
@@ -767,6 +783,8 @@ Window = Class(function(this, _application, _name, _isUnique)
 		onClose = EventHandler();
 		onMove = EventHandler();
 		onResize = EventHandler();
+		onMaximize = EventHandler();
+		onMinimize = EventHandler();
 
 		colorConfiguration = System:GetColorConfiguration();
 		interfaceConfiguration = System:GetInterfaceConfiguration();
@@ -776,10 +794,10 @@ Window = Class(function(this, _application, _name, _isUnique)
 
 		-- creating components
 		closeButton = Button('X', colors.black, colors.white, 0, 0, 'right-top');
-		closeButton:SetOnClick(closeButtonClick);
+		closeButton:AddOnClickEventHandler(closeButtonClick);
 
 		maximizeButton = Button('[]', colors.black, colors.white, 1, 0, 'right-top');
-		maximizeButton:SetOnClick(maximizeButtonClick);
+		maximizeButton:AddOnClickEventHandler(maximizeButtonClick);
 	end
 
 	constructor(_application, _name, _isUnique);

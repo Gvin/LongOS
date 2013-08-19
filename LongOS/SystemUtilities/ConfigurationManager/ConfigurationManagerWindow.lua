@@ -38,15 +38,15 @@ ConfigurationManagerWindow = Class(Window, function(this, _application)
 
 	local function initializeComponents()		
 		local colorConfigurationButton = Button('Open color configuration    ', nil, nil, 0, 1, 'left-top');
-		colorConfigurationButton:SetOnClick(colorConfigurationButtonClick);
+		colorConfigurationButton:AddOnClickEventHandler(colorConfigurationButtonClick);
 		this:AddComponent(colorConfigurationButton);
 	
 		local mouseConfigurationButton = Button('Open mouse configuration    ', nil, nil, 0, 3, 'left-top');
-		mouseConfigurationButton:SetOnClick(mouseConfigurationButtonClick);
+		mouseConfigurationButton:AddOnClickEventHandler(mouseConfigurationButtonClick);
 		this:AddComponent(mouseConfigurationButton);	
 
 		interfaceConfigurationButton = Button('Open interface configuration', nil, nil, 0, 5, 'left-top');
-		interfaceConfigurationButton:SetOnClick(interfaceConfigurationButtonClick);
+		interfaceConfigurationButton:AddOnClickEventHandler(interfaceConfigurationButtonClick);
 		this:AddComponent(interfaceConfigurationButton);
 	end
 

@@ -32,11 +32,11 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.SetOnOk(_, _value)
+	function this.AddOnOkEventHandler(_, _value)
 		onOk:AddHandler(_value);
 	end
 
-	function this.SetOnCancel(_, _value)
+	function this.AddOnCancelEventHandler(_, _value)
 		onCancel:AddHandler(_value);
 	end
 
@@ -72,11 +72,11 @@ EnterTextDialog = Class(Window, function(this, _application, _title, _text, _ini
 
 	local function initializeComponents(_text, _initialText)
 		okButton = Button(' OK ', nil, nil, 0, 0, 'left-bottom');
-		okButton:SetOnClick(okButtonClick);
+		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 
 		local cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
-		cancelButton:SetOnClick(cancelButtonClick);
+		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
 		textLabel = Label(_text, nil, nil, 1, 1, 'left-top');

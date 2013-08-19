@@ -37,11 +37,11 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.SetOnOk(_, _value)
+	function this.AddOnOkEventHandler(_, _value)
 		onOk:AddHandler(_value);
 	end
 
-	function this.SetOnCancel(_, _value)
+	function this.AddOnCancelEventHandler(_, _value)
 		onCancel:AddHandler(_value);
 	end
 
@@ -81,11 +81,11 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 
 	local function initializeComponents(_initialWidth, _initialHeight)
 		okButton = Button(' OK ', nil, nil, 0, 0, 'left-bottom');
-		okButton:SetOnClick(okButtonClick);
+		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 
 		local cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
-		cancelButton:SetOnClick(cancelButtonClick);
+		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
 		widthLabel = Label('Width', nil, nil, 1, 1, 'left-top');
