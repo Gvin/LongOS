@@ -1,38 +1,60 @@
 Logger = Class(Object, function(this, _fileName)
 	Object.init(this, 'Logger');
 
-	local fileName = _fileName;
-	local file = fs.open(fileName, 'w');
-	file.close();
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local writeLine = function(line)
+	local fileName;
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function writeLine(_line)
 		local file = fs.open(fileName, 'a');
-		file.writeLine(line);
+		file.writeLine(_line);
 		file.close();
 	end
 
-	this.ClearLog = function(_)
+	function this:ClearLog()
 		local file = fs.open(fileName, 'w');
 		file.close();
 	end
 
-	this.LogMessage = function(_, message)
-		writeLine('- '..message);
+	function this:LogMessage(_message)
+		writeLine('- '.._message);
 	end
 
-	this.LogError = function(_, errorText)
-		writeLine('[ERROR] - '..errorText);
+	function this:LogError(_errorText)
+		writeLine('[ERROR] - '.._errorText);
 	end
 
-	this.LogDebug = function(_, debugText)
-		writeLine('[DEBUG] - '..debugText);
+	function this:LogDebug(_debugText)
+		writeLine('[DEBUG] - '.._debugText);
 	end
 
-	this.LogWarning = function(_, warningText)
-		writeLine('[WARNING] - '..warningText);
+	function this:LogWarning(_warningText)
+		writeLine('[WARNING] - '.._warningText);
 	end
 
-	this.AddDivider = function(_, dividerName)
-		writeLine('========== '..dividerName..' ==========');
+	function this:AddDivider(_dividerName)
+		writeLine('========== '.._dividerName..' ==========');
 	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor(_fileName)
+		if (type(_fileName) ~= 'string') then
+			error('Logger.Constructor [fileName]: String expected, got '..type(_fileName)..'.');
+		end
+
+		fileName = _fileName;
+
+		this:ClearLog();
+	end
+
+	constructor(_fileName);
 end)

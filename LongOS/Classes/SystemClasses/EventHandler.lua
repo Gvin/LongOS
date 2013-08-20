@@ -11,7 +11,7 @@ EventHandler = Class(Object, function(this)
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.AddHandler(_, _operation)
+	function this:AddHandler(_operation)
 		if (type(_operation) ~= 'function') then
 			error('EventHandler.AddHandler [operation]: Function expected, got '..type(_operation)..'.');
 		end
@@ -19,7 +19,7 @@ EventHandler = Class(Object, function(this)
 		table.insert(operations, _operation);
 	end
 
-	function this.Invoke(_, _sender, _eventArgs)
+	function this:Invoke(_sender, _eventArgs)
 		for i = 1, #operations do
 			local operation = operations[i];
 			operation(_sender, _eventArgs);
