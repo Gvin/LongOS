@@ -83,6 +83,12 @@ System:ReadConfiguration();
 System:ReadAutoexec();
 
 success, message = pcall(parallel.waitForAny, update, draw, catchEvents, processEvents);
-if (not success) then
+if (not success and message ~= 'parallel:22: Terminated') then
 	drawGlobalErrorScreen(message);
 end
+
+term.setBackgroundColor(colors.black);
+term.setTextColor(colors.white);
+term.clear();
+term.setCursorPos(1, 1);
+print('LongOS closed.');
