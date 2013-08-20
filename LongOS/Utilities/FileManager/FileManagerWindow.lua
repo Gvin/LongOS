@@ -36,6 +36,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local contextMenu;
 
 	local EXECUTABLE_FILE_EXTENSION = '.exec';
+	local IMAGE_FILE_EXTENSION = '.image';
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -50,6 +51,10 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function isExecutable(fileName)
 		return stringExtAPI.endsWith(fileName, EXECUTABLE_FILE_EXTENSION);
+	end
+
+	local function isImage(fileName)
+		return stringExtAPI.endsWith(fileName, IMAGE_FILE_EXTENSION);
 	end
 
 	local function findCurrentDirectoryToPrint()
@@ -183,6 +188,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 					selectedFile = '';
 				elseif (isExecutable(clickedFile)) then
 					System:RunFile(clickedFile);
+				elseif (isImage(clickedFile)) then
+					System:RunFile('/LongOS/Utilities/BiriPaint/BiriPaint.exec '..clickedFile);
 				end
 			end
 		end
@@ -370,7 +377,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function runInTerminalButtonClick(_sender, _eventArgs)
 		local fullPath = currentDirectory..'/'..selectedFile;
 		fullPath = string.sub(fullPath, 2, fullPath:len());
-		if (selectedFile ~= '' and selectedFile ~= '..' and not fs.isDir(fullPath) and not isExecutable(fullPath)) then
+		if (selectedFile ~= '' and selectedFile ~= '..' and not fs.isDir(fullPath) and not isExecutable(fullPath) and not isImage(fullPath)) then
 			System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
 		else
 			local errorMessage = MessageWindow(this:GetApplication(), "Can't launch", 'Unable to lauch selected file.');

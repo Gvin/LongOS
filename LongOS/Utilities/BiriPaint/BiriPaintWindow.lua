@@ -12,7 +12,7 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 local Image = Classes.System.Graphics.Image;
 
 
-BiriPaintWindow = Class(Window, function(this, _application)	
+BiriPaintWindow = Class(Window, function(this, _application, _fileName)	
 	
 	Window.init(this, _application, 'Biribitum Paint', false);
 	this:SetTitle('Biribitum Paint');
@@ -129,17 +129,21 @@ BiriPaintWindow = Class(Window, function(this, _application)
 		newDialog:ShowModal();		
 	end
 
-	local function openDialogOnOk(_sender, _eventArgs)
-		local fileName = _eventArgs.Text..'.image';
-		if fs.exists(fileName) then
-			image:LoadFromFile(fileName);	
+	local function loadImage(_fileName)
+		if fs.exists(_fileName) then
+			image:LoadFromFile(_fileName);	
 			scrollUpdate()	
 			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
 			openWindow:ShowModal();	
 		else
-			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'..fileName..' not exist');
+			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'.._fileName..' not exist');
 			errorWindow:ShowModal();
-		end				
+		end
+	end
+
+	local function openDialogOnOk(_sender, _eventArgs)
+		local fileName = _eventArgs.Text..'.image';
+		loadImage(fileName);		
 	end
 
 	local openButtonClick = function(_sender, _eventArgs)
@@ -492,13 +496,17 @@ BiriPaintWindow = Class(Window, function(this, _application)
 
 	end
 
-	local function constructor(_application)		
+	local function constructor(_application, _fileName)		
 		mode = 'Pen    ';		
 		isMenuOpen = false;
 		xDown = 0;
 		yDown = 0;
 		initializeComponents();
+
+		if (_fileName) then
+			loadImage(_fileName);
+		end
 	end
 
-	constructor(_application);
+	constructor(_application, _fileName);
 end)
