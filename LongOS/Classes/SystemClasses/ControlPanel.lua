@@ -137,6 +137,8 @@ ControlPanel = Class(Object, function(this)
 		configurationButton:SetTextColor(colorConfiguration:GetColor('SystemButtonsTextColor'));
 		tasksManagerButton:SetBackgroundColor(colorConfiguration:GetColor('SystemButtonsColor'));
 		tasksManagerButton:SetTextColor(colorConfiguration:GetColor('SystemButtonsTextColor'));
+		terminalButton:SetBackgroundColor(colorConfiguration:GetColor('SystemButtonsColor'));
+		terminalButton:SetTextColor(colorConfiguration:GetColor('SystemButtonsTextColor'));
 		powerMenu.X = powerButton:GetX();
 		calendarMenu.X = calendarButton:GetX() - 4;
 

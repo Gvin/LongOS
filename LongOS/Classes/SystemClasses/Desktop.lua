@@ -10,6 +10,7 @@ Desktop = Class(Object, function(this)
 
 	local wallpaper;
 	local desktopMenu;
+	local changeWallpaperButton;
 
 	----- METHODS -----
 
@@ -25,6 +26,10 @@ Desktop = Class(Object, function(this)
 			end
 		end
 
+		local configuration = System:GetColorConfiguration();
+		changeWallpaperButton:SetBackgroundColor(configuration:GetColor('SystemButtonsColor'))
+		changeWallpaperButton:SetTextColor(configuration:GetColor('SystemButtonsTextColor'));
+
 		desktopMenu:Draw(videoBuffer);
 	end
 
@@ -39,12 +44,17 @@ Desktop = Class(Object, function(this)
 		desktopMenu:Close();
 	end
 
+	local function changeWallpaperButtonClick(_sender, _eventArgs)
+		System:RunFile('/LongOS/SystemUtilities/WallpaperManager/WallpaperManager.exec');
+	end
+
 	----- CONSTRUCTORS -----
 
 	local constructor = function()
 		desktopMenu = PopupMenu(1, 1, 18, 3, nil);
 
-		local changeWallpaperButton = Button('Change wallpaper', colors.gray, colors.white, 1, 1, 'left-top');
+		changeWallpaperButton = Button('Change wallpaper', colors.gray, colors.black, 1, 1, 'left-top');
+		changeWallpaperButton:AddOnClickEventHandler(changeWallpaperButtonClick);
 		desktopMenu:AddComponent(changeWallpaperButton);
 	end
 

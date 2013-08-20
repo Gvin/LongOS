@@ -1,0 +1,9 @@
+local function run()
+	shell.run('/LongOS/SystemUtilities/WallpaperManager/WallpaperManagerWindow.lua');
+
+	local application = Classes.Application.Application('Wallpaper manager', true, true);
+	local wallpaperManagerWindow = WallpaperManagerWindow(application);
+	application:Run(wallpaperManagerWindow);
+end
+
+System:Try(run);

@@ -20,11 +20,11 @@ For v 0.5
 - [X] F43: Add ability to add programs to the startup.
 - [X] F74: Add BiriPaint launching on double click on ".image" files.
 - [X] F73: Rework rednet support for proper parameters pathing.
+- [X] F57: Create application for desktop wallpapers changing.
 - [X] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [X] #11 System error when using Ctrl + T keys combination.
 - [X] #12 GvinFileManager: Error whet trying to create files or folders with some names.
 - [ ] F50: Change applications configuration extension to XML.
-- [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
 
 For all versions
