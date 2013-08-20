@@ -197,16 +197,22 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function createDirectory(_directoryName)
 		local newDirectoryName = currentDirectory..'/'.._directoryName;
+		newDirectoryName = string.sub(newDirectoryName, 2, newDirectoryName:len());
 		if (fs.exists(newDirectoryName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'Directory exists', '   Directory with such name          allready exists.');
 			errorWindow:ShowModal();
 		else
-			fs.makeDir(newDirectoryName);
+			local ok = pcall(fs.makeDir, newDirectoryName);
+			if (not ok) then
+				local errorWindow = MessageWindow(this:GetApplication(), 'Unable to create', '  Unable to create directory  "'..newDirectoryName..'".');
+				errorWindow:ShowModal();
+			end
 		end
 	end
 
 	local function createFile(_fileName)
 		local newFileName = currentDirectory..'/'.._fileName;
+		newFileName = string.sub(newFileName, 2, newFileName:len());
 		if (fs.exists(newFileName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
 			errorWindow:ShowModal();

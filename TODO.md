@@ -20,13 +20,12 @@ For v 0.5
 - [X] F43: Add ability to add programs to the startup.
 - [X] F74: Add BiriPaint launching on double click on ".image" files.
 - [X] #10 GvinFileManager: Error when trying to remove "rom" folder.
+- [X] #12 GvinFileManager: Error whet trying to create files or folders with some names.
 - [ ] F50: Change applications configuration extension to XML.
 - [ ] F57: Create application for desktop wallpapers changing.
 - [ ] F58: Create application for changing applications configuration.
 - [ ] F73: Rework rednet support for proper parameters pathing.
 - [ ] #11 System error when using Ctrl + T keys combination.
-- [ ] #12 GvinFileManager: Error whet trying to create files or folders with some names.
-- [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 For all versions
 --------
@@ -45,6 +44,7 @@ Further releases
 - [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [ ] F70: Create Panel component.
 - [ ] F72: Create file extensions association configuration.
+- [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 
 
