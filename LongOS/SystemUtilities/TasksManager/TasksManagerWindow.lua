@@ -77,6 +77,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 	this:AddOnResizeEventHandler(onWindowResize);
 
 	this.Draw = function(_, videoBuffer)
+		tasksCountLabel:SetText('Applications count: '..System:GetApplicationsCount());
 		drawProcessesGrid(videoBuffer);
 		drawProcesses(videoBuffer);
 	end

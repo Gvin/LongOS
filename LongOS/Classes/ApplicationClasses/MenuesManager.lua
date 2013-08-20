@@ -4,29 +4,32 @@
 MenuesManager = Class(Object, function(this)
 	Object.init(this, 'MenuesManager');
 
-	local menues = {};
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	-- Add new menu to the collection.
-	this.AddMenu = function(_, name, menu)
+	local menues;
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this:AddMenu(name, menu)
 		menues[name] = menu;
 	end
 
-	-- Close all menues.
-	this.CloseAll = function(_)
+	function this:CloseAll()
 		for key, v in pairs(menues) do
 			menues[key]:Close();
 		end
 	end
 
-	-- Open selected menu and close the others.
-	this.OpenMenu = function(_, name)
+	function this:OpenMenu(name)
 		this:CloseAll();
 		menues[name]:Open();
 	end
 
-	-- Open selected menu if it is closed and close if it is opened.
-	-- This operation also closes all other menues.
-	this.OpenCloseMenu = function(_, name)
+	function this:OpenCloseMenu(name)
 		local wasOpened = menues[name]:GetIsOpened();
 		this:CloseAll();
 		if (not wasOpened) then
@@ -34,8 +37,7 @@ MenuesManager = Class(Object, function(this)
 		end
 	end
 
-	-- Process left click event.
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
+	function this:ProcessLeftClickEvent(cursorX, cursorY)
 		for key, v in pairs(menues) do
 			if (menues[key]:ProcessLeftClickEvent(cursorX, cursorY)) then
 				return true;
@@ -44,8 +46,7 @@ MenuesManager = Class(Object, function(this)
 		return false;
 	end
 
-	-- Draw all menues to the buffer.
-	this.Draw = function(_, videoBuffer)
+	function this:Draw(videoBuffer)
 		local colorConfiguration = System:GetColorConfiguration();
 		for key, v in pairs(menues) do
 			menues[key].BackgroundColor = colorConfiguration:GetColor('WindowColor');
@@ -53,24 +54,21 @@ MenuesManager = Class(Object, function(this)
 		end
 	end
 
-	-- Get the count of all menues.
-	this.GetMenuesCount = function(_)
+	function this:GetMenuesCount()
 		return #menues;
 	end
 
-	-- Get menu instance by it's name.
-	this.GetMenu = function(_, name)
+	function this:GetMenu(name)
 		return menues[name];
 	end
 
-	-- Execute specified operation for each menu in the collection.
-	this.ForEach = function(_, operation)
+	function this:ForEach(operation)
 		for key, v in pairs(menues) do
 			operation(menues[key]);
 		end
 	end
 
-	this.Contains = function(_, x, y)
+	function this:Contains(x, y)
 		for key, v in pairs(menues) do
 			if (menues[key]:GetIsOpened() and menues[key]:Contains(x, y)) then
 				return true;
@@ -78,4 +76,14 @@ MenuesManager = Class(Object, function(this)
 		end
 		return false;
 	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor()
+		menues = {};
+	end
+
+	constructor();
 end)

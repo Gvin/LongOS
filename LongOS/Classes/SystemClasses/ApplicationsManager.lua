@@ -46,7 +46,7 @@ ApplicationsManager = Class(Object, function(this)
 		return result;
 	end
 
-	function this.AddApplication(_, _application)
+	function this:AddApplication(_application)
 		if (_application:GetIsUnique()) then
 			local oldApplication, index = getApplicationByName(_application:GetName());
 			if (oldApplication ~= nil) then
@@ -60,7 +60,7 @@ ApplicationsManager = Class(Object, function(this)
 		currentApplication = _application;
 	end
 
-	function this.RemoveApplication(_, _applicationId)
+	function this:RemoveApplication(_applicationId)
 		local applicationToDelete, indexToDelete = getApplicationById(_applicationId);
 
 		if (indexToDelete ~= nil and applicationToDelete:GetName() ~= 'Init') then
@@ -71,12 +71,12 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.SetCurrentApplication(_, _applicationId)
+	function this:SetCurrentApplication(_applicationId)
 		local applicationToSet = getApplicationById(_applicationId);
 		currentApplication = applicationToSet;
 	end
 
-	function this.SwitchApplication()
+	function this:SwitchApplication()
 		if (currentApplication ~= nil) then
 			local application, index = getApplicationById(currentApplication:GetId());
 			index = index + 1;
@@ -115,7 +115,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.Draw(_, _videoBuffer)
+	function this:Draw(_videoBuffer)
 		for i = 1, #applications do
 			if (applications[i] ~= currentApplication) then
 				applications[i]:SetEnabled(false);
@@ -148,9 +148,9 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.Update()
+	function this:Update()
 		if (currentApplication:GetWindowsCount() == 0) then
-			this.SwitchApplication();
+			this:SwitchApplication();
 		end
 			
 		if (#applicationsToDelete > 0) then
@@ -177,7 +177,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessKeyEvent(_, _key)
+	function this:ProcessKeyEvent(_key)
 		if currentApplication ~= nil then
 			tryProcessKeyEvent(currentApplication, _key);
 		end
@@ -194,7 +194,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessCharEvent(_, _char)
+	function this:ProcessCharEvent(_char)
 		if currentApplication ~= nil then
 			tryProcessCharEvent(currentApplication, _char);
 		end
@@ -211,7 +211,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance, _side, _channel)
+	function this:ProcessRednetEvent(_id, _message, _distance, _side, _channel)
 		for i = 1, #applications do
 			tryProcessRednetEvent(applications[i], _id, _message, _distance, _side, _channel);
 		end
@@ -230,7 +230,7 @@ ApplicationsManager = Class(Object, function(this)
 		return message;
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (currentApplication ~= nil) then
 			currentApplication:ResetDragging();
 			if (currentApplication:Contains(_cursorX, _cursorY)) then
@@ -260,7 +260,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessDoubleClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
 		if (currentApplication ~= nil) then
 			tryProcessDoubleClickEvent(currentApplication, _cursorX, _cursorY);
 		end
@@ -279,7 +279,7 @@ ApplicationsManager = Class(Object, function(this)
 		return message;
 	end
 
-	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
 		if (currentApplication ~= nil and currentApplication:Contains(_cursorX, _cursorY)) then
 			if (tryProcessRightClickEvent(currentApplication, _cursorX, _cursorY)) then
 				return true;
@@ -301,7 +301,7 @@ ApplicationsManager = Class(Object, function(this)
 		return message;
 	end
 
-	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY)
 		if (currentApplication ~= nil) then
 			if (tryProcessLeftMouseDragEvent(currentApplication, _newCursorX, _newCursorY)) then
 				return true;
@@ -323,7 +323,7 @@ ApplicationsManager = Class(Object, function(this)
 		return message;
 	end
 
-	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)
 		if (currentApplication ~= nil) then
 			if (currentApplication:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)) then
 				return true;
@@ -343,7 +343,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessTimerEvent(_, _timerId)
+	function this:ProcessTimerEvent(_timerId)
 		for i = 1, #applications do
 			tryProcessTimerEvent(applications[i], _timerId);
 		end
@@ -360,7 +360,7 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessRedstoneEvent()
+	function this:ProcessRedstoneEvent()
 		for i = 1, #applications do
 			tryProcessRedstoneEvent(applications[i]);
 		end
@@ -379,17 +379,17 @@ ApplicationsManager = Class(Object, function(this)
 		return message;
 	end
 
-	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		if (currentApplication ~= nil) then
 			tryProcessMouseScrollEvent(currentApplication, _direction, _cursorX, _cursorY);
 		end
 	end
 
-	function this.GetApplicationsCount()
+	function this:GetApplicationsCount()
 		return #applications;
 	end
 
-	function this.GetApplicationsList()
+	function this:GetApplicationsList()
 		local result = {};
 		for i = 1, #applications do
 			local app = {};

@@ -35,7 +35,7 @@ ThreadsManager = Class(Object, function(this)
 		return nil, nil;
 	end
 
-	function this.AddThread(_, _thread)
+	function this:AddThread(_thread)
 		if (type(_thread) ~= 'table' or _thread.GetClassName == nil or _thread:GetClassName() ~= 'Thread') then
 			error('ThreadsManager.AddThread [thread]: Thread expected, got '..type(_thread)..'.');
 		end
@@ -47,7 +47,7 @@ ThreadsManager = Class(Object, function(this)
 		table.insert(threads, _thread);
 	end
 
-	function this.RemoveThread(_, _id)
+	function this:RemoveThread(_id)
 		if (type(_id) ~= 'string') then
 			error('ThreadsManager.RemoveThread [id]: String expected, got '..type(_id)..'.');
 		end
@@ -57,17 +57,17 @@ ThreadsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.GetThreadsCount()
+	function this:GetThreadsCount()
 		return #threads;
 	end
 
-	function this.Clear()
+	function this:Clear()
 		threads = {};
 		threadsToDelete = {};
 		tFilters = {};
 	end
 
-	function this.Update()
+	function this:Update()
 		if (#events == 0) then
 			this:ProcessTimerEvent(0);
 		end
@@ -93,7 +93,7 @@ ThreadsManager = Class(Object, function(this)
 			end
 
 			for i = 1, #threadsToDelete do
-				local _, index = getThread(threadsToDelete[i]);
+				local index = getThread(threadsToDelete[i]);
 				if (index ~= nil) then
 					table.remove(threads, index);
 				end
@@ -105,59 +105,59 @@ ThreadsManager = Class(Object, function(this)
 
 	-- Events
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		local event = { 'mouse_click', 1, _cursorX, _cursorY };
 		table.insert(events, event);
 	end
 
-	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
 		local event = { 'mouse_click', 2, _cursorX, _cursorY };
 		table.insert(events, event);
 	end
 
-	function this.ProcessKeyEvent(_, _key)
+	function this:ProcessKeyEvent(_key)
 		local event = { 'key', _key };
 		table.insert(events, event);
 	end
 
-	function this.ProcessCharEvent(_, _symbol)
+	function this:ProcessCharEvent(_symbol)
 		local event = { 'char', _symbol };
 		table.insert(events, event);
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance, _side, _channel)
+	function this:ProcessRednetEvent(_id, _message, _distance, _side, _channel)
 		local event = { 'modem_message', _side, _channel, _id, _message, _distance };
 		table.insert(events, event);
 		local event2 = { 'rednet_message', _id, _message, _distance };
 		table.insert(events, event2);
 	end
 
-	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY)
 		local event = { 'mouse_drag', 1, _newCursorX, _newCursorY };
 		table.insert(events, event);
 	end
 
-	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)
 		local event = { 'mouse_drag', 2, _newCursorX, _newCursorY };
 		table.insert(events, event);
 	end
 
-	function this.ProcessTimerEvent(_, _timerId)
+	function this:ProcessTimerEvent(_timerId)
 		local event = { 'timer', _timerId };
 		table.insert(events, event);
 	end
 
-	function this.ProcessRedstoneEvent()
+	function this:ProcessRedstoneEvent()
 		local event = { 'redstone' };
 		table.insert(events, event);
 	end
 
-	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		local event = { 'mouse_scroll', _direction, _cursorX, _cursorY };
 		table.insert(events, event);
 	end
 
-	function this.ProcessTerminateEvent()
+	function this:ProcessTerminateEvent()
 		event = { 'terminate' };
 		table.insert(events, event);
 	end
