@@ -6,23 +6,27 @@ local PopupMenu = Classes.Components.PopupMenu;
 Desktop = Class(Object, function(this)
 	Object.init(this, 'Desktop');
 
-	----- FIELDS -----
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
 	local wallpaper;
 	local desktopMenu;
 	local changeWallpaperButton;
 
-	----- METHODS -----
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	this.LoadWallpaper = function(_, _fileName)
+	function this:LoadWallpaper(_fileName)
 		wallpaper = Image(_fileName);
 	end
 
-	this.Draw = function(_, videoBuffer)
+	function this:Draw(_videoBuffer)
 		for i = 1, wallpaper:GetHeight() do
 			for j = 1, wallpaper:GetWidth() do
 				local color = wallpaper:GetPixel(j, i);
-				videoBuffer:SetPixelColor(j, i, color);
+				_videoBuffer:SetPixelColor(j, i, color);
 			end
 		end
 
@@ -30,17 +34,17 @@ Desktop = Class(Object, function(this)
 		changeWallpaperButton:SetBackgroundColor(configuration:GetColor('SystemButtonsColor'))
 		changeWallpaperButton:SetTextColor(configuration:GetColor('SystemButtonsTextColor'));
 
-		desktopMenu:Draw(videoBuffer);
+		desktopMenu:Draw(_videoBuffer);
 	end
 
-	this.ProcessRightClickEvent = function(_, cursorX, cursorY)
-		desktopMenu.X = cursorX;
-		desktopMenu.Y = cursorY;
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
+		desktopMenu.X = _cursorX;
+		desktopMenu.Y = _cursorY;
 		desktopMenu:Open();
 	end
 
-	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
-		desktopMenu:ProcessLeftClickEvent(cursorX, cursorY);
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
+		desktopMenu:ProcessLeftClickEvent(_cursorX, _cursorY);
 		desktopMenu:Close();
 	end
 
@@ -48,9 +52,11 @@ Desktop = Class(Object, function(this)
 		System:RunFile('/LongOS/SystemUtilities/WallpaperManager/WallpaperManager.exec');
 	end
 
-	----- CONSTRUCTORS -----
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local constructor = function()
+	local function constructor()
 		desktopMenu = PopupMenu(1, 1, 18, 3, nil);
 
 		changeWallpaperButton = Button('Change wallpaper', colors.gray, colors.black, 1, 1, 'left-top');

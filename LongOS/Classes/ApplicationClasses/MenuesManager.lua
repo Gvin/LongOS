@@ -14,8 +14,8 @@ MenuesManager = Class(Object, function(this)
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this:AddMenu(name, menu)
-		menues[name] = menu;
+	function this:AddMenu(_name, _menu)
+		menues[_name] = _menu;
 	end
 
 	function this:CloseAll()
@@ -24,33 +24,33 @@ MenuesManager = Class(Object, function(this)
 		end
 	end
 
-	function this:OpenMenu(name)
+	function this:OpenMenu(_name)
 		this:CloseAll();
-		menues[name]:Open();
+		menues[_name]:Open();
 	end
 
-	function this:OpenCloseMenu(name)
-		local wasOpened = menues[name]:GetIsOpened();
+	function this:OpenCloseMenu(_name)
+		local wasOpened = menues[_name]:GetIsOpened();
 		this:CloseAll();
 		if (not wasOpened) then
-			menues[name]:Open();
+			menues[_name]:Open();
 		end
 	end
 
-	function this:ProcessLeftClickEvent(cursorX, cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		for key, v in pairs(menues) do
-			if (menues[key]:ProcessLeftClickEvent(cursorX, cursorY)) then
+			if (menues[key]:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 				return true;
 			end
 		end
 		return false;
 	end
 
-	function this:Draw(videoBuffer)
+	function this:Draw(_videoBuffer)
 		local colorConfiguration = System:GetColorConfiguration();
 		for key, v in pairs(menues) do
 			menues[key].BackgroundColor = colorConfiguration:GetColor('WindowColor');
-			menues[key]:Draw(videoBuffer);
+			menues[key]:Draw(_videoBuffer);
 		end
 	end
 
@@ -58,19 +58,19 @@ MenuesManager = Class(Object, function(this)
 		return #menues;
 	end
 
-	function this:GetMenu(name)
-		return menues[name];
+	function this:GetMenu(_name)
+		return menues[_name];
 	end
 
-	function this:ForEach(operation)
+	function this:ForEach(_operation)
 		for key, v in pairs(menues) do
-			operation(menues[key]);
+			_operation(menues[key]);
 		end
 	end
 
-	function this:Contains(x, y)
+	function this:Contains(_x, _y)
 		for key, v in pairs(menues) do
-			if (menues[key]:GetIsOpened() and menues[key]:Contains(x, y)) then
+			if (menues[key]:GetIsOpened() and menues[key]:Contains(_x, _y)) then
 				return true;
 			end
 		end

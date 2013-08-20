@@ -10,7 +10,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	this:SetX(5);
 	this:SetY(3);
 	this:SetWidth(40);
-	this:SetHeight(8);
+	this:SetHeight(7);
 	this:SetAllowResize(false);
 	this:SetAllowMaximize(false);
 
@@ -39,7 +39,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 		local colorConfiguration = System:GetColorConfiguration();
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemLabelsTextColor'));
 		_videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('WindowColor'));
-		_videoBuffer:WriteAt(2, 2, toPrint);
+		_videoBuffer:WriteAt(2, 3, toPrint);
 	end
 
 	local function saveChangesButtonClick(_sender, _eventArgs)
