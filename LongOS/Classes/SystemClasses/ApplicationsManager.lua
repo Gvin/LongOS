@@ -55,7 +55,7 @@ ApplicationsManager = Class(Object, function(this)
 			end
 		end
 
-		_application:SetId(generateId());
+		_application:Initialize(generateId());
 		table.insert(applications, _application);
 		currentApplication = _application;
 	end

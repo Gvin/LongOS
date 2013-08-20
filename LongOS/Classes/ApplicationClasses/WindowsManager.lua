@@ -57,7 +57,7 @@ WindowsManager = Class(Object, function(this)
 		return windows[index];
 	end
 
-	this.DeleteWindow = function(_, windowId)
+	this.RemoveWindow = function(_, windowId)
 		local windowToDelete, indexToDelete = getWindowById(windowId);
 		if (indexToDelete ~= nil) then
 			table.remove(windows, indexToDelete);

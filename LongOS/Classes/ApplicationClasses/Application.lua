@@ -1,66 +1,93 @@
+-- Application class. Represents all applications in the system.
+-- Serves as a container for windows and threads. May be a daemon process if shutdownWhenNoWindows property is setted to true.
 Application = Class(Object, function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
 	Object.init(this, 'Application');
 
-	----- Fields -----
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
+	local id;
 	local name;
 	local isUnique;
-	local enabled;
-	local id;
-	local windowsManager;
-	local threadsManager;
 	local shutdownWhenNoWindows;
 
-	----- Properties -----
+	local enabled;
+	
+	local windowsManager;
+	local threadsManager;
+	
 
-	this.GetName = function()
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this:GetName()
 		return name;
 	end
 
-	this.GetIsUnique = function()
+	function this:GetIsUnique()
 		return isUnique;
 	end
 
-	this.GetEnabled = function()
+	function this:GetEnabled()
 		return enabled;
 	end
 
-	this.SetEnabled = function(_, _value)
+	function this:SetEnabled(_value)
+		if (type(_value) ~= 'boolean') then
+			error('Application.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
 		enabled = _value;
 	end
 
-	this.GetId = function()
+	function this:GetId()
 		return id;
 	end
 
-	this.SetId = function(_, _value)
-		id = _value;
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this:Initialize(_id)
+		if (type(_id) ~= 'string') then
+			error('Application.Initialize [id]: String expected, got '..type(_id)..'.');
+		end
+
+		id = _id;
 	end
 
-	----- Methods -----
-
-	this.AddWindow = function(_, _window)
+	function this:AddWindow(_window)
 		windowsManager:AddWindow(_window);
 	end
 
-	this.DeleteWindow = function(_, _windowId)
-		windowsManager:DeleteWindow(_windowId);
+	function this:RemoveWindow(_windowId)
+		windowsManager:RemoveWindow(_windowId);
 	end
 
-	this.AddThread = function(_, _thread)
+	function this:AddThread(_thread)
 		threadsManager:AddThread(_thread);
 	end
 
-	this.RemoveThread = function(_, _id)
+	function this:RemoveThread(_id)
 		threadsManager:RemoveThread(_id);
 	end
 
-	this.Clear = function()
+	function this:Clear()
 		threadsManager:Clear();
 		windowsManager:Clear();
 	end
 
-	this.Run = function(_, _window)
+	function this:Contains(_x, _y)
+		return windowsManager:Contains(_x, _y);
+	end
+
+	function this:GetWindowsCount()
+		return windowsManager:GetWindowsCount();
+	end
+
+	function this:Run(_window)
 		if (_window == nil and shutdownWhenNoWindows) then 
 			return;
 		end
@@ -71,12 +98,12 @@ Application = Class(Object, function(this, _applicationName, _isUnique, _shutdow
 		System:AddApplication(this);
 	end
 
-	this.Draw = function(_, _videoBuffer)
+	function this:Draw(_videoBuffer)
 		windowsManager.Enabled = enabled;
 		windowsManager:Draw(_videoBuffer);
 	end
 
-	this.Update = function(_)
+	function this:Update()
 		windowsManager:Update();
 		threadsManager:Update();
 
@@ -85,79 +112,73 @@ Application = Class(Object, function(this, _applicationName, _isUnique, _shutdow
 		end
 	end
 
-	this.Close = function(_)
+	function this:Close()
 		System:RemoveApplication(id);
 	end
 
-	this.ProcessKeyEvent = function(_, _key)
+	function this:ProcessKeyEvent(_key)
 		windowsManager:ProcessKeyEvent(_key);
 		threadsManager:ProcessKeyEvent(_key);
 	end
 
-	this.ProcessCharEvent = function(_, _char)
+	function this:ProcessCharEvent(_char)
 		windowsManager:ProcessCharEvent(_char);
 		threadsManager:ProcessCharEvent(_char);
 	end
 
-	this.ProcessRednetEvent = function(_, _id, _message, _distance, _side, _channel)
+	function this:ProcessRednetEvent(_id, _message, _distance, _side, _channel)
 		windowsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 		threadsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 	end
 
-	this.ProcessLeftClickEvent = function(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		threadsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 		return windowsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 	end
 
-	this.ResetDragging = function()
+	function this:ResetDragging()
 		windowsManager:ResetDragging();
 	end
 
-	this.ProcessRightClickEvent = function(_, _cursorX, _cursorY)
-	threadsManager:ProcessRightClickEvent(_cursorX, _cursorY);
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
+		threadsManager:ProcessRightClickEvent(_cursorX, _cursorY);
 		return windowsManager:ProcessRightClickEvent(_cursorX, _cursorY);
 	end
 
-	this.ProcessDoubleClickEvent = function(_, _cursorX, _cursorY)
+	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
 		windowsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
-	this.ProcessLeftMouseDragEvent = function(_, _newCursorX, _newCursorY)
+	function this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY)
 		windowsManager:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
 		threadsManager:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
 	end
 
-	this.ProcessRightMouseDragEvent = function(_, _newCursorX, _newCursorY)
+	function this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)
 		windowsManager:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
 		threadsManager:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
 	end
 
-	this.ProcessTimerEvent = function(_, _timerId)
+	function this:ProcessTimerEvent(_timerId)
 		threadsManager:ProcessTimerEvent(_timerId);
 		windowsManager:ProcessTimerEvent(_timerId);
 	end
 
-	this.ProcessRedstoneEvent = function()
+	function this:ProcessRedstoneEvent()
 		threadsManager:ProcessRedstoneEvent();
 		windowsManager:ProcessRedstoneEvent();
 	end
 
-	this.ProcessMouseScrollEvent = function(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		threadsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
 		windowsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
 	end
 
-	this.Contains = function(_, _x, _y)
-		return windowsManager:Contains(_x, _y);
-	end
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	this.GetWindowsCount = function(_)
-		return windowsManager:GetWindowsCount();
-	end
-
-	----- Constructors -----
-
-	local constructor1 = function(_applicationName, _isUnique, _shutdownWhenNoWindows)
+	local function constructor1(_applicationName, _isUnique, _shutdownWhenNoWindows)
 		if (type(_applicationName) ~= 'string') then
 			error('Application.Constructor [applicationName]: String expected, got '..type(_applicationName)..'.');
 		end
@@ -178,11 +199,11 @@ Application = Class(Object, function(this, _applicationName, _isUnique, _shutdow
 		threadsManager = Classes.Application.ThreadsManager();
 	end
 
-	local constructor2 = function(_applicationName, _isUnique)
+	local function constructor2(_applicationName, _isUnique)
 		constructor1(_applicationName, _isUnique, true);
 	end
 
-	local constructor3 = function(_applicationName)
+	local function constructor3(_applicationName)
 		constructor2(_applicationName, false);
 	end
 

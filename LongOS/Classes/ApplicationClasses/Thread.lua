@@ -15,11 +15,11 @@ Thread = Class(Object, function(this, _application, _operation)
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.GetName()
+	function this:GetName()
 		return name;
 	end
 
-	function this.GetId()
+	function this:GetId()
 		return id;
 	end
 
@@ -27,7 +27,7 @@ Thread = Class(Object, function(this, _application, _operation)
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.Initialize(_, _id)
+	function this:Initialize(_id)
 		if (type(_id) ~= 'string') then
 			error('Thread.Initialize [id]: String expected, got '..type(_id)..'.');
 		end
@@ -36,19 +36,19 @@ Thread = Class(Object, function(this, _application, _operation)
 		routine = coroutine.create(operation);
 	end
 
-	function this.Start()
+	function this:Start()
 		application:AddThread(this);
 	end
 
-	function this.Stop()
+	function this:Stop()
 		application:RemoveThread(id);
 	end
 
-	function this.Resume(_, _eventData)
+	function this:Resume(_eventData)
 		return coroutine.resume(routine, unpack(_eventData));
 	end
 
-	function this.GetStatus()
+	function this:GetStatus()
 		if (routine == nil) then
 			return 'none';
 		end
