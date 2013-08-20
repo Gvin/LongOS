@@ -30,7 +30,7 @@ WindowsManager = Class(Object, function(this)
 	this.AddWindow = function(_, window)
 		if (window:GetIsUnique()) then
 			local oldWindow, index = getWindowByName(window:GetName());
-			if (oldWindow ~= nil) then
+			if (oldWindow ~= nil and (currentWindow == nil or not currentWindow:GetIsModal())) then
 				currentWindow = oldWindow;
 				return;
 			end
@@ -45,6 +45,17 @@ WindowsManager = Class(Object, function(this)
 		currentWindow = windowToSet;
 	end
 
+	local function getNextWindow(_deletingIndex)
+		if (windows[_deletingIndex - 1] ~= nil) then
+			return windows[_deletingIndex - 1];
+		end
+
+		local index = _deletingIndex - 1;
+		while (index >= 1 and windows[index] == nil) do
+			index = index - 1;
+		end
+		return windows[index];
+	end
 
 	this.DeleteWindow = function(_, windowId)
 		local windowToDelete, indexToDelete = getWindowById(windowId);
@@ -52,7 +63,7 @@ WindowsManager = Class(Object, function(this)
 			table.remove(windows, indexToDelete);
 			if (currentWindow == windowToDelete) then
 				currentWindow = nil;
-				currentWindow = windows[indexToDelete - 1];
+				currentWindow = getNextWindow(indexToDelete);
 			end
 		end
 	end

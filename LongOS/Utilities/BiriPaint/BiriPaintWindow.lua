@@ -132,18 +132,23 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	local function loadImage(_fileName)
 		if fs.exists(_fileName) then
 			image:LoadFromFile(_fileName);	
-			scrollUpdate()	
-			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
-			openWindow:ShowModal();	
-		else
-			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'.._fileName..' not exist');
-			errorWindow:ShowModal();
+			scrollUpdate()
+			return true;
+			
 		end
+
+		return false;	
 	end
 
 	local function openDialogOnOk(_sender, _eventArgs)
 		local fileName = _eventArgs.Text..'.image';
-		loadImage(fileName);		
+		if (loadImage(fileName)) then
+			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
+			openWindow:ShowModal();
+		else
+			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'.._fileName..' not exist');
+			errorWindow:ShowModal();
+		end
 	end
 
 	local openButtonClick = function(_sender, _eventArgs)
