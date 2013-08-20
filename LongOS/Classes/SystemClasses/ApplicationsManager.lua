@@ -200,8 +200,8 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	local function tryProcessRednetEvent(_application, _id, _message, _distance)
-		local success, message = pcall(_application.ProcessRednetEvent, _application, _id, _message, _distance);
+	local function tryProcessRednetEvent(_application, _id, _message, _distance, _side, _channel)
+		local success, message = pcall(_application.ProcessRednetEvent, _application, _id, _message, _distance, _side, _channel);
 		if (not success) then
 			if (message == nil) then
 				message = '';
@@ -211,9 +211,9 @@ ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance)
+	function this.ProcessRednetEvent(_, _id, _message, _distance, _side, _channel)
 		for i = 1, #applications do
-			tryProcessRednetEvent(applications[i], _id, _message, _distance);
+			tryProcessRednetEvent(applications[i], _id, _message, _distance, _side, _channel);
 		end
 	end
 

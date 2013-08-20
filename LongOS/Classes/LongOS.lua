@@ -174,8 +174,8 @@ LongOS = Class(Object, function(this)
 		applicationsManager:ProcessCharEvent(char);
 	end
 
-	local function processRednetEvent(id, message, distance)
-		applicationsManager:ProcessRednetEvent(id, message, distance);
+	local function processRednetEvent(id, message, distance, side, channel)
+		applicationsManager:ProcessRednetEvent(id, message, distance, side, channel);
 	end
 
 	local function processTimerEvent(timerId)
@@ -203,7 +203,7 @@ LongOS = Class(Object, function(this)
 			elseif (event.Name == 'char') then
 				processCharEvent(event.Params[1]);
 			elseif (event.Name == 'modem_message') then
-				processRednetEvent(event.Params[3], event.Params[4], event.Params[5]);
+				processRednetEvent(event.Params[3], event.Params[4], event.Params[5], event.Params[1], event.Params[2]);
 			elseif (event.Name == 'timer') then
 				processTimerEvent(event.Params[1]);
 			elseif (event.Name == 'redstone') then
@@ -226,7 +226,7 @@ LongOS = Class(Object, function(this)
 
 	-- Catch incoming events.
 	this.CatchEvents = function()
-		local event, param1, param2, param3, param4, param5 = os.pullEvent();
+		local event, param1, param2, param3, param4, param5 = os.pullEventRaw();
 
 		if (event == 'timer') then
 			if (not tableExtAPI.contains(allowedTimers, param1)) then

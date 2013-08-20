@@ -72,10 +72,8 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance)
-		if (not paused) then
-			threadsManager:ProcessRednetEvent(_id, _message, _distance);
-		end
+	function this.ProcessRednetEvent(_, _id, _message, _distance, _side, _channel)
+		threadsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 		update();
 	end
 
@@ -125,9 +123,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	function this.ProcessRedstoneEvent()
-		if (not paused) then
-			threadsManager:ProcessRedstoneEvent();
-		end
+		threadsManager:ProcessRedstoneEvent();
 		update();
 	end
 

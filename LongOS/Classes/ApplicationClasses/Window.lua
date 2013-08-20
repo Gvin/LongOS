@@ -724,11 +724,11 @@ Window = Class(Object, function(this, _application, _name, _isUnique)
 	function this:ProcessCharEvent(_symbol)
 	end
 
-	function this:ProcessRednetEventBase(_id, _message, _distance)
-		this:ProcessRednetEvent(_id, _message, _distance);
+	function this:ProcessRednetEventBase(_id, _message, _distance, _side, _channel)
+		this:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 	end
 
-	function this:ProcessRednetEvent(_id, _message, _distance)
+	function this:ProcessRednetEvent(_id, _message, _distance, _side, _channel)
 	end
 
 	function this:ProcessTimerEventBase(_timerId)

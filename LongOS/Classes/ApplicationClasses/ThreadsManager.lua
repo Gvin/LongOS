@@ -125,9 +125,11 @@ ThreadsManager = Class(Object, function(this)
 		table.insert(events, event);
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance)
-		local event = { 'modem_message', _id, _message, _distance };
+	function this.ProcessRednetEvent(_, _id, _message, _distance, _side, _channel)
+		local event = { 'modem_message', _side, _channel, _id, _message, _distance };
 		table.insert(events, event);
+		local event2 = { 'rednet_message', _id, _message, _distance };
+		table.insert(events, event2);
 	end
 
 	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)

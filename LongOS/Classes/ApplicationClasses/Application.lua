@@ -99,9 +99,9 @@ Application = Class(Object, function(this, _applicationName, _isUnique, _shutdow
 		threadsManager:ProcessCharEvent(_char);
 	end
 
-	this.ProcessRednetEvent = function(_, _id, _message, _distance)
-		windowsManager:ProcessRednetEvent(_id, _message, _distance);
-		threadsManager:ProcessRednetEvent(_id, _message, _distance);
+	this.ProcessRednetEvent = function(_, _id, _message, _distance, _side, _channel)
+		windowsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
+		threadsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 	end
 
 	this.ProcessLeftClickEvent = function(_, _cursorX, _cursorY)

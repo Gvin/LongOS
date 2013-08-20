@@ -138,9 +138,9 @@ WindowsManager = Class(Object, function(this)
 		end
 	end
 
-	this.ProcessRednetEvent = function(_, id, message, distance)
+	this.ProcessRednetEvent = function(_, id, message, distance, side, channel)
 		for i = 1, #windows do
-			windows[i]:ProcessRednetEventBase(id, message, distance);
+			windows[i]:ProcessRednetEventBase(id, message, distance, side, channel);
 		end
 	end
 
