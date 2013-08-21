@@ -213,7 +213,7 @@ LongOS = Class(Object, function(this)
 			end
 			table.remove(eventsQueue, 1);
 		else
-			oldSleep(0.1);
+			os.sleep(0.1);
 		end
 	end
 
