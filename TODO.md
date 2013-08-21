@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 84 registered features.
+Currently there are 85 registered features.
 
 TODO
 ========
@@ -37,6 +37,7 @@ Further releases
 - [ ] F82: Add working directory property to the application.
 - [ ] F83: Add possibility to use "full screen" mod in windows.
 - [ ] F84: Add posibility to minimize windows to control panel.
+- [ ] F85: Add image position option to the wallpaper manager program.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 
