@@ -133,8 +133,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 		if fs.exists(_fileName) then
 			image:LoadFromFile(_fileName);	
 			scrollUpdate()
-			return true;
-			
+			return true;			
 		end
 
 		return false;	
@@ -146,7 +145,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
 			openWindow:ShowModal();
 		else
-			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'.._fileName..' not exist');
+			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'..fileName..' not exist');
 			errorWindow:ShowModal();
 		end
 	end
