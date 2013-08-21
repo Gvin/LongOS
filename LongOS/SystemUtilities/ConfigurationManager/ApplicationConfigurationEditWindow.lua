@@ -96,7 +96,7 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 		this:AddComponent(nameEdit);
 
 		pathLabel = Label('Path', nil, nil, 1, 3, 'left-top');
-		this:AddComponent(pathtLabel);
+		this:AddComponent(pathLabel);
 
 		pathEdit = Edit(this:GetWidth() - 4, nil, nil, 1, 4, 'left-top');
 		this:AddComponent(pathEdit);
