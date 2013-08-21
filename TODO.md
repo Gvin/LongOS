@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 80 registered features.
+Currently there are 81 registered features.
 
 TODO
 ========
@@ -12,7 +12,10 @@ For v 0.6
 - [ ] F78: Improve namespaces declaration.
 - [ ] F79: Change color configuration window to use ListBox.
 - [ ] F80: Create "About system" application.
+- [ ] F81: Use selection color configuration in the GvinFileManager.
 - [ ] #14 It is possible to have day 0 in calendar.
+- [ ] #16 Java exception when trying to relaunch system after log off.
+- [ ] #17 Unable to add standard programs to "Applications" menu without using full name.
 
 For all versions
 --------
