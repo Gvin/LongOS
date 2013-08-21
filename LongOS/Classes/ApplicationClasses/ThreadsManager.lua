@@ -93,7 +93,7 @@ ThreadsManager = Class(Object, function(this)
 			end
 
 			for i = 1, #threadsToDelete do
-				local index = getThread(threadsToDelete[i]);
+				local _, index = getThread(threadsToDelete[i]);
 				if (index ~= nil) then
 					table.remove(threads, index);
 				end

@@ -44,40 +44,40 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		end
 	end
 
-	function this.Update()
+	function this:Update()
 		update();
 	end
 
-	function this.Draw(_, _videoBuffer)
+	function this:Draw(_videoBuffer)
 		local canvas = redirector.canvas;
 		canvas:Draw(_videoBuffer, 0, 1, _videoBuffer:GetWidth() - 2, _videoBuffer:GetHeight() - 3);
 	end
 
-	function this.ProcessCharEvent(_, _char)
+	function this:ProcessCharEvent(_char)
 		if (not paused) then
 			threadsManager:ProcessCharEvent(_char);
 		end
 		update();
 	end
 
-	function this.ProcessKeyEvent(_, _key)
+	function this:ProcessKeyEvent(_key)
 		if (not paused) then
 			threadsManager:ProcessKeyEvent(_key);
 		end
 		update();
 	end
 
-	function this.ProcessTimerEvent(_, _timerId)
+	function this:ProcessTimerEvent(_timerId)
 		threadsManager:ProcessTimerEvent(_timerId);
 		update();
 	end
 
-	function this.ProcessRednetEvent(_, _id, _message, _distance, _side, _channel)
+	function this:ProcessRednetEvent(_id, _message, _distance, _side, _channel)
 		threadsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 		update();
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (not paused) then
 			local cursorX = _cursorX - this:GetX();
 			local cursorY = _cursorY - this:GetY() - 1;
@@ -86,7 +86,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
-	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
 		if (not paused) then
 			local cursorX = _cursorX - this:GetX();
 			local cursorY = _cursorY - this:GetY() - 1;
@@ -95,7 +95,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
-	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY)
 		if (not paused) then
 			local cursorX = _newCursorX - this:GetX();
 			local cursorY = _newCursorY - this:GetY() - 1;
@@ -104,7 +104,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
-	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
+	function this:ProcessRightMouseDragEvent(_newCursorX, _newCursorY)
 		if (not paused) then
 			local cursorX = _newCursorX - this:GetX();
 			local cursorY = _newCursorY - this:GetY() - 1;
@@ -113,7 +113,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
-	function this.ProcessMouseScrollEvent(_, _direction, _cursorX, _cursorY)
+	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		if (not paused) then
 			local cursorX = _cursorX - this:GetX();
 			local cursorY = _cursorY - this:GetY() - 1;
@@ -122,7 +122,7 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
-	function this.ProcessRedstoneEvent()
+	function this:ProcessRedstoneEvent()
 		threadsManager:ProcessRedstoneEvent();
 		update();
 	end
@@ -149,10 +149,12 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	local function start()
+		executing = true;
+		
 		term.setTextColor(colors.lime);
 		print('LongOS terminal emulator v1.0');
 		term.setTextColor(colors.white);
-		executing = true;
+		
 		if (_fileName ~= nil and type(_fileName) == 'string') then
 			shell.run(_fileName);
 		else
