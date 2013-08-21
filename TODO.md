@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 75 registered features.
+Currently there are 76 registered features.
 
 TODO
 ========
@@ -45,6 +45,7 @@ Further releases
 - [ ] F70: Create Panel component.
 - [ ] F72: Create file extensions association configuration.
 - [ ] F75: Create more beautiful loading screen.
+- [ ] F76: Create video files and video player.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 
