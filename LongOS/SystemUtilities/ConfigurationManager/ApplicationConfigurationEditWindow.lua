@@ -46,6 +46,39 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
+
+	local function getFilesInDir(_dirPath)
+		local list = fs.list(_dirPath);		
+		local i =1
+		while i<=#list do				
+			if (fs.isDir(_dirPath..'/'..list[i]) and list[i] ~= 'turtle') then				
+				local dir = _dirPath..'/'..list[i]
+				table.remove(list,i)				
+				local subList = getFilesInDir(dir);				
+				for j = 1, #subList do
+					table.insert(list,subList[j])					
+				end
+				i = i + #subList - 2;
+			elseif (list[i] == 'turtle') then 	
+				table.remove(list,i)	
+				i = i - 1;
+			end	
+			i = i + 1;
+		end
+		return list;
+	end
+
+	local function isInPrograms(_fileName)
+		local list = getFilesInDir('/rom/programs');
+		for i = 1, #list do			
+			if (_fileName == list[i]) then
+				return true
+			end			
+		end
+		return false;
+	end
+
+
 	local function saveChangesButtonClick(_sender, _eventArgs)			
 		local name = nameEdit:GetText();
 		if (#name == 0) then
@@ -53,11 +86,35 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 			errorWindow:ShowModal();	
 		else
 			local path = pathEdit:GetText();
-
+			local add = true;
 			if (#path == 0) then
 				local errorWindow = MessageWindow(this:GetApplication(), 'Empty path', 'Application path should be entered');			
-				errorWindow:ShowModal();	
-			elseif (fs.exists(path) and fs.isDir(path) == false ) then
+				errorWindow:ShowModal();
+				add = false;			
+			elseif (terminalCheckBox:GetChecked()) then
+				if (isInPrograms(path) == false and not (fs.exists(path) and fs.isDir(path) == false)) then
+					local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path "'..path..'" not exist');			
+					errorWindow:ShowModal();
+					add = false;
+				elseif ( not (stringExtAPI.endsWith(fs.getName(path),'.lua') or  string.find(fs.getName(path),'.') ~= nil ) ) then
+					local errorWindow = MessageWindow(this:GetApplication(), 'Wrong file extension', 'File with this extension is not executable');			
+					errorWindow:ShowModal();
+					add = false;				
+				end	
+
+			elseif(not terminalCheckBox:GetChecked()) then
+				if (not (fs.exists(path) and fs.isDir(path) == false)) then
+					local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path "'..path..'" not exist');			
+					errorWindow:ShowModal();
+					add = false;
+				elseif ( not stringExtAPI.endsWith(fs.getName(path),'.exec') ) then
+					local errorWindow = MessageWindow(this:GetApplication(), 'Wrong file extension', 'File with this extension is not executable');			
+					errorWindow:ShowModal();
+					add = false;
+				end	
+			end
+
+			if (add) then		
 				local applicationData = {};
 				table.insert(applicationData,name);
 				table.insert(applicationData,path);
@@ -70,9 +127,6 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 				eventArgs.ApplicationData = applicationData;		
 				onSave:Invoke(this, eventArgs)	
 				this:Close();			
-			else
-				local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path '..path..' not exist');			
-				errorWindow:ShowModal();	
 			end
 		end
 	end
