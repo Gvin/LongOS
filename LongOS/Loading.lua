@@ -1,7 +1,7 @@
 Classes = {};
 Classes.System = {};
 
-local version = '0.4';
+local version = '0.5';
 local operationsCount = 36;
 local currentOperation = 1;
 LoadingErrors = 0;

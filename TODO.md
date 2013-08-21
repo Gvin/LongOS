@@ -1,7 +1,41 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 76 registered features.
+Currently there are 80 registered features.
 
 TODO
+========
+
+For v 0.6
+--------
+- [ ] F77: Move "enable" and "visible" properties to the Component class.
+- [ ] F75: Create more beautiful loading screen.
+- [ ] F61: Create file browsing component.
+- [ ] F78: Improve namespaces declaration.
+- [ ] F79: Change color configuration window to use ListBox.
+- [ ] F80: Create "About system" application.
+- [ ] #14 It is possible to have day 0 in calendar.
+
+For all versions
+--------
+- [ ] F7: Create class diagrams for all classes.
+- [ ] F1: Make code refactoring.
+
+Further releases
+--------
+- [ ] F15: Improve PopupMenu to support submenues.
+- [ ] F19: Add desktop icons.
+- [ ] F19.1: Add Icon class.
+- [ ] F19.2: Add DesktopIcon class.
+- [ ] F20: Add program to draw icons.
+- [ ] F49: Add window size and position storing on application closing.
+- [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
+- [ ] F70: Create Panel component.
+- [ ] F76: Create video files and video player.
+- [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
+- [ ] #15 System hangs whet trying to run files with classes declaration in terminal emulation.
+
+
+
+History
 ========
 
 For v 0.5
@@ -26,33 +60,6 @@ For v 0.5
 - [X] #10 GvinFileManager: Error when trying to remove "rom" folder.
 - [X] #11 System error when using Ctrl + T keys combination.
 - [X] #12 GvinFileManager: Error whet trying to create files or folders with some names.
-
-
-For all versions
---------
-- [ ] F7: Create class diagrams for all classes.
-- [ ] F1: Make code refactoring.
-
-Further releases
---------
-- [ ] F15: Improve PopupMenu to support submenues.
-- [ ] F19: Add desktop icons.
-- [ ] F19.1: Add Icon class.
-- [ ] F19.2: Add DesktopIcon class.
-- [ ] F20: Add program to draw icons.
-- [ ] F49: Add window size and position storing on application closing.
-- [ ] F61: Create file browsing component.
-- [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
-- [ ] F70: Create Panel component.
-- [ ] F72: Create file extensions association configuration.
-- [ ] F75: Create more beautiful loading screen.
-- [ ] F76: Create video files and video player.
-- [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
-
-
-
-History
-========
 
 For v 0.4
 --------
@@ -128,3 +135,4 @@ Rejected
 - [X] F34: [REJECTED] Rename Application to Process.
 - [X] F11: [REJECTED] Add packets manager.
 - [X] F24: [REJECTED] Create application for components testing.
+- [X] F72: [DUPLICATE] Create file extensions association configuration.
