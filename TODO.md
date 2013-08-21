@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 81 registered features.
+Currently there are 84 registered features.
 
 TODO
 ========
@@ -34,6 +34,9 @@ Further releases
 - [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [ ] F70: Create Panel component.
 - [ ] F76: Create video files and video player.
+- [ ] F82: Add working directory property to the application.
+- [ ] F83: Add possibility to use "full screen" mod in windows.
+- [ ] F84: Add posibility to minimize windows to control panel.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 
