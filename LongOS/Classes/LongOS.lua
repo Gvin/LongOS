@@ -359,26 +359,17 @@ LongOS = Class(Object, function(this)
 		end
 	end
 
+	function this:GetControlPanel()
+		return controlPanel;
+	end
+
 -------------------------------------------------------------------
 --------------------- CONFIGURATION -------------------------------
-
-	local loadApplicationsConfiguration = function()
-		local file = fs.open('/LongOS/Configuration/applications.config', 'r');
-		local name = file.readLine();
-		while (name ~= nil) do
-			local path = file.readLine();
-			controlPanel:AddApplication(name, path);
-			name = file.readLine();
-		end
-
-		file.close();
-	end
 
 	-- Read all system configurations.
 	this.ReadConfiguration = function()
 		configurationManager:ReadConfiguration();
-		loadApplicationsConfiguration();
-
+		controlPanel:RefreshApplications();		
 		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
 		desktopManager:LoadWallpaper(interfaceConfiguration:GetOption('WallpaperFileName'));
 	end
@@ -399,6 +390,10 @@ LongOS = Class(Object, function(this)
 	this.GetMouseConfiguration = function()
 		return configurationManager:GetMouseConfiguration();
 	end	
+
+	this.GetApplicationsConfiguration = function()
+		return configurationManager:GetApplicationsConfiguration();
+	end
 
 	this.GetTopLineIndex = function()
 		if (controlPanel.IsBottom) then

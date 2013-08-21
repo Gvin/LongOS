@@ -10,6 +10,10 @@ ComponentsManager = Class(Object, function(this)
 		table.insert(components, component);
 	end
 
+	function this:Clear()
+		components = {};		
+	end
+
 	-- Draw all components to the buffer.
 	this.Draw = function(_, videoBuffer, ownerX, ownerY, ownerWidth, ownerHeight)
 		for i = 1, #components do

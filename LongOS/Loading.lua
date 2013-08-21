@@ -2,7 +2,7 @@ Classes = {};
 Classes.System = {};
 
 local version = '0.4';
-local operationsCount = 33;
+local operationsCount = 36;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -138,6 +138,10 @@ local function includeConfigurationClasses()
 	include('Classes/SystemClasses/ConfigurationManager/MouseConfiguration');
 	mustBeLoaded(MouseConfiguration, 'MouseConfiguration', Classes.System.Configuration);
 	MouseConfiguration = nil;
+
+	include('Classes/SystemClasses/ConfigurationManager/ApplicationsConfiguration');
+	mustBeLoaded(ApplicationsConfiguration, 'ApplicationsConfiguration', Classes.System.Configuration);
+	ApplicationsConfiguration = nil;
 	
 	include('Classes/SystemClasses/ConfigurationManager/ConfigurationManager');
 	mustBeLoaded(ConfigurationManager, 'ConfigurationManager', Classes.System.Configuration);
@@ -174,6 +178,14 @@ local function includeComponentsClasses()
 	include('Classes/ComponentsClasses/HorizontalScrollBar');
 	mustBeLoaded(HorizontalScrollBar, 'HorizontalScrollBar', Classes.Components);
 	HorizontalScrollBar = nil;
+
+	include('Classes/ComponentsClasses/ListBox');
+	mustBeLoaded(ListBox, 'ListBox', Classes.Components);
+	ListBox = nil;
+
+	include('Classes/ComponentsClasses/CheckBox');
+	mustBeLoaded(CheckBox, 'CheckBox', Classes.Components);
+	CheckBox = nil;
 end
 
 local function includeApplicationClasses()

@@ -178,11 +178,10 @@ ControlPanel = Class(Object, function(this)
 	end
 
 	-- Draw bottom menu on the screen.
-	this.Draw = function(_, videoBuffer)
+	this.Draw = function(_, videoBuffer)		
 		local interfaceConfiguration = System:GetInterfaceConfiguration();
 		this.IsBottom = interfaceConfiguration:GetOption('ControlPanelPosition') == 'bottom';
-		drawControlPanel(videoBuffer);
-		
+		drawControlPanel(videoBuffer);		
 		menuesManager:ForEach(alignMenu);
 		menuesManager:Draw(videoBuffer);
 	end
@@ -202,19 +201,43 @@ ControlPanel = Class(Object, function(this)
 
 	local applicationButtonClick = function(sender, eventArgs)
 		ERR = sender;
-		System:RunFile(sender.Path);
+		local path = sender.Path;
+		if (sender.Terminal == true) then
+			path = '/LongOS/SystemUtilities/Terminal/GvinTerminal.exec '..path;
+		end
+		System:RunFile(path);
 	end
 
 	-- Add new applications to the "Applications" menu.
 	-- Added application will only be a new button which runs program at the specified path.
-	this.AddApplication = function(_, applicationName, applicationPath)
+
+	local function addApplication(_applicationName, _applicationPath, _useTerminal)
 		applicationsMenu.Y = applicationsMenu.Y - 2;
 		applicationsMenu.Height = applicationsMenu.Height + 2;
 
-		local applicationButton = Button(applicationName, nil, nil, 1, applicationsMenu.Height - 2, 'left-bottom');
-		applicationButton.Path = applicationPath;
+		local applicationButton = Button(_applicationName, nil, nil, 1, applicationsMenu.Height - 2, 'left-top');
+		applicationButton.Path = _applicationPath;
+		if (_useTerminal == 'true') then
+			applicationButton.Terminal = true;
+		else
+			applicationButton.Terminal = false;	
+		end
 		applicationButton:AddOnClickEventHandler(applicationButtonClick);
 
 		applicationsMenu:AddComponent(applicationButton);
 	end
+	
+	function this:RefreshApplications()		
+		local applicationsConfiguration = System:GetApplicationsConfiguration();
+		local applications = applicationsConfiguration:GetApplicationsData();
+		applicationsMenu:Clear();		
+		for i = 1, #applications do			
+			local name = applications[i][1];
+			local path = applications[i][2];
+			local terminal = applications[i][3];
+			addApplication(name, path, terminal);		
+		end
+	end
+
+	
 end)

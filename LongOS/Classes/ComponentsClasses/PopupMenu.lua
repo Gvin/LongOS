@@ -19,6 +19,11 @@ PopupMenu = Class(Object, function(this, x, y, width, height, backgroundColor, _
 		componentsManager:AddComponent(component);
 	end
 
+	function this:Clear()
+		this.Height = 1;
+		componentsManager:Clear();	
+	end
+
 	this.GetIsOpened = function(_)
 		return isOpened;
 	end

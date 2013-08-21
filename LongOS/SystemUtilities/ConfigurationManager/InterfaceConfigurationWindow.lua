@@ -18,6 +18,9 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 
 	local interfaceConfiguration;
 
+	local saveChangesButton;
+	local cancelButton;
+
 	local controlPanelPositionButton;	
 	local controlPanelPositionLabel;
 

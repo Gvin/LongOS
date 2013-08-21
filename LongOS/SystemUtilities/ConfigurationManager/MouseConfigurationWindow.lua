@@ -20,6 +20,8 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 
 	local mouseConfiguration;
 
+	local saveChangesButton;
+	local cancelButton;
 
 	local doubleClickEdit;	
 

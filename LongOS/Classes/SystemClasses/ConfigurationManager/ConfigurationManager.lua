@@ -5,6 +5,7 @@ ConfigurationManager = Class(Object, function(this)
 	local colorConfiguration = Classes.System.Configuration.ColorConfiguration('/LongOS/Configuration/color_schema.xml');
 	local interfaceConfiguration = Classes.System.Configuration.InterfaceConfiguration('/LongOS/Configuration/interface_configuration.xml');
 	local mouseConfiguration = Classes.System.Configuration.MouseConfiguration('/LongOS/Configuration/mouse_configuration.xml');
+	local applicationsConfiguration = Classes.System.Configuration.ApplicationsConfiguration('/LongOS/Configuration/applications_configuration.xml');
 	-- Gets color configuration.
 	this.GetColorConfiguration = function()
 		return colorConfiguration;
@@ -19,12 +20,18 @@ ConfigurationManager = Class(Object, function(this)
 	this.GetMouseConfiguration = function()
 		return mouseConfiguration;
 	end
+	
+	-- Gets application configuration.
+	this.GetApplicationsConfiguration = function()
+		return applicationsConfiguration;
+	end
 
 	-- Reads all configurations.
 	this.ReadConfiguration = function()
 		colorConfiguration:ReadConfiguration();
 		interfaceConfiguration:ReadConfiguration();
 		mouseConfiguration:ReadConfiguration();
+		applicationsConfiguration:ReadConfiguration();
 	end
 
 	-- Writes all configurations.
@@ -32,5 +39,6 @@ ConfigurationManager = Class(Object, function(this)
 		colorConfiguration:WriteConfiguration();
 		interfaceConfiguration:WriteConfiguration();
 		mouseConfiguration:WriteConfiguration();
+		applicationsConfiguration:WriteConfiguration();
 	end
 end)

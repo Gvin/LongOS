@@ -7,9 +7,9 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Color configuration window', false);
 	this:SetTitle('Color configuration');
 	this:SetX(7);
-	this:SetY(3);
+	this:SetY(2);
 	this:SetWidth(36);
-	this:SetHeight(17);
+	this:SetHeight(18);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
 
@@ -20,6 +20,39 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	local colorConfiguration;
 
 	local selectedButton;
+
+	local windowColorLabel;
+	local windowColorButton;
+	local windowBorderColorLabel;
+	local windowBorderColorButton;
+	local topLineActiveColorLabel;
+	local topLineActiveColorButton;
+	local topLineInactiveColorLabel;
+	local topLineInactiveColorButton;
+	local topLineTextColorLabel;
+	local topLineTextColorButton;
+	local controlPanelColorLabel;
+	local controlPanelColorButton;	
+	local controlPanelButtonsColorLabel;
+	local controlPanelButtonsColorButton;
+	local controlPanelPowerButtonColorLabel;
+	local controlPanelPowerButtonColorButton;
+	local timeTextColorLabel;
+	local timeTextColorButton;
+	local systemButtonsColorLabel;
+	local systemButtonsColorButton;
+	local systemButtonsTextColorLabel;
+	local systemButtonsTextColorButton;
+	local systemLabelsTextColorLabel;
+	local systemLabelsTextColorButton;	
+	local systemEditsBackgroundColorLabel;
+	local systemEditsBackgroundColorButton;
+	local selectedTextColorLabel;
+	local selectedTextColorButton;
+	local selectedBackgroundColorLabel;
+	local selectedBackgroundColorButton;
+	local saveChangesButton;
+	local cancelButton;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -39,6 +72,8 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		colorConfiguration:SetColor('SystemButtonsTextColor', systemButtonsTextColorButton:GetBackgroundColor());
 		colorConfiguration:SetColor('SystemLabelsTextColor', systemLabelsTextColorButton:GetBackgroundColor());	
 		colorConfiguration:SetColor('SystemEditsBackgroundColor', systemEditsBackgroundColorButton:GetBackgroundColor());
+		colorConfiguration:SetColor('SelectedTextColor', selectedTextColorButton:GetBackgroundColor());
+		colorConfiguration:SetColor('SelectedBackgroundColor', selectedBackgroundColorButton:GetBackgroundColor());
 	
 	end
 
@@ -159,6 +194,20 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		systemEditsBackgroundColorButton = Button(' ', colorConfiguration:GetColor('SystemEditsBackgroundColor'), nil, 0, 12, 'right-top');
 		systemEditsBackgroundColorButton:AddOnClickEventHandler(selectColorButtonClick);
 		this:AddComponent(systemEditsBackgroundColorButton);
+
+		selectedTextColorLabel = Label('Selected text color:', nil, nil, 0, 13, 'left-top');
+		this:AddComponent(selectedTextColorLabel);
+
+		selectedTextColorButton = Button(' ', colorConfiguration:GetColor('SelectedTextColor'), nil, 0, 13, 'right-top');
+		selectedTextColorButton:AddOnClickEventHandler(selectColorButtonClick);
+		this:AddComponent(selectedTextColorButton);
+
+		selectedBackgroundColorLabel = Label('Selected background color:', nil, nil, 0, 14, 'left-top');
+		this:AddComponent(selectedBackgroundColorLabel);
+
+		selectedBackgroundColorButton = Button(' ', colorConfiguration:GetColor('SelectedBackgroundColor'), nil, 0, 14, 'right-top');
+		selectedBackgroundColorButton:AddOnClickEventHandler(selectColorButtonClick);
+		this:AddComponent(selectedBackgroundColorButton);
 
 
 		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
