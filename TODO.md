@@ -16,6 +16,7 @@ For v 0.6
 - [ ] F80: Create "About system" application.
 - [ ] F81: Use selection color configuration in the GvinFileManager.
 - [ ] #14 It is possible to have day 0 in calendar.
+- [ ] #15 System hangs on shutting down terminal after program end.
 
 For all versions
 --------
@@ -34,7 +35,6 @@ Further releases
 - [ ] F70: Create Panel component.
 - [ ] F76: Create video files and video player.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
-- [ ] #15 System hangs whet trying to run files with classes declaration in terminal emulation.
 
 
 
