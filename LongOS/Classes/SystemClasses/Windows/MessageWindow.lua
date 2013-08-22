@@ -1,7 +1,7 @@
 local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 
-MessageWindow = Class(Window, function(this, _application, _title, _text, _textColor)
+Classes.System.Windows.MessageWindow = Class(Window, function(this, _application, _title, _text, _textColor)
 
 	local function countHeight(_text)
 		return 6 + math.floor(string.len(_text) / 30);

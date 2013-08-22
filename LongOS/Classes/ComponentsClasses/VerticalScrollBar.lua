@@ -2,7 +2,7 @@ local Button = Classes.Components.Button;
 local Component = Classes.Components.Component;
 local EventHandler = Classes.System.EventHandler;
 
-VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _height, _barColor, _rollerColor, _dX, _dY, _anchorType)
+Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue, _maxValue, _height, _barColor, _rollerColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 
 	function this:GetClassName()

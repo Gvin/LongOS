@@ -1,5 +1,5 @@
 -- Configuration class for interface modification support.
-InterfaceConfiguration = Class(Object, function(this, _fileName)
+Classes.System.Configuration.InterfaceConfiguration = Class(Object, function(this, _fileName)
 	Object.init(this, 'InterfaceConfiguration');
 
 	if (type(_fileName) ~= 'string') then

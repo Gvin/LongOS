@@ -1,4 +1,4 @@
-Pixel = Class(Object, function(this, initBackColor, initTextColor, initSymbol)
+Classes.System.Graphics.Pixel = Class(Object, function(this, initBackColor, initTextColor, initSymbol)
 	Object.init(this, 'Pixel');
 
 	local backgroundColor = initBackColor;

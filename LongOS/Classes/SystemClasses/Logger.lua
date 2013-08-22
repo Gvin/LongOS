@@ -1,4 +1,4 @@
-Logger = Class(Object, function(this, _fileName)
+Classes.System.Logger = Class(Object, function(this, _fileName)
 	Object.init(this, 'Logger');
 
 	------------------------------------------------------------------------------------------------------------------

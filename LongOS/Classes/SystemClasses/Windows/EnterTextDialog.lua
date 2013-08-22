@@ -4,7 +4,7 @@ local Edit = Classes.Components.Edit;
 local Label = Classes.Components.Label;
 local EventHandler = Classes.System.EventHandler;
 
-EnterTextDialog = Class(Window, function(this, _application, _title, _text, _initialText)
+Classes.System.Windows.EnterTextDialog = Class(Window, function(this, _application, _title, _text, _initialText)
 
 	Window.init(this, _application, 'Enter text dialog', false);
 	this:SetTitle(_title);

@@ -1,5 +1,5 @@
 -- Configuration class for mouse modification support.
-MouseConfiguration = Class(Object, function(this, _fileName)
+Classes.System.Configuration.MouseConfiguration = Class(Object, function(this, _fileName)
 	Object.init(this, 'MouseConfiguration');
 
 	if (type(_fileName) ~= 'string') then

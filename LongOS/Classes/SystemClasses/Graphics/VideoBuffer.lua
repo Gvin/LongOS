@@ -1,4 +1,4 @@
-VideoBuffer = Class(Object, function(this)
+Classes.System.Graphics.VideoBuffer = Class(Object, function(this)
 	Object.init(this, 'VideoBuffer');
 
 	local pixels = {};

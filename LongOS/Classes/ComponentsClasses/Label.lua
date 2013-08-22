@@ -1,4 +1,4 @@
-Label = Class(Classes.Components.Component, function(this, _text, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+Classes.Components.Label = Class(Classes.Components.Component, function(this, _text, _backgroundColor, _textColor, _dX, _dY, _anchorType)
 	Classes.Components.Component.init(this, _dX, _dY, _anchorType);
 
 	function this.GetClassName()

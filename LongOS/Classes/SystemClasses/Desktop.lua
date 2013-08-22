@@ -3,7 +3,7 @@ local Button = Classes.Components.Button;
 local PopupMenu = Classes.Components.PopupMenu;
 
 
-Desktop = Class(Object, function(this)
+Classes.System.Desktop = Class(Object, function(this)
 	Object.init(this, 'Desktop');
 
 	------------------------------------------------------------------------------------------------------------------

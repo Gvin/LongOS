@@ -1,4 +1,4 @@
-Image = Class(Object, function(this, param1, param2)
+Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 	Object.init(this, 'Image');
 
 	----- FIELDS -----

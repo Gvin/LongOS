@@ -6,7 +6,7 @@ local ComponentsManager = Classes.Application.ComponentsManager;
 local MenuesManager = Classes.Application.MenuesManager;
 
 
-ControlPanel = Class(Object, function(this)
+Classes.System.ControlPanel = Class(Object, function(this)
 	Object.init(this, 'ControlPanel');
 
 	this.IsBottom = true;

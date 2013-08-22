@@ -1,6 +1,6 @@
 local Pixel = Classes.System.Graphics.Pixel;
 
-Canvas = Class(Object, function(this, _dX, _dY, _width, _height, _anchor)
+Classes.System.Graphics.Canvas = Class(Object, function(this, _dX, _dY, _width, _height, _anchor)
 	Object.init(this, 'Canvas');
 
 	------------------------------------------------------------------------------------------------------------------

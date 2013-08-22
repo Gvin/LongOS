@@ -1,4 +1,4 @@
-ThreadsManager = Class(Object, function(this)
+Classes.Application.ThreadsManager = Class(Object, function(this)
 	Object.init(this, 'ThreadsManager');
 
 	------------------------------------------------------------------------------------------------------------------

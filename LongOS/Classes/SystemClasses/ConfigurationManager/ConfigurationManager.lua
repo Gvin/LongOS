@@ -1,5 +1,5 @@
 -- Cjnfiguration manager class for storing and managing configuration acess.
-ConfigurationManager = Class(Object, function(this)
+Classes.System.Configuration.ConfigurationManager = Class(Object, function(this)
 	Object.init(this, 'ConfigurationManager');
 
 	local colorConfiguration = Classes.System.Configuration.ColorConfiguration('/LongOS/Configuration/color_schema.xml');

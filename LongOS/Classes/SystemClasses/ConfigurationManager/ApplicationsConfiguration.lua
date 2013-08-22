@@ -1,5 +1,5 @@
 -- Configuration class for application modification support.
-ApplicationsConfiguration = Class(Object,function(this, _fileName)
+Classes.System.Configuration.ApplicationsConfiguration = Class(Object,function(this, _fileName)
 
 	function this:GetClassName()
 		return 'ApplicationsConfiguration';

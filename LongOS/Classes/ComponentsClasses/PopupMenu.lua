@@ -1,4 +1,4 @@
-PopupMenu = Class(Object, function(this, x, y, width, height, backgroundColor, _allowAutoHeight)
+Classes.Components.PopupMenu = Class(Object, function(this, x, y, width, height, backgroundColor, _allowAutoHeight)
 	Object.init(this, 'PopupMenu');
 
 

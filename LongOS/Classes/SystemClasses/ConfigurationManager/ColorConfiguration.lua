@@ -1,5 +1,5 @@
 -- Configuration class for color schema support.
-ColorConfiguration = Class(Object, function(this, _fileName)
+Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _fileName)
 	Object.init(this, 'ColorConfiguration');
 
 	if (type(_fileName) ~= 'string') then

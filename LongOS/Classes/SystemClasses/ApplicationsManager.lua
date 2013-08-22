@@ -1,6 +1,6 @@
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
-ApplicationsManager = Class(Object, function(this)
+Classes.System.ApplicationsManager = Class(Object, function(this)
 	Object.init(this, 'ApplicationsManager');
 
 	------------------------------------------------------------------------------------------------------------------

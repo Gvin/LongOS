@@ -1,6 +1,6 @@
 -- Application class. Represents all applications in the system.
 -- Serves as a container for windows and threads. May be a daemon process if shutdownWhenNoWindows property is setted to true.
-Application = Class(Object, function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
+Classes.Application.Application = Class(Object, function(this, _applicationName, _isUnique, _shutdownWhenNoWindows)
 	Object.init(this, 'Application');
 
 	------------------------------------------------------------------------------------------------------------------

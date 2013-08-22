@@ -1,4 +1,4 @@
-Thread = Class(Object, function(this, _application, _operation)
+Classes.Application.Thread = Class(Object, function(this, _application, _operation)
 	Object.init(this, 'Thread');
 
 	------------------------------------------------------------------------------------------------------------------

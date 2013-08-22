@@ -6,6 +6,7 @@ TODO
 
 For v 0.6
 --------
+- [X] F78: Improve namespaces declaration.
 - [X] #16 Java exception when trying to relaunch system after log off.
 - [X] #17 Unable to add standard programs to "Applications" menu without using full name.
 - [X] #15 System hangs on shutting down terminal after program end.
@@ -14,7 +15,6 @@ For v 0.6
 - [ ] F77: Move "enable" and "visible" properties to the Component class.
 - [ ] F75: Create more beautiful loading screen.
 - [ ] F61: Create file browsing component.
-- [ ] F78: Improve namespaces declaration.
 - [ ] F79: Change color configuration window to use ListBox.
 - [ ] F80: Create "About system" application.
 - [ ] F81: Use selection color configuration in the GvinFileManager.

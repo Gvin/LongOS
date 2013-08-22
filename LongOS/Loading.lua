@@ -1,5 +1,8 @@
 Classes = {};
 Classes.System = {};
+Classes.System.Graphics = {};
+Classes.Components = {};
+Classes.Aplication = {};
 
 local version = '0.5';
 local operationsCount = 36;
@@ -51,19 +54,17 @@ end
 
 include('Classes/SystemClasses/Logger');
 
-if (Logger == nil) then
+if (Classes.System.Logger == nil) then
 	LoadingErrors = LoadingErrors + 1;
 	error('Logger class cannot be loaded.');
 end
 
-Classes.System.Logger = Logger;
-
 if (not fs.exists('/LongOS/Logs')) then
 	fs.makeDir('/LongOS/Logs');
 end
-local loadingLog = Logger('/LongOS/Logs/loading.log');
+local loadingLog = Classes.System.Logger('/LongOS/Logs/loading.log');
 
-local function mustBeLoaded(variable, name, namespace)
+local function mustBeLoaded(variable, name)
 	if (variable == nil) then
 		loadingLog:LogError('Class '..name..' cannot be loaded.');
 		LoadingErrors = LoadingErrors + 1;
@@ -71,8 +72,6 @@ local function mustBeLoaded(variable, name, namespace)
 	else
 		loadingLog:LogMessage('Class '..name..' successfully loaded.');
 	end
-
-	namespace[name] = variable;
 end
 
 local function shouldBeLoaded(variable, name)
@@ -84,7 +83,7 @@ local function shouldBeLoaded(variable, name)
 end
 
 include('Classes/SystemClasses/EventHandler');
-mustBeLoaded(EventHandler, 'EventHandler', Classes.System);
+mustBeLoaded(Classes.System.EventHandler, 'EventHandler');
 EventHandler = nil;
 
 
@@ -108,159 +107,126 @@ local function includeGraphicsClasses()
 	loadingLog:AddDivider('Loading graphics classes');
 
 	include('Classes/SystemClasses/Graphics/Pixel');
-	mustBeLoaded(Pixel, 'Pixel', Classes.System.Graphics);
-	Pixel = nil;
+	mustBeLoaded(Classes.System.Graphics.Pixel, 'Pixel');
 
 	include('Classes/SystemClasses/Graphics/VideoBuffer');
-	mustBeLoaded(VideoBuffer, 'VideoBuffer', Classes.System.Graphics);
-	VideoBuffer = nil;
+	mustBeLoaded(Classes.System.Graphics.VideoBuffer, 'VideoBuffer');
 
 	include('Classes/SystemClasses/Graphics/Canvas');
-	mustBeLoaded(Canvas, 'Canvas', Classes.System.Graphics);
-	Canvas = nil;
+	mustBeLoaded(Classes.System.Graphics.Canvas, 'Canvas');
 
 	include('Classes/SystemClasses/Graphics/Image');
-	mustBeLoaded(Image, 'Image', Classes.System.Graphics);
-	Image = nil;
+	mustBeLoaded(Classes.System.Graphics.Image, 'Image');
 end
 
 local function includeConfigurationClasses()
 	loadingLog:AddDivider('Loading configuration classes');
 
 	include('Classes/SystemClasses/ConfigurationManager/ColorConfiguration');
-	mustBeLoaded(ColorConfiguration, 'ColorConfiguration', Classes.System.Configuration);
-	ColorConfiguration = nil;
+	mustBeLoaded(Classes.System.Configuration.ColorConfiguration, 'ColorConfiguration');
 
 	include('Classes/SystemClasses/ConfigurationManager/InterfaceConfiguration');
-	mustBeLoaded(InterfaceConfiguration, 'InterfaceConfiguration', Classes.System.Configuration);
-	InterfaceConfiguration = nil;
+	mustBeLoaded(Classes.System.Configuration.InterfaceConfiguration, 'InterfaceConfiguration');
 	
 	include('Classes/SystemClasses/ConfigurationManager/MouseConfiguration');
-	mustBeLoaded(MouseConfiguration, 'MouseConfiguration', Classes.System.Configuration);
-	MouseConfiguration = nil;
+	mustBeLoaded(Classes.System.Configuration.MouseConfiguration, 'MouseConfiguration');
 
 	include('Classes/SystemClasses/ConfigurationManager/ApplicationsConfiguration');
-	mustBeLoaded(ApplicationsConfiguration, 'ApplicationsConfiguration', Classes.System.Configuration);
-	ApplicationsConfiguration = nil;
+	mustBeLoaded(Classes.System.Configuration.ApplicationsConfiguration, 'ApplicationsConfiguration');
 	
 	include('Classes/SystemClasses/ConfigurationManager/ConfigurationManager');
-	mustBeLoaded(ConfigurationManager, 'ConfigurationManager', Classes.System.Configuration);
-	ConfigurationManager = nil;
+	mustBeLoaded(Classes.System.Configuration.ConfigurationManager, 'ConfigurationManager');
 end
 
 local function includeComponentsClasses()
 	loadingLog:AddDivider('Loading components classes');
 
 	include('Classes/ComponentsClasses/Component');
-	mustBeLoaded(Component, 'Component', Classes.Components);
-	Component = nil;
+	mustBeLoaded(Classes.Components.Component, 'Component');
 
 	include('Classes/ComponentsClasses/Label');
-	mustBeLoaded(Label, 'Label', Classes.Components);
-	Label = nil;
+	mustBeLoaded(Classes.Components.Label, 'Label');
 
 	include('Classes/ComponentsClasses/Button');
-	mustBeLoaded(Button, 'Button', Classes.Components);
-	Button = nil;
+	mustBeLoaded(Classes.Components.Button, 'Button');
 
 	include('Classes/ComponentsClasses/Edit');
-	mustBeLoaded(Edit, 'Edit', Classes.Components);
-	Edit = nil;
+	mustBeLoaded(Classes.Components.Edit, 'Edit');
 
 	include('Classes/ComponentsClasses/PopupMenu');
-	mustBeLoaded(PopupMenu, 'PopupMenu', Classes.Components);
-	PopupMenu = nil;
+	mustBeLoaded(Classes.Components.PopupMenu, 'PopupMenu');
 
 	include('Classes/ComponentsClasses/VerticalScrollBar');
-	mustBeLoaded(VerticalScrollBar, 'VerticalScrollBar', Classes.Components);
-	VerticalScrollBar = nil;
+	mustBeLoaded(Classes.Components.VerticalScrollBar, 'VerticalScrollBar');
 
 	include('Classes/ComponentsClasses/HorizontalScrollBar');
-	mustBeLoaded(HorizontalScrollBar, 'HorizontalScrollBar', Classes.Components);
-	HorizontalScrollBar = nil;
+	mustBeLoaded(Classes.Components.HorizontalScrollBar, 'HorizontalScrollBar');
 
 	include('Classes/ComponentsClasses/ListBox');
-	mustBeLoaded(ListBox, 'ListBox', Classes.Components);
-	ListBox = nil;
+	mustBeLoaded(Classes.Components.ListBox, 'ListBox');
 
 	include('Classes/ComponentsClasses/CheckBox');
-	mustBeLoaded(CheckBox, 'CheckBox', Classes.Components);
-	CheckBox = nil;
+	mustBeLoaded(Classes.Components.CheckBox, 'CheckBox');
 end
 
 local function includeApplicationClasses()
 	loadingLog:AddDivider('Loading application classes');
 
 	include('Classes/ApplicationClasses/ComponentsManager');
-	mustBeLoaded(ComponentsManager, 'ComponentsManager', Classes.Application);
-	ComponentsManager = nil;
+	mustBeLoaded(Classes.Application.ComponentsManager, 'ComponentsManager');
 
 	include('Classes/ApplicationClasses/MenuesManager');
-	mustBeLoaded(MenuesManager, 'MenuesManager', Classes.Application);
-	MenuesManager = nil;
+	mustBeLoaded(Classes.Application.MenuesManager, 'MenuesManager');
 	
 	include('Classes/ApplicationClasses/Window');
-	mustBeLoaded(Window, 'Window', Classes.Application);
-	Window = nil;
+	mustBeLoaded(Classes.Application.Window, 'Window');
 	
 	include('Classes/ApplicationClasses/WindowsManager');
-	mustBeLoaded(WindowsManager, 'WindowsManager', Classes.Application);
-	WindowsManager = nil;
+	mustBeLoaded(Classes.Application.WindowsManager, 'WindowsManager');
 	
 	include('Classes/ApplicationClasses/Thread');
-	mustBeLoaded(Thread, 'Thread', Classes.Application);
-	Thread = nil;
+	mustBeLoaded(Classes.Application.Thread, 'Thread');
 	
 	include('Classes/ApplicationClasses/ThreadsManager');
-	mustBeLoaded(ThreadsManager, 'ThreadsManager', Classes.Application);
-	ThreadsManager = nil;
+	mustBeLoaded(Classes.Application.ThreadsManager, 'ThreadsManager');
 	
 	include('Classes/ApplicationClasses/Application');
-	mustBeLoaded(Application, 'Application', Classes.Application);
-	Application = nil;
+	mustBeLoaded(Classes.Application.Application, 'Application');
 end
 
 local function includeSystemWindows()
 	loadingLog:AddDivider('Loading system windows');
 
 	include('Classes/SystemClasses/Windows/ColorPickerDialog');
-	mustBeLoaded(ColorPickerDialog, 'ColorPickerDialog', Classes.System.Windows);
-	ColorPickerDialog = nil;
+	mustBeLoaded(Classes.System.Windows.ColorPickerDialog, 'ColorPickerDialog');
 
 	include('Classes/SystemClasses/Windows/MessageWindow');
-	mustBeLoaded(MessageWindow, 'MessageWindow', Classes.System.Windows);
-	MessageWindow = nil;
+	mustBeLoaded(Classes.System.Windows.MessageWindow, 'MessageWindow');
 
 	include('Classes/SystemClasses/Windows/EnterTextDialog');
-	mustBeLoaded(EnterTextDialog, 'EnterTextDialog', Classes.System.Windows);
-	EnterTextDialog = nil;
+	mustBeLoaded(Classes.System.Windows.EnterTextDialog, 'EnterTextDialog');
 
 	include('Classes/SystemClasses/Windows/QuestionDialog');
-	mustBeLoaded(QuestionDialog, 'QuestionDialog', Classes.System.Windows);
-	QuestionDialog = nil;
+	mustBeLoaded(Classes.System.Windows.QuestionDialog, 'QuestionDialog');
 end
 
 local function includeSystemClasses()
 	loadingLog:AddDivider('Loading system classes');
 	
 	include('Classes/SystemClasses/ApplicationsManager')
-	mustBeLoaded(ApplicationsManager, 'ApplicationsManager', Classes.System);
-	ApplicationsManager = nil;
+	mustBeLoaded(Classes.System.ApplicationsManager, 'ApplicationsManager');
 	
 	include('Classes/SystemClasses/ControlPanel');
-	mustBeLoaded(ControlPanel, 'ControlPanel', Classes.System);
-	ControlPanel = nil;
+	mustBeLoaded(Classes.System.ControlPanel, 'ControlPanel');
 	
 	include('Classes/SystemClasses/Desktop');
-	mustBeLoaded(Desktop, 'Desktop', Classes.System);
-	Desktop = nil;
+	mustBeLoaded(Classes.System.Desktop, 'Desktop');
 end
 
 local function includeBaseClass()
 	loadingLog:AddDivider('Loading main system class');
 	include('Classes/LongOS');
-	mustBeLoaded(LongOS, 'LongOS', Classes.System);
-	LongOS = nil;
+	mustBeLoaded(Classes.System.LongOS, 'LongOS');
 end
 
 

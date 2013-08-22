@@ -1,6 +1,6 @@
 -- Components manager manages all components of the owner.
 -- It takes care about correct events processing and drawing.
-ComponentsManager = Class(Object, function(this)
+Classes.Application.ComponentsManager = Class(Object, function(this)
 	Object.init(this, 'ComponentsManager');
 
 	local components = {};

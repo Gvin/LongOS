@@ -2,7 +2,7 @@ local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 local EventHandler = Classes.System.EventHandler;
 
-ColorPickerDialog = Class(Window, function(this, _application)
+Classes.System.Windows.ColorPickerDialog = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Color picker dialog', false);
 	this:SetTitle('Select color');

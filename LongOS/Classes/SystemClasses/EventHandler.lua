@@ -1,4 +1,4 @@
-EventHandler = Class(Object, function(this)
+Classes.System.EventHandler = Class(Object, function(this)
 	Object.init(this, 'EventHandler');
 
 	------------------------------------------------------------------------------------------------------------------

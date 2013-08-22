@@ -2,7 +2,7 @@ local Button = Classes.Components.Button;
 local Component = Classes.Components.Component;
 local EventHandler = Classes.System.EventHandler;
 
-HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _width, _barColor, _rollerColor, _dX, _dY, _anchorType)
+Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minValue, _maxValue, _width, _barColor, _rollerColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 
 	function this:GetClassName()

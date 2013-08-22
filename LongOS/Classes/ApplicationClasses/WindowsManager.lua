@@ -1,4 +1,4 @@
-WindowsManager = Class(Object, function(this)
+Classes.Application.WindowsManager = Class(Object, function(this)
 	Object.init(this, 'WindowsManager');
 
 	this.Enabled = true;

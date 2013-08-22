@@ -1,7 +1,7 @@
 local Component = Classes.Components.Component;
 local EventHandler = Classes.System.EventHandler;
 
-Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+Classes.Components.Edit = Class(Component, function(this, _width, _backgroundColor, _textColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 	
 	function this.GetClassName()

@@ -1,7 +1,7 @@
 local EventHandler = Classes.System.EventHandler;
 local VerticalScrollBar = Classes.Components.VerticalScrollBar;
 
-ListBox = Class(Classes.Components.Component, function(this, _width, _height, _backgroundColor, _textColor, _dX, _dY, _anchorType)
+Classes.Components.ListBox = Class(Classes.Components.Component, function(this, _width, _height, _backgroundColor, _textColor, _dX, _dY, _anchorType)
 	Classes.Components.Component.init(this, _dX, _dY, _anchorType);
 	
 	function this:GetClassName()

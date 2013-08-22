@@ -1,4 +1,4 @@
-Component = Class(Object, function(this, _dX, _dY, _anchorType)
+Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorType)
 	Object.init(this, 'Component');
 
 	------------------------------------------------------------------------------------------------------------------
