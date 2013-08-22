@@ -18,7 +18,6 @@ For v 0.6
 - [ ] F61: Create file browsing component.
 - [ ] F79: Change color configuration window to use ListBox.
 - [ ] F81: Use selection color configuration in the GvinFileManager.
-- [ ] F82: Add working directory property to the application.
 - [ ] F86: Update error generation in methods of classes to use GetClassName.
 
 For all versions
@@ -40,6 +39,7 @@ Further releases
 - [ ] F83: Add possibility to use "full screen" mod in windows.
 - [ ] F84: Add posibility to minimize windows to control panel.
 - [ ] F85: Add image position option to the wallpaper manager program.
+- [ ] F82: Add working directory property to the application.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 

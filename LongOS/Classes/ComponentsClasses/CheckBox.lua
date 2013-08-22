@@ -11,8 +11,6 @@ Classes.Components.CheckBox = Class(Classes.Components.Component, function(this,
 	----- Fileds -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local enabled;
-	local visible;
 	local checked;
 
 	local checkedSymbol;
@@ -75,29 +73,6 @@ Classes.Components.CheckBox = Class(Classes.Components.Component, function(this,
 		onCheckedChanged:Invoke(this,eventArgs);
 	end
 
-	function this:GetEnabled()
-		return enabled;
-	end
-
-	function this:SetEnabled(_value)
-		if (type(_value) ~= 'boolean') then
-			error('CheckBox.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
-		end
-		enabled = _value;
-	end	
-
-	function this:GetVisible()
-		return visible;
-	end
-
-	function this:SetVisible(_value)
-		if (type(_value) ~= 'boolean') then
-			error('CheckBox.SetVisible [value]: Boolean expected, got '..type(_value)..'.');
-		end
-
-		visible = _value;
-	end
-
 	function this:AddOnCheckedChangedEventHandler(_value)
 		onCheckedChanged:AddHandler(_value);
 	end
@@ -111,7 +86,7 @@ Classes.Components.CheckBox = Class(Classes.Components.Component, function(this,
 	----- Events ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this:_draw(_videoBuffer, _x, _y)
+	function this:Draw(_videoBuffer, _x, _y)
 		if (this:GetVisible()) then
 			_videoBuffer:SetColorParameters(this:GetTextColor(), this:GetBackgroundColor());			
 			if (this:GetChecked()) then
@@ -124,10 +99,6 @@ Classes.Components.CheckBox = Class(Classes.Components.Component, function(this,
 	end
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
-		if (not this:GetEnabled() or not this:GetVisible()) then 
-			return false; 
-		end
-
 		if (this:Contains(_cursorX, _cursorY)) then
 			this:SetChecked(not checked);
 			return true;
@@ -135,10 +106,6 @@ Classes.Components.CheckBox = Class(Classes.Components.Component, function(this,
 	end
 
 	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
-		if (not this:GetEnabled() or not this:GetVisible()) then 
-			return false; 
-		end
-
 		if (this:Contains(_cursorX, _cursorY)) then
 			this:SetChecked(not checked);
 			return true;
@@ -164,8 +131,7 @@ Classes.Components.CheckBox = Class(Classes.Components.Component, function(this,
 		if (_textColor == nil) then			
 			textColor = configuration:GetColor('SystemLabelsTextColor');
 		end	
-		this:SetEnabled(true);
-		this:SetVisible(true);
+
 		checked = false;
 		checkedSymbol = 'X';
 		onCheckedChanged = EventHandler();
