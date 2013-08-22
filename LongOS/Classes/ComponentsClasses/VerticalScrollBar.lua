@@ -20,7 +20,6 @@ Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue
 	local value;
 	local barColor;
 	local rollerColor;
-	local enabled;
 
 	local scrollUpButton;
 	local scrollDownButton;
@@ -55,7 +54,7 @@ Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue
 		if (type(_value) ~= 'number') then
 			error('VerticalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
 		end
-		if (enabled) then
+		if (this:GetEnabled()) then
 			local oldValue = value;
 
 			value = _value;
@@ -97,18 +96,6 @@ Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue
 		height = _value;
 	end
 
-	function this:GetEnabled()
-		return enabled;
-	end
-
-	function this:SetEnabled(_value)
-		if (type(_value) ~= 'boolean') then
-			error('VerticalScrollBar.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
-		end
-
-		enabled = _value;
-	end
-
 	function this:AddOnValueChangedEventHandler(_value)
 		onValueChanged:AddHandler(_value);
 	end
@@ -141,23 +128,23 @@ Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue
 		return rollerY;
 	end
 
-	function this:_draw(_videoBuffer, _x, _y)
+	function this:Draw(_videoBuffer, _x, _y)
 		local colorConfiguration = System:GetColorConfiguration();
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('WindowBorderColor'));
 		_videoBuffer:DrawBlock(_x, _y, 1, height, barColor, '|');
-		scrollDownButton:Draw(_videoBuffer, _x, _y, 1, height);
-		scrollUpButton:Draw(_videoBuffer, _x, _y, 1, height);
+		scrollDownButton:DrawBase(_videoBuffer, _x, _y, 1, height);
+		scrollUpButton:DrawBase(_videoBuffer, _x, _y, 1, height);
 
 		local rollerY = getRollerY(_y);
 		_videoBuffer:SetPixelColor(_x, rollerY, rollerColor);
 	end
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
-		if (enabled) then
-			if (scrollUpButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+		if (this:GetEnabled()) then
+			if (scrollUpButton:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 				return true;
 			end
-			if (scrollDownButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+			if (scrollDownButton:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 				return true;
 			end
 
@@ -181,7 +168,7 @@ Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue
 	end
 
 	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
-		if (enabled and this:Contains(_cursorX, _cursorY)) then
+		if (this:GetEnabled() and this:Contains(_cursorX, _cursorY)) then
 			if (_direction < 0) then
 				this:ScrollUp();
 			else
@@ -238,7 +225,6 @@ Classes.Components.VerticalScrollBar = Class(Component, function(this, _minValue
 		value = minValue;
 		barColor = _barColor;
 		rollerColor = _rollerColor;
-		enabled = true;
 
 		if (barColor == nil) then
 			local colorConfiguration = System:GetColorConfiguration();

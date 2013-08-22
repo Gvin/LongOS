@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 85 registered features.
+Currently there are 86 registered features.
 
 TODO
 ========
@@ -8,17 +8,18 @@ For v 0.6
 --------
 - [X] F78: Improve namespaces declaration.
 - [X] F80: Create "About system" application.
+- [X] F77: Move "enable" and "visible" properties to the Component class.
 - [X] #16 Java exception when trying to relaunch system after log off.
 - [X] #17 Unable to add standard programs to "Applications" menu without using full name.
 - [X] #15 System hangs on shutting down terminal after program end.
 - [X] #18 BiriPaint: Error when opening a nonexistent file
 - [X] #14 It is possible to have day 0 in calendar.
-- [ ] F77: Move "enable" and "visible" properties to the Component class.
 - [ ] F75: Create more beautiful loading screen.
 - [ ] F61: Create file browsing component.
 - [ ] F79: Change color configuration window to use ListBox.
-
 - [ ] F81: Use selection color configuration in the GvinFileManager.
+- [ ] F82: Add working directory property to the application.
+- [ ] F86: Update error generation in methods of classes to use GetClassName.
 
 For all versions
 --------
@@ -36,7 +37,6 @@ Further releases
 - [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [ ] F70: Create Panel component.
 - [ ] F76: Create video files and video player.
-- [ ] F82: Add working directory property to the application.
 - [ ] F83: Add possibility to use "full screen" mod in windows.
 - [ ] F84: Add posibility to minimize windows to control panel.
 - [ ] F85: Add image position option to the wallpaper manager program.

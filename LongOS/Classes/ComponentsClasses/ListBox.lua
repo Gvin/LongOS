@@ -8,11 +8,6 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 		return 'ListBox';
 	end
 
-	function this:ToString()
-		return 'ListBox';
-
-	end
-
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -217,9 +212,9 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 	----- Events ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this:_draw(_videoBuffer, _x, _y)
+	function this:Draw(_videoBuffer, _x, _y)
 		_videoBuffer:DrawBlock(_x, _y, width, height, backgroundColor);	
-		vScrollBar:Draw(_videoBuffer, _x, _y, width, height);
+		vScrollBar:DrawBase(_videoBuffer, _x, _y, width, height);
 		_videoBuffer:SetColorParameters(textColor, backgroundColor);		
 		local i = 0;
 		while i<#items and i<height do
@@ -245,7 +240,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY) and this:GetEnabled()) then
-			if (vScrollBar:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+			if (vScrollBar:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 				return true;
 			end			
 			local index = _cursorY - this:GetY() + 1 + vScrollBar:GetValue();

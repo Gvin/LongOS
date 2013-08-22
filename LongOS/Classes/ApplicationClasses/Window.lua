@@ -485,8 +485,8 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('TopLineTextColor'));
 		_videoBuffer:WriteAt(titlePosition, y, titleToPrint);
 
-		closeButton:Draw(_videoBuffer, x, y, width, height);
-		maximizeButton:Draw(_videoBuffer, x, y, width, height);
+		closeButton:DrawBase(_videoBuffer, x, y, width, height);
+		maximizeButton:DrawBase(_videoBuffer, x, y, width, height);
 	end
 
 	local function drawBlock(_videoBuffer)
@@ -582,10 +582,10 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		if (menuesManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (closeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+		if (closeButton:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (maximizeButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+		if (maximizeButton:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 			return true;
 		end
 		if (componentsManager:ProcessLeftClickEvent(_cursorX, _cursorY)) then
@@ -629,10 +629,10 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 	end
 
 	local function processDoubleClickEvent(_cursorX, _cursorY)
-		if (closeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
+		if (closeButton:ProcessDoubleClickEventBase(_cursorX, _cursorY)) then
 			return true;
 		end
-		if (maximizeButton:ProcessDoubleClickEvent(_cursorX, _cursorY)) then
+		if (maximizeButton:ProcessDoubleClickEventBase(_cursorX, _cursorY)) then
 			return true;
 		end
 		if (isOnTopLine(_cursorX, _cursorY)) then

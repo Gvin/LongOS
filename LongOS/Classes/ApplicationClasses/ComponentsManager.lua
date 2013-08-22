@@ -17,7 +17,7 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 	-- Draw all components to the buffer.
 	this.Draw = function(_, videoBuffer, ownerX, ownerY, ownerWidth, ownerHeight)
 		for i = 1, #components do
-			components[i]:Draw(videoBuffer, ownerX, ownerY, ownerWidth, ownerHeight);
+			components[i]:DrawBase(videoBuffer, ownerX, ownerY, ownerWidth, ownerHeight);
 		end
 	end
 
@@ -25,7 +25,7 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 	-- If any of the components has processed this event, processing stoppes.
 	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
 		for i = 1, #components do
-			if (components[i]:ProcessLeftClickEvent(cursorX, cursorY)) then
+			if (components[i]:ProcessLeftClickEventBase(cursorX, cursorY)) then
 				return true;
 			end
 		end
@@ -35,7 +35,7 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 	-- Process key event.
 	this.ProcessKeyEvent = function(_, key)
 		for i = 1, #components do
-			if (components[i]:ProcessKeyEvent(key)) then
+			if (components[i]:ProcessKeyEventBase(key)) then
 				return true;
 			end
 		end
@@ -46,7 +46,7 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 	-- This is especcialy useful for edits or text boxes.
 	this.ProcessCharEvent = function(_, char)
 		for i = 1, #components do
-			if (components[i]:ProcessCharEvent(char)) then
+			if (components[i]:ProcessCharEventBase(char)) then
 				return true;
 			end
 		end
@@ -56,7 +56,7 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 	-- Process double click event.
 	this.ProcessDoubleClickEvent = function(_, cursorX, cursorY)
 		for i = 1, #components do
-			if (components[i]:ProcessDoubleClickEvent(cursorX, cursorY)) then
+			if (components[i]:ProcessDoubleClickEventBase(cursorX, cursorY)) then
 				return true;
 			end
 		end
@@ -65,7 +65,7 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 
 	this.ProcessMouseScrollEvent = function(_, direction, cursorX, cursorY)
 		for i = 1, #components do
-			if (components[i]:ProcessMouseScrollEvent(direction, cursorX, cursorY)) then
+			if (components[i]:ProcessMouseScrollEventBase(direction, cursorX, cursorY)) then
 				return true;
 			end
 		end

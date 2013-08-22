@@ -16,7 +16,6 @@ Classes.Components.Label = Class(Classes.Components.Component, function(this, _t
 	local text;
 	local textColor;
 	local backgroundColor;
-	local visible;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
@@ -62,28 +61,14 @@ Classes.Components.Label = Class(Classes.Components.Component, function(this, _t
 		textColor = _value;
 	end
 
-	function this.GetVisible()
-		return visible;
-	end
-
-	function this.SetVisible(_, _value)
-		if (type(_value) ~= 'boolean') then
-			error('Label.SetVisible [value]: Boolean expected, got '..type(_value)..'.');
-		end
-
-		visible = _value;
-	end
-
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this._draw(_, _videoBuffer, _x, _y)
-		if (visible) then
-			_videoBuffer:SetTextColor(textColor);
-			_videoBuffer:SetBackgroundColor(backgroundColor);
-			_videoBuffer:WriteAt(_x, _y, text);
-		end
+	function this.Draw(_, _videoBuffer, _x, _y)
+		_videoBuffer:SetTextColor(textColor);
+		_videoBuffer:SetBackgroundColor(backgroundColor);
+		_videoBuffer:WriteAt(_x, _y, text);
 	end
 
 	------------------------------------------------------------------------------------------------------------------

@@ -147,7 +147,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		invokeOnTextChangedEvent(oldText, text);
 	end
 
-	function this._draw(_, _videoBuffer, _x, _y)
+	function this.Draw(_, _videoBuffer, _x, _y)
 		_videoBuffer:DrawBlock(_x, _y, width, 1, backgroundColor);
 		_videoBuffer:SetColorParameters(textColor, backgroundColor);
 

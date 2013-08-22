@@ -20,7 +20,6 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 	local value;
 	local barColor;
 	local rollerColor;
-	local enabled;
 
 	local scrollRightButton;
 	local scrollLeftButton;
@@ -55,7 +54,7 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 		if (type(_value) ~= 'number') then
 			error('HorizontalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
 		end
-		if (enabled) then
+		if (this:GetEnabled()) then
 			local oldValue = value;
 
 			value = _value;
@@ -97,18 +96,6 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 		width = _value;
 	end
 
-	function this:GetEnabled()
-		return enabled;
-	end
-
-	function this:SetEnabled(_value)
-		if (type(_value) ~= 'boolean') then
-			error('HorizontalScrollBar.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
-		end
-
-		enabled = _value;
-	end
-
 	function this:AddOnValueChangedEventHandler(_value)
 		onValueChanged:AddHandler(_value);
 	end
@@ -141,23 +128,23 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 		return rollerX;
 	end
 
-	function this:_draw(_videoBuffer, _x, _y)
+	function this:Draw(_videoBuffer, _x, _y)
 		local colorConfiguration = System:GetColorConfiguration();
 		_videoBuffer:SetTextColor(colorConfiguration:GetColor('SystemButtonsColor'));
 		_videoBuffer:DrawBlock(_x, _y, width, 1, barColor, '-');
-		scrollLeftButton:Draw(_videoBuffer, _x, _y, width, 1);
-		scrollRightButton:Draw(_videoBuffer, _x, _y, width, 1);
+		scrollLeftButton:DrawBase(_videoBuffer, _x, _y, width, 1);
+		scrollRightButton:DrawBase(_videoBuffer, _x, _y, width, 1);
 
 		local rollerX = getRollerX(_x);
 		_videoBuffer:SetPixelColor(rollerX, _y, rollerColor);
 	end
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
-		if (enabled) then
-			if (scrollLeftButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+		if (this:GetEnabled()) then
+			if (scrollLeftButton:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 				return true;
 			end
-			if (scrollRightButton:ProcessLeftClickEvent(_cursorX, _cursorY)) then
+			if (scrollRightButton:ProcessLeftClickEventBase(_cursorX, _cursorY)) then
 				return true;
 			end
 
@@ -181,7 +168,7 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 	end
 
 	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
-		if (enabled and this:Contains(_cursorX, _cursorY)) then
+		if (this:GetEnabled() and this:Contains(_cursorX, _cursorY)) then
 			if (_direction < 0) then
 				this:ScrollLeft();
 			else
@@ -238,7 +225,6 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 		value = minValue;
 		barColor = _barColor;
 		rollerColor = _rollerColor;
-		enabled = true;
 
 		if (barColor == nil) then
 			local colorConfiguration = System:GetColorConfiguration();

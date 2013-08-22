@@ -22,25 +22,11 @@ Classes.Components.Button = Class(Label, function(this, _text, _backgroundColor,
 	----- Fileds -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local enabled;
-
 	local onClick;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
-
-	function this:GetEnabled()
-		return enabled;
-	end
-
-	function this:SetEnabled(_value)
-		if (type(_value) ~= 'boolean') then
-			error('Button.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
-		end
-
-		enabled = _value;
-	end
 
 	function this:AddOnClickEventHandler(_value)
 		onClick:AddHandler(_value);
@@ -58,8 +44,6 @@ Classes.Components.Button = Class(Label, function(this, _text, _backgroundColor,
 	end
 
 	local function processClickEvent(_cursorX, _cursorY)
-		if (not enabled or not this:GetVisible()) then return false; end
-		
 		if (this:Contains(_cursorX, _cursorY)) then
 			click(_cursorX, _cursorY);
 			return true;
@@ -94,7 +78,6 @@ Classes.Components.Button = Class(Label, function(this, _text, _backgroundColor,
 	------------------------------------------------------------------------------------------------------------------
 
 	local function constructor()
-		enabled = true;
 		onClick = EventHandler();
 	end
 

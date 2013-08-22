@@ -11,6 +11,9 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 	local y;
 	local anchorType;
 
+	local visible;
+	local enabled;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -70,6 +73,30 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 		return y;
 	end
 
+	function this:GetVisible()
+		return visible;
+	end
+
+	function this:SetVisible(_value)
+		if (type(_value) ~= 'boolean') then
+			error(this:GetClassName()..'.SetVisible [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
+		visible = _value;
+	end
+
+	function this:GetEnabled()
+		return enabled;
+	end
+
+	function this:SetEnabled(_value)
+		if (type(_value) ~= 'boolean') then
+			error(this:GetClassName()..'.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+		end
+
+		enabled = _value;
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -85,10 +112,10 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 		return (_y >= this:GetY() and _y <= this:GetY() + this:GetHeight() - 1 and _x >= this:GetX() and _x <= this:GetX() + this:GetWidth() - 1);
 	end
 
-	function this:_draw(_videoBuffer, _x, _y)
+	function this:Draw(_videoBuffer, _x, _y)
 	end
 
-	function this:Draw(_videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
+	function this:DrawBase(_videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
 		if (type(_ownerX) ~= 'number') then
 			error('Component.Draw [ownerX]: Number expected, got '..type(_ownerX)..'.');
 		end
@@ -120,10 +147,29 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 		end
 
 		x, y = _videoBuffer:GetCoordinates(altX, altY);
-		this:_draw(_videoBuffer, altX, altY);
+
+		if (this:GetVisible()) then
+			this:Draw(_videoBuffer, altX, altY);
+		end
+	end
+
+	function this:ProcessLeftClickEventBase(_cursorX, _cursorY)
+		if (this:GetEnabled() and this:GetVisible()) then
+			return this:ProcessLeftClickEvent(_cursorX, _cursorY);
+		end
+
+		return false;
 	end
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
+		return false;
+	end
+
+	function this:ProcessKeyEventBase(_key)
+		if (this:GetEnabled() and this:GetVisible()) then
+			return this:ProcessKeyEvent(_key);
+		end
+
 		return false;
 	end
 
@@ -131,11 +177,35 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 		return false;
 	end
 
+	function this:ProcessCharEventBase(_char)
+		if (this:GetEnabled() and this:GetVisible()) then
+			return this:ProcessCharEvent(_char);
+		end
+
+		return false;
+	end
+
 	function this:ProcessCharEvent(_char)
 		return false;
 	end
 
+	function this:ProcessDoubleClickEventBase(_cursorX, _cursorY)
+		if (this:GetEnabled() and this:GetVisible()) then
+			return this:ProcessDoubleClickEvent(_cursorX, _cursorY);
+		end
+
+		return false;
+	end
+
 	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
+		return false;
+	end
+
+	function this:ProcessMouseScrollEventBase(_direction, _cursorX, _cursorY)
+		if (this:GetEnabled() and this:GetVisible()) then
+			return this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
+		end
+
 		return false;
 	end
 
@@ -167,6 +237,9 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 		x = 0;
 		y = 0;
 		anchorType = _anchorType;
+
+		enabled = true;
+		visible = true;
 	end
 
 	constructor(_dX, _dY, _anchorType);
