@@ -67,7 +67,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 
 	-- SYSTEM
 
-	local systemMenu = PopupMenu(15, 14, 15, 7, colors.lightGray);
+	local systemMenu = PopupMenu(15, 14, 15, 9, colors.lightGray);
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
 	local tasksManagerButtonClick = function(sender, eventArgs)
@@ -93,6 +93,14 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	local terminalButton = Button('Terminal', colors.gray, colors.white, 3, 5, 'left-top');
 	terminalButton:AddOnClickEventHandler(terminalButtonClick);
 	systemMenu:AddComponent(terminalButton);
+
+	local aboutSystemButtonClick = function(sender, eventArgs)
+		System:RunFile('/LongOS/SystemUtilities/AboutSystem/AboutSystem.exec');
+	end
+
+	local aboutSystemButton = Button('About system ', colors.gray, colors.white, 1, 7, 'left-top');
+	aboutSystemButton:AddOnClickEventHandler(aboutSystemButtonClick);
+	systemMenu:AddComponent(aboutSystemButton);
 
 	local systemButtonClick = function(sender, eventArgs)
 		menuesManager:OpenCloseMenu('SystemMenu');
