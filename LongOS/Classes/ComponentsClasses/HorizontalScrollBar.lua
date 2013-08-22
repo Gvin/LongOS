@@ -52,7 +52,7 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 
 	function this:SetValue(_value)
 		if (type(_value) ~= 'number') then
-			error('HorizontalScrollBar.SetValue [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetValue [value]: Number expected, got '..type(_value)..'.');
 		end
 		if (this:GetEnabled()) then
 			local oldValue = value;
@@ -68,7 +68,7 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 
 	function this:SetMaxValue(_value)
 		if (type(_value) ~= 'number') then
-			error('HorizontalScrollBar.SetMaxValue [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetMaxValue [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		maxValue = _value;
@@ -77,7 +77,7 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 
 	function this:SetMinValue(_value)
 		if (type(_value) ~= 'number') then
-			error('HorizontalScrollBar.SetMinValue [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetMinValue [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		minValue = _value;
@@ -90,7 +90,7 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 
 	function this:SetWidth(_value)
 		if (type(_value) ~= 'number') then
-			error('HorizontalScrollBar.SetWidth [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetWidth [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		width = _value;
@@ -201,22 +201,22 @@ Classes.Components.HorizontalScrollBar = Class(Component, function(this, _minVal
 
 	local function constructor(_minValue, _maxValue, _width, _barColor, _rollerColor)
 		if (type(_minValue) ~= 'number') then
-			error('HorizontalScrollBar.Constructor [minValue]: Number expected, got '..type(_minValue)..'.');
+			error(this:GetClassName()..'.Constructor [minValue]: Number expected, got '..type(_minValue)..'.');
 		end
 		if (type(_maxValue) ~= 'number') then
-			error('HorizontalScrollBar.Constructor [maxValue]: Number expected, got '..type(_maxValue)..'.');
+			error(this:GetClassName()..'.Constructor [maxValue]: Number expected, got '..type(_maxValue)..'.');
 		end
 		if (type(_width) ~= 'number') then
-			error('HorizontalScrollBar.Constructor [width]: Number expected, got '..type(_width)..'.');
+			error(this:GetClassName()..'.Constructor [width]: Number expected, got '..type(_width)..'.');
 		end
 		if (_barColor ~= nil and type(_barColor) ~= 'number') then
-			error('HorizontalScrollBar.Constructor [barColor]: Number expected, got '..type(_barColor)..'.');
+			error(this:GetClassName()..'.Constructor [barColor]: Number expected, got '..type(_barColor)..'.');
 		end
 		if (_rollerColor ~= nil and type(_rollerColor) ~= 'number') then
-			error('HorizontalScrollBar.Constructor [rollerColor]: Number expected, got '..type(_rollerColor)..'.');
+			error(this:GetClassName()..'.Constructor [rollerColor]: Number expected, got '..type(_rollerColor)..'.');
 		end
 		if (_minValue > _maxValue) then
-			error('HorizontalScrollBar.Constructor [minValue]: Invalid values. minValue must be less then maxValue.');
+			error(this:GetClassName()..'.Constructor [minValue]: Invalid values. minValue must be less then maxValue.');
 		end
 
 		minValue = _minValue;

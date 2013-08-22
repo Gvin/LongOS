@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 86 registered features.
+Currently there are 87 registered features.
 
 TODO
 ========
@@ -9,6 +9,7 @@ For v 0.6
 - [X] F78: Improve namespaces declaration.
 - [X] F80: Create "About system" application.
 - [X] F77: Move "enable" and "visible" properties to the Component class.
+- [X] F86: Update error generation in methods of classes to use GetClassName.
 - [X] #16 Java exception when trying to relaunch system after log off.
 - [X] #17 Unable to add standard programs to "Applications" menu without using full name.
 - [X] #15 System hangs on shutting down terminal after program end.
@@ -18,7 +19,6 @@ For v 0.6
 - [ ] F61: Create file browsing component.
 - [ ] F79: Change color configuration window to use ListBox.
 - [ ] F81: Use selection color configuration in the GvinFileManager.
-- [ ] F86: Update error generation in methods of classes to use GetClassName.
 
 For all versions
 --------
@@ -40,6 +40,7 @@ Further releases
 - [ ] F84: Add posibility to minimize windows to control panel.
 - [ ] F85: Add image position option to the wallpaper manager program.
 - [ ] F82: Add working directory property to the application.
+- [ ] F87: Improve components ierarchy.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 

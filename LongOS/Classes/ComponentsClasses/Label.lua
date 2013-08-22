@@ -27,7 +27,7 @@ Classes.Components.Label = Class(Classes.Components.Component, function(this, _t
 
 	function this.SetText(_, _value)
 		if (type(_value) ~= 'string') then
-			error('Label.SetText [value]: String expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetText [value]: String expected, got '..type(_value)..'.');
 		end
 
 		text = _value;
@@ -43,7 +43,7 @@ Classes.Components.Label = Class(Classes.Components.Component, function(this, _t
 
 	function this.SetBackgroundColor(_, _value)
 		if (type(_value) ~= 'number') then
-			error('Label.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		backgroundColor = _value;
@@ -55,7 +55,7 @@ Classes.Components.Label = Class(Classes.Components.Component, function(this, _t
 
 	function this.SetTextColor(_, _value)
 		if (type(_value) ~= 'number') then
-			error('Label.SetTextColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetTextColor [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		textColor = _value;
@@ -77,13 +77,13 @@ Classes.Components.Label = Class(Classes.Components.Component, function(this, _t
 
 	local function constructor(_text, _backgroundColor, _textColor)
 		if (type(_text) ~= 'string') then
-			error('Label.Constructor [text]: String expected, got '..type(_text)..'.');
+			error(this:GetClassName()..'.Constructor [text]: String expected, got '..type(_text)..'.');
 		end
 		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
-			error('Label.Constructor [backgroundColor]: Number or nil expected, got '..type(_backgroundColor)..'.');
+			error(this:GetClassName()..'.Constructor [backgroundColor]: Number or nil expected, got '..type(_backgroundColor)..'.');
 		end
 		if (_textColor ~= nil and type(_textColor) ~= 'number') then
-			error('Label.Constructor [textColor]: Number or nil expected, got '..type(_textColor)..'.');
+			error(this:GetClassName()..'.Constructor [textColor]: Number or nil expected, got '..type(_textColor)..'.');
 		end
 
 		text = _text;

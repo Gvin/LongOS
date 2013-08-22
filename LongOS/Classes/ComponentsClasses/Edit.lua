@@ -46,7 +46,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this.SetText(_, _value)
 		if (type(_value) ~= 'string') then
-			error('Edit.SetText [value]: String expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetText [value]: String expected, got '..type(_value)..'.');
 		end
 
 		local oldText = text;
@@ -63,7 +63,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this.SetWidth(_, _value)
 		if (type(_value) ~= 'number') then
-			error('Edit.SetWidth [value] Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetWidth [value] Number expected, got '..type(_value)..'.');
 		end
 
 		width = _value;
@@ -75,7 +75,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this.SetBackgroundColor(_, _value)
 		if (type(_value) ~= 'number') then
-			error('Edit.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		backgroundColor = _value;
@@ -87,7 +87,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this.SetTextColor(_, _value)
 		if (type(_value) ~= 'number') then
-			error('Edit.SetTextColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetTextColor [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		textColor = _value;
@@ -99,7 +99,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this.SetFocus(_, _value)
 		if (type(_value) ~= 'boolean') then
-			error('Edit.SetFocus [value]: Boolean expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetFocus [value]: Boolean expected, got '..type(_value)..'.');
 		end
 
 		focus = _value;
@@ -118,7 +118,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this.SetEnabled(_, _value)
 		if (type(_value) ~= 'boolean') then
-			error('Edit.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
 		end
 
 		enabled = _value;
@@ -256,13 +256,13 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	local function constructor(_width, _backgroundColor, _textColor)
 		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
-			error('Edit.Constructor [backgroundColor] Number or nil expected, got '..type(_backgroundColor)..'.');
+			error(this:GetClassName()..'.Constructor [backgroundColor] Number or nil expected, got '..type(_backgroundColor)..'.');
 		end
 		if (_textColor ~= nil and type(_textColor) ~= 'number') then
-			error('Edit.Constructor [textColor] Number or nil expected, got '..type(_textColor)..'.');
+			error(this:GetClassName()..'.Constructor [textColor] Number or nil expected, got '..type(_textColor)..'.');
 		end
 		if (type(_width) ~= 'number') then
-			error('Edit.Constructor [width] Number expected, got '..type(_width)..'.');
+			error(this:GetClassName()..'.Constructor [width] Number expected, got '..type(_width)..'.');
 		end
 
 		cursorPosition = 0;

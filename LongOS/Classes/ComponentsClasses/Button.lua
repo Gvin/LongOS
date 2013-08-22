@@ -53,10 +53,10 @@ Classes.Components.Button = Class(Label, function(this, _text, _backgroundColor,
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (type(_cursorX) ~= 'number') then
-			error('Button.ProcessLeftClickEvent [cursorX]: Number required , got '..type(_cursorX)..'.');
+			error(this:GetClassName()..'.ProcessLeftClickEvent [cursorX]: Number required , got '..type(_cursorX)..'.');
 		end
 		if (type(_cursorY) ~= 'number') then
-			error('Button.ProcessLeftClickEvent [cursorY]: Number required , got '..type(_cursorY)..'.');
+			error(this:GetClassName()..'.ProcessLeftClickEvent [cursorY]: Number required , got '..type(_cursorY)..'.');
 		end
 
 		return processClickEvent(_cursorX, _cursorY);
@@ -64,10 +64,10 @@ Classes.Components.Button = Class(Label, function(this, _text, _backgroundColor,
 
 	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
 		if (type(_cursorX) ~= 'number') then
-			error('Button.ProcessDoubleClickEvent [cursorX]: Number required , got '..type(_cursorX)..'.');
+			error(this:GetClassName()..'.ProcessDoubleClickEvent [cursorX]: Number required , got '..type(_cursorX)..'.');
 		end
 		if (type(_cursorY) ~= 'number') then
-			error('Button.ProcessDoubleClickEvent [cursorY]: Number required , got '..type(_cursorY)..'.');
+			error(this:GetClassName()..'.ProcessDoubleClickEvent [cursorY]: Number required , got '..type(_cursorY)..'.');
 		end
 
 		return processClickEvent(_cursorX, _cursorY);

@@ -57,11 +57,11 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetSelectedIndex(_index)
 		if (type(_index) ~= 'number') then
-			error('ListBox.RemoveItemAt [index] Number expected, got '..type(_index)..'.');
+			error(this:GetClassName()..'.RemoveItemAt [index] Number expected, got '..type(_index)..'.');
 		end		
 
 		if (_index > #items) then
-			error('ListBox.RemoveItemAt [index] Out of range, index = '.._index);
+			error(this:GetClassName()..'.RemoveItemAt [index] Out of range, index = '.._index);
 		end
 		eventArgs = {}
 		eventArgs['OldIndex'] = selectedIndex;
@@ -72,10 +72,10 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:GetItem(_index)
 		if (type(_index) ~= 'number') then
-			error('ListBox.GetItem [index] Number expected, got '..type(_index)..'.');
+			error(this:GetClassName()..'.GetItem [index] Number expected, got '..type(_index)..'.');
 		end		
 		if (_index > #items or _index < 1) then
-			error('ListBox.GetItem [index] Out of range, index = '.._index);
+			error(this:GetClassName()..'.GetItem [index] Out of range, index = '.._index);
 		end
 		return items[_index];
 	end	
@@ -87,7 +87,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetWidth(_value)
 		if (type(_value) ~= 'number') then
-			error('ListBox.SetWidth [value] Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetWidth [value] Number expected, got '..type(_value)..'.');
 		end
 		width = _value;
 	end
@@ -98,7 +98,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetHeight(_value)
 		if (type(_value) ~= 'number') then
-			error('ListBox.SetHeight [value] Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetHeight [value] Number expected, got '..type(_value)..'.');
 		end
 		height = _value;
 	end
@@ -109,7 +109,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetBackgroundColor(_value)
 		if (type(_value) ~= 'number') then
-			error('ListBox.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		backgroundColor = _value;
@@ -121,7 +121,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetSelectedBackgroundColor(_value)
 		if (type(_value) ~= 'number') then
-			error('ListBox.SetSelectedBackgroundColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetSelectedBackgroundColor [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		selectedBackgroundColor = _value;
@@ -133,7 +133,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetTextColor(_value)
 		if (type(_value) ~= 'number') then
-			error('ListBox.SetTextColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetTextColor [value]: Number expected, got '..type(_value)..'.');
 		end
 		textColor = _value;
 	end	
@@ -144,7 +144,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetSelectedTextColor(_value)
 		if (type(_value) ~= 'number') then
-			error('ListBox.SetSelectedTextColor [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetSelectedTextColor [value]: Number expected, got '..type(_value)..'.');
 		end
 		selectedTextColor = _value;
 	end		
@@ -155,7 +155,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:SetEnabled(_value)
 		if (type(_value) ~= 'boolean') then
-			error('ListBox.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
 		end
 		enabled = _value;	
 		if (enabled == false) then
@@ -179,7 +179,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:AddItem(_item)
 		if (type(_item) ~= 'string') then
-			error('ListBox.AddItem [item] String expected, got '..type(_item)..'.');
+			error(this:GetClassName()..'.AddItem [item] String expected, got '..type(_item)..'.');
 		end		
 		table.insert(items,_item);
 
@@ -190,11 +190,11 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:RemoveItemAt(_index)
 		if (type(_index) ~= 'number') then
-			error('ListBox.RemoveItemAt [index] Number expected, got '..type(_index)..'.');
+			error(this:GetClassName()..'.RemoveItemAt [index] Number expected, got '..type(_index)..'.');
 		end		
 
 		if (_index > #items or _index < 1) then
-			error('ListBox.RemoveItemAt [index] Out of range, index = '.._index);
+			error(this:GetClassName()..'.RemoveItemAt [index] Out of range, index = '.._index);
 		end
 		table.remove(items,_index);
 		if (_index == selectedIndex) then
@@ -298,16 +298,16 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	local function constructor(_width, _height, _backgroundColor, _textColor)
 		if (_backgroundColor ~= nil and type(_backgroundColor) ~= 'number') then
-			error('ListBox.Constructor [backgroundColor] Number or nil expected, got '..type(_backgroundColor)..'.');
+			error(this:GetClassName()..'.Constructor [backgroundColor] Number or nil expected, got '..type(_backgroundColor)..'.');
 		end
 		if (_textColor ~= nil and type(_textColor) ~= 'number') then
-			error('ListBox.Constructor [textColor] Number or nil expected, got '..type(_textColor)..'.');
+			error(this:GetClassName()..'.Constructor [textColor] Number or nil expected, got '..type(_textColor)..'.');
 		end
 		if (type(_width) ~= 'number') then
-			error('ListBox.Constructor [width] Number expected, got '..type(_width)..'.');
+			error(this:GetClassName()..'.Constructor [width] Number expected, got '..type(_width)..'.');
 		end
 		if (type(_height) ~= 'number') then
-			error('ListBox.Constructor [height] Number expected, got '..type(_height)..'.');
+			error(this:GetClassName()..'.Constructor [height] Number expected, got '..type(_height)..'.');
 		end
 		
 		selectedIndex = -1;

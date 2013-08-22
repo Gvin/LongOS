@@ -24,7 +24,7 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 
 	function this:SetdX(_value)
 		if (type(_value) ~= 'number') then
-			error('Component.SetdX [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetdX [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		dX = _value;
@@ -36,7 +36,7 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 
 	function this:SetdY(_value)
 		if (type(_value) ~= 'number') then
-			error('Component.SetdY [value]: Number expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetdY [value]: Number expected, got '..type(_value)..'.');
 		end
 
 		dY = _value;
@@ -48,10 +48,10 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 
 	function this:SetAnchor(_value)
 		if (type(_value) ~= 'string') then
-			error('Component.SetAnchor [value]: String expected, got '..type(_value)..'.');
+			error(this:GetClassName()..'.SetAnchor [value]: String expected, got '..type(_value)..'.');
 		end
 		if (_value ~= 'left-top' and _value ~= 'right-top' and _value ~= 'left-bottom' and _value ~= 'right-bottom') then
-			error('Component.SetAnchor [value]: Invalid parameter value. Must be in range [left-top, right-top, left-bottom, right-bottom].');
+			error(this:GetClassName()..'.SetAnchor [value]: Invalid parameter value. Must be in range [left-top, right-top, left-bottom, right-bottom].');
 		end
 
 		anchorType = _value;
@@ -103,10 +103,10 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 
 	function this:Contains(_x, _y)
 		if (type(_x) ~= 'number') then
-			error('Component.Contains [x]: Number required, got '..type(_x)..'.');
+			error(this:GetClassName()..'.Contains [x]: Number required, got '..type(_x)..'.');
 		end
 		if (type(_y) ~= 'number') then
-			error('Component.Contains [y]: Number required, got '..type(_y)..'.');
+			error(this:GetClassName()..'.Contains [y]: Number required, got '..type(_y)..'.');
 		end
 
 		return (_y >= this:GetY() and _y <= this:GetY() + this:GetHeight() - 1 and _x >= this:GetX() and _x <= this:GetX() + this:GetWidth() - 1);
@@ -117,16 +117,16 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 
 	function this:DrawBase(_videoBuffer, _ownerX, _ownerY, _ownerWidth, _ownerHeight)
 		if (type(_ownerX) ~= 'number') then
-			error('Component.Draw [ownerX]: Number expected, got '..type(_ownerX)..'.');
+			error(this:GetClassName()..'.Draw [ownerX]: Number expected, got '..type(_ownerX)..'.');
 		end
 		if (type(_ownerY) ~= 'number') then
-			error('Component.Draw [ownerY]: Number expected, got '..type(_ownerY)..'.');
+			error(this:GetClassName()..'.Draw [ownerY]: Number expected, got '..type(_ownerY)..'.');
 		end
 		if (type(_ownerWidth) ~= 'number') then
-			error('Component.Draw [ownerWidth]: Number expected, got '..type(_ownerWidth)..'.');
+			error(this:GetClassName()..'.Draw [ownerWidth]: Number expected, got '..type(_ownerWidth)..'.');
 		end
 		if (type(_ownerHeight) ~= 'number') then
-			error('Component.Draw [ownerHeight]: Number expected, got '..type(_ownerHeight)..'.');
+			error(this:GetClassName()..'.Draw [ownerHeight]: Number expected, got '..type(_ownerHeight)..'.');
 		end
 
 		local altX = 0;
@@ -219,17 +219,17 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 
 	local function constructor(_dX, _dY, _anchorType)
 		if (type(_dX) ~= 'number') then
-			error('Component.Constructor [dX]: Number expected, got '..type(_dX)..'.');
+			error(this:GetClassName()..'.Constructor [dX]: Number expected, got '..type(_dX)..'.');
 		end
 		if (type(_dY) ~= 'number') then
-			error('Component.Constructor [dY]: Number expected, got '..type(_dY)..'.');
+			error(this:GetClassName()..'.Constructor [dY]: Number expected, got '..type(_dY)..'.');
 		end
 		if (type(_anchorType) ~= 'string') then
-			error('Component.Constructor [anchorType]: String expected, got '..type(_anchorType)..'.');
+			error(this:GetClassName()..'.Constructor [anchorType]: String expected, got '..type(_anchorType)..'.');
 		end
 
 		if (_anchorType ~= 'left-top' and _anchorType ~= 'right-top' and _anchorType ~= 'left-bottom' and _anchorType ~= 'right-bottom') then
-			error('Component.Constructor [anchorType]: Invalid parameter value. Must be in range [left-top, right-top, left-bottom, right-bottom].');
+			error(this:GetClassName()..'.Constructor [anchorType]: Invalid parameter value. Must be in range [left-top, right-top, left-bottom, right-bottom].');
 		end
 
 		dX = _dX;
