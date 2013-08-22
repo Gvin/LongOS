@@ -15,6 +15,7 @@ For v 0.6
 - [X] #15 System hangs on shutting down terminal after program end.
 - [X] #18 BiriPaint: Error when opening a nonexistent file
 - [X] #14 It is possible to have day 0 in calendar.
+- [X] #19 About System Button don`t use color from color configuration
 - [ ] F75: Create more beautiful loading screen.
 - [ ] F61: Create file browsing component.
 - [ ] F79: Change color configuration window to use ListBox.
