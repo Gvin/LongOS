@@ -9,7 +9,8 @@ For v 0.6
 - [X] #16 Java exception when trying to relaunch system after log off.
 - [X] #17 Unable to add standard programs to "Applications" menu without using full name.
 - [X] #15 System hangs on shutting down terminal after program end.
-- [X] #18 Error when opening a nonexistent file
+- [X] #18 BiriPaint: Error when opening a nonexistent file
+- [X] #14 It is possible to have day 0 in calendar.
 - [ ] F77: Move "enable" and "visible" properties to the Component class.
 - [ ] F75: Create more beautiful loading screen.
 - [ ] F61: Create file browsing component.
@@ -17,7 +18,6 @@ For v 0.6
 - [ ] F79: Change color configuration window to use ListBox.
 - [ ] F80: Create "About system" application.
 - [ ] F81: Use selection color configuration in the GvinFileManager.
-- [ ] #14 It is possible to have day 0 in calendar.
 
 For all versions
 --------

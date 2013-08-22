@@ -152,7 +152,7 @@ ControlPanel = Class(Object, function(this)
 		calendarButton:SetText(System:GetCurrentTime());
 
 		local days = os.day();
-		local years = math.floor(days/365);
+		local years = math.floor(days/366);
 		days = days - years*365;
 
 		local day = days..'';
