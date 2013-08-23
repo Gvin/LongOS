@@ -9,7 +9,11 @@ Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _
 	local fileName = _fileName;
 	local data = nil;
 
-	local function getData(parsed)
+	function this:GetData()		
+		return data;
+	end
+
+	local function prepareData(parsed)
 		local usefulData = {};
 		for i = 1, #parsed[1] do
 			local info = parsed[1][i].xarg;
@@ -19,7 +23,7 @@ Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _
 	end
 
 	-- Read color configuration from the disk.
-	this.ReadConfiguration = function()
+	function this:ReadConfiguration()
 		if (not fs.exists(fileName)) then
 			error('ColorConfiguration.ReadConfiguration: configuration file '..fileName.." doesn't exists on the disk.");
 		end
@@ -30,37 +34,37 @@ Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _
 
 		local parsed = xmlAPI.parse(text);
 
-		data = getData(parsed);
+		data = prepareData(parsed);
 	end
 
 	-- Get color from the configuration by it's name.
-	this.GetColor = function(_, colorName)
-		if (type(colorName) ~= 'string') then
-			error('ColorConfiguration.GetColor [colorName]: string expected, got '..type(colorName)..'.');
+	function this:GetColor(_colorName)
+		if (type(_colorName) ~= 'string') then
+			error('ColorConfiguration.GetColor [colorName]: string expected, got '..type(_colorName)..'.');
 		end
 		if (data == nil) then
 			error('ColorConfiguration.GetColor: configuration must be red first. Use ReadConfiguration method.');
 		end
 
-		return data[colorName];
+		return data[_colorName];
 	end
 
 	-- Set color from the configuration by it's name.
-	this.SetColor = function(_, colorName, value)
-		if (type(colorName) ~= 'string') then
-			error('ColorConfiguration.SetColor [colorName]: string expected, got '..type(colorName)..'.');
+	function this:SetColor(_colorName, _value)
+		if (type(_colorName) ~= 'string') then
+			error('ColorConfiguration.SetColor [colorName]: string expected, got '..type(_colorName)..'.');
 		end
-		if (type(value) ~= 'number') then
-			error('ColorConfiguration.SetColor [value]: number expected, got '..type(value)..'.');
+		if (type(_value) ~= 'number') then
+			error('ColorConfiguration.SetColor [value]: number expected, got '..type(_value)..'.');
 		end
 		if (data == nil) then
 			error('ColorConfiguration.SetColor: configuration must be red first. Use ReadConfiguration method.');
 		end
-		if (data[colorName] == nil) then
+		if (data[_colorName] == nil) then
 			error('ColorConfiguration.SetColor [colorName]: color not found in configuration.');
 		end
 
-		data[colorName] = value;
+		data[_colorName] = _value;
 	end
 
 	local function prepareDocument()
@@ -78,11 +82,10 @@ Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _
 	end
 
 	-- Write configuration back to the disk.
-	this.WriteConfiguration = function()
+	function this:WriteConfiguration()
 		if (data == nil) then
 			error('ColorConfiguration.WriteConfiguration: configuration must be red first. Use ReadConfiguration method.');
 		end
-
 		local document = prepareDocument();
 		xmlAPI.write(document, fileName);
 	end
