@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 96 registered features.
+Currently there are 97 registered features.
 
 TODO
 ========
@@ -10,6 +10,7 @@ For v 1.0
 - [ ] F93: Create users guide.
 - [ ] F94: Create programming guide.
 - [ ] F95: Create installer program.
+- [ ] F97: Add checking for color availability on startup.
 
 
 For all versions
