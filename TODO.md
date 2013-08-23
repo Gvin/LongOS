@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 89 registered features.
+Currently there are 91 registered features.
 
 TODO
 ========
@@ -44,6 +44,8 @@ Further releases
 - [ ] F61: Create file browsing component.
 - [ ] F88: Add file type icons to the GvinFileManager manager.
 - [ ] F89: Add multiple files selection to the GvinFileManager.
+- [ ] F90: Improve loading to use classes.
+- [ ] F91: Create List class with storing objects type specifying.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 
 
