@@ -9,30 +9,72 @@ local operationsCount = 36;
 local currentOperation = 1;
 LoadingErrors = 0;
 
-local function clearScreen()
-	term.setBackgroundColor(colors.black);
-	term.setTextColor(colors.white);
+local screenWidth, screenHeight = term.getSize();
+local logotype = {
+	{ 2, 2, 2, 2, 2048, 2, 2, 2, 2048, 2048, 2 },
+	{ 2, 32, 2, 2048, 2, 2048, 2, 2048, 2, 2, 2 },
+	{ 2, 32, 128, 2, 2048, 2, 2, 2, 2048, 2, 2 },
+	{ 2, 32, 128, 2, 2, 2, 2, 2, 2, 2048, 2 },
+	{ 2, 32, 32, 32, 32, 2, 2, 2048, 2048, 2, 2 },
+	{ 2, 2, 128, 128, 128, 128, 2, 2, 2, 2, 2 },
+	{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, }
+}
+
+local function clearScreen(color)
+	if (not color) then
+		color = colors.black;
+	end
+	term.setBackgroundColor(color);
 	term.clear();
 	term.setCursorPos(1,1);
 end
 
-local function drawLoading(operation)
-	local screenWidth, screenHeight = term.getSize();
-	local labelPositionX = math.floor(screenWidth/2) - 10;
-	local labelPositionY = math.floor(screenHeight/2);
-	clearScreen();
-	term.setCursorPos(labelPositionX, labelPositionY);
-	term.setTextColor(colors.green);
-	term.write('LongOS v'..version..' is loading');
-	local position = operation/operationsCount*(screenWidth - 2);
-	term.setCursorPos(1, labelPositionY + 2);
-	term.setTextColor(colors.lime);
-	term.write('[');
-	for i = 2, position do
-		term.write('=');
+local function drawHorizontalLine(y, width)
+	term.setCursorPos(1, y);
+	write('+');
+	for i = 2, width - 1 do
+		write('-');
 	end
-	term.setCursorPos(screenWidth, labelPositionY + 2);
-	term.write(']');
+	write('+');
+end
+
+local function drawVerticalLine(width, height)
+	for i = 2, height - 1 do
+		term.setCursorPos(1, i);
+		write('|');
+		term.setCursorPos(width, i);
+		write('|');
+	end
+end
+
+-- Draw screen base
+clearScreen(colors.lightGray);
+term.setTextColor(colors.black);
+drawHorizontalLine(1, screenWidth);
+drawHorizontalLine(screenHeight, screenWidth);
+drawVerticalLine(screenWidth, screenHeight);
+local labelPositionX = math.floor(screenWidth/2) - 10;
+local labelPositionY = math.floor(screenHeight/2) - 5;
+term.setCursorPos(labelPositionX, labelPositionY);
+term.setTextColor(colors.green);
+term.write('LongOS v'..version..' is loading');
+paintutils.drawLine(2, labelPositionY + 1, screenWidth - 1, labelPositionY + 1, colors.gray);
+paintutils.drawPixel(2, labelPositionY + 2, colors.gray);
+paintutils.drawPixel(screenWidth - 1, labelPositionY + 2, colors.gray);
+paintutils.drawLine(2, labelPositionY + 3, screenWidth - 1, labelPositionY + 3, colors.gray);
+paintutils.drawLine(3, labelPositionY + 2, screenWidth - 2, labelPositionY + 2, colors.red);
+-- Draw logotype
+for i = 1, 7 do
+	for j = 1, 11 do
+		paintutils.drawPixel(labelPositionX + j + 4, labelPositionY + i + 4, logotype[i][j]);
+	end
+end
+
+
+local function drawLoading(operation)	
+	local position = operation/operationsCount*(screenWidth - 6);
+	paintutils.drawLine(3, labelPositionY + 2, 3 + position, labelPositionY + 2, colors.lime);
+	term.setCursorPos(1, 19);
 end
 
 local function nextOperation()

@@ -213,7 +213,7 @@ Classes.System.LongOS = Class(Object, function(this)
 			end
 			table.remove(eventsQueue, 1);
 		else
-			os.sleep(0.1);
+			oldSleep(0.1);
 		end
 	end
 
