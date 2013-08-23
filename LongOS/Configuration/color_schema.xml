@@ -1,8 +1,8 @@
 <color-schemas>
-	<schema value="512" name="SelectedBackgroundColor" />
+	<schema value="32768" name="SystemLabelsTextColor" />
 	<schema value="1" name="TopLineTextColor" />
 	<schema value="1" name="TimeTextColor" />
-	<schema value="128" name="TopLineInactiveColor" />
+	<schema value="8192" name="ControlPanelColor" />
 	<schema value="1" name="SelectedTextColor" />
 	<schema value="32" name="ControlPanelButtonsColor" />
 	<schema value="128" name="SystemButtonsColor" />
@@ -12,7 +12,7 @@
 	<schema value="32768" name="TopLineActiveColor" />
 	<schema value="16384" name="ControlPanelPowerButtonColor" />
 	<schema value="1" name="SystemButtonsTextColor" />
-	<schema value="32768" name="SystemLabelsTextColor" />
-	<schema value="8192" name="ControlPanelColor" />
+	<schema value="8" name="SelectedBackgroundColor" />
+	<schema value="128" name="TopLineInactiveColor" />
 </color-schemas>
 

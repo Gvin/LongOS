@@ -102,7 +102,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 			end
 
 			if (selectedFile == files[i]) then
-				videoBuffer:SetBackgroundColor(colors.lightBlue);
+				local colorConfiguration = System:GetColorConfiguration();
+				videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('SelectedBackgroundColor'));
 			else
 				videoBuffer:SetBackgroundColor(colors.white);
 			end
