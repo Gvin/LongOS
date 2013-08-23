@@ -1,24 +1,14 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 91 registered features.
+Currently there are 94 registered features.
 
 TODO
 ========
 
-For v 0.6
+For v 1.0
 --------
-- [X] F78: Improve namespaces declaration.
-- [X] F80: Create "About system" application.
-- [X] F77: Move "enable" and "visible" properties to the Component class.
-- [X] F86: Update error generation in methods of classes to use GetClassName.
-- [X] F81: Use selection color configuration in the GvinFileManager.
-- [X] F75: Create more beautiful loading screen.
-- [X] F79: Change color configuration window to use ListBox.
-- [X] #16 Java exception when trying to relaunch system after log off.
-- [X] #17 Unable to add standard programs to "Applications" menu without using full name.
-- [X] #15 System hangs on shutting down terminal after program end.
-- [X] #18 BiriPaint: Error when opening a nonexistent file
-- [X] #14 It is possible to have day 0 in calendar.
-- [X] #19 About System Button don`t use color from color configuration
+- [ ] F92: Update class diagrams.
+- [ ] F93: Create users guide.
+- [ ] F94: Create programming guide.
 
 
 For all versions
@@ -53,6 +43,22 @@ Further releases
 
 History
 ========
+
+For v 0.6
+--------
+- [X] F78: Improve namespaces declaration.
+- [X] F80: Create "About system" application.
+- [X] F77: Move "enable" and "visible" properties to the Component class.
+- [X] F86: Update error generation in methods of classes to use GetClassName.
+- [X] F81: Use selection color configuration in the GvinFileManager.
+- [X] F75: Create more beautiful loading screen.
+- [X] F79: Change color configuration window to use ListBox.
+- [X] #16 Java exception when trying to relaunch system after log off.
+- [X] #17 Unable to add standard programs to "Applications" menu without using full name.
+- [X] #15 System hangs on shutting down terminal after program end.
+- [X] #18 BiriPaint: Error when opening a nonexistent file
+- [X] #14 It is possible to have day 0 in calendar.
+- [X] #19 About System Button don`t use color from color configuration
 
 For v 0.5
 --------
