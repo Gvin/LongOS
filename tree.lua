@@ -400,10 +400,6 @@ tree = {
 		IsDir = true,
 		Content = {
 			{
-				Name = "angry_birds.image",
-				IsDir = false
-			},
-			{
 				Name = "computer.image",
 				IsDir = false
 			},
