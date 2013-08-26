@@ -42,6 +42,7 @@ Further releases
 - [ ] F91: Create List class with storing objects type specifying.
 - [ ] F96: GvinFileManager: Add sorting by types for directories/files.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
+- [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 
 
 
