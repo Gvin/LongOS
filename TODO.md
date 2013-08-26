@@ -6,6 +6,7 @@ TODO
 
 For v 1.0
 --------
+- [X] #21 About System: Error when label is empty
 - [ ] F92: Update class diagrams.
 - [ ] F93: Create users guide.
 - [ ] F94: Create programming guide.

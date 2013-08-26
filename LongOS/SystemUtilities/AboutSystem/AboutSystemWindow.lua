@@ -74,7 +74,10 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		local computerIdLabel = Label('ID:    '..id,nil,nil,2,9,'left-top');
 		this:AddComponent(computerIdLabel);
 
-		local label = os.getComputerLabel();			
+		local label = os.getComputerLabel();
+		if (label == nil) then 
+			label = '';
+		end		
 		local computerLabelLabel = Label('Label: '..label,nil,nil,2,11,'left-top');
 		this:AddComponent(computerLabelLabel);
 
