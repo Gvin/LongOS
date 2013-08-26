@@ -1,3 +1,8 @@
+if (not term.isColor()) then
+	print('LongOS is designed for advanced computers and cannot be executed on colorless machines.');
+	return;
+end
+
 oldStartTimer = os.startTimer;
 
 os.startTimer = function(time)

@@ -7,11 +7,11 @@ TODO
 For v 1.0
 --------
 - [X] #21 About System: Error when label is empty
+- [X] F95: Create installer program.
+- [X] F97: Add checking for color availability on startup.
 - [ ] F92: Update class diagrams.
 - [ ] F93: Create users guide.
 - [ ] F94: Create programming guide.
-- [ ] F95: Create installer program.
-- [ ] F97: Add checking for color availability on startup.
 
 
 For all versions

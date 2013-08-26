@@ -1,7 +1,7 @@
 <configurations>
-	<configuration path="/LongOS/Utilities/Calculator/GvinCalculator.exec" name="Calculator" terminal="false" />
-	<configuration path="/LongOS/Utilities/BiriPaint/BiriPaint.exec" name="BiriPaint" terminal="false" />
+	<configuration path="/LongOS/Utilities/Calculator/GvinCalculator.exec" name=" Calculator " terminal="false" />
+	<configuration path="/LongOS/Utilities/BiriPaint/BiriPaint.exec" name=" BiriPaint  " terminal="false" />
 	<configuration path="/LongOS/Utilities/FileManager/GvinFileManager.exec" name="File manager" terminal="false" />
-	<configuration path="/rom/programs/computer/worm" name="Worm" terminal="true" />
+	<configuration path="/rom/programs/computer/worm" name="    Worm    " terminal="true" />
 </configurations>
 
