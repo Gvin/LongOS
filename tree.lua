@@ -236,20 +236,6 @@ tree = {
 		IsDir = false
 	},
 	{
-		Name = "Logs",
-		IsDir = true,
-		Content = {
-			{
-				Name = "loading.log",
-				IsDir = false
-			},
-			{
-				Name = "runtime.log",
-				IsDir = false
-			}
-		}
-	},
-	{
 		Name = "Long",
 		IsDir = false
 	},
