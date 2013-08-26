@@ -1,4 +1,4 @@
-version = 0.6;
+version = 'v0.6';
 
 tree = {
 	{
