@@ -15,10 +15,6 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this:GetName()
-		return name;
-	end
-
 	function this:GetId()
 		return id;
 	end
