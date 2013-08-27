@@ -13,7 +13,6 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 	------------------------------------------------------------------------------------------------------------------
 	
 	local vScrollBar
-	local componentsManager;	
 
 	local items;	
 	local selectedIndex;
@@ -24,8 +23,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 	local selectedTextColor;	
 	local width;
 	local height;
-
-	local focus;
+	
 	local enabled;
 
 
@@ -173,8 +171,7 @@ Classes.Components.ListBox = Class(Classes.Components.Component, function(this, 
 
 	function this:Clear()		
 		items = {};
-		selectedIndex = -1;	
-		return true;	
+		selectedIndex = -1;		
 	end
 
 	function this:AddItem(_item)
