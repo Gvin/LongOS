@@ -684,123 +684,6 @@
     <Relationships />
   </ProjectItem>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>ColorConfiguration</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>ColorConfiguration</Name>
-        <Access>Public</Access>
-        <Location left="42" top="37" />
-        <Size width="252" height="230" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private string fileName</Member>
-        <Member type="Field">private object[] data = nil</Member>
-        <Member type="Constructor">public ColorConfiguration(string fileName)</Member>
-        <Member type="Method">private object[] getData(object[] parsed)</Member>
-        <Member type="Method">public void ReadConfiguration()</Member>
-        <Member type="Method">public int GetColor(string colorName)</Member>
-        <Member type="Method">public void SetColor(string colorName, int value)</Member>
-        <Member type="Method">private object[] prepareDocument()</Member>
-        <Member type="Method">public void WriteConfiguration()</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Comment">
-        <Text>New class added for the feature 
-"F5: Change configs extension to XML (Result of F4)." 
-Maintains reading, storing and writing color schema configuration.</Text>
-        <Location left="422" top="37" />
-        <Size width="287" height="75" />
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>InterfaceConfiguration</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>InterfaceConfiguration</Name>
-        <Access>Public</Access>
-        <Location left="44" top="37" />
-        <Size width="275" height="230" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private string fileName</Member>
-        <Member type="Field">private object[] data = nil</Member>
-        <Member type="Constructor">public InterfaceConfiguration(string fileName)</Member>
-        <Member type="Method">private object[] getData(object[] parsed)</Member>
-        <Member type="Method">public void ReadConfiguration()</Member>
-        <Member type="Method">public int GetOption(string optionName)</Member>
-        <Member type="Method">public void SetOption(string optionName, int value)</Member>
-        <Member type="Method">private object[] prepareDocument()</Member>
-        <Member type="Method">public void WriteConfiguration()</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Comment">
-        <Text>New class added for the feature 
-"F5: Change configs extension to XML (Result of F4)." 
-Maintains reading, storing and writing interface configuration.</Text>
-        <Location left="435" top="37" />
-        <Size width="287" height="75" />
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>MouseConfiguration</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Comment">
-        <Text>New class added for the feature 
-"F5: Change configs extension to XML (Result of F4)." 
-Maintains reading, storing and writing mouse configuration.</Text>
-        <Location left="455" top="57" />
-        <Size width="287" height="75" />
-      </Entity>
-      <Entity type="Class">
-        <Name>MouseConfiguration</Name>
-        <Access>Public</Access>
-        <Location left="64" top="57" />
-        <Size width="275" height="230" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private string fileName</Member>
-        <Member type="Field">private object[] data = nil</Member>
-        <Member type="Constructor">public MouseConfiguration(string fileName)</Member>
-        <Member type="Method">private object[] getData(object[] parsed)</Member>
-        <Member type="Method">public void ReadConfiguration()</Member>
-        <Member type="Method">public int GetOption(string optionName)</Member>
-        <Member type="Method">public void SetOption(string optionName, int value)</Member>
-        <Member type="Method">private object[] prepareDocument()</Member>
-        <Member type="Method">public void WriteConfiguration()</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>ConfigurationManager</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>ConfigurationManager</Name>
-        <Access>Public</Access>
-        <Location left="75" top="50" />
-        <Size width="283" height="230" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private ColorConfiguration colorConfiguration</Member>
-        <Member type="Field">private InterfaceConfiguration interfaceConfiguration</Member>
-        <Member type="Field">private MouseConfiguration mouseConfiguration</Member>
-        <Member type="Constructor">public ConfigurationManager()</Member>
-        <Member type="Method">public ColorConfiguration GetColorConfiguration()</Member>
-        <Member type="Method">public InterfaceConfiguration GetInterfaceConfiguration()</Member>
-        <Member type="Method">public MouseConfiguration GetMouseConfiguration()</Member>
-        <Member type="Method">public void ReadConfiguration()</Member>
-        <Member type="Method">public void WriteConfiguration()</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
     <Name>Pixel</Name>
     <Language>Java</Language>
     <Entities>
@@ -854,76 +737,674 @@ Maintains reading, storing and writing mouse configuration.</Text>
     <Relationships />
   </ProjectItem>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Application</Name>
+    <Name>EventHandler</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>EventHandler</Name>
+        <Access>Public</Access>
+        <Location left="246" top="123" />
+        <Size width="268" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private function operation</Member>
+        <Member type="Constructor">public EventHandler(function operation)</Member>
+        <Member type="Method">public void Invoke(object sender, object eventArgs)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ComponentsClasses</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Component</Name>
+        <Access>Public</Access>
+        <Location left="498" top="10" />
+        <Size width="434" height="655" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private int dX</Member>
+        <Member type="Field">private int dY</Member>
+        <Member type="Field">private int x</Member>
+        <Member type="Field">private int y</Member>
+        <Member type="Field">private string anchorType</Member>
+        <Member type="Field">private bool visible</Member>
+        <Member type="Field">private bool enabled</Member>
+        <Member type="Constructor">public Component(int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public int GetdX()</Member>
+        <Member type="Method">public void SetdX(int _value)</Member>
+        <Member type="Method">public int GetdY()</Member>
+        <Member type="Method">public void SetdY(int _value)</Member>
+        <Member type="Method">public string GetAnchor()</Member>
+        <Member type="Method">public void SetAnchor(string _value)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public int GetHeight()</Member>
+        <Member type="Method">public int GetX()</Member>
+        <Member type="Method">public int GetY()</Member>
+        <Member type="Method">public bool GetVisible()</Member>
+        <Member type="Method">public void SetVisible(bool _value)</Member>
+        <Member type="Method">public bool GetEnabled()</Member>
+        <Member type="Method">public void SetEnabled()</Member>
+        <Member type="Method">public bool Contains(int _x, int _y)</Member>
+        <Member type="Method">public bool Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public bool ProcessLeftClickEventBase(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessKeyEventBase(int _key)</Member>
+        <Member type="Method">public bool ProcessKeyEvent(int _key)</Member>
+        <Member type="Method">public bool ProcessCharEventBase(string _char)</Member>
+        <Member type="Method">public bool ProcessCharEvent(string _char)</Member>
+        <Member type="Method">public bool ProcessDoubleClickEventBase(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessMouseScrollEventBase(int _direction, int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ListBox</Name>
+        <Access>Public</Access>
+        <Location left="21" top="479" />
+        <Size width="606" height="757" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private VerticalScrollBar vScrollBar</Member>
+        <Member type="Field">private string[] items</Member>
+        <Member type="Field">private int selectedIndex</Member>
+        <Member type="Field">private int backgroundColor</Member>
+        <Member type="Field">private int textColor</Member>
+        <Member type="Field">private int selectedBackgroundColor</Member>
+        <Member type="Field">private int selectedTextColor</Member>
+        <Member type="Field">private int width</Member>
+        <Member type="Field">private int height</Member>
+        <Member type="Field">private bool enabled = true</Member>
+        <Member type="Field">private function onSelectedIndexChanged = nil</Member>
+        <Member type="Method">public void ListBox(int _width, int _height, int _backgroundColor, int _textColor, int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">public int GetCount()</Member>
+        <Member type="Method">public string GetSelectedItem()</Member>
+        <Member type="Method">public int GetSelectedIndex()</Member>
+        <Member type="Method">public void SetSelectedIndex(int _index)</Member>
+        <Member type="Method">public string GetItem(int _index)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public void SetWidth(int _value)</Member>
+        <Member type="Method">public int GetHeight()</Member>
+        <Member type="Method">public void SetHeight(int _value)</Member>
+        <Member type="Method">public int GetBackgroundColor()</Member>
+        <Member type="Method">public void SetBackgroundColor(int _value)</Member>
+        <Member type="Method">public int GetSelectedBackgroundColor()</Member>
+        <Member type="Method">public void SetSelectedBackgroundColor(int _value)</Member>
+        <Member type="Method">public int GetTextColor()</Member>
+        <Member type="Method">public void SetTextColor(int _value)</Member>
+        <Member type="Method">public int GetSelectedTextColor()</Member>
+        <Member type="Method">public void SetSelectedTextColor(int _value)</Member>
+        <Member type="Method">public bool GetEnabled()</Member>
+        <Member type="Method">public void SetEnabled(bool _value)</Member>
+        <Member type="Method">public void AddOnSelectedIndexChangedEventHandler(function _value)</Member>
+        <Member type="Method">public bool Clear()</Member>
+        <Member type="Method">public void AddItem(string _item)</Member>
+        <Member type="Method">public void RemoveItemAt(int _index)</Member>
+        <Member type="Method">public void Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessMouseScrollEvent(int _direction, ont _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessKeyEvent(int _key)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CheckBox</Name>
+        <Access>Public</Access>
+        <Location left="21" top="110" />
+        <Size width="475" height="417" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private bool checked = false</Member>
+        <Member type="Field">private string checkedSymbol</Member>
+        <Member type="Field">private int textColor</Member>
+        <Member type="Field">private int backgroundColor</Member>
+        <Member type="Field">private function onCheckedChanged = nil</Member>
+        <Member type="Constructor">public CheckBox(int _backgroundColor, int _textColor, int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">public string GetCheckedSymbol()</Member>
+        <Member type="Method">public void SetCheckedSymbol(string _value)</Member>
+        <Member type="Method">public int GetBackgroundColor()</Member>
+        <Member type="Method">public void SetBackgroundColor(int _value)</Member>
+        <Member type="Method">public int GetTextColor()</Member>
+        <Member type="Method">public void SetTextColor(int _value)</Member>
+        <Member type="Method">public bool GetChecked()</Member>
+        <Member type="Method">public void SetChecked(bool _value)</Member>
+        <Member type="Method">public void AddOnCheckedChangedEventHandler(function _value)</Member>
+        <Member type="Method">public void Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Label</Name>
+        <Access>Public</Access>
+        <Location left="21" top="172" />
+        <Size width="494" height="315" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private int text</Member>
+        <Member type="Field">private int textColor</Member>
+        <Member type="Field">private int backgroundColor</Member>
+        <Member type="Constructor">public Label(string _text, int _backgroundColor, int _textColor, int _dX, int _dY, int _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">public string ToString()</Member>
+        <Member type="Method">public string GetText()</Member>
+        <Member type="Method">public void SetText(string _value)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public int GetBackgroundColor()</Member>
+        <Member type="Method">public void SetBackgroundColor(int _value)</Member>
+        <Member type="Method">public int GetTextColor()</Member>
+        <Member type="Method">public void SetTextColor(int _value)</Member>
+        <Member type="Method">public bool Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Button</Name>
+        <Access>Public</Access>
+        <Location left="21" top="267" />
+        <Size width="518" height="213" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private function onClick = nil</Member>
+        <Member type="Constructor">public Button(string _text, int _backgroundColor, int _textColor, int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">public void AddOnClickEventHandler(function _value)</Member>
+        <Member type="Method">private void click(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">private bool processClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Edit</Name>
+        <Access>Public</Access>
+        <Location left="21" top="350" />
+        <Size width="494" height="655" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private int cursorPosition = 0</Member>
+        <Member type="Field">private int backgroundColor</Member>
+        <Member type="Field">private int textColor</Member>
+        <Member type="Field">private string text = ''</Member>
+        <Member type="Field">private int width</Member>
+        <Member type="Field">private bool focus = false</Member>
+        <Member type="Field">private bool enabled = true</Member>
+        <Member type="Field">private function onTextChanged = nil</Member>
+        <Member type="Field">private function onFocus = nil</Member>
+        <Member type="Constructor">public Edit(int _width, int _backgroundColor, int _textColor, int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">public string ToString()</Member>
+        <Member type="Method">private void invokeOnTextChangedEvent(string _textBefore, string _textAfter)</Member>
+        <Member type="Method">public string GetText()</Member>
+        <Member type="Method">public void SetText(string _value)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public void SetWidth(int _value)</Member>
+        <Member type="Method">public int GetBackgroundColor()</Member>
+        <Member type="Method">public void SetBackgroundColor(int _value)</Member>
+        <Member type="Method">public int GetTextColor()</Member>
+        <Member type="Method">public void SetTextColor(int _value)</Member>
+        <Member type="Method">public bool GetFocus()</Member>
+        <Member type="Method">public void SetFocus(bool _value)</Member>
+        <Member type="Method">public bool GetEnabled()</Member>
+        <Member type="Method">public void SetEnabled()</Member>
+        <Member type="Method">public void AddOnFocusEventHadler(function _value)</Member>
+        <Member type="Method">public void AddOnTextChangedEventHandler(function _value)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void processBackspaceKey()</Member>
+        <Member type="Method">public void processDeleteKey()</Member>
+        <Member type="Method">public bool ProcessKeyEvent(int _key)</Member>
+        <Member type="Method">public bool ProcessCharEvent(string _char)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PopupMenu</Name>
+        <Access>Public</Access>
+        <Location left="21" top="412" />
+        <Size width="517" height="451" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">public int X</Member>
+        <Member type="Field">public int Y</Member>
+        <Member type="Field">public int Width</Member>
+        <Member type="Field">public int Height</Member>
+        <Member type="Field">public int BackgroundColor</Member>
+        <Member type="Field">private bool isOpened = false</Member>
+        <Member type="Field">private ComponentsManager componentsManager</Member>
+        <Member type="Field">private bool allowAutoHeight = false</Member>
+        <Member type="Constructor">public PopupMenu(int x, int y, int width, int height, int backgroundColor, bool _allowAutoHeight)</Member>
+        <Member type="Method">public void AddComponent(Component component)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public bool GetIsOpened()</Member>
+        <Member type="Method">public bool Contains(int x, int y)</Member>
+        <Member type="Method">public void Open()</Member>
+        <Member type="Method">public void Close()</Member>
+        <Member type="Method">public void OpenClose()</Member>
+        <Member type="Method">private void drawComponents(Canvas videoBuffer)</Member>
+        <Member type="Method">private void drawFrame(Canvas videoBuffer)</Member>
+        <Member type="Method">private void updateHeight()</Member>
+        <Member type="Method">private void updateWidth()</Member>
+        <Member type="Method">public void Draw(Canvas videoBuffer)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HorizontalScrollBar</Name>
+        <Access>Public</Access>
+        <Location left="21" top="538" />
+        <Size width="688" height="553" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private int maxValue</Member>
+        <Member type="Field">private int minValue</Member>
+        <Member type="Field">private int width</Member>
+        <Member type="Field">private int value</Member>
+        <Member type="Field">private int barColor</Member>
+        <Member type="Field">private int rollerColor</Member>
+        <Member type="Field">private Button scrollRightButton</Member>
+        <Member type="Field">private Button scrollLeftButton</Member>
+        <Member type="Field">private function onValueChanged</Member>
+        <Member type="Constructor">public HorizontalScrollBar(int _minValue, int _maxValue, int _width, int _barColor, int _rollerColor, int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">private void checkValue()</Member>
+        <Member type="Method">private void invokeOnValueChangedEvent(int _oldValue, int _value)</Member>
+        <Member type="Method">public int GetValue()</Member>
+        <Member type="Method">public void SetValue(int _value)</Member>
+        <Member type="Method">public void SetMaxValue(int _value)</Member>
+        <Member type="Method">public void SetMinValue(int _value)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public void SetWidth(int _value)</Member>
+        <Member type="Method">public void AddOnValueChangedEventHandler(function _value)</Member>
+        <Member type="Method">public void ScrollLeft()</Member>
+        <Member type="Method">public void ScrollRight()</Member>
+        <Member type="Method">private int getRollerX(int _x)</Member>
+        <Member type="Method">public bool Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void scrollLeftButtonClick(object _sender, table _eventArgs)</Member>
+        <Member type="Method">public void scrollRightButtonClick(object _sender, table _eventArgs)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VerticalScrollBar</Name>
+        <Access>Public</Access>
+        <Location left="21" top="602" />
+        <Size width="688" height="570" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private int maxValue</Member>
+        <Member type="Field">private int minValue</Member>
+        <Member type="Field">private int height</Member>
+        <Member type="Field">private int value</Member>
+        <Member type="Field">private int barColor</Member>
+        <Member type="Field">private int rollerColor</Member>
+        <Member type="Field">private Button scrollUpButton</Member>
+        <Member type="Field">private Button scrollDownButton</Member>
+        <Member type="Field">private function onValueChanged</Member>
+        <Member type="Constructor">public VerticalScrollBar(int _minValue, int _maxValue, int _height, int _barColor, int _rollerColor, int _dX, int _dY, string _anchorType)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">private void checkValue()</Member>
+        <Member type="Method">private void invokeOnValueChangedEvent(int _oldValue, int _value)</Member>
+        <Member type="Method">public int GetValue()</Member>
+        <Member type="Method">public void SetValue(int _value)</Member>
+        <Member type="Method">public void SetMaxValue(int _value)</Member>
+        <Member type="Method">public void SetMinValue(int _value)</Member>
+        <Member type="Method">public int GetHeight()</Member>
+        <Member type="Method">public void SetHeight(int _value)</Member>
+        <Member type="Method">public void AddOnValueChangedEventHandler(function _value)</Member>
+        <Member type="Method">public void ScrollUp()</Member>
+        <Member type="Method">public void ScrollDown()</Member>
+        <Member type="Method">private int getRollerY(int _y)</Member>
+        <Member type="Method">public bool Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public bool ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void scrollUpButtonClick(object _sender, table _eventArgs)</Member>
+        <Member type="Method">public void scrollDownButtonClick(object _sender, table _eventArgs)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>652</X>
+          <Y>496</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>652</X>
+          <Y>81</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>521</X>
+          <Y>139</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>521</X>
+          <Y>88</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="3" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>540</X>
+          <Y>192</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>540</X>
+          <Y>82</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>561</X>
+          <Y>368</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>561</X>
+          <Y>85</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>582</X>
+          <Y>425</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>582</X>
+          <Y>90</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>735</X>
+          <Y>564</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>735</X>
+          <Y>83</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="8" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>765</X>
+          <Y>624</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ConfigurationManager</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>ColorConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="85" top="82" />
+        <Size width="281" height="247" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Field">private table[] data = nil</Member>
+        <Member type="Constructor">public ColorConfiguration(string _fileName)</Member>
+        <Member type="Method">public table[] GetData()</Member>
+        <Member type="Method">private table[] prepareData(table[] parsed)</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public int GetColor(string _colorName)</Member>
+        <Member type="Method">public void SetColor(string _colorName, int _value)</Member>
+        <Member type="Method">private table[] prepareDocument()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InterfaceConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="730" top="279" />
+        <Size width="289" height="230" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Field">private table[] data = nil</Member>
+        <Member type="Constructor">public InterfaceConfiguration(string _fileName)</Member>
+        <Member type="Method">private table[] getData(table[] parsed)</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public string GetOption(string optionName)</Member>
+        <Member type="Method">public void SetOption(string optionName, string value)</Member>
+        <Member type="Method">private table[] prepareDocument()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MouseConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="85" top="279" />
+        <Size width="281" height="230" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Field">private table[] data = nil</Member>
+        <Member type="Constructor">public MouseConfiguration(string _fileName)</Member>
+        <Member type="Method">private table[] getData(table[] parsed)</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public string GetOption(string optionName)</Member>
+        <Member type="Method">public void SetOption(string optionName, string value)</Member>
+        <Member type="Method">private table[] prepareDocument()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConfigurationManager</Name>
+        <Access>Public</Access>
+        <Location left="410" top="17" />
+        <Size width="283" height="264" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private ColorConfiguration colorConfiguration</Member>
+        <Member type="Field">private InterfaceConfiguration interfaceConfiguration</Member>
+        <Member type="Field">private MouseConfiguration mouseConfiguration</Member>
+        <Member type="Field">private ApplicationsConfiguration applicationsConfiguration</Member>
+        <Member type="Constructor">public ConfigurationManager()</Member>
+        <Member type="Method">public ColorConfiguration GetColorConfiguration()</Member>
+        <Member type="Method">public InterfaceConfiguration GetInterfaceConfiguration()</Member>
+        <Member type="Method">public MouseConfiguration GetMouseConfiguration()</Member>
+        <Member type="Method">public ApplicationsConfiguration GetApplicationsConfiguration()</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ApplicationsConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="730" top="82" />
+        <Size width="281" height="264" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Field">private table[] data = nil</Member>
+        <Member type="Constructor">public ApplicationsConfiguration(string _fileName)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">private table[] prepareData(table[] _parsed)</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public table[] GetApplicationsData()</Member>
+        <Member type="Method">public void SetApplicationsData(table[] _data)</Member>
+        <Member type="Method">private table[] prepareDocument()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>New class added for the feature 
+"F5: Change configs extension to XML (Result of F4)." 
+Maintains reading, storing and writing mouse configuration.</Text>
+        <Location left="85" top="336" />
+        <Size width="287" height="75" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>New class added for the feature 
+"F5: Change configs extension to XML (Result of F4)." 
+Maintains reading, storing and writing color schema configuration.</Text>
+        <Location left="85" top="136" />
+        <Size width="287" height="75" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>New class added for the feature 
+"F5: Change configs extension to XML (Result of F4)." 
+Maintains reading, storing and writing interface configuration.</Text>
+        <Location left="730" top="336" />
+        <Size width="287" height="75" />
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="3" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>446</X>
+          <Y>87</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>391</X>
+          <Y>105</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="3" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>538</X>
+          <Y>89</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>400</X>
+          <Y>299</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="3" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>637</X>
+          <Y>87</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>705</X>
+          <Y>106</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="3" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>587</X>
+          <Y>87</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>705</X>
+          <Y>298</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>ApplicationClasses</Name>
     <Language>Java</Language>
     <Entities>
       <Entity type="Class">
         <Name>Application</Name>
         <Access>Public</Access>
-        <Location left="75" top="55" />
-        <Size width="450" height="434" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">public string Name</Member>
-        <Member type="Field">public bool IsUnique</Member>
-        <Member type="Field">public bool Enabled</Member>
-        <Member type="Field">public string Id</Member>
-        <Member type="Field">private WindowsManager windowsManager</Member>
+        <Location left="540" top="40" />
+        <Size width="469" height="740" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private string id</Member>
+        <Member type="Field">private string mame</Member>
+        <Member type="Field">private bool isUnique</Member>
         <Member type="Field">private bool shutdownWhenNoWindows</Member>
-        <Member type="Constructor">public Application(string applicationName, bool isUnique, bool shutdownWhenNoWindows)</Member>
-        <Member type="Method">public void AddWindow(Window window)</Member>
-        <Member type="Method">public void DeleteWindow(string windowId)</Member>
-        <Member type="Method">public void Run(Window window)</Member>
-        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
-        <Member type="Method">public void Update()</Member>
-        <Member type="Method">public void Close()</Member>
-        <Member type="Method">public void ProcessKeyEvent(int key)</Member>
-        <Member type="Method">public void ProcessCharEvent(char symbol)</Member>
-        <Member type="Method">public void ProcessRednetEvent(int id, string message, float distance)</Member>
-        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
-        <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
-        <Member type="Method">public void ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Field">private bool enabled</Member>
+        <Member type="Field">private WindowsManager windowsManager</Member>
+        <Member type="Field">private ThreadsManager threadsManager</Member>
+        <Member type="Constructor">public Application(string _applicationName, bool _isUnique, bool _shutdownWhenNoWindows)</Member>
+        <Member type="Constructor">public Application(string _applicationName, bool _isUnique)</Member>
+        <Member type="Constructor">public Application(string _applicationName)</Member>
+        <Member type="Method">public string GetName()</Member>
+        <Member type="Method">public bool GetIsUnique()</Member>
+        <Member type="Method">public bool GetEnabled()</Member>
+        <Member type="Method">public void SetEnabled(bool _value)</Member>
+        <Member type="Method">public string GetId()</Member>
+        <Member type="Method">public void Initialize(string _id)</Member>
+        <Member type="Method">public void AddWindow(Window _window)</Member>
+        <Member type="Method">public void DeleteWindow(string _windowId)</Member>
+        <Member type="Method">public void AddThread(Thread _thread)</Member>
+        <Member type="Method">public void RemoveThread(string _id)</Member>
+        <Member type="Method">public void Clear()</Member>
         <Member type="Method">public bool Contains(int x, int y)</Member>
         <Member type="Method">public int GetWindowsCount()</Member>
+        <Member type="Method">public void Run(Window _window)</Member>
+        <Member type="Method">public void Draw(VideoBuffer _videoBuffer)</Member>
+        <Member type="Method">public void Update()</Member>
+        <Member type="Method">public void Close()</Member>
+        <Member type="Method">public void ProcessKeyEvent(int _key)</Member>
+        <Member type="Method">public void ProcessCharEvent(char _symbol)</Member>
+        <Member type="Method">public void ProcessRednetEvent(int _id, string _message, float _distance, string _side, int _channel)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ResetDragging()</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessLeftMouseDragEvent(int _newCursorX, int _newCursorY)</Member>
+        <Member type="Method">public void ProcessRightMouseDragEvent(int _newCursorX, int _newCursorY)</Member>
+        <Member type="Method">public void ProcessTimerEvent(int _timerId)</Member>
+        <Member type="Method">public void ProcessRedstoneEvent()</Member>
+        <Member type="Method">public void ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
         <Modifier>None</Modifier>
       </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>ComponentsManager</Name>
-    <Language>Java</Language>
-    <Entities>
       <Entity type="Class">
         <Name>ComponentsManager</Name>
         <Access>Public</Access>
-        <Location left="151" top="79" />
-        <Size width="326" height="247" />
-        <Collapsed>False</Collapsed>
+        <Location left="540" top="216" />
+        <Size width="326" height="298" />
+        <Collapsed>True</Collapsed>
         <Member type="Field">private Component[] components</Member>
         <Member type="Constructor">public ComponentsManager()</Member>
         <Member type="Method">public void AddComponent(Component component)</Member>
-        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer, int ownerX, int ownerY, int ownerWidth, int ownerHeight)</Member>
         <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
         <Member type="Method">public bool ProcessKeyEvent(int key)</Member>
         <Member type="Method">public bool ProcessCharEvent(char symbol)</Member>
         <Member type="Method">public bool ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessMouseScrollEvent(int direction, int cursorX, int cursorY)</Member>
         <Member type="Method">public int GetComponentsCount()</Member>
+        <Member type="Method">public Component GetComponent(int index)</Member>
         <Member type="Method">public void ForEach(function operation)</Member>
         <Modifier>None</Modifier>
       </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>MenuesManager</Name>
-    <Language>Java</Language>
-    <Entities>
       <Entity type="Class">
         <Name>MenuesManager</Name>
         <Access>Public</Access>
-        <Location left="118" top="104" />
+        <Location left="10" top="177" />
         <Size width="305" height="281" />
-        <Collapsed>False</Collapsed>
+        <Collapsed>True</Collapsed>
         <Member type="Field">private PopupMenu[] menues</Member>
         <Member type="Constructor">public MenuesManager()</Member>
         <Member type="Method">public void AddMenu(string name, PopupMenu menu)</Member>
@@ -938,19 +1419,12 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <Member type="Method">public bool Contains(int x, int y)</Member>
         <Modifier>None</Modifier>
       </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Window</Name>
-    <Language>Java</Language>
-    <Entities>
       <Entity type="Class">
         <Name>Window</Name>
         <Access>Public</Access>
-        <Location left="114" top="82" />
+        <Location left="10" top="378" />
         <Size width="869" height="1182" />
-        <Collapsed>False</Collapsed>
+        <Collapsed>True</Collapsed>
         <Member type="Field">public Application _application</Member>
         <Member type="Field">public string Name</Member>
         <Member type="Field">public bool IsUnique</Member>
@@ -1018,19 +1492,12 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <Member type="Method">public void ProcessRednetEvent(int id, string message, float distance)</Member>
         <Modifier>Abstract</Modifier>
       </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>WindowsManager</Name>
-    <Language>Java</Language>
-    <Entities>
       <Entity type="Class">
         <Name>WindowsManager</Name>
         <Access>Public</Access>
-        <Location left="160" top="77" />
+        <Location left="10" top="319" />
         <Size width="273" height="553" />
-        <Collapsed>False</Collapsed>
+        <Collapsed>True</Collapsed>
         <Member type="Field">public bool Enabled = true</Member>
         <Member type="Field">private Window[] windows</Member>
         <Member type="Field">private Window currentWindow = nil</Member>
@@ -1061,74 +1528,54 @@ Maintains reading, storing and writing mouse configuration.</Text>
         <Member type="Method">public void Update()</Member>
         <Modifier>None</Modifier>
       </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Button</Name>
-    <Language>Java</Language>
-    <Entities>
       <Entity type="Class">
-        <Name>Button</Name>
+        <Name>Thread</Name>
         <Access>Public</Access>
-        <Location left="86" top="67" />
-        <Size width="477" height="332" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">public string Text</Member>
-        <Member type="Field">public int BackgroundColor</Member>
-        <Member type="Field">public int TextColor</Member>
-        <Member type="Field">public function OnClick = nil</Member>
-        <Member type="Field">public object OnClickParams = nil</Member>
-        <Member type="Field">public bool Enabled = true</Member>
-        <Member type="Field">public int X</Member>
-        <Member type="Field">public int Y</Member>
-        <Member type="Constructor">public Button(string text, int backgroundColor, int textColor, int dX, int dY, string anchorType)</Member>
-        <Member type="Method">public void _draw(VideoBuffer videoBuffer, int x, int y)</Member>
-        <Member type="Method">public bool Contains(int x, int y)</Member>
-        <Member type="Method">private void click()</Member>
-        <Member type="Method">private bool processClickEvent(int cursorX, int cursorY)</Member>
-        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
-        <Member type="Method">public bool ProcessDoubleClickEvent(int cursorX, int cursorY)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>CheckBox</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>CheckBox</Name>
-        <Access>Public</Access>
-        <Location left="110" top="107" />
-        <Size width="433" height="196" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">public bool Checked = false</Member>
-        <Member type="Field">public int BackgroundColor</Member>
-        <Member type="Field">public int TextColor</Member>
-        <Member type="Constructor">public CheckBox(int backgroundColor, int textColor, int dX, int dY, string anchorType)</Member>
-        <Member type="Method">public void _draw(VideoBuffer videoBuffer, int x, int y)</Member>
-        <Member type="Method">private void check(int cursorX, int cursorY)</Member>
-        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>EventHandler</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>EventHandler</Name>
-        <Access>Public</Access>
-        <Location left="246" top="123" />
-        <Size width="268" height="128" />
-        <Collapsed>False</Collapsed>
+        <Location left="540" top="99" />
+        <Size width="294" height="281" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private Application application</Member>
+        <Member type="Field">private int id</Member>
         <Member type="Field">private function operation</Member>
-        <Member type="Constructor">public EventHandler(function operation)</Member>
-        <Member type="Method">public void Invoke(object sender, object eventArgs)</Member>
+        <Member type="Field">private Routine routine</Member>
+        <Member type="Constructor">public Thread(application _application, function _operation)</Member>
+        <Member type="Method">public string GetId()</Member>
+        <Member type="Method">public void Initialize(string _id)</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public void Stop()</Member>
+        <Member type="Method">public table Resume(table _eventData)</Member>
+        <Member type="Method">public string GetStatus()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ThreadsManager</Name>
+        <Access>Public</Access>
+        <Location left="540" top="161" />
+        <Size width="512" height="468" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private Thread[] threads</Member>
+        <Member type="Field">private Thread[] threadsToDelete</Member>
+        <Member type="Field">private table[] events</Member>
+        <Member type="Field">private table[] tFilters</Member>
+        <Member type="Constructor">public ThreadsManager()</Member>
+        <Member type="Method">private bool contains(string _id)</Member>
+        <Member type="Method">private table getThread(string _id)</Member>
+        <Member type="Method">public void AddThread(Thread _thread)</Member>
+        <Member type="Method">public void RemoveThread(string _id)</Member>
+        <Member type="Method">public int GetThreadsCount()</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void Update()</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessKeyEvent(int _key)</Member>
+        <Member type="Method">public void ProcessCharEvent(string _symbol)</Member>
+        <Member type="Method">public void ProcessRednetEvent(int _id, string _message, int _distance, string _side, int _channel)</Member>
+        <Member type="Method">public void ProcessLeftMouseDragEvent(int _newCursorX, int _newCursorY)</Member>
+        <Member type="Method">public void ProcessRightMouseDragEvent(int _newCursorX, int _newCursorY)</Member>
+        <Member type="Method">public void ProcessTimerEvent(int _timerId)</Member>
+        <Member type="Method">public void ProcessRedstoneEvent()</Member>
+        <Member type="Method">public void ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessTerminateEvent()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
