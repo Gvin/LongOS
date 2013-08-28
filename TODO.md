@@ -10,7 +10,7 @@ For v 1.0
 - [X] F95: Create installer program.
 - [X] F97: Add checking for color availability on startup.
 - [X] F93: Create users guide.
-- [ ] F92: Update class diagrams.
+- [X] F92: Update class diagrams.
 - [ ] F94: Create programming guide.
 
 

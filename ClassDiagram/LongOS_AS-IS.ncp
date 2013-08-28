@@ -657,7 +657,7 @@
       <Entity type="Class">
         <Name>ListBox</Name>
         <Access>Public</Access>
-        <Location left="21" top="480" />
+        <Location left="21" top="411" />
         <Size width="606" height="757" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private VerticalScrollBar vScrollBar</Member>
@@ -812,7 +812,7 @@
       <Entity type="Class">
         <Name>PopupMenu</Name>
         <Access>Public</Access>
-        <Location left="21" top="412" />
+        <Location left="21" top="589" />
         <Size width="517" height="451" />
         <Collapsed>True</Collapsed>
         <Member type="Field">public int X</Member>
@@ -842,7 +842,7 @@
       <Entity type="Class">
         <Name>HorizontalScrollBar</Name>
         <Access>Public</Access>
-        <Location left="21" top="538" />
+        <Location left="21" top="469" />
         <Size width="688" height="553" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private int maxValue</Member>
@@ -878,7 +878,7 @@
       <Entity type="Class">
         <Name>VerticalScrollBar</Name>
         <Access>Public</Access>
-        <Location left="21" top="602" />
+        <Location left="21" top="533" />
         <Size width="688" height="570" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private int maxValue</Member>
@@ -918,7 +918,7 @@
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>652</X>
-          <Y>497</Y>
+          <Y>428</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>652</X>
@@ -965,24 +965,12 @@
           <Y>85</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="6" second="0">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>582</X>
-          <Y>425</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>582</X>
-          <Y>90</Y>
-        </BendPoint>
-      </Relationship>
       <Relationship type="Generalization" first="7" second="0">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>735</X>
-          <Y>564</Y>
+          <Y>495</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>735</X>
@@ -994,7 +982,7 @@
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>765</X>
-          <Y>624</Y>
+          <Y>555</Y>
         </BendPoint>
       </Relationship>
     </Relationships>
@@ -1428,13 +1416,14 @@ Maintains reading, storing and writing interface configuration.</Text>
       <Entity type="Class">
         <Name>WindowsManager</Name>
         <Access>Public</Access>
-        <Location left="208" top="148" />
-        <Size width="273" height="553" />
+        <Location left="210" top="148" />
+        <Size width="273" height="570" />
         <Collapsed>True</Collapsed>
         <Member type="Field">public bool Enabled = true</Member>
         <Member type="Field">private Window[] windows</Member>
         <Member type="Field">private Window currentWindow = nil</Member>
         <Member type="Constructor">public WindowsManager()</Member>
+        <Member type="Method">public string ToString()</Member>
         <Member type="Method">public void GetWindowsCount()</Member>
         <Member type="Method">private Window getWindowById(string windowId)</Member>
         <Member type="Method">private Window getWindowByName(string windowName)</Member>
@@ -1592,34 +1581,104 @@ Maintains reading, storing and writing interface configuration.</Text>
     <Language>Java</Language>
     <Entities>
       <Entity type="Class">
-        <Name>Image</Name>
+        <Name>Canvas</Name>
         <Access>Public</Access>
-        <Location left="153" top="68" />
-        <Size width="215" height="264" />
+        <Location left="136" top="126" />
+        <Size width="376" height="842" />
         <Collapsed>True</Collapsed>
+        <Member type="Field">private Pixel[] pixels</Member>
+        <Member type="Field">private int newField</Member>
+        <Member type="Field">private int currentBackgroundColor</Member>
+        <Member type="Field">private int currentTextColor</Member>
+        <Member type="Field">private int cursorColor</Member>
+        <Member type="Field">private int cursorX</Member>
+        <Member type="Field">private int cursorY</Member>
+        <Member type="Field">private int realCursorX</Member>
+        <Member type="Field">private int realCursorY</Member>
+        <Member type="Field">private bool cursorBlink</Member>
+        <Member type="Field">private int x</Member>
+        <Member type="Field">private int y</Member>
+        <Member type="Field">private int dX</Member>
+        <Member type="Field">private int dY</Member>
         <Member type="Field">private int width</Member>
         <Member type="Field">private int height</Member>
-        <Member type="Field">private table[] canvas</Member>
-        <Member type="Constructor">public Image(string fileName)</Member>
-        <Member type="Constructor">public Image(int width, int height)</Member>
+        <Member type="Field">private string anchor</Member>
+        <Member type="Constructor">public Canvas(int _dX, int _dY, int _width, int _height, string _anchor)</Member>
+        <Member type="Method">public int GetX()</Member>
+        <Member type="Method">public int GetY()</Member>
+        <Member type="Method">private void updateSize()</Member>
         <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public void SetWidth(int _value)</Member>
         <Member type="Method">public int GetHeight()</Member>
-        <Member type="Method">public int GetPixel(int x, int y)</Member>
-        <Member type="Method">public void SetPixel(int x, int y, int color)</Member>
-        <Member type="Method">public void SaveToFile(string fileName)</Member>
-        <Member type="Method">public void LoadFromFile(string fileName)</Member>
+        <Member type="Method">public void SetHeight(int _value)</Member>
+        <Member type="Method">public void SetRealCursorPos(int _x, int _y)</Member>
+        <Member type="Method">public table GetCursorPos()</Member>
+        <Member type="Method">public void SetCursorPos(int _x, int _y)</Member>
+        <Member type="Method">public void SetBackgroundColor(int _value)</Member>
+        <Member type="Method">public void SetTextColor(int _value)</Member>
+        <Member type="Method">public void SetColorParameters(int _textColor, int _backgroundColor)</Member>
+        <Member type="Method">public void SetCursorBlink(bool _value)</Member>
+        <Member type="Method">public void SetCursorColor(int _value)</Member>
+        <Member type="Method">private bool isOnCanvas(int _x, int _y)</Member>
+        <Member type="Method">public void Scroll(int _value)</Member>
+        <Member type="Method">public void SetPixelColor(int _x, int _y, int _color)</Member>
+        <Member type="Method">public void DrawBlock(int _x, int _y, int _width, int _height, int _color, char _symbol)</Member>
+        <Member type="Method">public void Write(string _value)</Member>
+        <Member type="Method">public void WriteAt(int _x, int _y, string _value)</Member>
+        <Member type="Method">public table GetCoordinates(int _x, int _y)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void ClearLine()</Member>
+        <Member type="Method">public void SetPixel(int _x, int _y, int _pixel)</Member>
+        <Member type="Method">private void draw(VideoBuffer _videoBuffer)</Member>
+        <Member type="Method">public void Draw(VideoBuffer _videoBuffer, int _ownerX, int _ownerY, int _ownerWidth, int _ownerHeight)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VideoBuffer</Name>
+        <Access>Public</Access>
+        <Location left="561" top="126" />
+        <Size width="458" height="553" />
+        <Collapsed>True</Collapsed>
+        <Member type="Field">private Pixel[] pixels</Member>
+        <Member type="Field">private int currentBackgroundColor</Member>
+        <Member type="Field">private int currentTextColor</Member>
+        <Member type="Field">private int cursorColor</Member>
+        <Member type="Field">private int cursorX</Member>
+        <Member type="Field">private int cursorY</Member>
+        <Member type="Field">private int realCursorX</Member>
+        <Member type="Field">private int realCursorY</Member>
+        <Member type="Field">private bool cursorBlink</Member>
+        <Member type="Field">private int screenWidth</Member>
+        <Member type="Field">private int screenHeight</Member>
+        <Member type="Constructor">public VideoBuffer()</Member>
+        <Member type="Method">private bool isOnScreen(int x, int y)</Member>
+        <Member type="Method">public void SetRealCursorPos(int x, int y)</Member>
+        <Member type="Method">public void SetCursorPos(int x, int y)</Member>
+        <Member type="Method">public void SetBackgroundColor(int color)</Member>
+        <Member type="Method">public void SetPixel(int x, int y, Pixel _pixel)</Member>
+        <Member type="Method">public void SetPixelColor(int x, int y, int color)</Member>
+        <Member type="Method">public void SetTextColor(int color)</Member>
+        <Member type="Method">public void DrawBlock(int x, int y, int width, int height, int color, char symbol)</Member>
+        <Member type="Method">public void SetColorParameters(int textColor, int newBackgroundColor)</Member>
+        <Member type="Method">public void SetCursorBlink(bool value)</Member>
+        <Member type="Method">public void SetCursorColor(int color)</Member>
+        <Member type="Method">public void Write(string text)</Member>
+        <Member type="Method">public void WriteAt(int x, int y, string text)</Member>
+        <Member type="Method">public void GetCoordinates(nit _x, int _y)</Member>
+        <Member type="Method">public void Clear()</Member>
+        <Member type="Method">public void Draw()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>Pixel</Name>
         <Access>Public</Access>
-        <Location left="517" top="68" />
-        <Size width="313" height="281" />
+        <Location left="376" top="281" />
+        <Size width="328" height="281" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private int backgroundColor = colors.black</Member>
         <Member type="Field">private int textColor = colors.white</Member>
         <Member type="Field">private string symbol = ''</Member>
-        <Member type="Constructor">public Pixel(int initBackColor, int initTextColor, int initSymbol)</Member>
+        <Member type="Constructor">public Pixel(int initBackColor, int initTextColor, char initSymbol)</Member>
         <Member type="Method">public int GetBackgroundColor()</Member>
         <Member type="Method">public void SetBackgroundColor(int value)</Member>
         <Member type="Method">public int GetTextColor()</Member>
@@ -1631,47 +1690,63 @@ Maintains reading, storing and writing interface configuration.</Text>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>VideoBuffer</Name>
+        <Name>Image</Name>
         <Access>Public</Access>
-        <Location left="473" top="161" />
-        <Size width="458" height="485" />
+        <Location left="106" top="408" />
+        <Size width="398" height="400" />
         <Collapsed>True</Collapsed>
-        <Member type="Field">private int[] backgroundColor</Member>
-        <Member type="Field">private int currentBackgroundColor</Member>
-        <Member type="Field">private int currentTextColor</Member>
-        <Member type="Field">private int[] textColor</Member>
-        <Member type="Field">private string[] text</Member>
-        <Member type="Field">private int cursorX</Member>
-        <Member type="Field">private int cursorY</Member>
-        <Member type="Field">private int realCursorX</Member>
-        <Member type="Field">private int realCursorY</Member>
-        <Member type="Field">private bool cursorBlink</Member>
-        <Member type="Constructor">public VideoBuffer()</Member>
-        <Member type="Method">private bool isOnScreen(int x, int y)</Member>
-        <Member type="Method">public void SetRealCursorPos(int x, int y)</Member>
-        <Member type="Method">public void SetCursorPos(int x, int y)</Member>
-        <Member type="Method">public void SetBackgroundColor(int color)</Member>
-        <Member type="Method">public void SetPixelColor(int x, int y, int color)</Member>
-        <Member type="Method">public void SetTextColor(int color)</Member>
-        <Member type="Method">public void DrawBlock(int x, int y, int width, int height, int color, char symbol)</Member>
-        <Member type="Method">public void SetColorParameters(int textColor, int backgroundColor)</Member>
-        <Member type="Method">public void SetCursorBlink(bool value)</Member>
-        <Member type="Method">public void Write(string text)</Member>
-        <Member type="Method">public void WriteAt(int x, int y, string text)</Member>
-        <Member type="Method">public void Clear()</Member>
-        <Member type="Method">public void Draw()</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>Canvas</Name>
-        <Access>Public</Access>
-        <Location left="171" top="235" />
-        <Size width="162" height="216" />
-        <Collapsed>True</Collapsed>
+        <Member type="Field">private int width</Member>
+        <Member type="Field">private int height</Member>
+        <Member type="Field">private table[] canvas</Member>
+        <Member type="Constructor">public Image(string fileName)</Member>
+        <Member type="Constructor">public Image(int width, int height)</Member>
+        <Member type="Constructor">public Image(Image image)</Member>
+        <Member type="Method">public int GetWidth()</Member>
+        <Member type="Method">public int GetHeight()</Member>
+        <Member type="Method">public void SetWidth(int _width)</Member>
+        <Member type="Method">public void SetHeight(int _height)</Member>
+        <Member type="Method">public int GetPixel(int x, int y)</Member>
+        <Member type="Method">public void SetPixel(int x, int y, int color)</Member>
+        <Member type="Method">public void round(float _x)</Member>
+        <Member type="Method">public void SetSize(int _width, int _height)</Member>
+        <Member type="Method">public void DrawLine(int _color, int _x1, int _y1, int _x2, int _y2)</Member>
+        <Member type="Method">public void DrawRect(int _color, int _x, int _y, int _width, int _height)</Member>
+        <Member type="Method">public void DrawEllipse(int _color, int _x, int _y, int _width, int _height)</Member>
+        <Member type="Method">public void SaveToFile(string _fileName)</Member>
+        <Member type="Method">public void LoadFromFile(string _fileName)</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
-    <Relationships />
+    <Relationships>
+      <Relationship type="Association" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>597</X>
+          <Y>256</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>461</X>
+          <Y>256</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+    </Relationships>
   </ProjectItem>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
     <Name>SystemClasses</Name>
