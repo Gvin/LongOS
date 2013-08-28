@@ -1784,4 +1784,69 @@ Maintains reading, storing and writing interface configuration.</Text>
     </Entities>
     <Relationships />
   </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>LongOS</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>LongOS</Name>
+        <Access>Public</Access>
+        <Location left="74" top="46" />
+        <Size width="476" height="927" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private bool updateLock = false</Member>
+        <Member type="Field">private ConfigurationManager configurationManager</Member>
+        <Member type="Field">private Logger runtimeLog</Member>
+        <Member type="Field">private VideoBuffer videoBuffer</Member>
+        <Member type="Field">private ApplicationsManager applicationsManager</Member>
+        <Member type="Field">private Desktop desktopManager</Member>
+        <Member type="Field">private ControlPanel controlPanel</Member>
+        <Member type="Field">private Application initApplication</Member>
+        <Member type="Field">private bool working = true</Member>
+        <Member type="Field">private string currentVersion</Member>
+        <Member type="Field">private int dblClickTimer</Member>
+        <Member type="Field">private int clickX</Member>
+        <Member type="Field">private int clickY</Member>
+        <Member type="Field">private table eventsQueue</Member>
+        <Member type="Field">private int allowedTimers</Member>
+        <Member type="Constructor">public LongOS()</Member>
+        <Member type="Method">public void LogRuntimeError(string errorText)</Member>
+        <Member type="Method">public bool GetWorking()</Member>
+        <Member type="Method">public void AddTimer(int timerId)</Member>
+        <Member type="Method">public void RemoveTimer(int timerId)</Member>
+        <Member type="Method">public void AddApplication(Application application)</Member>
+        <Member type="Method">public void RemoveApplication(string id)</Member>
+        <Member type="Method">public void SetCurrentApplication(string id)</Member>
+        <Member type="Method">public string GetCurrentVersion()</Member>
+        <Member type="Method">public void Update()</Member>
+        <Member type="Method">public void Draw()</Member>
+        <Member type="Method">public void ProcessEvents()</Member>
+        <Member type="Method">public void CatchEvents()</Member>
+        <Member type="Method">public void Shutdown()</Member>
+        <Member type="Method">public void Reboot()</Member>
+        <Member type="Method">public void LogOff()</Member>
+        <Member type="Method">public void ShowMessage(string title, string text, int textColor)</Member>
+        <Member type="Method">public void ShowModalMessage(Application application, string title, string text, int textColor)</Member>
+        <Member type="Method">public void ShowError(string message)</Member>
+        <Member type="Method">public string GetCurrentTime()</Member>
+        <Member type="Method">public string GenerateId()</Member>
+        <Member type="Method">public bool Try(function func)</Member>
+        <Member type="Method">public bool TryParams(function func, table params)</Member>
+        <Member type="Method">public table GetApplicationsList()</Member>
+        <Member type="Method">public int GetApplicationsCount()</Member>
+        <Member type="Method">public void RunFile(string fileName)</Member>
+        <Member type="Method">public ControlPanel GetControlPanel()</Member>
+        <Member type="Method">public void ReadConfiguration()</Member>
+        <Member type="Method">public void WriteConfiguration()</Member>
+        <Member type="Method">public ColorConfiguration GetColorConfiguration()</Member>
+        <Member type="Method">public InterfaceConfiguration GetInterfaceConfiguration()</Member>
+        <Member type="Method">public MouseConfiguration GetMouseConfiguration()</Member>
+        <Member type="Method">public ApplicationConfiguration GetApplicationsConfiguration()</Member>
+        <Member type="Method">public int GetTopLineIndex()</Member>
+        <Member type="Method">public void ReadAutoexec()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
 </Project>
