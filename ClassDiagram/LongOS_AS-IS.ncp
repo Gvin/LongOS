@@ -247,8 +247,6 @@
     </Entities>
     <Relationships>
       <Relationship type="Association" first="0" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -257,8 +255,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -271,8 +267,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -281,8 +275,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -295,8 +287,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="5">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -305,8 +295,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="6">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -319,8 +307,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="7">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -329,8 +315,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="8">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -339,8 +323,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="8" second="9">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -349,8 +331,6 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="9" second="10">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -359,8 +339,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="10" second="11">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -369,8 +347,6 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="12" second="14">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -379,8 +355,6 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="11" second="12">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -389,8 +363,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="11" second="13">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -403,8 +375,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="12">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -421,8 +391,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="13">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -431,8 +399,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="13" second="15">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -441,8 +407,6 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="2" second="15">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -455,8 +419,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="16">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -501,8 +463,6 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="21" second="17">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -527,8 +487,6 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="22" second="17">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -545,8 +503,6 @@
         <EndMultiplicity>2</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="2" second="23">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -555,8 +511,6 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="1" second="24">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -565,6 +519,8 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="25">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -589,6 +545,8 @@
         <EndOrientation>Horizontal</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="15" second="12">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -601,6 +559,8 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="11" second="27">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -609,6 +569,8 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="27" second="24">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -625,6 +587,8 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="9" second="28">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -633,6 +597,8 @@
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="28" second="29">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -641,94 +607,6 @@
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
     </Relationships>
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Desktop</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>Desktop</Name>
-        <Access>Public</Access>
-        <Location left="153" top="101" />
-        <Size width="298" height="196" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private Image wallpaper</Member>
-        <Member type="Field">private PopupMenu desktopMenu</Member>
-        <Member type="Constructor">public Desktop()</Member>
-        <Member type="Method">public void LoadWallpaper(string fileName)</Member>
-        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
-        <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
-        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>ControlPanel</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>ControlPanel</Name>
-        <Access>Public</Access>
-        <Location left="59" top="45" />
-        <Size width="378" height="230" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">public bool IsBottom</Member>
-        <Member type="Field">private ComponentsManager componentsManager</Member>
-        <Member type="Field">private MenuesManager menuesManager</Member>
-        <Member type="Constructor">public ControlPanel()</Member>
-        <Member type="Method">private void drawControlPanel(VideoBuffer videoBuffer)</Member>
-        <Member type="Method">private void alighMenu(PopupMenu menu)</Member>
-        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
-        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
-        <Member type="Method">public void AddApplication(string applicationName, string applicationPath)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>Logger</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>Logger</Name>
-        <Access>Public</Access>
-        <Location left="96" top="48" />
-        <Size width="228" height="230" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private string fileName</Member>
-        <Member type="Constructor">public Logger(string fileName)</Member>
-        <Member type="Method">private void writeLine(string line)</Member>
-        <Member type="Method">public void ClearLog()</Member>
-        <Member type="Method">public void LogMessage(string message)</Member>
-        <Member type="Method">public void LogError(string errorText)</Member>
-        <Member type="Method">public void LogDebug(string debugText)</Member>
-        <Member type="Method">public void LogWarning(string warningText)</Member>
-        <Member type="Method">public void AddDivider(string dividerName)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
-  </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
-    <Name>EventHandler</Name>
-    <Language>Java</Language>
-    <Entities>
-      <Entity type="Class">
-        <Name>EventHandler</Name>
-        <Access>Public</Access>
-        <Location left="246" top="123" />
-        <Size width="268" height="128" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">private function operation</Member>
-        <Member type="Constructor">public EventHandler(function operation)</Member>
-        <Member type="Method">public void Invoke(object sender, object eventArgs)</Member>
-        <Modifier>None</Modifier>
-      </Entity>
-    </Entities>
-    <Relationships />
   </ProjectItem>
   <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
     <Name>ComponentsClasses</Name>
@@ -1238,6 +1116,8 @@ Maintains reading, storing and writing interface configuration.</Text>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="3" second="0">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1254,6 +1134,8 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="2">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1270,6 +1152,8 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="4">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1286,6 +1170,8 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="1">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1310,7 +1196,7 @@ Maintains reading, storing and writing interface configuration.</Text>
       <Entity type="Class">
         <Name>Application</Name>
         <Access>Public</Access>
-        <Location left="339" top="26" />
+        <Location left="340" top="35" />
         <Size width="469" height="740" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private string id</Member>
@@ -1628,8 +1514,6 @@ Maintains reading, storing and writing interface configuration.</Text>
     </Entities>
     <Relationships>
       <Relationship type="Association" first="0" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -1638,13 +1522,11 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="0" second="6">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>776</X>
-          <Y>102</Y>
+          <X>777</X>
+          <Y>111</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Composition</AssociationType>
@@ -1652,8 +1534,6 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="4" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -1662,8 +1542,6 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -1672,8 +1550,6 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="3" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1686,8 +1562,6 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>1</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="6" second="5">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Unidirectional</Direction>
@@ -1696,8 +1570,6 @@ Maintains reading, storing and writing interface configuration.</Text>
         <EndMultiplicity>*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="5" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1705,8 +1577,8 @@ Maintains reading, storing and writing interface configuration.</Text>
           <Y>366</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>553</X>
-          <Y>100</Y>
+          <X>554</X>
+          <Y>109</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Composition</AssociationType>
@@ -1796,6 +1668,117 @@ Maintains reading, storing and writing interface configuration.</Text>
         <Location left="171" top="235" />
         <Size width="162" height="216" />
         <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SystemClasses</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>EventHandler</Name>
+        <Access>Public</Access>
+        <Location left="340" top="33" />
+        <Size width="268" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private function[] operation</Member>
+        <Member type="Constructor">public EventHandler()</Member>
+        <Member type="Method">public void AddHandler(function operation)</Member>
+        <Member type="Method">public void Invoke(object sender, object eventArgs)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Logger</Name>
+        <Access>Public</Access>
+        <Location left="54" top="33" />
+        <Size width="228" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string fileName</Member>
+        <Member type="Constructor">public Logger(string fileName)</Member>
+        <Member type="Method">private void writeLine(string line)</Member>
+        <Member type="Method">public void ClearLog()</Member>
+        <Member type="Method">public void LogMessage(string message)</Member>
+        <Member type="Method">public void LogError(string errorText)</Member>
+        <Member type="Method">public void LogDebug(string debugText)</Member>
+        <Member type="Method">public void LogWarning(string warningText)</Member>
+        <Member type="Method">public void AddDivider(string dividerName)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Desktop</Name>
+        <Access>Public</Access>
+        <Location left="675" top="33" />
+        <Size width="298" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Image wallpaper</Member>
+        <Member type="Field">private PopupMenu desktopMenu</Member>
+        <Member type="Field">private Button changeWallpaperButton</Member>
+        <Member type="Constructor">public Desktop()</Member>
+        <Member type="Method">public void LoadWallpaper(string fileName)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ControlPanel</Name>
+        <Access>Public</Access>
+        <Location left="1035" top="33" />
+        <Size width="477" height="247" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public bool IsBottom</Member>
+        <Member type="Field">private ComponentsManager componentsManager</Member>
+        <Member type="Field">private MenuesManager menuesManager</Member>
+        <Member type="Constructor">public ControlPanel()</Member>
+        <Member type="Method">private void drawControlPanel(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">private void alighMenu(PopupMenu menu)</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public bool ProcessLeftClickEvent(int cursorX, int cursorY)</Member>
+        <Member type="Method">private void addApplication(string applicationName, string applicationPath, bool useTerminal)</Member>
+        <Member type="Method">public void RefreshApplications()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ApplicationsManager</Name>
+        <Access>Public</Access>
+        <Location left="340" top="329" />
+        <Size width="516" height="434" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Application[] applications</Member>
+        <Member type="Field">private string[] applicationsToDelete</Member>
+        <Member type="Field">private Application currentApplication</Member>
+        <Member type="Constructor">public ApplicationsManager()</Member>
+        <Member type="Method">public void AddApplication(Application application)</Member>
+        <Member type="Method">public void RemoveApplication(string id)</Member>
+        <Member type="Method">public void SetCurrentApplication(string id)</Member>
+        <Member type="Method">public void SwitchApplication()</Member>
+        <Member type="Method">public void Draw(VideoBuffer videoBuffer)</Member>
+        <Member type="Method">public void Update()</Member>
+        <Member type="Method">public void ProcessKeyEvent(int _key)</Member>
+        <Member type="Method">public void ProcessCharEvent(char _symbol)</Member>
+        <Member type="Method">public void ProcessRednetEvent(int _id, string _message, float _distance, string _side, int _channel)</Member>
+        <Member type="Method">public void ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessRightClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public void ProcessLeftMouseDragEvent(int _newCursorX, int _newCursorY)</Member>
+        <Member type="Method">public void ProcessRightMouseDragEvent(int _newCursorX, int _newCursorY)</Member>
+        <Member type="Method">public void ProcessTimerEvent(int _timerId)</Member>
+        <Member type="Method">public void ProcessRedstoneEvent()</Member>
+        <Member type="Method">public void ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Object</Name>
+        <Access>Public</Access>
+        <Location left="54" top="329" />
+        <Size width="162" height="151" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string className</Member>
+        <Member type="Constructor">public Object(string className)</Member>
+        <Member type="Method">public string GetClassName()</Member>
+        <Member type="Method">public string ToString()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
