@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 99 registered features.
+Currently there are 100 registered features.
 
 TODO
 ========
@@ -44,6 +44,7 @@ Further releases
 - [ ] F96: GvinFileManager: Add sorting by types for directories/files.
 - [ ] F98: Add http events support for applications, windows and threads.
 - [ ] F99: Add Updater program for updation OS to the current released version.
+- [ ] F100: Add error value checks everywhere where needed.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 
