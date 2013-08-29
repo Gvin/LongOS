@@ -162,8 +162,8 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		calendarButton:SetText(System:GetCurrentTime());
 
 		local days = os.day();
-		local years = math.floor(days/366);
-		days = days - years*365;
+		local years = math.floor(days/366) + 1;
+		days = days - (years - 1)*365;
 
 		local day = days..'';
 		while (string.len(day) < 4) do
