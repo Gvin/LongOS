@@ -54,6 +54,24 @@ Object = Class(function(this, _className)
       return 'Instance of class "'..className..'".';
    end
 
+   function this:InstanceOf(_class)
+      if (type(_class) ~= 'table') then
+         error(this:GetClassName()..'.InstanceOf [class]: Table expected, got '..type(_class)..'.');
+      end
+      if (_class.init == 'nil') then
+         error(this:GetClassName()..'.InstanceOf [class]: Class expected, got '..type(_class)..'.');
+      end
+
+      local current = this;
+      while (current ~= nil) do
+         if (current.init == _class.init) then
+            return true;
+         end
+         current = current._base;
+      end
+      return false;
+   end
+
    local function constructor(_className)
       if (type(_className) ~= 'string') then
          error('Object.Construnctor [className]: String expected, got '..type(_className)..'.');
