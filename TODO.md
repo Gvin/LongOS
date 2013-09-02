@@ -48,6 +48,7 @@ Further releases
 - [ ] F101: Add installation path writing on OS installation.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
+- [ ] #23 #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 
 
 
