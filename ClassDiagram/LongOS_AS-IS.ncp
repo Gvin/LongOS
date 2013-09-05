@@ -649,7 +649,7 @@
       <Entity type="Class">
         <Name>Component</Name>
         <Access>Public</Access>
-        <Location left="498" top="10" />
+        <Location left="498" top="11" />
         <Size width="434" height="655" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private int dX</Member>
@@ -675,18 +675,18 @@
         <Member type="Method">public bool GetEnabled()</Member>
         <Member type="Method">public void SetEnabled()</Member>
         <Member type="Method">public bool Contains(int _x, int _y)</Member>
-        <Member type="Method">public bool Draw(Canvas _videoBuffer, int _x, int _y)</Member>
+        <Member type="Method">public bool DrawBase(Canvas _videoBuffer, int _x, int _y)</Member>
         <Member type="Method">public bool ProcessLeftClickEventBase(int _cursorX, int _cursorY)</Member>
-        <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public abstract bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
         <Member type="Method">public bool ProcessKeyEventBase(int _key)</Member>
-        <Member type="Method">public bool ProcessKeyEvent(int _key)</Member>
+        <Member type="Method">public abstract bool ProcessKeyEvent(int _key)</Member>
         <Member type="Method">public bool ProcessCharEventBase(string _char)</Member>
-        <Member type="Method">public bool ProcessCharEvent(string _char)</Member>
+        <Member type="Method">public abstract bool ProcessCharEvent(string _char)</Member>
         <Member type="Method">public bool ProcessDoubleClickEventBase(int _cursorX, int _cursorY)</Member>
-        <Member type="Method">public bool ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
+        <Member type="Method">public abstract bool ProcessDoubleClickEvent(int _cursorX, int _cursorY)</Member>
         <Member type="Method">public bool ProcessMouseScrollEventBase(int _direction, int _cursorX, int _cursorY)</Member>
-        <Member type="Method">public bool ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
-        <Modifier>None</Modifier>
+        <Member type="Method">public abstract bool ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
+        <Modifier>Abstract</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>ListBox</Name>
@@ -772,7 +772,7 @@
         <Member type="Field">private int text</Member>
         <Member type="Field">private int textColor</Member>
         <Member type="Field">private int backgroundColor</Member>
-        <Member type="Constructor">public Label(string _text, int _backgroundColor, int _textColor, int _dX, int _dY, int _anchorType)</Member>
+        <Member type="Constructor">public Label(string _text, int _backgroundColor, int _textColor, int _dX, int _dY, string _anchorType)</Member>
         <Member type="Method">public string GetClassName()</Member>
         <Member type="Method">public string ToString()</Member>
         <Member type="Method">public string GetText()</Member>
@@ -837,8 +837,8 @@
         <Member type="Method">public void Clear()</Member>
         <Member type="Method">public void Draw(Canvas _videoBuffer, int _x, int _y)</Member>
         <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
-        <Member type="Method">public void processBackspaceKey()</Member>
-        <Member type="Method">public void processDeleteKey()</Member>
+        <Member type="Method">private void processBackspaceKey()</Member>
+        <Member type="Method">private void processDeleteKey()</Member>
         <Member type="Method">public bool ProcessKeyEvent(int _key)</Member>
         <Member type="Method">public bool ProcessCharEvent(string _char)</Member>
         <Modifier>None</Modifier>
@@ -912,7 +912,7 @@
       <Entity type="Class">
         <Name>VerticalScrollBar</Name>
         <Access>Public</Access>
-        <Location left="21" top="533" />
+        <Location left="21" top="532" />
         <Size width="688" height="570" />
         <Collapsed>True</Collapsed>
         <Member type="Field">private int maxValue</Member>
@@ -941,8 +941,8 @@
         <Member type="Method">public bool Draw(Canvas _videoBuffer, int _x, int _y)</Member>
         <Member type="Method">public bool ProcessLeftClickEvent(int _cursorX, int _cursorY)</Member>
         <Member type="Method">public bool ProcessMouseScrollEvent(int _direction, int _cursorX, int _cursorY)</Member>
-        <Member type="Method">public void scrollUpButtonClick(object _sender, table _eventArgs)</Member>
-        <Member type="Method">public void scrollDownButtonClick(object _sender, table _eventArgs)</Member>
+        <Member type="Method">private void scrollUpButtonClick(object _sender, table _eventArgs)</Member>
+        <Member type="Method">private void scrollDownButtonClick(object _sender, table _eventArgs)</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
@@ -956,7 +956,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>652</X>
-          <Y>81</Y>
+          <Y>82</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="2" second="0">
@@ -968,7 +968,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>521</X>
-          <Y>88</Y>
+          <Y>89</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="3" second="0">
@@ -980,7 +980,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>540</X>
-          <Y>82</Y>
+          <Y>83</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="4" second="3">
@@ -996,7 +996,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>561</X>
-          <Y>85</Y>
+          <Y>86</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="7" second="0">
@@ -1008,7 +1008,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>735</X>
-          <Y>83</Y>
+          <Y>84</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Generalization" first="8" second="0">
@@ -1016,7 +1016,7 @@
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>765</X>
-          <Y>555</Y>
+          <Y>554</Y>
         </BendPoint>
       </Relationship>
     </Relationships>
