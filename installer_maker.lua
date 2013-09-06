@@ -55,7 +55,7 @@ print('Directory tree:');
 printDirectory(data, '');
 print('Writing to file...');
 local file = fs.open('/tree.lua', 'w');
-file.writeLine('version = "'..version..'";');
+file.writeLine('version = "v'..version..'";');
 file.writeLine();
 file.writeLine('tree = {');
 writeDirectories(data, '\t', file);
