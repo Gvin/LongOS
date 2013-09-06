@@ -32,7 +32,7 @@ Classes.System.LongOS = Class(Object, function(this)
 
 	local working = true;
 
-	local currentVersion = '0.6';
+	local currentVersion = '1.0';
 
 	local dblClickTimer = 0;
 	local clickX = 0;

@@ -1,4 +1,4 @@
-version = 'v0.6';
+version = "1.0";
 
 tree = {
 	{
@@ -399,6 +399,10 @@ tree = {
 		Name = "Wallpapers",
 		IsDir = true,
 		Content = {
+			{
+				Name = "angry_birds.image",
+				IsDir = false
+			},
 			{
 				Name = "computer.image",
 				IsDir = false

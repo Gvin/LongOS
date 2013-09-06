@@ -4,7 +4,7 @@ Classes.System.Graphics = {};
 Classes.Components = {};
 Classes.Aplication = {};
 
-local version = '0.6';
+local version = '1.0';
 local operationsCount = 36;
 local currentOperation = 1;
 LoadingErrors = 0;
