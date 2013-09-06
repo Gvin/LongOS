@@ -4,15 +4,18 @@ Currently there are 101 registered features.
 TODO
 ========
 
-For v 1.0
+For v 1.0.1
 --------
-- [X] F95: Create installer program.
-- [X] F97: Add checking for color availability on startup.
-- [X] F93: Create users guide.
-- [X] F92: Update class diagrams.
-- [X] F94: Create programming guide.
-- [X] #21 About System: Error when label is empty
-- [X] #22 Years are counted from 0.
+- [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
+- [ ] F85: Add image position option to the wallpaper manager program.
+- [ ] F82: Add working directory property to the application.
+- [ ] F61: Create file browsing component.
+- [ ] F88: Add file type icons to the GvinFileManager manager.
+- [ ] F96: GvinFileManager: Add sorting by types for directories/files.
+- [ ] F98: Add http events support for applications, windows and threads.
+- [ ] F99: Add Updater program for updation OS to the current released version.
+- [ ] F101: Add installation path writing on OS installation.
+- [ ] #23 #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 
 
 For all versions
@@ -28,27 +31,17 @@ Further releases
 - [ ] F19.2: Add DesktopIcon class.
 - [ ] F20: Add program to draw icons.
 - [ ] F49: Add window size and position storing on application closing.
-- [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [ ] F70: Create Panel component.
 - [ ] F76: Create video files and video player.
 - [ ] F83: Add possibility to use "full screen" mod in windows.
 - [ ] F84: Add posibility to minimize windows to control panel.
-- [ ] F85: Add image position option to the wallpaper manager program.
-- [ ] F82: Add working directory property to the application.
 - [ ] F87: Improve components ierarchy.
-- [ ] F61: Create file browsing component.
-- [ ] F88: Add file type icons to the GvinFileManager manager.
 - [ ] F89: Add multiple files selection to the GvinFileManager.
 - [ ] F90: Improve loading to use classes.
 - [ ] F91: Create List class with storing objects type specifying.
-- [ ] F96: GvinFileManager: Add sorting by types for directories/files.
-- [ ] F98: Add http events support for applications, windows and threads.
-- [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F100: Add error value checks everywhere where needed.
-- [ ] F101: Add installation path writing on OS installation.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
-- [ ] #23 #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 
 
 
