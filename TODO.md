@@ -10,9 +10,9 @@ For v 1.0
 - [X] F97: Add checking for color availability on startup.
 - [X] F93: Create users guide.
 - [X] F92: Update class diagrams.
+- [X] F94: Create programming guide.
 - [X] #21 About System: Error when label is empty
 - [X] #22 Years are counted from 0.
-- [ ] F94: Create programming guide.
 
 
 For all versions
