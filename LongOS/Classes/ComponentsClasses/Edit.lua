@@ -127,12 +127,12 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 	end
 
-	function this.AddOnFocusEventHadler(_, _value)
-		onFocus:AddHadler(_value);
+	function this.AddOnFocusEventHandler(_, _value)
+		onFocus:AddHandler(_value);
 	end
 
 	function this.AddOnTextChangedEventHandler(_, _value)
-		onTextChanged:AddHadler(_value);
+		onTextChanged:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
