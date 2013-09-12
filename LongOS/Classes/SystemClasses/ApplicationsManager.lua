@@ -94,6 +94,12 @@ Classes.System.ApplicationsManager = Class(Object, function(this)
 			return 'table';
 		elseif (type(_variable) == 'function') then
 			return 'function';
+		elseif (type(_variable) == 'boolean') then
+			if (_variable) then
+				return 'true';
+			else
+				return 'false';
+			end
 		end
 		return ''.._variable;
 	end
@@ -382,6 +388,23 @@ Classes.System.ApplicationsManager = Class(Object, function(this)
 	function this:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY)
 		if (currentApplication ~= nil) then
 			tryProcessMouseScrollEvent(currentApplication, _direction, _cursorX, _cursorY);
+		end
+	end
+
+	local function tryProcessHttpEvent(_application, _status, _url, _handler)
+		local success, message = pcall(_application.ProcessHttpEvent, _application, _status, _url, _handler);
+		if (not success) then
+			if (message == nil) then
+				message = '';
+			end
+			System:LogRuntimeError('Http event processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', Status:'..getString(_status)..', Url:'..getString(_url)..'). Message:"'..message..'".');
+			showError(_application, 'Http event processing error: ', message);
+		end
+	end
+
+	function this:ProcessHttpEvent(_status, _url, _handler)
+		for i = 1, #applications do
+			tryProcessHttpEvent(applications[i], _status, _url, _handler);
 		end
 	end
 

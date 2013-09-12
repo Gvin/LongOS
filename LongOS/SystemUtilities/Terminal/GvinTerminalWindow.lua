@@ -127,6 +127,11 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
+	function this:ProcessHttpEvent(_status, _url, _handler)
+		threadsManager:ProcessHttpEvent(_status, _url, _handler);
+		update();
+	end
+
 	local function windowOnResize(_sender, _eventArgs)
 		redirector.canvas:SetWidth(this:GetWidth() - 2);
 		redirector.canvas:SetHeight(this:GetHeight() - 3);

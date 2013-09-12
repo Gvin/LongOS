@@ -157,6 +157,16 @@ Classes.Application.ThreadsManager = Class(Object, function(this)
 		table.insert(events, event);
 	end
 
+	function this:ProcessHttpEvent(_status, _url, _handler)
+		local event;
+		if (_status) then
+			event = { 'http_success', _url, _handler };
+		else
+			event = { 'http_failure', _url, _handler };
+		end
+		table.insert(events, event);
+	end
+
 	function this:ProcessTerminateEvent()
 		event = { 'terminate' };
 		table.insert(events, event);

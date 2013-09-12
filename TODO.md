@@ -1,18 +1,18 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 101 registered features.
+Currently there are 102 registered features.
 
 TODO
 ========
 
 For v 1.0.1
 --------
+- [X] F98: Add http events support for applications, windows and threads.
 - [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [ ] F85: Add image position option to the wallpaper manager program.
 - [ ] F82: Add working directory property to the application.
 - [ ] F61: Create file browsing component.
 - [ ] F88: Add file type icons to the GvinFileManager manager.
 - [ ] F96: GvinFileManager: Add sorting by types for directories/files.
-- [ ] F98: Add http events support for applications, windows and threads.
 - [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F101: Add installation path writing on OS installation.
 - [ ] #23 #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
@@ -40,6 +40,7 @@ Further releases
 - [ ] F90: Improve loading to use classes.
 - [ ] F91: Create List class with storing objects type specifying.
 - [ ] F100: Add error value checks everywhere where needed.
+- [ ] F102: Add posibility to filter chars in Edit component.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 

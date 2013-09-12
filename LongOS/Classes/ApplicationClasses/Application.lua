@@ -174,6 +174,11 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 		windowsManager:ProcessMouseScrollEvent(_direction, _cursorX, _cursorY);
 	end
 
+	function this:ProcessHttpEvent(_status, _url, _handler)
+		threadsManager:ProcessHttpEvent(_status, _url, _handler);
+		windowsManager:ProcessHttpEvent(_status, _url, _handler);
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------

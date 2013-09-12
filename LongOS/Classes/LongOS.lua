@@ -46,6 +46,10 @@ Classes.System.LongOS = Class(Object, function(this)
 		runtimeLog:LogError(errorText);
 	end
 
+	this.LogDebugMessage = function(_, text)
+		runtimeLog:LogDebug(text);
+	end
+
 	-- Get if system is still working.
 	this.GetWorking = function()
 		return working;
@@ -190,6 +194,14 @@ Classes.System.LongOS = Class(Object, function(this)
 		applicationsManager:ProcessMouseScrollEvent(scrollDirection, cursorX, cursorY);
 	end
 
+	local function processHttpEvent(eventName, url, handler)
+		if (eventName == 'http_success') then
+			applicationsManager:ProcessHttpEvent(true, url, handler);
+		elseif (eventName == 'http_failure') then
+			applicationsManager:ProcessHttpEvent(false, url, handler);
+		end
+	end
+
 	-- Process events from events queue.
 	this.ProcessEvents = function()
 		if (#eventsQueue > 0) then
@@ -210,6 +222,8 @@ Classes.System.LongOS = Class(Object, function(this)
 				processRedstoneEvent();
 			elseif (event.Name == 'mouse_scroll') then
 				processMouseScrollEvent(event.Params[1], event.Params[2], event.Params[3]);
+			elseif (event.Name == 'http_success' or event.Name == 'http_failure') then
+				processHttpEvent(event.Name, event.Params[1], event.Params[2]);
 			end
 			table.remove(eventsQueue, 1);
 		else
