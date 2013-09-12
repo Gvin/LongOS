@@ -48,6 +48,16 @@ Further releases
 History
 ========
 
+For v 1.0
+--------
+- [X] F92: Update class diagrams. 
+- [X] F93: Create users guide.
+- [X] F94: Create programming guide. 
+- [X] F95: Create installer program.
+- [X] F97: Add checking for color availability on startup. 
+- [X] #21 About System: Error when label is empty
+- [X] #22 Years are counted from 0.
+
 For v 0.6
 --------
 - [X] F78: Improve namespaces declaration.
