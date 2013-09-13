@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 102 registered features.
+Currently there are 103 registered features.
 
 TODO
 ========
@@ -41,6 +41,7 @@ Further releases
 - [ ] F91: Create List class with storing objects type specifying.
 - [ ] F100: Add error value checks everywhere where needed.
 - [ ] F102: Add posibility to filter chars in Edit component.
+- [ ] F103: Add on click cursor position changing for edit component.
 - [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 
