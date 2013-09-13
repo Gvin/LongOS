@@ -29,6 +29,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local copiedFile;
 	local cuttedFile;
 
+	local filesList;
+
 	local vScrollBar;
 	local pasteButton;
 	local createDirectoryButton;
@@ -80,20 +82,48 @@ FileManagerWindow = Class(Window, function(this, _application)
 		videoBuffer:DrawBlock(0, 2, this:GetWidth() - 2, this:GetHeight() - 5, colors.white);
 	end
 
+	local function orderFiles()
+		local newList = {};
+		table.sort(filesList);
+		for i = 1, #filesList do
+			System:LogDebugMessage(tostring(filesList[i]));
+			local currentFile = currentDirectory..'/'..filesList[i];
+			if (fs.isDir(currentFile) or filesList[i] == '..') then
+				table.insert(newList, filesList[i]);
+			end
+		end
+		for i = 1, #filesList do
+			local currentFile = currentDirectory..'/'..filesList[i];
+			if (isExecutable(currentFile)) then
+				table.insert(newList, filesList[i]);
+			end
+		end
+		for i = 1, #filesList do
+			local currentFile = currentDirectory..'/'..filesList[i];
+			if (not (fs.isDir(currentFile) or filesList[i] == '..' or isExecutable(currentFile))) then
+				table.insert(newList, filesList[i]);
+			end
+		end
+
+		filesList = newList;
+	end
+
+
 	local function drawFiles(videoBuffer)
-		local files = getFiles();
+		filesList = getFiles();
+		orderFiles();
 		
 		videoBuffer:SetBackgroundColor(colors.white);
 		
-		local lastLine = #files;
+		local lastLine = #filesList;
 		if (lastLine > this:GetHeight() - 5 + vScrollBar:GetValue()) then
 			lastLine = this:GetHeight() - 5 + vScrollBar:GetValue();
 		end
 		for i = vScrollBar:GetValue() + 1, lastLine do
 			videoBuffer:SetCursorPos(1, i + 1 - vScrollBar:GetValue());
 
-			local currentFile = currentDirectory..'/'..files[i];
-			if (fs.isDir(currentFile) or files[i] == '..') then
+			local currentFile = currentDirectory..'/'..filesList[i];
+			if (fs.isDir(currentFile) or filesList[i] == '..') then
 				videoBuffer:SetTextColor(colors.blue);
 			elseif (isExecutable(currentFile)) then
 				videoBuffer:SetTextColor(colors.orange);
@@ -101,13 +131,13 @@ FileManagerWindow = Class(Window, function(this, _application)
 				videoBuffer:SetTextColor(colors.green);
 			end
 
-			if (selectedFile == files[i]) then
+			if (selectedFile == filesList[i]) then
 				local colorConfiguration = System:GetColorConfiguration();
 				videoBuffer:SetBackgroundColor(colorConfiguration:GetColor('SelectedBackgroundColor'));
 			else
 				videoBuffer:SetBackgroundColor(colors.white);
 			end
-			videoBuffer:Write(files[i]);
+			videoBuffer:Write(filesList[i]);
 		end
 	end
 
@@ -119,9 +149,8 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	function this.Update()
-		local files = getFiles();
-		if (#files > 1) then
-			vScrollBar:SetMaxValue(#files - 1);
+		if (#filesList > 1) then
+			vScrollBar:SetMaxValue(#filesList - 1);
 		else
 			vScrollBar:SetMaxValue(1);
 		end
@@ -145,13 +174,12 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function processFileSelection(cursorX, cursorY)
 		if (cursorX < this:GetX() + this:GetWidth() - 3) then
-			local files = getFiles();
 			local clickedLine = cursorY - 1 - this:GetY() + vScrollBar:GetValue();
-			if (files[clickedLine] ~= nil) then
-				if (files[clickedLine] == '..') then
+			if (filesList[clickedLine] ~= nil) then
+				if (filesList[clickedLine] == '..') then
 					selectedFile = '';
 				else
-					selectedFile = files[clickedLine];
+					selectedFile = filesList[clickedLine];
 				end
 			else
 				selectedFile = '';
@@ -176,12 +204,10 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	function this.ProcessDoubleClickEvent(_, cursorX, cursorY)
 		if (cursorX < this:GetX() + this:GetWidth() - 3) then
-			local files = getFiles();
-
 			local clickedLine = cursorY - 1 - this:GetY() + vScrollBar:GetValue();
-			if (files[clickedLine] ~= nil) then
-				local clickedFile = currentDirectory..'/'..files[clickedLine];
-				if (files[clickedLine] == '..') then
+			if (filesList[clickedLine] ~= nil) then
+				local clickedFile = currentDirectory..'/'..filesList[clickedLine];
+				if (filesList[clickedLine] == '..') then
 					back();
 				elseif (fs.isDir(clickedFile)) then
 					currentDirectory = clickedFile;
@@ -443,6 +469,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		selectedFile = '';
 		copiedFile = '';
 		cuttedFile = '';
+		filesList = {};
 
 		initializeComponents();
 	end

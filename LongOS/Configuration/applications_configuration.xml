@@ -3,5 +3,6 @@
 	<configuration path="/LongOS/Utilities/BiriPaint/BiriPaint.exec" name=" BiriPaint  " terminal="false" />
 	<configuration path="/LongOS/Utilities/FileManager/GvinFileManager.exec" name="File manager" terminal="false" />
 	<configuration path="/rom/programs/computer/worm" name="    Worm    " terminal="true" />
+	<configuration path="lua" name="    Lua     " terminal="true" />
 </configurations>
 
