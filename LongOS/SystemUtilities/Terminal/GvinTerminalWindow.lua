@@ -95,6 +95,16 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		update();
 	end
 
+
+	function this:ProcessDoubleClickEvent(_cursorX, _cursorY)
+		if (not paused) then
+			local cursorX = _cursorX - this:GetX();
+			local cursorY = _cursorY - this:GetY() - 1;
+			threadsManager:ProcessLeftClickEvent(cursorX, cursorY);
+		end
+		update();
+	end
+
 	function this:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY)
 		if (not paused) then
 			local cursorX = _newCursorX - this:GetX();
