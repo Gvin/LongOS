@@ -385,7 +385,10 @@ Classes.System.LongOS = Class(Object, function(this)
 		configurationManager:ReadConfiguration();
 		controlPanel:RefreshApplications();		
 		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
-		desktopManager:LoadWallpaper(interfaceConfiguration:GetOption('WallpaperFileName'));
+		local filename = interfaceConfiguration:GetOption('WallpaperFileName');
+		local x = interfaceConfiguration:GetOption('WallpaperXShift');
+		local y = interfaceConfiguration:GetOption('WallpaperYShift');
+		desktopManager:LoadWallpaper(filename,tonumber(x),tonumber(y));
 	end
 
 	this.WriteConfiguration = function()

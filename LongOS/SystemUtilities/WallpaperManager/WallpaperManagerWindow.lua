@@ -1,6 +1,7 @@
 local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 local Label = Classes.Components.Label;
+local Edit = Classes.Components.Edit;
 local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
@@ -10,7 +11,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	this:SetX(5);
 	this:SetY(3);
 	this:SetWidth(40);
-	this:SetHeight(7);
+	this:SetHeight(11);
 	this:SetAllowResize(false);
 	this:SetAllowMaximize(false);
 
@@ -24,6 +25,10 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	local cancelButton;
 	local browseButton;
 	local currentWallpaperLabel;
+	local xEdit;
+	local xLabel;
+	local yEdit;
+	local yLabel;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -43,6 +48,8 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function saveChangesButtonClick(_sender, _eventArgs)
+		interfaceConfiguration:SetOption('WallpaperXShift', xEdit:GetText());
+		interfaceConfiguration:SetOption('WallpaperYShift', yEdit:GetText());
 		interfaceConfiguration:WriteConfiguration();
 		System:ReadConfiguration();
 		this:Close();
@@ -73,6 +80,25 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 		interfaceConfiguration:ReadConfiguration();
 	end
 
+	local function editTextChanged(_sender, _eventArgs)
+
+		local  textBefore = _eventArgs.TextBefore;
+		local  textAfter = _eventArgs.TextAfter;
+
+
+		
+		if ( tonumber(textAfter) == nil) then
+			if ( textAfter ~= '' ) then
+				_sender:SetText(textBefore);
+			end
+		end
+	
+	end
+
+	
+
+
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -92,6 +118,28 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 
 		currentWallpaperLabel = Label('Current wallpaper:', nil, nil, 0, 0, 'left-top');
 		this:AddComponent(currentWallpaperLabel);
+
+
+		local shiftLabel = Label('Shift:', nil, nil, 1, 4, 'left-top');
+		this:AddComponent(shiftLabel);
+
+		xLabel = Label('X:', nil, nil, 1, 6, 'left-top');
+		this:AddComponent(xLabel);
+
+		xEdit = Edit(4, nil, nil, 3, 6, 'left-top');	
+		xEdit:SetText(interfaceConfiguration:GetOption('WallpaperXShift'));	
+		xEdit:AddOnTextChangedEventHandler(editTextChanged);
+		this:AddComponent(xEdit);
+
+		yLabel = Label('Y:', nil, nil, 8, 6, 'left-top');
+		this:AddComponent(yLabel);
+
+		yEdit = Edit(4, nil, nil, 10, 6, 'left-top');
+		yEdit:SetText(interfaceConfiguration:GetOption('WallpaperYShift'));
+		yEdit:AddOnTextChangedEventHandler(editTextChanged);
+		this:AddComponent(yEdit);
+
+
 	end
 
 	local function constructor()

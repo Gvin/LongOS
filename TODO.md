@@ -7,8 +7,8 @@ TODO
 For v 1.0.1
 --------
 - [X] F98: Add http events support for applications, windows and threads.
+- [X] F85: Add image position option to the wallpaper manager program.
 - [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
-- [ ] F85: Add image position option to the wallpaper manager program.
 - [ ] F82: Add working directory property to the application.
 - [ ] F61: Create file browsing component.
 - [ ] F88: Add file type icons to the GvinFileManager manager.

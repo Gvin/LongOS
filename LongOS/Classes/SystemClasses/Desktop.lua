@@ -5,32 +5,53 @@ local PopupMenu = Classes.Components.PopupMenu;
 
 Classes.System.Desktop = Class(Object, function(this)
 	Object.init(this, 'Desktop');
+	
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Fileds -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
+
 	local wallpaper;
 	local desktopMenu;
 	local changeWallpaperButton;
+	local wallpaperX;
+	local wallpaperY;
 
-	------------------------------------------------------------------------------------------------------------------
+
+ 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this:LoadWallpaper(_fileName)
+
+	function this:LoadWallpaper(_fileName, _x, _y)
 		wallpaper = Image(_fileName);
+		if (_x == nil ) then
+			_x = 0
+		end
+		wallpaperX = _x;
+		if (_y == nil ) then
+			_y = 0
+		end
+		wallpaperY = _y;
 	end
 
 	function this:Draw(_videoBuffer)
+
+		local configuration = System:GetColorConfiguration();
+		local backgroundColor = configuration:GetColor('DesktopBackgroundColor');
+
 		for i = 1, wallpaper:GetHeight() do
 			for j = 1, wallpaper:GetWidth() do
-				local color = wallpaper:GetPixel(j, i);
+				local color = wallpaper:GetPixel(j + wallpaperX, i + wallpaperY - 1);
+				if ( color == nil ) then
+					color = backgroundColor;
+				end
 				_videoBuffer:SetPixelColor(j, i, color);
 			end
 		end
 
-		local configuration = System:GetColorConfiguration();
+		
 		changeWallpaperButton:SetBackgroundColor(configuration:GetColor('SystemButtonsColor'))
 		changeWallpaperButton:SetTextColor(configuration:GetColor('SystemButtonsTextColor'));
 
