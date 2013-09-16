@@ -135,8 +135,15 @@ FileManagerWindow = Class(Window, function(this, _application)
 				videoBuffer:SetTextColor(colors.black);
 				videoBuffer:Write('E');
 				videoBuffer:SetTextColor(colors.orange);
+			elseif (isImage(currentFile)) then
+				videoBuffer:SetBackgroundColor(colors.orange);
+				videoBuffer:SetTextColor(colors.black);
+				videoBuffer:Write('I');
+				videoBuffer:SetTextColor(colors.green);
 			else
-				videoBuffer:Write(' ');
+				videoBuffer:SetBackgroundColor(colors.black);
+				videoBuffer:SetTextColor(colors.white);
+				videoBuffer:Write('f');
 				videoBuffer:SetTextColor(colors.green);
 			end
 
@@ -146,7 +153,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 			else
 				videoBuffer:SetBackgroundColor(colors.white);
 			end
-			videoBuffer:Write(filesList[i]);
+			videoBuffer:Write(' '..filesList[i]);
 		end
 	end
 
