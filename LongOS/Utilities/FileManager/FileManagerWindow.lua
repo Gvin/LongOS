@@ -37,8 +37,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local createFileButton;
 	local contextMenu;
 
-	local EXECUTABLE_FILE_EXTENSION = '.exec';
-	local IMAGE_FILE_EXTENSION = '.image';
+	local fileAssotiationConfiguration;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -49,14 +48,6 @@ FileManagerWindow = Class(Window, function(this, _application)
 		table.insert(files, '..');
 		table.sort(files);
 		return files;
-	end
-
-	local function isExecutable(fileName)
-		return stringExtAPI.endsWith(fileName, EXECUTABLE_FILE_EXTENSION);
-	end
-
-	local function isImage(fileName)
-		return stringExtAPI.endsWith(fileName, IMAGE_FILE_EXTENSION);
 	end
 
 	local function findCurrentDirectoryToPrint()
@@ -82,25 +73,22 @@ FileManagerWindow = Class(Window, function(this, _application)
 		videoBuffer:DrawBlock(0, 2, this:GetWidth() - 2, this:GetHeight() - 5, colors.white);
 	end
 
+	local function isDirectory(name)
+		local currentFile = currentDirectory..'/'..name;
+		return fs.isDir(currentFile) or name == '..';
+	end
+
 	local function orderFiles()
 		local newList = {};
 		table.sort(filesList);
 		for i = 1, #filesList do
-			System:LogDebugMessage(tostring(filesList[i]));
-			local currentFile = currentDirectory..'/'..filesList[i];
-			if (fs.isDir(currentFile) or filesList[i] == '..') then
+			if (isDirectory(filesList[i])) then
 				table.insert(newList, filesList[i]);
 			end
 		end
+
 		for i = 1, #filesList do
-			local currentFile = currentDirectory..'/'..filesList[i];
-			if (isExecutable(currentFile)) then
-				table.insert(newList, filesList[i]);
-			end
-		end
-		for i = 1, #filesList do
-			local currentFile = currentDirectory..'/'..filesList[i];
-			if (not (fs.isDir(currentFile) or filesList[i] == '..' or isExecutable(currentFile))) then
+			if (not isDirectory(filesList[i])) then
 				table.insert(newList, filesList[i]);
 			end
 		end
@@ -130,21 +118,19 @@ FileManagerWindow = Class(Window, function(this, _application)
 					videoBuffer:Write('F');
 				end
 				videoBuffer:SetTextColor(colors.blue);
-			elseif (isExecutable(currentFile)) then
-				videoBuffer:SetBackgroundColor(colors.red);
-				videoBuffer:SetTextColor(colors.black);
-				videoBuffer:Write('E');
-				videoBuffer:SetTextColor(colors.orange);
-			elseif (isImage(currentFile)) then
-				videoBuffer:SetBackgroundColor(colors.orange);
-				videoBuffer:SetTextColor(colors.black);
-				videoBuffer:Write('I');
-				videoBuffer:SetTextColor(colors.green);
 			else
-				videoBuffer:SetBackgroundColor(colors.black);
-				videoBuffer:SetTextColor(colors.white);
-				videoBuffer:Write('f');
-				videoBuffer:SetTextColor(colors.green);
+				local assotiation = fileAssotiationConfiguration:GetAssotiation(stringExtAPI.getExtension(filesList[i]));
+				if (assotiation ~= nil) then
+					videoBuffer:SetBackgroundColor(assotiation.IconBackgroundColor);
+					videoBuffer:SetTextColor(assotiation.IconTextColor);
+					videoBuffer:Write(assotiation.IconSymbol);
+					videoBuffer:SetTextColor(assotiation.FileNameColor);
+				else
+					videoBuffer:SetBackgroundColor(colors.black);
+					videoBuffer:SetTextColor(colors.white);
+					videoBuffer:Write('f');
+					videoBuffer:SetTextColor(colors.green);
+				end
 			end
 
 			if (selectedFile == filesList[i]) then
@@ -229,10 +215,15 @@ FileManagerWindow = Class(Window, function(this, _application)
 					currentDirectory = clickedFile;
 					vScrollBar:SetValue(0);
 					selectedFile = '';
-				elseif (isExecutable(clickedFile)) then
-					System:RunFile(clickedFile);
-				elseif (isImage(clickedFile)) then
-					System:RunFile('/LongOS/Utilities/BiriPaint/BiriPaint.exec '..clickedFile);
+				else
+					local assotiation = fileAssotiationConfiguration:GetAssotiation(stringExtAPI.getExtension(filesList[clickedLine]));
+					if (assotiation ~= nil) then
+						if (assotiation.Application == '') then
+							System:RunFile(clickedFile);
+						else
+							System:RunFile(assotiation.Application..' '..clickedFile);
+						end
+					end
 				end
 			end
 		end
@@ -426,7 +417,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function runInTerminalButtonClick(_sender, _eventArgs)
 		local fullPath = currentDirectory..'/'..selectedFile;
 		fullPath = string.sub(fullPath, 2, fullPath:len());
-		if (selectedFile ~= '' and selectedFile ~= '..' and not fs.isDir(fullPath) and not isExecutable(fullPath) and not isImage(fullPath)) then
+		if (selectedFile ~= '' and selectedFile ~= '..' and not fs.isDir(fullPath)) then-- and not isExecutable(fullPath) and not isImage(fullPath)) then
 			System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
 		else
 			local errorMessage = MessageWindow(this:GetApplication(), "Can't launch", 'Unable to lauch selected file.');
@@ -486,6 +477,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		copiedFile = '';
 		cuttedFile = '';
 		filesList = {};
+		fileAssotiationConfiguration = System:GetFileAssotiationsConfiguration();
 
 		initializeComponents();
 	end

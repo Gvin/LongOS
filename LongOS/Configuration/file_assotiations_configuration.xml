@@ -1,0 +1,26 @@
+<file-assotiations>
+	<file-assotiation>
+		<extension value="image" />
+		<application value="/LongOS/Utilities/BiriPaint/BiriPaint.exec" />
+		<icon-background-color value="2" />
+		<icon-text-color value="32768" />
+		<icon-symbol value="I" />
+		<file-name-color value="8192" />
+	</file-assotiation>
+	<file-assotiation>
+		<extension value="lua" />
+		<application value="/LongOS/SystemUtilities/Terminal/GvinTerminal.exec" />
+		<icon-background-color value="2048" />
+		<icon-text-color value="1" />
+		<icon-symbol value="P" />
+		<file-name-color value="32768" />
+	</file-assotiation>
+	<file-assotiation>
+		<extension value="exec" />
+		<application value="" />
+		<icon-background-color value="16384" />
+		<icon-text-color value="1" />
+		<icon-symbol value="E" />
+		<file-name-color value="2" />
+	</file-assotiation>
+</file-assotiations>

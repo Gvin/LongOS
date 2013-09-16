@@ -5,7 +5,7 @@ Classes.Components = {};
 Classes.Aplication = {};
 
 local version = '1.0';
-local operationsCount = 36;
+local operationsCount = 37;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -175,6 +175,9 @@ local function includeConfigurationClasses()
 
 	include('Classes/SystemClasses/ConfigurationManager/ApplicationsConfiguration');
 	mustBeLoaded(Classes.System.Configuration.ApplicationsConfiguration, 'ApplicationsConfiguration');
+
+	include('Classes/SystemClasses/ConfigurationManager/FileAssotiationsConfiguration');
+	mustBeLoaded(Classes.System.Configuration.FileAssotiationsConfiguration, 'FileAssotiationsConfiguration');
 	
 	include('Classes/SystemClasses/ConfigurationManager/ConfigurationManager');
 	mustBeLoaded(Classes.System.Configuration.ConfigurationManager, 'ConfigurationManager');

@@ -10,8 +10,8 @@ For v 1.0.1
 - [X] F85: Add image position option to the wallpaper manager program.
 - [X] F96: GvinFileManager: Add sorting by types for directories/files.
 - [X] F88: Add file type icons to the GvinFileManager manager.
+- [X] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
-- [ ] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [ ] F82: Add working directory property to the application.
 - [ ] F61: Create file browsing component.
 - [ ] F99: Add Updater program for updation OS to the current released version.
@@ -43,9 +43,7 @@ Further releases
 - [ ] F100: Add error value checks everywhere where needed.
 - [ ] F102: Add posibility to filter chars in Edit component.
 - [ ] F103: Add on click cursor position changing for edit component.
-- [ ] #13 Modal window is hidden by not modal window if Show was called after the ShowModal call.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
-
 
 
 History
@@ -175,3 +173,4 @@ Rejected
 - [X] F11: [REJECTED] Add packets manager.
 - [X] F24: [REJECTED] Create application for components testing.
 - [X] F72: [DUPLICATE] Create file extensions association configuration.
+- [X] #13 [NOT A BUG] Modal window is hidden by not modal window if Show was called after the ShowModal call.

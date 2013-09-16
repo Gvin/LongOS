@@ -27,3 +27,18 @@ function endsWith(text, endText)
 	local part = text:sub(text:len() - endText:len() + 1, text:len());
 	return (part == endText);
 end
+
+function getExtension(fileName)
+	local pos;
+	for i = 1, fileName:len() do
+		if (fileName:sub(i, i) == '.') then
+			pos = i;
+		end
+	end
+
+	if (pos == nil) then
+		return nil;
+	end
+
+	return ''..fileName:sub(pos + 1, fileName:len());
+end

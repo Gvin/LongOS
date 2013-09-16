@@ -412,6 +412,10 @@ Classes.System.LongOS = Class(Object, function(this)
 		return configurationManager:GetApplicationsConfiguration();
 	end
 
+	this.GetFileAssotiationsConfiguration = function()
+		return configurationManager:GetFileAssotiationsConfiguration();
+	end
+
 	this.GetTopLineIndex = function()
 		if (controlPanel.IsBottom) then
 			return 1;
