@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 103 registered features.
+Currently there are 104 registered features.
 
 TODO
 ========
@@ -16,6 +16,7 @@ For v 1.0.1
 - [ ] F88: Add file type icons to the GvinFileManager manager.
 - [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F101: Add installation path writing on OS installation.
+- [ ] F104: Add errors processing and retrying to the downloader.
 
 
 For all versions
