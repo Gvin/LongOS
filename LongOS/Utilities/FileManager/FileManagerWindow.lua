@@ -124,10 +124,19 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 			local currentFile = currentDirectory..'/'..filesList[i];
 			if (fs.isDir(currentFile) or filesList[i] == '..') then
+				if (filesList[i] ~= '..') then
+					videoBuffer:SetBackgroundColor(colors.yellow);
+					videoBuffer:SetTextColor(colors.black);
+					videoBuffer:Write('F');
+				end
 				videoBuffer:SetTextColor(colors.blue);
 			elseif (isExecutable(currentFile)) then
+				videoBuffer:SetBackgroundColor(colors.red);
+				videoBuffer:SetTextColor(colors.black);
+				videoBuffer:Write('E');
 				videoBuffer:SetTextColor(colors.orange);
 			else
+				videoBuffer:Write(' ');
 				videoBuffer:SetTextColor(colors.green);
 			end
 
