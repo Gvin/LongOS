@@ -1,8 +1,5 @@
 local REPOSITORY_URL = 'https://raw.github.com/Gvin/LongOS';
-local screenWidth, screenHeight = term.getSize();
-local labelPositionX = math.floor(screenWidth/2) - 16;
-local labelPositionY = math.floor(screenHeight/2) - 5;
-local osVersion = 'v-';
+local RETRY_ATTEMPTS = 3;
 local LOGOTYPE_IMAGE = {
 	{ 2, 2, 2, 2, 2048, 2, 2, 2, 2048, 2048, 2 },
 	{ 2, 32, 2, 2048, 2, 2048, 2, 2048, 2, 2, 2 },
@@ -12,6 +9,14 @@ local LOGOTYPE_IMAGE = {
 	{ 2, 2, 128, 128, 128, 128, 2, 2, 2, 2, 2 },
 	{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, }
 }
+
+local screenWidth, screenHeight = term.getSize();
+local labelPositionX = math.floor(screenWidth/2) - 16;
+local labelPositionY = math.floor(screenHeight/2) - 5;
+local osVersion = 'v-';
+local currentCount = 0;
+local count = 1;
+
 
 local function clearScreen(color)
 	if (not color) then
@@ -72,9 +77,6 @@ local function countFiles(filesTree)
 	return count;
 end
 
-local currentCount = 0;
-local count = 1;
-
 local function updateScreen(fileName)
 	currentCount = currentCount + 1;
 	local position = math.floor(currentCount/count*(screenWidth - 6));
@@ -90,32 +92,62 @@ local function updateScreen(fileName)
 end
 
 local function getFileData(url)
-	local file = http.get(url);
-	local data = file.readAll();
-	file.close();
-	return data;
+	for i = 1, RETRY_ATTEMPTS do
+		local file = http.get(url);
+		if (file ~= nil) then
+			local data = file.readAll();
+			file.close();
+			return data;
+		end
+	end
+	return nil;
 end
 
 local function downloadFile(url, absoluteFileName)
-	local file = fs.open(absoluteFileName, 'w');
 	updateScreen(fs.getName(absoluteFileName));
-	file.write(getFileData(url));
+	local fileData = getFileData(url);
+	if (fileData == nil) then
+		term.setTextColor(colors.red);
+		term.setCursorPos(2, screenHeight - 3);
+		term.write('Unable to retrieve file:');
+		term.setTextColor(colors.black);
+		term.setCursorPos(2, screenHeight - 2);
+		term.write(string.rep(' ', screenWidth - 2));
+		term.setCursorPos(2, screenHeight - 2);
+		term.write(fs.getName(absoluteFileName));
+		term.setTextColor(colors.red);
+		term.setCursorPos(2, screenHeight - 1);
+		term.write('Downloading stopped. Press ENTER to exit.');
+		return false;
+	end
+	local file = fs.open(absoluteFileName, 'w');
+	file.write(fileData);
 	file.close();
+	return true;
 end
 
 local function processFilesTreeRec(tree, path, urlPath)
 	for i = 1, #tree do
 		if (tree[i].IsDir) then
 			fs.makeDir(path..tree[i].Name);
-			processFilesTreeRec(tree[i].Content, path..tree[i].Name..'/', urlPath..tree[i].Name..'/');
+			if (not processFilesTreeRec(tree[i].Content, path..tree[i].Name..'/', urlPath..tree[i].Name..'/')) then
+				return false;
+			end
 		else
-			downloadFile(REPOSITORY_URL..'/'..osVersion..urlPath..tree[i].Name, path..tree[i].Name);
+			if (not downloadFile(REPOSITORY_URL..'/'..osVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
+				return false;
+			end
 		end
 	end
+	return true;
 end
 
 local function processFilesTree(tree, path)
-	processFilesTreeRec(tree, path, '/LongOS/');
+	if (not	processFilesTreeRec(tree, path, '/LongOS/')) then
+		read();
+		return false;
+	end
+	return true;
 end
 
 term.setTextColor(colors.lime);
@@ -127,7 +159,11 @@ print('LongOS will be placed at: "/" folder.');
 read();
 path = '/';
 
-downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua');
+clearScreen(colors.lightGray);
+if (not downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua')) then
+	term.setCursorPos(1, screenHeight);
+	return;
+end
 shell.run('/tree.lua');
 fs.delete('/tree.lua');
 osVersion = version;
@@ -136,7 +172,10 @@ local filesTree = tree;
 drawScreenBase();
 term.setBackgroundColor(colors.black);
 count = countFiles(filesTree) + 1;
-processFilesTree(filesTree, path..'/LongOS/');
+if (not processFilesTree(filesTree, path..'/LongOS/')) then
+	clearScreen(colors.black);
+	return;
+end
 clearScreen(colors.black);
 term.setTextColor(colors.lime);
 print('Downloading finished.');
