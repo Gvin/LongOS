@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 104 registered features.
+Currently there are 106 registered features.
 
 TODO
 ========
@@ -17,6 +17,7 @@ For v 1.0.1
 - [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F101: Add installation path writing on OS installation.
 - [ ] F104: Add errors processing and retrying to the downloader.
+- [ ] F106: Add default configuration to the configuration managers.
 
 
 For all versions
@@ -43,6 +44,7 @@ Further releases
 - [ ] F100: Add error value checks everywhere where needed.
 - [ ] F102: Add posibility to filter chars in Edit component.
 - [ ] F103: Add on click cursor position changing for edit component.
+- [ ] F105: Create application for editing file assotiations configuration.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 
 
