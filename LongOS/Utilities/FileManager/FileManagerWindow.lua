@@ -418,7 +418,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		local fullPath = currentDirectory..'/'..selectedFile;
 		fullPath = string.sub(fullPath, 2, fullPath:len());
 		if (selectedFile ~= '' and selectedFile ~= '..' and not fs.isDir(fullPath)) then-- and not isExecutable(fullPath) and not isImage(fullPath)) then
-			System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
+			System:RunFile('%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
 		else
 			local errorMessage = MessageWindow(this:GetApplication(), "Can't launch", 'Unable to lauch selected file.');
 			errorMessage:ShowModal();

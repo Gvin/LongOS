@@ -94,7 +94,7 @@ AboutSystemWindow = Class(Window, function(this, _application)
 
 	local function constructor()
 
-		logotypeName = '/LongOs/SystemUtilities/AboutSystem/logotype.image';
+		logotypeName = System:ResolvePath('%SYSDIR%/SystemUtilities/AboutSystem/logotype.image');
 		if ( not fs.exists(logotypeName)) then
 			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'Can`t load logotype. File with name :"'..logotypeName..'" not exist');
 			errorWindow:ShowModal();

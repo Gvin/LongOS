@@ -83,7 +83,7 @@ local function nextOperation()
 end
 
 local function include(fileName)
-	shell.run('/LongOS/'..fileName..'.lua');
+	shell.run(SystemDirectory..'/'..fileName..'.lua');
 	nextOperation();
 end
 
@@ -101,10 +101,10 @@ if (Classes.System.Logger == nil) then
 	error('Logger class cannot be loaded.');
 end
 
-if (not fs.exists('/LongOS/Logs')) then
-	fs.makeDir('/LongOS/Logs');
+if (not fs.exists(SystemDirectory..'/Logs')) then
+	fs.makeDir(SystemDirectory..'/Logs');
 end
-local loadingLog = Classes.System.Logger('/LongOS/Logs/loading.log');
+local loadingLog = Classes.System.Logger(SystemDirectory..'/Logs/loading.log');
 
 local function mustBeLoaded(variable, name)
 	if (variable == nil) then
@@ -129,17 +129,17 @@ mustBeLoaded(Classes.System.EventHandler, 'EventHandler');
 EventHandler = nil;
 
 
-os.loadAPI('/LongOS/APIs/xmlAPI');
+os.loadAPI(SystemDirectory..'/APIs/xmlAPI');
 if (xmlAPI == nil) then
-	error('xmlAPI not found in location /LongOS/APIs/');
+	error('xmlAPI not found in location '..SystemDirectory..'/APIs/');
 end
-os.loadAPI('/LongOS/APIs/stringExtAPI');
+os.loadAPI(SystemDirectory..'/APIs/stringExtAPI');
 if (stringExtAPI == nil) then
-	error('stringExtAPI not found in location /LongOS/APIs/');
+	error('stringExtAPI not found in location '..SystemDirectory..'/APIs/');
 end
-os.loadAPI('/LongOS/APIs/tableExtAPI');
+os.loadAPI(SystemDirectory..'/APIs/tableExtAPI');
 if (tableExtAPI == nil) then
-	error('tableExtAPI not found in location /LongOS/APIs/');
+	error('tableExtAPI not found in location '..SystemDirectory..'/APIs/');
 end
 
 

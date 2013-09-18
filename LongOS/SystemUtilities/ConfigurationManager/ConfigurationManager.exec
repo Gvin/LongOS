@@ -1,10 +1,10 @@
 local function run()
-	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ColorConfigurationWindow.lua');
-	shell.run('/LongOS/SystemUtilities/ConfigurationManager/MouseConfigurationWindow.lua');
-	shell.run('/LongOS/SystemUtilities/ConfigurationManager/InterfaceConfigurationWindow.lua');
-	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ApplicationConfigurationEditWindow.lua');
-	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ApplicationsConfigurationWindow.lua');
-	shell.run('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManagerWindow.lua');
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ColorConfigurationWindow.lua'));
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/MouseConfigurationWindow.lua'));
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/InterfaceConfigurationWindow.lua'));
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ApplicationConfigurationEditWindow.lua'));
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ApplicationsConfigurationWindow.lua'));
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ConfigurationManagerWindow.lua'));
 	
 	local application = Classes.Application.Application('Configuration Manager', true, true);
 	local configurationManagerWindow = ConfigurationManagerWindow(application);

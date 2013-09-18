@@ -71,7 +71,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
 	local tasksManagerButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/TasksManager/GvinTasksManager.exec');
+		System:RunFile('%SYSDIR%/SystemUtilities/TasksManager/GvinTasksManager.exec');
 	end
 
 	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, 3, 'left-top');
@@ -79,7 +79,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	systemMenu:AddComponent(tasksManagerButton);
 
 	local configurationButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/ConfigurationManager/ConfigurationManager.exec');
+		System:RunFile('%SYSDIR%/SystemUtilities/ConfigurationManager/ConfigurationManager.exec');
 	end
 
 	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, 1, 'left-top');
@@ -87,7 +87,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	systemMenu:AddComponent(configurationButton);
 
 	local terminalButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/Terminal/GvinTerminal.exec');
+		System:RunFile('%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec');
 	end
 
 	local terminalButton = Button('Terminal', colors.gray, colors.white, 3, 5, 'left-top');
@@ -95,7 +95,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	systemMenu:AddComponent(terminalButton);
 
 	local aboutSystemButtonClick = function(sender, eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/AboutSystem/AboutSystem.exec');
+		System:RunFile('%SYSDIR%/SystemUtilities/AboutSystem/AboutSystem.exec');
 	end
 
 	local aboutSystemButton = Button('About system ', colors.gray, colors.white, 1, 7, 'left-top');
@@ -210,10 +210,9 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	end
 
 	local applicationButtonClick = function(sender, eventArgs)
-		ERR = sender;
 		local path = sender.Path;
 		if (sender.Terminal == true) then
-			path = '/LongOS/SystemUtilities/Terminal/GvinTerminal.exec '..path;
+			path = '%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec '..path;
 		end
 		System:RunFile(path);
 	end

@@ -70,7 +70,7 @@ Classes.System.Desktop = Class(Object, function(this)
 	end
 
 	local function changeWallpaperButtonClick(_sender, _eventArgs)
-		System:RunFile('/LongOS/SystemUtilities/WallpaperManager/WallpaperManager.exec');
+		System:RunFile('%SYSDIR%/SystemUtilities/WallpaperManager/WallpaperManager.exec');
 	end
 
 	------------------------------------------------------------------------------------------------------------------

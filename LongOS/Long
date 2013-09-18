@@ -65,8 +65,15 @@ local function drawGlobalErrorScreen(errorText)
 	os.reboot();
 end
 
+local function getSystemDirectory()
+	local prog = shell.getRunningProgram();
+	return prog:sub(1, prog:len() - 11)..'LongOS';
+end
+
+SystemDirectory = getSystemDirectory();
+
 local function load()
-	shell.run('/LongOS/Loading.lua');
+	shell.run(SystemDirectory..'/Loading.lua');
 
 	if (LoadingErrors > 0) then
 		error('Loading errors found. See loading.log for details.');
@@ -79,7 +86,8 @@ if (not success) then
 	drawGlobalErrorScreen(message);
 end
 
-System = Classes.System.LongOS();
+System = Classes.System.LongOS(SystemDirectory);
+SystemDirectory = nil;
 Classes.System.LongOS = nil;
 System:ReadConfiguration();
 System:ReadAutoexec();

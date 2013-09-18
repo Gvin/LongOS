@@ -1,5 +1,5 @@
 local function run()
-	shell.run('/LongOS/SystemUtilities/AboutSystem/AboutSystemWindow.lua');
+	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/AboutSystem/AboutSystemWindow.lua'));
 	
 	local application = Classes.Application.Application('About System', true, true);
 	local aboutSystemWindow = AboutSystemWindow(application);

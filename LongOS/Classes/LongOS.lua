@@ -9,60 +9,105 @@ local Application = Classes.Application.Application;
 
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
-
-Classes.System.LongOS = Class(Object, function(this)
+Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	Object.init(this, 'LongOS');
 
-	local updateLock = false;
+	------------------------------------------------------------------------------------------------------------------
+	----- Fileds -----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local configurationManager = ConfigurationManager();
+	local currentVersion;
 
-	local runtimeLog = Logger('/LongOS/Logs/runtime.log');
+	local configurationManager;
+	local runtimeLog;
 
-	local videoBuffer = VideoBuffer();
+	local videoBuffer;
+	local applicationsManager;
+	local desktopManager;
+	local controlPanel;
 
-	local applicationsManager = ApplicationsManager();
+	local initApplication;
 
-	local desktopManager = Desktop();
+	local working;
+	local updateLock;
 
-	local controlPanel = ControlPanel();
+	local dblClickTimer;
+	local clickX;
+	local clickY;
 
-	local initApplication = Application('Init', true, false);
-	applicationsManager:AddApplication(initApplication);
+	local eventsQueue;
+	local allowedTimers;
 
-	local working = true;
+	local systemDirectory;
 
-	local currentVersion = '1.0';
+	------------------------------------------------------------------------------------------------------------------
+	----- Properties -------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
 
-	local dblClickTimer = 0;
-	local clickX = 0;
-	local clickY = 0;
-
-	local eventsQueue = {};
-
-	local allowedTimers = {};
-
-	this.LogRuntimeError = function(_, errorText)
-		runtimeLog:LogError(errorText);
-	end
-
-	this.LogDebugMessage = function(_, text)
-		runtimeLog:LogDebug(text);
-	end
-
-	-- Get if system is still working.
-	this.GetWorking = function()
+	function this:GetWorking()
 		return working;
 	end
 
-	this.AddTimer = function(_, timer)
-		table.insert(allowedTimers, timer);
+	function this:GetCurrentVersion()
+		return currentVersion;
 	end
 
-	this.RemoveTimer = function(_, timer)
+	function this:GetApplicationsCount()
+		return applicationsManager:GetApplicationsCount();
+	end
+
+	function this:GetApplicationsList()
+		return applicationsManager:GetApplicationsList();
+	end
+
+	function this:GetColorConfiguration()
+		return configurationManager:GetColorConfiguration();
+	end
+
+	function this:GetInterfaceConfiguration()
+		return configurationManager:GetInterfaceConfiguration();
+	end	
+
+	function this:GetMouseConfiguration()
+		return configurationManager:GetMouseConfiguration();
+	end	
+
+	function this:GetApplicationsConfiguration()
+		return configurationManager:GetApplicationsConfiguration();
+	end
+
+	function this:GetFileAssotiationsConfiguration()
+		return configurationManager:GetFileAssotiationsConfiguration();
+	end
+
+	function this:GetControlPanel()
+		return controlPanel;
+	end
+
+	function this:GetSystemDirectory()
+		return systemDirectory;
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Methods ----------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	function this:LogRuntimeError(_errorText)
+		runtimeLog:LogError(_errorText);
+	end
+
+	function this:LogDebugMessage(_text)
+		runtimeLog:LogDebug(_text);
+	end
+
+	function this:AddTimer(_timer)
+		table.insert(allowedTimers, _timer);
+	end
+
+	local function removeTimer(_timer)
 		local index;
 		for i = 1, #allowedTimers do
-			if (allowedTimers[i] == timer) then
+			if (allowedTimers[i] == _timer) then
 				index = i;
 			end
 		end
@@ -71,27 +116,19 @@ Classes.System.LongOS = Class(Object, function(this)
 		end
 	end
 
-	-- Add new applications to the applications manager.
-	this.AddApplication = function(_, application)
-		applicationsManager:AddApplication(application);
+	function this:AddApplication(_application)
+		applicationsManager:AddApplication(_application);
 	end
 
-	-- Delete existing application from the applications manager.
-	this.RemoveApplication = function(_, applicationId)
-		applicationsManager:RemoveApplication(applicationId);
+	function this:RemoveApplication(_applicationId)
+		applicationsManager:RemoveApplication(_applicationId);
 	end
 
-	this.SetCurrentApplication = function(_, applicationId)
-		applicationsManager:SetCurrentApplication(applicationId);
+	function this:SetCurrentApplication(_applicationId)
+		applicationsManager:SetCurrentApplication(_applicationId);
 	end
 
-	-- Get current version of LongOS.
-	this.GetCurrentVersion = function()
-		return currentVersion;
-	end
-
-	-- Update system's state.
-	this.Update = function()
+	function this:Update()
 		updateLock = true;
 		applicationsManager:Update();
 		updateLock = false;
@@ -100,10 +137,8 @@ Classes.System.LongOS = Class(Object, function(this)
 			dblClickTimer = dblClickTimer - 1;
 		end
 	end
-	
-	-- Draw system.
-	this.Draw = function()
-		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
+
+	function this:Draw()
 		if (not updateLock) then
 			videoBuffer:SetCursorBlink(false);
 
@@ -115,50 +150,50 @@ Classes.System.LongOS = Class(Object, function(this)
 		end
 	end
 
-	local function processDoubleClickEvent(cursorX, cursorY)
-		applicationsManager:ProcessDoubleClickEvent(cursorX, cursorY);
+	local function processDoubleClickEvent(_cursorX, _cursorY)
+		applicationsManager:ProcessDoubleClickEvent(_cursorX, _cursorY);
 	end
 
-	local function processLeftClickEvent(cursorX, cursorY)
+	local function processLeftClickEvent(_cursorX, _cursorY)
 		local mouseConfiguration = configurationManager:GetMouseConfiguration();
 
-		if (dblClickTimer > 0 and clickX == cursorX and clickY == cursorY) then
-			processDoubleClickEvent(cursorX, cursorY);
+		if (dblClickTimer > 0 and clickX == _cursorX and clickY == _cursorY) then
+			processDoubleClickEvent(_cursorX, _cursorY);
 			return;
 		end
 
-		dblClickTimer = mouseConfiguration:GetOption('DoubleClickSpeed') + 0;
-		clickX = cursorX;
-		clickY = cursorY;
+		dblClickTimer = tonumber(mouseConfiguration:GetOption('DoubleClickSpeed'));
+		clickX = _cursorX;
+		clickY = _cursorY;
 
-		desktopManager:ProcessLeftClickEvent(cursorX, cursorY);
-		if (controlPanel:ProcessLeftClickEvent(cursorX, cursorY)) then
+		desktopManager:ProcessLeftClickEvent(_cursorX, _cursorY);
+		if (controlPanel:ProcessLeftClickEvent(_cursorX, _cursorY)) then
 			return;
 		end
-		applicationsManager:ProcessLeftClickEvent(cursorX, cursorY);
+		applicationsManager:ProcessLeftClickEvent(_cursorX, _cursorY);
 	end
 
-	local function processRightClickEvent(cursorX, cursorY)
-		if (applicationsManager:ProcessRightClickEvent(cursorX, cursorY)) then
+	local function processRightClickEvent(_cursorX, _cursorY)
+		if (applicationsManager:ProcessRightClickEvent(_cursorX, _cursorY)) then
 			return;
 		end
-		desktopManager:ProcessRightClickEvent(cursorX, cursorY);
-		
+
+		desktopManager:ProcessRightClickEvent(_cursorX, _cursorY);
 	end
 
-	local function processMouseClickEvent(button, cursorX, cursorY)
-		if (button == 1) then -- If left mouse click
-			processLeftClickEvent(cursorX, cursorY);
-		else -- If right mouse click
-			processRightClickEvent(cursorX, cursorY);
+	local function processMouseClickEvent(_button, _cursorX, _cursorY)
+		if (_button == 1) then -- If left mouse click
+			processLeftClickEvent(_cursorX, _cursorY);
+		elseif (_button == 2) then -- If right mouse click
+			processRightClickEvent(_cursorX, _cursorY);
 		end
 	end
 
-	local function processMouseDragEvent(button, newCursorX, newCursorY)
-		if (button == 1) then
-			applicationsManager:ProcessLeftMouseDragEvent(newCursorX, newCursorY);
-		elseif (button == 2) then
-			applicationsManager:ProcessRightMouseDragEvent(newCursorX, newCursorY);
+	local function processMouseDragEvent(_button, _newCursorX, _newCursorY)
+		if (_button == 1) then
+			applicationsManager:ProcessLeftMouseDragEvent(_newCursorX, _newCursorY);
+		elseif (_button == 2) then
+			applicationsManager:ProcessRightMouseDragEvent(_newCursorX, _newCursorY);
 		end
 	end
 
@@ -166,44 +201,43 @@ Classes.System.LongOS = Class(Object, function(this)
 		applicationsManager:SwitchApplication();
 	end
 
-	local function processKeys(key)
-		if (key == 15) then ------------- Tab
+	local function processKeys(_key)
+		if (_key == 15) then ------------- Tab
 			processTabKey();
 		else
-			applicationsManager:ProcessKeyEvent(key);
+			applicationsManager:ProcessKeyEvent(_key);
 		end
 	end
 
-	local function processCharEvent(char)
-		applicationsManager:ProcessCharEvent(char);
+	local function processCharEvent(_char)
+		applicationsManager:ProcessCharEvent(_char);
 	end
 
-	local function processRednetEvent(id, message, distance, side, channel)
-		applicationsManager:ProcessRednetEvent(id, message, distance, side, channel);
+	local function processRednetEvent(_id, _message, _distance, _side, _channel)
+		applicationsManager:ProcessRednetEvent(_id, _message, _distance, _side, _channel);
 	end
 
-	local function processTimerEvent(timerId)
-		applicationsManager:ProcessTimerEvent(timerId);
+	local function processTimerEvent(_timerId)
+		applicationsManager:ProcessTimerEvent(_timerId);
 	end
 
 	local function processRedstoneEvent()
 		applicationsManager:ProcessRedstoneEvent();
 	end
 
-	local function processMouseScrollEvent(scrollDirection, cursorX, cursorY)
-		applicationsManager:ProcessMouseScrollEvent(scrollDirection, cursorX, cursorY);
+	local function processMouseScrollEvent(_scrollDirection, _cursorX, _cursorY)
+		applicationsManager:ProcessMouseScrollEvent(_scrollDirection, _cursorX, _cursorY);
 	end
 
-	local function processHttpEvent(eventName, url, handler)
-		if (eventName == 'http_success') then
-			applicationsManager:ProcessHttpEvent(true, url, handler);
-		elseif (eventName == 'http_failure') then
-			applicationsManager:ProcessHttpEvent(false, url, handler);
+	local function processHttpEvent(_eventName, _url, _handler)
+		if (_eventName == 'http_success') then
+			applicationsManager:ProcessHttpEvent(true, _url, _handler);
+		elseif (_eventName == 'http_failure') then
+			applicationsManager:ProcessHttpEvent(false, _url, _handler);
 		end
 	end
 
-	-- Process events from events queue.
-	this.ProcessEvents = function()
+	function this:ProcessEvents()
 		if (#eventsQueue > 0) then
 			local event = eventsQueue[1];
 			if (event.Name == 'mouse_click') then
@@ -231,15 +265,14 @@ Classes.System.LongOS = Class(Object, function(this)
 		end
 	end
 
-	local addEvent = function(eventName, params)
+	local function addEvent(_eventName, _params)
 		local event = {};
-		event.Name = eventName;
-		event.Params = params;
+		event.Name = _eventName;
+		event.Params = _params;
 		table.insert(eventsQueue, event);
 	end
 
-	-- Catch incoming events.
-	this.CatchEvents = function()
+	function this:CatchEvents()
 		local event, param1, param2, param3, param4, param5 = os.pullEventRaw();
 
 		if (event == 'timer') then
@@ -247,54 +280,32 @@ Classes.System.LongOS = Class(Object, function(this)
 				return;
 			end
 
-			this:RemoveTimer(param1);
+			removeTimer(param1);
 		end
 
 		addEvent(event, { param1, param2, param3, param4, param5 });
 	end
 
-	-- Shutdown computer.
-	this.Shutdown = function()
-		os.shutdown();
-	end
-
-	-- Reboot computer.
-	this.Reboot = function()
-		os.reboot();
-	end
-
-	-- Log off from computer.
-	this.LogOff = function()
-		working = false;
-		term.setBackgroundColor(colors.black);
-		term.setTextColor(colors.white);
-		term.clear();
-		term.setCursorPos(1, 1);
-		print('LongOS closed.');
-	end
-
-	-- Show message window with selected title, message and text color.
-	this.ShowMessage = function(_, title, text, textColor)
+	function this:ShowMessage(_title, _text, _textColor)
 		applicationsManager:SetCurrentApplication(initApplication:GetId());
-		local messageWindow = MessageWindow(initApplication, title, text, textColor);
+		local messageWindow = MessageWindow(initApplication, _title, _text, _textColor);
 		messageWindow:Show();
 	end
 
-	this.ShowModalMessage = function(_, application, title, text, textColor)
-		applicationsManager:SetCurrentApplication(application:GetId());
-		local messageWindow = MessageWindow(application, title, text, textColor);
-		messageWindow:Show();
+	function this:ShowModalMessage(_application, _title, _text, _textColor)
+		applicationsManager:SetCurrentApplication(_application:GetId());
+		local messageWindow = MessageWindow(_application, _title, _text, _textColor);
+		messageWindow:ShowModal();
 	end
 
-	this.ShowError = function(_, message)
-		if (message == nil) then
-			message = 'No message.';
+	function this:ShowError(_message)
+		if (_message == nil) then
+			_message = 'No message.';
 		end
-		this:ShowMessage('Error', 'Error message: '..message, colors.red);
+		this:ShowMessage('Error', 'Error message: '.._message, colors.red);
 	end
 
-	-- Get current time in string format.
-	this.GetCurrentTime = function(_)
+	function this:GetCurrentTime()
 		local nTime = os.time();
 		local sTime = textutils.formatTime(nTime, true);
 		if (string.len(sTime) < 5) then
@@ -304,7 +315,7 @@ Classes.System.LongOS = Class(Object, function(this)
 		return sTime;
 	end
 
-	local generateIdPart = function()
+	local function generateIdPart()
 		local selector = math.random(0, 2);
 		if (selector == 1) then
 			return string.char(math.random(48, 57));
@@ -315,8 +326,7 @@ Classes.System.LongOS = Class(Object, function(this)
 		end
 	end
 
-	-- Generate uniqie Id.
-	this.GenerateId = function()
+	function this:GenerateId()
 		local result = '';
 		for i = 1, 20 do
 			result = result..generateIdPart();
@@ -325,9 +335,8 @@ Classes.System.LongOS = Class(Object, function(this)
 		return result;
 	end
 
-	-- Try to execute some function without parameters.
-	this.Try = function(_, func)
-		local sucess, message = pcall(func);
+	function this:Try(_func)
+		local sucess, message = pcall(_func);
 		if (not sucess) then
 			if (message == nil) then
 				message = 'No message.';
@@ -340,92 +349,35 @@ Classes.System.LongOS = Class(Object, function(this)
 		return true;
 	end
 
-	this.TryParams = function(_, func, params)
-		local sucess, message = pcall(func, params);
+	function this:RunFile(_filePath)
+		local path = ''..string.gsub(_filePath, '%%SYSDIR%%', systemDirectory);
+		local sucess = shell.run(path);
 		if (not sucess) then
-			if (message == nil) then
-				message = 'No message.';
-			end
-			System:LogRuntimeError('Error while trying to run function. Message:"'..message..'".');
-			this:ShowMessage('Error', 'Error message: '..message, colors.red);
-			return false;
-		end
-
-		return true;
-	end
-
-	-- Get current applications count.
-	this.GetApplicationsCount = function(_)
-		return applicationsManager:GetApplicationsCount();
-	end
-
-	-- Get applications list.
-	-- This list only contains some data about applications, not the applications itself.
-	this.GetApplicationsList = function(_)
-		return applicationsManager:GetApplicationsList();
-	end
-
-	-- Run selected file in error-catching mode.
-	this.RunFile = function(_, fileName)
-		local sucess = shell.run(fileName);
-		if (not sucess) then
-			this:ShowMessage('Error', 'Errors occured when running file "'..fileName..'".', colors.red);
+			this:ShowMessage('Error', 'Errors occured when running file "'..path..'".', colors.red);
 		end
 	end
 
-	function this:GetControlPanel()
-		return controlPanel;
+	function this:ResolvePath(_path)
+		return ''..string.gsub(_path, '%%SYSDIR%%', systemDirectory);
 	end
 
--------------------------------------------------------------------
---------------------- CONFIGURATION -------------------------------
-
-	-- Read all system configurations.
-	this.ReadConfiguration = function()
+	function this:ReadConfiguration()
 		configurationManager:ReadConfiguration();
-		controlPanel:RefreshApplications();		
+		controlPanel:RefreshApplications();
+
 		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
 		local filename = interfaceConfiguration:GetOption('WallpaperFileName');
 		local x = interfaceConfiguration:GetOption('WallpaperXShift');
 		local y = interfaceConfiguration:GetOption('WallpaperYShift');
-		desktopManager:LoadWallpaper(filename,tonumber(x),tonumber(y));
+		desktopManager:LoadWallpaper(this:ResolvePath(filename), tonumber(x), tonumber(y));
 	end
 
-	this.WriteConfiguration = function()
+	function this:WriteConfiguration()
 		configurationManager:WriteConfiguration();
 	end
 
-	-- Gets color configuration.
-	this.GetColorConfiguration = function()
-		return configurationManager:GetColorConfiguration();
-	end
-
-	this.GetInterfaceConfiguration = function()
-		return configurationManager:GetInterfaceConfiguration();
-	end	
-
-	this.GetMouseConfiguration = function()
-		return configurationManager:GetMouseConfiguration();
-	end	
-
-	this.GetApplicationsConfiguration = function()
-		return configurationManager:GetApplicationsConfiguration();
-	end
-
-	this.GetFileAssotiationsConfiguration = function()
-		return configurationManager:GetFileAssotiationsConfiguration();
-	end
-
-	this.GetTopLineIndex = function()
-		if (controlPanel.IsBottom) then
-			return 1;
-		else
-			return 2;
-		end
-	end
-
-	this.ReadAutoexec = function()
-		local file = fs.open('/LongOS/Configuration/autoexec', 'r');
+	function this:ReadAutoexec()
+		local file = fs.open(this:ResolvePath('%SYSDIR%/Configuration/autoexec'), 'r');
 
 		local line = file.readLine();
 		while (line) do
@@ -434,7 +386,54 @@ Classes.System.LongOS = Class(Object, function(this)
 			end
 			line = file.readLine();
 		end
-
 		file.close();
 	end
+
+	function this:Shutdown()
+		os.shutdown();
+	end
+
+	function this:Reboot()
+		os.reboot();
+	end
+
+	function this:LogOff()
+		working = false;
+		term.setBackgroundColor(colors.black);
+		term.setTextColor(colors.white);
+		term.clear();
+		term.setCursorPos(1, 1);
+		print('LongOS closed.');
+	end
+
+	------------------------------------------------------------------------------------------------------------------
+	----- Constructors -----------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------
+
+	local function constructor(_systemDirectory)
+		working = true;
+		updateLock = false;
+		currentVersion = '1.0';
+		systemDirectory = _systemDirectory;
+
+		dblClickTimer = 0;
+		clickX = 0;
+		clickY = 0;
+
+		eventsQueue = {};
+		allowedTimers = {};
+
+		configurationManager = ConfigurationManager(systemDirectory);
+		runtimeLog = Logger(this:ResolvePath('%SYSDIR%/Logs/runtime.log'));
+
+		videoBuffer = VideoBuffer();
+		applicationsManager = ApplicationsManager();
+		desktopManager = Desktop();
+		controlPanel = ControlPanel();
+
+		initApplication = Application('Init', true, false);
+		applicationsManager:AddApplication(initApplication);
+	end
+
+	constructor(_systemDirectory);
 end)

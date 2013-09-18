@@ -1,5 +1,5 @@
 local function run()
-	shell.run('/LongOS/Utilities/FileManager/FileManagerWindow.lua');
+	shell.run(System:ResolvePath('%SYSDIR%/Utilities/FileManager/FileManagerWindow.lua'));
 
 	local application = Classes.Application.Application('File manager', false, true);
 	local fileManagerWindow = FileManagerWindow(application);

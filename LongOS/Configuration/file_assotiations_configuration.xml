@@ -1,7 +1,7 @@
 <file-assotiations>
 	<file-assotiation>
 		<extension value="image" />
-		<application value="/LongOS/Utilities/BiriPaint/BiriPaint.exec" />
+		<application value="%SYSDIR%/Utilities/BiriPaint/BiriPaint.exec" />
 		<icon-background-color value="2" />
 		<icon-text-color value="32768" />
 		<icon-symbol value="I" />
@@ -9,7 +9,7 @@
 	</file-assotiation>
 	<file-assotiation>
 		<extension value="lua" />
-		<application value="/LongOS/SystemUtilities/Terminal/GvinTerminal.exec" />
+		<application value="%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec" />
 		<icon-background-color value="2048" />
 		<icon-text-color value="1" />
 		<icon-symbol value="P" />

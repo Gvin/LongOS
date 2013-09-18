@@ -90,6 +90,14 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		onResize:Invoke(this, eventArgs);
 	end
 
+	local function getTopLineIndex()
+		if (interfaceConfiguration:GetOption('ControlPanelPosition') == 'top') then
+			return 2;
+		else
+			return screenHeight - 1;
+		end
+	end
+
 	function this:GetApplication()
 		return application;
 	end
@@ -231,7 +239,7 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		end
 		local old = y;
 		y = _value;
-		local topLineIndex = System:GetTopLineIndex();
+		local topLineIndex = getTopLineIndex();
 		if (y < topLineIndex) then
 			y = topLineIndex;
 		end
@@ -313,7 +321,7 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 				width = screenWidth;
 				height = screenHeight - 1;
 				x = 1;
-				y = System:GetTopLineIndex();
+				y = getTopLineIndex();
 			else
 				width = miniWidth;
 				height = miniHeight;

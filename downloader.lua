@@ -150,14 +150,18 @@ local function processFilesTree(tree, path)
 	return true;
 end
 
+local function checkPath(path)
+	fs.makeDir(path);
+	return fs.isDir(path);
+end
+
 term.setTextColor(colors.lime);
 print('LongOS downloader started.');
-print('Press ENTER to start downloading process.');
-print('LongOS will be placed at: "/" folder.');
---print('Specify path for downloading:');
---local path = read();
-read();
-path = '/';
+local path;
+while (path == nil or not checkPath(path)) do
+	print('Specify path for installation:');
+	path = read();
+end
 
 clearScreen(colors.lightGray);
 if (not downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua')) then

@@ -86,13 +86,14 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 			errorWindow:ShowModal();	
 		else
 			local path = pathEdit:GetText();
+			local resolvedPath = System:Resolve(path);
 			local add = true;
 			if (#path == 0) then
 				local errorWindow = MessageWindow(this:GetApplication(), 'Empty path', 'Application path should be entered');			
 				errorWindow:ShowModal();
 				add = false;			
 			elseif (terminalCheckBox:GetChecked()) then
-				if (isInPrograms(path) == false and not (fs.exists(path) and fs.isDir(path) == false)) then
+				if (isInPrograms(path) == false and not (fs.exists(resolvedPath) and fs.isDir(path) == false)) then
 					local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path "'..path..'" not exist');			
 					errorWindow:ShowModal();
 					add = false;
@@ -103,7 +104,7 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 				end	
 
 			elseif(not terminalCheckBox:GetChecked()) then
-				if (not (fs.exists(path) and fs.isDir(path) == false)) then
+				if (not (fs.exists(resolvedPath) and fs.isDir(path) == false)) then
 					local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path "'..path..'" not exist');			
 					errorWindow:ShowModal();
 					add = false;
