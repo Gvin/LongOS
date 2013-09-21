@@ -16,6 +16,8 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 	
 	local windowsManager;
 	local threadsManager;
+
+	local workingDirectory;
 	
 
 	------------------------------------------------------------------------------------------------------------------
@@ -44,6 +46,10 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 
 	function this:GetId()
 		return id;
+	end
+
+	function this:GetWorkingDirectory()
+		return workingDirectory;
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -179,6 +185,12 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 		windowsManager:ProcessHttpEvent(_status, _url, _handler);
 	end
 
+	local function getWorkingDirectory()
+		local prog = shell.getRunningProgram();
+		local fileName = fs.getName(shell.getRunningProgram());
+		return prog:sub(1, prog:len() - fileName:len());
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -202,6 +214,8 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 
 		windowsManager = Classes.Application.WindowsManager();
 		threadsManager = Classes.Application.ThreadsManager();
+
+		workingDirectory = getWorkingDirectory();
 	end
 
 	local function constructor2(_applicationName, _isUnique)

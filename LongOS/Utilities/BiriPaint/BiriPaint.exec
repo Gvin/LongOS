@@ -14,9 +14,10 @@ end
 local launcherString = getLauncherString(tArgs);
 
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/Utilities/BiriPaint/BiriPaintImageSizeDialog.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/Utilities/BiriPaint/BiriPaintWindow.lua'));
 	local application = Classes.Application.Application('BiriPaint', false, true);
+	shell.run(application:GetWorkingDirectory()..'BiriPaintImageSizeDialog.lua');
+	shell.run(application:GetWorkingDirectory()..'BiriPaintWindow.lua');
+	
 	local biriPaintWindow = BiriPaintWindow(application, launcherString);
 	application:Run(biriPaintWindow);
 end

@@ -1,7 +1,7 @@
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/Utilities/Calculator/CalculatorWindow.lua'));
-
 	local application = Classes.Application.Application('Calculator');
+	shell.run(application:GetWorkingDirectory()..'CalculatorWindow.lua');
+
 	local calculatorWindow = CalculatorWindow(application);
 	application:Run(calculatorWindow);
 end

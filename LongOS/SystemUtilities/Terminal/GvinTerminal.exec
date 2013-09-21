@@ -14,10 +14,10 @@ end
 local launcherString = getLauncherString(tArgs);
 
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/Terminal/GvinTerminalWindow.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/Terminal/RedirectorGenerator.lua'));
-
 	local application = Classes.Application.Application('Gvin terminal', false, true);
+	shell.run(application:GetWorkingDirectory()..'GvinTerminalWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'RedirectorGenerator.lua');
+
 	local terminalWindow = GvinTerminalWindow(application, launcherString);
 	application:Run(terminalWindow);
 end

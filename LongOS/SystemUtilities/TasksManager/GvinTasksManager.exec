@@ -1,7 +1,7 @@
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/TasksManager/TasksManagerWindow.lua'));
-
 	local application = Classes.Application.Application('Tasks manager', true, true);
+	shell.run(application:GetWorkingDirectory()..'TasksManagerWindow.lua');
+
 	local tasksManagerWindow = TasksManagerWindow(application);
 	application:Run(tasksManagerWindow);
 end

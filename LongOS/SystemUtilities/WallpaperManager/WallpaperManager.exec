@@ -1,7 +1,7 @@
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/WallpaperManager/WallpaperManagerWindow.lua'));
-
 	local application = Classes.Application.Application('Wallpaper manager', true, true);
+	shell.run(application:GetWorkingDirectory()..'WallpaperManagerWindow.lua');
+
 	local wallpaperManagerWindow = WallpaperManagerWindow(application);
 	application:Run(wallpaperManagerWindow);
 end

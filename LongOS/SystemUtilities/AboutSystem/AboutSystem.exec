@@ -1,7 +1,7 @@
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/AboutSystem/AboutSystemWindow.lua'));
-	
 	local application = Classes.Application.Application('About System', true, true);
+	shell.run(application:GetWorkingDirectory()..'AboutSystemWindow.lua');
+	
 	local aboutSystemWindow = AboutSystemWindow(application);
 	application:Run(aboutSystemWindow);
 end

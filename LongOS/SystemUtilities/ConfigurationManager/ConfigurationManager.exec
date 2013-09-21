@@ -1,12 +1,13 @@
 local function run()
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ColorConfigurationWindow.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/MouseConfigurationWindow.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/InterfaceConfigurationWindow.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ApplicationConfigurationEditWindow.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ApplicationsConfigurationWindow.lua'));
-	shell.run(System:ResolvePath('%SYSDIR%/SystemUtilities/ConfigurationManager/ConfigurationManagerWindow.lua'));
-	
 	local application = Classes.Application.Application('Configuration Manager', true, true);
+	shell.run(application:GetWorkingDirectory()..'ColorConfigurationWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'MouseConfigurationWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'InterfaceConfigurationWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'ApplicationConfigurationEditWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'ApplicationsConfigurationWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'ConfigurationManagerWindow.lua');
+	
+	
 	local configurationManagerWindow = ConfigurationManagerWindow(application);
 	application:Run(configurationManagerWindow);
 end

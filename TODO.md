@@ -13,8 +13,8 @@ For v 1.0.1
 - [X] F64: Create file extensions association configuration and use it in GvinFileManager.
 - [X] F104: Add errors processing and retrying to the downloader.
 - [X] F101: Add installation path writing on OS installation.
+- [X] F82: Add working directory property to the application.
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
-- [ ] F82: Add working directory property to the application.
 - [ ] F61: Create file browsing component.
 - [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F106: Add default configuration to the configuration managers.
