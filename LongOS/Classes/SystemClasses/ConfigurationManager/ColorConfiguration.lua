@@ -8,6 +8,46 @@ Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _
 
 	local fileName = _fileName;
 	local data = nil;
+	local defaultData = { 
+						SelectedBackgroundColor=8,
+						TopLineTextColor=1,
+						TimeTextColor=1,
+						TopLineInactiveColor=128,
+						SelectedTextColor=1,
+						ControlPanelButtonsColor=32,
+						SystemButtonsColor=128,
+						WindowBorderColor=32768,
+						SystemEditsBackgroundColor=1,
+						WindowColor=256,
+						TopLineActiveColor=32768,
+						DesktopBackgroundColor=16384,
+						ControlPanelPowerButtonColor=16384,
+						SystemButtonsTextColor=1,
+						SystemLabelsTextColor=32768,
+						ControlPanelColor=8192
+					};
+
+	function this:SetDefault()
+		data = {};
+		for key,value in pairs(defaultData) do
+			data[key] = value;
+		end
+		this:WriteConfiguration();
+	end
+
+	local function checkData()
+		local rewrite = false;
+		for key,value in pairs(defaultData) do
+			if (data[key] == nil ) then
+				rewrite = true;
+				data[key] = value;
+				System:LogWarningMessage('Field "'..key..'" was not found in the configuration file "'..fileName..'". The default value was written.');
+			end			
+		end 
+		if (rewrite == true) then
+			this:WriteConfiguration();
+		end
+	end
 
 	function this:GetData()		
 		return data;
@@ -22,19 +62,39 @@ Classes.System.Configuration.ColorConfiguration = Class(Object, function(this, _
 		return usefulData;
 	end
 
+
+
 	-- Read color configuration from the disk.
 	function this:ReadConfiguration()
 		if (not fs.exists(fileName)) then
-			error('ColorConfiguration.ReadConfiguration: configuration file '..fileName.." doesn't exists on the disk.");
+			System:LogWarningMessage('Configuration file "'..fileName..'" not found. Default configuration file was created.');
+			this:SetDefault();
+			return;
 		end
-
 		local file = fs.open(fileName, 'r');
 		local text = file.readAll();
 		file.close();
 
-		local parsed = xmlAPI.parse(text);
-
-		data = prepareData(parsed);
+		local sucess, parsed = pcall( xmlAPI.parse,text);
+		if (not sucess) then
+			if (parsed == nil) then
+				parsed = 'No message.';
+			end
+			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			this:SetDefault();
+			return;			
+		end		
+		local sucess, preparedData = pcall(prepareData,parsed);
+		if (not sucess) then
+			if (preparedData == nil) then
+				preparedData = 'No message.';
+			end
+			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			this:SetDefault();
+			return;			
+		end		
+		data = preparedData;
+		checkData();
 	end
 
 	-- Get color from the configuration by it's name.

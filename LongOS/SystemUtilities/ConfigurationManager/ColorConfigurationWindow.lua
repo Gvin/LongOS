@@ -3,6 +3,7 @@ local Label = Classes.Components.Label;
 local Button = Classes.Components.Button;
 local ListBox = Classes.Components.ListBox;
 local ColorPickerDialog = Classes.System.Windows.ColorPickerDialog;
+local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
 ColorConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Color configuration window', false);
@@ -26,6 +27,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	
 	local saveChangesButton;
 	local cancelButton;
+	local defaultButton;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -38,8 +40,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	local function colorListBoxSelectedIndexChanged(_sender, _eventArgs)
 		local selectedIndex = colorListBox:GetSelectedIndex();
 		local colorName = colorListBox:GetSelectedItem();
-		colorLabel:SetText('Color: '..colorName);	
-		
+		colorLabel:SetText('Color: '..colorName);			
 		selectColorButton:SetBackgroundColor(colorConfiguration:GetColor(colorName) );
 
 	end
@@ -49,11 +50,8 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		local colorValue = _eventArgs.Color;
 		local selectedIndex = colorListBox:GetSelectedIndex();
 		local colorName = colorListBox:GetSelectedItem();
-
 		selectColorButton:SetBackgroundColor(colorValue);
-
-		colorConfiguration:SetColor(colorName, colorValue)
-		--updateConfiguration();
+		colorConfiguration:SetColor(colorName, colorValue);		
 	end
 
 	local function selectColorButtonClick(_sender, _eventArgs)
@@ -101,6 +99,17 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		
 	end
 
+	local function defaultDialogYes(sender, eventArgs)
+		colorConfiguration:SetDefault();
+		colorListBoxSelectedIndexChanged();
+	end
+
+	local function defaultButtonClick(_sender, _eventArgs)
+		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
+		defaultDialog:ShowModal();		
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -128,6 +137,10 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
+
+		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton:AddOnClickEventHandler(defaultButtonClick);
+		this:AddComponent(defaultButton);
 	end
 
 	local function constructor()

@@ -3,6 +3,8 @@ local Label = Classes.Components.Label;
 local Button = Classes.Components.Button;
 local Edit = Classes.Components.Edit;
 local MessageWindow = Classes.System.Windows.MessageWindow;
+local QuestionDialog = Classes.System.Windows.QuestionDialog;
+
 
 MouseConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Mouse configuration window', false);
@@ -22,6 +24,7 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 
 	local saveChangesButton;
 	local cancelButton;
+	local defaultButton;
 
 	local doubleClickEdit;	
 
@@ -29,22 +32,45 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------		
 
+	
+	
+
 	local function saveChangesButtonClick(_sender, _eventArgs)
-		local doubleClick = tonumber(doubleClickEdit.Text);		
-		if (doubleClick ~= nil ) then
-			mouseConfiguration:SetOption('DoubleClickSpeed', doubleClickEdit.Text);
-			mouseConfiguration:WriteConfiguration();
-			this:Close();			
-		else
-			local errorWindow = MessageWindow(this:GetApplication(), 'Not a number', 'Double click speed must be a number');			
-			errorWindow:ShowModal();	
-		end
-		
+		mouseConfiguration:SetOption('DoubleClickSpeed', doubleClickEdit:GetText());
+		mouseConfiguration:WriteConfiguration();
+		this:Close();				
 	end
 
 	local function cancelButtonClick(_sender, _eventArgs)
 		mouseConfiguration:ReadConfiguration();
 		this:Close();
+	end
+
+
+
+	local function defaultDialogYes(sender, eventArgs)
+		mouseConfiguration:SetDefault();
+		doubleClickEdit:SetText(mouseConfiguration:GetOption('DoubleClickSpeed'));
+	end
+
+	local function defaultButtonClick(_sender, _eventArgs)
+		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
+		defaultDialog:ShowModal();		
+	end
+
+
+	local function editTextChanged(_sender, _eventArgs)
+		local  textBefore = _eventArgs.TextBefore;
+		local  textAfter = _eventArgs.TextAfter;		
+		
+		local doubleClickSpeed = tonumber(textAfter);
+
+		if ( doubleClickSpeed == nil or doubleClickSpeed <= 0) then
+			if ( textAfter ~= '' ) then
+				_sender:SetText(textBefore);
+			end
+		end	
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -57,6 +83,7 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 		this:AddComponent(doubleClickLabel);
 	
 		doubleClickEdit = Edit(10, nil, nil, 22, 1, 'left-top');	
+		doubleClickEdit:AddOnTextChangedEventHandler(editTextChanged);
 		doubleClickEdit:SetText(mouseConfiguration:GetOption('DoubleClickSpeed'));					
 		doubleClickEdit:SetFocus(true);
 		this:AddComponent(doubleClickEdit);
@@ -64,6 +91,10 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
+
+		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton:AddOnClickEventHandler(defaultButtonClick);
+		this:AddComponent(defaultButton);
 
 		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);

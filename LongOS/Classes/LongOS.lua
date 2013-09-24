@@ -96,6 +96,10 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		runtimeLog:LogError(_errorText);
 	end
 
+	function this:LogWarningMessage(_warningText)
+		runtimeLog:LogWarning(_warningText);
+	end
+
 	function this:LogDebugMessage(_text)
 		runtimeLog:LogDebug(_text);
 	end

@@ -11,6 +11,21 @@ Classes.System.Configuration.ApplicationsConfiguration = Class(Object,function(t
 
 	local fileName = _fileName;
 	local data = nil;
+	local defaultData = { 
+						{" Calculator ","%SYSDIR%/Utilities/Calculator/GvinCalculator.exec","false"},
+						{" BiriPaint  ","%SYSDIR%/Utilities/BiriPaint/BiriPaint.exec","false"},
+						{"File manager","%SYSDIR%/Utilities/FileManager/GvinFileManager.exec","false"},
+						{"    Worm    ","worm","true"},
+						{"    Lua     ","lua","true"}
+					};
+
+	function this:SetDefault()
+		data = {};
+		for i=1,#defaultData do
+			table.insert(data,defaultData[i]);
+		end
+		this:WriteConfiguration();
+	end	
 
 	local function prepareData(_parsed)
 		local usefulData = {};
@@ -28,14 +43,33 @@ Classes.System.Configuration.ApplicationsConfiguration = Class(Object,function(t
 	-- Read application configuration from the disk.
 	function this:ReadConfiguration()
 		if (not fs.exists(fileName)) then
-			error('ApplicationsConfiguration.ReadConfiguration: configuration file '..fileName.." doesn't exists on the disk.");
+			System:LogWarningMessage('Configuration file "'..fileName..'" not found. Default configuration file was created.');
+			this:SetDefault();
+			return;
 		end
-
 		local file = fs.open(fileName, 'r');
 		local text = file.readAll();
 		file.close();
-		local parsed = xmlAPI.parse(text);		
-		data = prepareData(parsed);
+
+		local sucess, parsed = pcall( xmlAPI.parse,text);
+		if (not sucess) then
+			if (parsed == nil) then
+				parsed = 'No message.';
+			end
+			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			this:SetDefault();
+			return;			
+		end		
+		local sucess, preparedData = pcall(prepareData,parsed);
+		if (not sucess) then
+			if (preparedData == nil) then
+				preparedData = 'No message.';
+			end
+			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			this:SetDefault();
+			return;			
+		end		
+		data = preparedData;
 	end
 
 	-- Get configuration data.

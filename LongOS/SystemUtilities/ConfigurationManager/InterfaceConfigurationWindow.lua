@@ -1,6 +1,8 @@
 local Window = Classes.Application.Window;
 local Label = Classes.Components.Label;
 local Button = Classes.Components.Button;
+local QuestionDialog = Classes.System.Windows.QuestionDialog;
+
 
 InterfaceConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Interface configuration window', false);
@@ -20,6 +22,7 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 
 	local saveChangesButton;
 	local cancelButton;
+	local defaultButton;
 
 	local controlPanelPositionButton;	
 	local controlPanelPositionLabel;
@@ -67,6 +70,19 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 		this:Close();
 	end
 
+
+	local function defaultDialogYes(sender, eventArgs)
+		interfaceConfiguration:SetDefault();
+		controlPanelPositionButton:SetText(interfaceConfiguration:GetOption('ControlPanelPosition'));
+		windowButtonsPositionButton:SetText(interfaceConfiguration:GetOption('WindowButtonsPosition'));				
+	end
+
+	local function defaultButtonClick(_sender, _eventArgs)
+		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
+		defaultDialog:ShowModal();		
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -90,6 +106,10 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
+
+		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton:AddOnClickEventHandler(defaultButtonClick);
+		this:AddComponent(defaultButton);
 
 		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);

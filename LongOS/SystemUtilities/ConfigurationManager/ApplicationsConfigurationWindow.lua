@@ -4,13 +4,14 @@ local Button = Classes.Components.Button;
 local Edit = Classes.Components.Edit;
 local ListBox = Classes.Components.ListBox;
 local MessageWindow = Classes.System.Windows.MessageWindow;
+local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
 ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Applications configuration window', false);
 	this:SetTitle('Applications configuration');
 	this:SetX(7);
 	this:SetY(3);
-	this:SetWidth(31);
+	this:SetWidth(34);
 	this:SetHeight(17);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
@@ -26,6 +27,7 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 
 	local saveChangesButton;
 	local cancelButton;
+	local defaultButton;
 
 	local upButton;
 	local downButton;
@@ -139,40 +141,57 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 	end
 
 
+	local function defaultDialogYes(sender, eventArgs)
+		applicationsConfiguration:SetDefault();
+		drawData();		
+		controlPanel:RefreshApplications();
+	end
+
+	local function defaultButtonClick(_sender, _eventArgs)
+		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
+		defaultDialog:ShowModal();		
+	end
+
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()		
 
-		listBox = ListBox(15,12,nil,nil,1,1,'left-top');
+		listBox = ListBox(18,12,nil,nil,1,1,'left-top');
 		this:AddComponent(listBox);
 
 		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
+		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton:AddOnClickEventHandler(defaultButtonClick);
+		this:AddComponent(defaultButton);
+
 		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
-		upButton = Button('^', nil, nil, 18, 5, 'left-top');
+		upButton = Button('^', nil, nil, 21, 5, 'left-top');
 		upButton:AddOnClickEventHandler(upButtonClick);
 		this:AddComponent(upButton);
 
-		downButton = Button('V', nil, nil, 18, 7, 'left-top');
+		downButton = Button('V', nil, nil, 21, 7, 'left-top');
 		downButton:AddOnClickEventHandler(downButtonClick);
 		this:AddComponent(downButton);
 
-		addButton = Button('Add   ', nil, nil, 22, 4, 'left-top');
+		addButton = Button('Add   ', nil, nil, 25, 4, 'left-top');
 		addButton:AddOnClickEventHandler(addButtonClick);
 		this:AddComponent(addButton);
 
-		editButton = Button('Edit  ', nil, nil, 22, 6, 'left-top');
+		editButton = Button('Edit  ', nil, nil, 25, 6, 'left-top');
 		editButton:AddOnClickEventHandler(editButtonClick);
 		this:AddComponent(editButton);		
 
-		removeButton = Button('Remove', nil, nil, 22, 8, 'left-top');
+		removeButton = Button('Remove', nil, nil, 25, 8, 'left-top');
 		removeButton:AddOnClickEventHandler(removeButtonClick);
 		this:AddComponent(removeButton);
 	end

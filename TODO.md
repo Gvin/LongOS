@@ -15,9 +15,10 @@ For v 1.0.1
 - [X] F101: Add installation path writing on OS installation.
 - [X] F82: Add working directory property to the application.
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
+- [X] F106: Add default configuration to the configuration managers.
 - [ ] F61: Create file browsing component.
 - [ ] F99: Add Updater program for updation OS to the current released version.
-- [ ] F106: Add default configuration to the configuration managers.
+
 
 
 For all versions

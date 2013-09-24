@@ -8,6 +8,31 @@ Classes.System.Configuration.MouseConfiguration = Class(Object, function(this, _
 
 	local fileName = _fileName;
 	local data = nil;
+	local defaultData = { 
+						DoubleClickSpeed ="5"	
+					};
+
+	function this:SetDefault()
+		data = {};
+		for key,value in pairs(defaultData) do
+			data[key] = value;
+		end
+		this:WriteConfiguration();
+	end
+
+	local function checkData()
+		local rewrite = false;
+		for key,value in pairs(defaultData) do
+			if (data[key] == nil) then
+				rewrite = true;
+				data[key] = value;
+				System:LogWarningMessage('Field "'..key..'" was not found in the configuration file "'..fileName..'". The default value was written.');
+			end			
+		end 
+		if (rewrite == true) then
+			this:WriteConfiguration();
+		end
+	end
 
 	local function getData(parsed)
 		local usefulData = {};
@@ -18,23 +43,37 @@ Classes.System.Configuration.MouseConfiguration = Class(Object, function(this, _
 		return usefulData;
 	end
 
-	-- Read mouse configuration from the disk.
-	this.ReadConfiguration = function()
-		if (not fs.exists(fileName)) then
-			error('MouseConfiguration.ReadConfiguration: configuration file '..fileName.." doesn't exists on the disk.");
-		end
+	local fun
 
+
+	-- Read mouse configuration from the disk.
+	function this:ReadConfiguration()
+		if (not fs.exists(fileName)) then
+			System:LogWarningMessage('Configuration file "'..fileName..'" not found. Default configuration file was created.');
+			this:SetDefault();
+			return;
+		end
 		local file = fs.open(fileName, 'r');
 		local text = file.readAll();
 		file.close();
-
-		local parsed = xmlAPI.parse(text);
-
-		data = getData(parsed);
+		local sucess, parsed = pcall( xmlAPI.parse,text);
+		if (not sucess) then			
+			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			this:SetDefault();
+			return;			
+		end		
+		local sucess, preparedData = pcall(getData,parsed);
+		if (not sucess) then			
+			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			this:SetDefault();
+			return;			
+		end		
+		data = preparedData;
+		checkData();
 	end
 
 	-- Get option from the configuration by it's name.
-	this.GetOption = function(_, optionName)
+	function this:GetOption(optionName)
 		if (type(optionName) ~= 'string') then
 			error('MouseConfiguration.GetValue [optionName]: string expected, got '..type(optionName)..'.');
 		end
@@ -46,7 +85,7 @@ Classes.System.Configuration.MouseConfiguration = Class(Object, function(this, _
 	end
 
 	-- Set option from the configuration by it's name.
-	this.SetOption = function(_, optionName, value)
+	function this:SetOption(optionName, value)
 		if (type(optionName) ~= 'string') then
 			error('MouseConfiguration.SetOption [optionName]: string expected, got '..type(optionName)..'.');
 		end
@@ -78,7 +117,7 @@ Classes.System.Configuration.MouseConfiguration = Class(Object, function(this, _
 	end
 
 	-- Write configuration back to the disk.
-	this.WriteConfiguration = function()
+	function this:WriteConfiguration()
 		if (data == nil) then
 			error('MouseConfiguration.WriteConfiguration: configuration must be red first. Use ReadConfiguration method.');
 		end
