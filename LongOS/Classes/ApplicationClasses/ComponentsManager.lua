@@ -32,6 +32,15 @@ Classes.Application.ComponentsManager = Class(Object, function(this)
 		return false;
 	end
 
+	this.ProcessRightClickEvent = function(_, cursorX, cursorY)
+		for i = 1, #components do
+			if (components[i]:ProcessRightClickEventBase(cursorX, cursorY)) then
+				return true;
+			end
+		end
+		return false;
+	end
+
 	-- Process key event.
 	this.ProcessKeyEvent = function(_, key)
 		for i = 1, #components do

@@ -2,7 +2,8 @@ local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 local Label = Classes.Components.Label;
 local Edit = Classes.Components.Edit;
-local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
+--local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
+local OpenFileDialog = Classes.System.Windows.OpenFileDialog;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
 WallpaperManagerWindow = Class(Window, function(this, _application)
@@ -60,7 +61,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function fileNameDialogOnOk(_sender, _eventArgs)
-		local fileName = _eventArgs.Text;
+		local fileName = _eventArgs.FullPath;
 		if (fs.exists(fileName) and stringExtAPI.endsWith(fileName, '.image')) then
 			interfaceConfiguration:SetOption('WallpaperFileName', fileName);
 		else
@@ -71,7 +72,9 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 
 	local function browseButtonClick(_sender, _eventArgs)
 		local wallpaperPath = interfaceConfiguration:GetOption('WallpaperFileName');
-		local fileNameDialog = EnterTextDialog(this:GetApplication(), 'Browse for wallpaper', "Enter new wallpaper's path.", wallpaperPath);
+		local dir = System:ResolvePath(stringExtAPI.getPath(wallpaperPath));
+		local fileNameDialog = OpenFileDialog(this:GetApplication(), dir, { 'image' });
+		fileNameDialog:SetTitle('Browse for wallpaper');
 		fileNameDialog:AddOnOkEventHandler(fileNameDialogOnOk);
 		fileNameDialog:ShowModal();
 	end

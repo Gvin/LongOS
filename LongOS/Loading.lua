@@ -5,7 +5,7 @@ Classes.Components = {};
 Classes.Aplication = {};
 
 local version = '1.0';
-local operationsCount = 37;
+local operationsCount = 40;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -212,6 +212,9 @@ local function includeComponentsClasses()
 
 	include('Classes/ComponentsClasses/CheckBox');
 	mustBeLoaded(Classes.Components.CheckBox, 'CheckBox');
+
+	include('Classes/ComponentsClasses/FileBrowser');
+	mustBeLoaded(Classes.Components.FileBrowser, 'FileBrowser');
 end
 
 local function includeApplicationClasses()
@@ -253,6 +256,12 @@ local function includeSystemWindows()
 
 	include('Classes/SystemClasses/Windows/QuestionDialog');
 	mustBeLoaded(Classes.System.Windows.QuestionDialog, 'QuestionDialog');
+
+	include('Classes/SystemClasses/Windows/OpenFileDialog');
+	mustBeLoaded(Classes.System.Windows.OpenFileDialog, 'OpenFileDialog');
+
+	include('Classes/SystemClasses/Windows/SaveFileDialog');
+	mustBeLoaded(Classes.System.Windows.SaveFileDialog, 'SaveFileDialog');
 end
 
 local function includeSystemClasses()

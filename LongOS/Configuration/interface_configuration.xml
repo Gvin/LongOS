@@ -1,6 +1,6 @@
 <configurations>
 	<configuration value="22" name="WallpaperYShift" />
-	<configuration value="%SYSDIR%/Wallpapers/girls-HD-60x40.image" name="WallpaperFileName" />
+	<configuration value="LongOS/Wallpapers/girls-HD-60x40.image" name="WallpaperFileName" />
 	<configuration value="right" name="WindowButtonsPosition" />
 	<configuration value="top" name="ControlPanelPosition" />
 	<configuration value="0" name="WallpaperXShift" />

@@ -2,7 +2,7 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 	Object.init(this, 'Component');
 
 	------------------------------------------------------------------------------------------------------------------
-	----- Fileds -----------------------------------------------------------------------------------------------------
+	----- Fields -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	local dX;
@@ -162,6 +162,18 @@ Classes.Components.Component = Class(Object, function(this, _dX, _dY, _anchorTyp
 	end
 
 	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
+		return false;
+	end
+
+	function this:ProcessRightClickEventBase(_cursorX, _cursorY)
+		if (this:GetEnabled() and this:GetVisible()) then
+			return this:ProcessRightClickEvent(_cursorX, _cursorY);
+		end
+
+		return false;
+	end
+
+	function this:ProcessRightClickEvent(_cursorX, _cursorY)
 		return false;
 	end
 

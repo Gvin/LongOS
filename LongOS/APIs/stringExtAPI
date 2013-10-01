@@ -42,3 +42,18 @@ function getExtension(fileName)
 
 	return ''..fileName:sub(pos + 1, fileName:len());
 end
+
+function getPath(fullPath)
+	local pos;
+	for i = 1, fullPath:len() do
+		if (fullPath:sub(i, i) == '/') then
+			pos = i;
+		end
+	end
+
+	if (pos == nil) then
+		return '';
+	end
+
+	return ''..fullPath:sub(1, pos - 1);
+end

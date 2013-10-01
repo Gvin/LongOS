@@ -15,7 +15,7 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 	end
 
 	------------------------------------------------------------------------------------------------------------------
-	----- Fileds -----------------------------------------------------------------------------------------------------
+	----- Fields -----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	local application;
@@ -94,7 +94,7 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		if (interfaceConfiguration:GetOption('ControlPanelPosition') == 'top') then
 			return 2;
 		else
-			return screenHeight - 1;
+			return 1;
 		end
 	end
 
@@ -628,7 +628,9 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 
 	function this:ProcessRightClickEventBase(_cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY)) then
-			this:ProcessRightClickEvent(_cursorX, _cursorY);
+			if (not componentsManager:ProcessRightClickEvent(_cursorX, _cursorY)) then
+				this:ProcessRightClickEvent(_cursorX, _cursorY);
+			end
 		end
 		return this:Contains(_cursorX, _cursorY);
 	end

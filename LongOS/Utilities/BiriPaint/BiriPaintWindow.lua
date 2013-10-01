@@ -5,9 +5,10 @@ local VerticalScrollBar = Classes.Components.VerticalScrollBar;
 local HorizontalScrollBar = Classes.Components.HorizontalScrollBar;
 local PopupMenu = Classes.Components.PopupMenu;
 
-local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
 local ColorPickerDialog = Classes.System.Windows.ColorPickerDialog;
 local MessageWindow = Classes.System.Windows.MessageWindow;
+local OpenFileDialog = Classes.System.Windows.OpenFileDialog;
+local SaveFileDialog = Classes.System.Windows.SaveFileDialog;
 
 local Image = Classes.System.Graphics.Image;
 
@@ -140,7 +141,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	local function openDialogOnOk(_sender, _eventArgs)
-		local fileName = _eventArgs.Text..'.image';
+		local fileName = _eventArgs.FullPath;
 		if (loadImage(fileName)) then
 			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
 			openWindow:ShowModal();
@@ -151,20 +152,22 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	local openButtonClick = function(_sender, _eventArgs)
-		local openDialog = EnterTextDialog(this:GetApplication(),'Open file','Enter file name','/');
+		local openDialog = OpenFileDialog(this:GetApplication(), '/', { 'image' });
+		openDialog:SetTitle('Open image');
 		openDialog:AddOnOkEventHandler(openDialogOnOk);
 		openDialog:ShowModal();	
 	end
 	
 	local function saveDialogOnOk(_sender, _eventArgs)
-		local fileName = _eventArgs.Text..'.image';		
+		local fileName = _eventArgs.FullPath;	
 		image:SaveToFile(fileName);	
 		local openWindow = MessageWindow(this:GetApplication(), 'File saved', 'File successfully saved.');
 		openWindow:ShowModal();					
 	end
 
 	local saveButtonClick = function(_sender, _eventArgs)
-		local saveDialog = EnterTextDialog(this:GetApplication(),'Save file','Enter file name','/');
+		local saveDialog = SaveFileDialog(this:GetApplication(), '/', 'image');
+		saveDialog:SetTitle('Save image');
 		saveDialog:AddOnOkEventHandler(saveDialogOnOk);
 		saveDialog:ShowModal();		
 	end
