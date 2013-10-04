@@ -96,8 +96,12 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 		onFileLaunch:Invoke(this, { _fileName });
 	end
 
-	local function fireOnFileRightClick(_fileName)
-		onFileRightClick:Invoke(this, { _fileName });
+	local function fireOnFileRightClick(_fileName, _cursorX, _cursorY)
+		local eventArgs = {};
+		eventArgs.FilePath = _fileName;
+		eventArgs.X = _cursorX;
+		eventArgs.Y = _cursorY;
+		onFileRightClick:Invoke(this, eventArgs);
 	end
 
 	function this:GetCurrentDirectory()
@@ -368,7 +372,10 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 			end
 
 			processFileSelection(_cursorX, _cursorY);
-			fireOnFileRightClick(currentDirectory..'/'..selectedFile);
+
+			if (selectedFile ~= '') then
+				fireOnFileRightClick(currentDirectory..'/'..selectedFile, _cursorX, _cursorY);
+			end
 
 			return true;
 		end
@@ -456,7 +463,7 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 
 		width = _width;
 		height = _height;
-		currentDirectory = '/LongOS'
+		currentDirectory = '/'
 		selectedFile = '';
 		filesList = {};
 		filesFilter = nil;

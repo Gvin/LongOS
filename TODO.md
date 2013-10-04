@@ -14,9 +14,9 @@ For v 1.1
 - [X] F104: Add errors processing and retrying to the downloader.
 - [X] F101: Add installation path writing on OS installation.
 - [X] F82: Add working directory property to the application.
-- [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 - [X] F106: Add default configuration to the configuration managers.
-- [ ] F61: Create file browsing component.
+- [X] F61: Create file browsing component.
+- [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 - [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F102: Add posibility to filter chars in Edit component.
 - [ ] F103: Add on click cursor position changing for edit component.

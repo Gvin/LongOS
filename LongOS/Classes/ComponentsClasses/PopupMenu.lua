@@ -72,8 +72,9 @@ Classes.Components.PopupMenu = Class(Object, function(this, x, y, width, height,
 		if (allowAutoHeight) then
 			local height = 2;
 			for i = 1, componentsManager:GetComponentsCount() do
-				if (componentsManager:GetComponent(i):GetY() - this.Y > height) then
-					height = componentsManager:GetComponent(i):GetY() - this.Y + 2;
+				local component = componentsManager:GetComponent(i);
+				if (component:GetVisible() and component:GetY() - this.Y > height) then
+					height = component:GetY() - this.Y + 2;
 				end
 			end
 
