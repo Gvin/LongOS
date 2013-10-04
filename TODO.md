@@ -1,10 +1,10 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 106 registered features.
+Currently there are 107 registered features.
 
 TODO
 ========
 
-For v 1.0.1
+For v 1.1
 --------
 - [X] F98: Add http events support for applications, windows and threads.
 - [X] F85: Add image position option to the wallpaper manager program.
@@ -18,6 +18,9 @@ For v 1.0.1
 - [X] F106: Add default configuration to the configuration managers.
 - [ ] F61: Create file browsing component.
 - [ ] F99: Add Updater program for updation OS to the current released version.
+- [ ] F102: Add posibility to filter chars in Edit component.
+- [ ] F103: Add on click cursor position changing for edit component.
+- [ ] F107: Add mask char to the Edit component.
 
 
 
@@ -43,8 +46,6 @@ Further releases
 - [ ] F90: Improve loading to use classes.
 - [ ] F91: Create List class with storing objects type specifying.
 - [ ] F100: Add error value checks everywhere where needed.
-- [ ] F102: Add posibility to filter chars in Edit component.
-- [ ] F103: Add on click cursor position changing for edit component.
 - [ ] F105: Create application for editing file assotiations configuration.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 
