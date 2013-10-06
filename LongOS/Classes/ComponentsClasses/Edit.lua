@@ -23,6 +23,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 	local text;
 	local width;
 	local mask;
+	local filter;
 
 	local focus;
 	local enabled;
@@ -138,6 +139,18 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 
 		mask = _value:sub(1, 1);
+	end
+
+	function this:GetFilter()
+		return filter;
+	end
+
+	function this:SetFilter(_value)
+		if (_value ~= nil and type(_value) ~= 'function') then
+			error(this:GetClassName()..'.SetFilter [value]: Function or nil expected, got '..type(_value)..'.');
+		end
+
+		filter = _value;
 	end
 
 	function this:AddOnFocusEventHandler(_value)
@@ -274,6 +287,10 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 
 	function this:ProcessCharEvent(_char)
 		if (enabled and focus) then
+			if (filter ~= nil and not filter(_char)) then
+				return;
+			end
+
 			local oldText = text;
 
 			local textBefore = ''..string.sub(text, 1, cursorPosition);

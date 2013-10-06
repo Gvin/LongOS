@@ -50,6 +50,8 @@ CalculatorWindow = Class(Window, function(this, _application)
 
 	local errorFlag;
 
+	local ALLOWED_CHARS = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+', '*', '/' };
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -183,6 +185,9 @@ CalculatorWindow = Class(Window, function(this, _application)
 		dataEdit:SetText('');
 	end
 
+	local function filter(_char)
+		return tableExtAPI.contains(ALLOWED_CHARS, _char);
+	end
 	
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
@@ -191,6 +196,7 @@ CalculatorWindow = Class(Window, function(this, _application)
 	local function initializeComponents()		
 
 	dataEdit = Edit(23, nil, nil, 0, 1, 'left-top');
+	dataEdit:SetFilter(filter);
 	this:AddComponent(dataEdit);
 
 	-- Adding numbers buttons
