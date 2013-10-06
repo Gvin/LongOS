@@ -414,11 +414,21 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
+	local function cleanTempDirectory()
+		local tempDirPath = this:ResolvePath('/%SYSDIR%/Temp/');
+		if (fs.exists(tempDirPath)) then
+			fs.delete(tempDirPath);
+		end
+		fs.makeDir(tempDirPath);
+	end
+
 	local function constructor(_systemDirectory)
 		working = true;
 		updateLock = false;
 		currentVersion = '1.0';
 		systemDirectory = _systemDirectory;
+
+		cleanTempDirectory();
 
 		dblClickTimer = 0;
 		clickX = 0;

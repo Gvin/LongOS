@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 109 registered features.
+Currently there are 110 registered features.
 
 TODO
 ========
@@ -16,6 +16,7 @@ For v 1.1
 - [X] F82: Add working directory property to the application.
 - [X] F106: Add default configuration to the configuration managers.
 - [X] F61: Create file browsing component.
+- [X] F110: Add "Temp" directory and clean it on system startup.
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 - [ ] F99: Add Updater program for updation OS to the current released version.
 - [ ] F102: Add posibility to filter chars in Edit component.
