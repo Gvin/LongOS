@@ -1,7 +1,11 @@
 local Window = Classes.Application.Window;
 local Label = Classes.Components.Label;
+local Button = Classes.Components.Button;
 
 local Image = Classes.System.Graphics.Image;
+
+local QuestionDialog = Classes.System.Windows.QuestionDialog;
+local MessageWindow = Classes.System.Windows.MessageWindow;
 
 AboutSystemWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'About System window', false);	
@@ -20,6 +24,9 @@ AboutSystemWindow = Class(Window, function(this, _application)
 
 
 	local image;
+	local updateButton;
+
+	local systemUpdater;
 
 
 	----------------------------------------------------
@@ -55,6 +62,40 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		end
 	end
 
+	local function updateDialogYes(sender, eventArgs)
+		local updateSystemWindow = UpdateSystemWindow(this:GetApplication(),systemUpdater);		
+		updateSystemWindow:ShowModal();
+	end
+
+	local function updateButtonClick(_sender, _eventArgs)		
+
+		systemUpdater = SystemUpdater();
+		local lastVersion = systemUpdater:GetLastVersion();
+		local currentVersion = System:GetCurrentVersion();
+
+		if (lastVersion == nil) then
+
+			local updateErrorWindow = MessageWindow(this:GetApplication(), 'Update error', "Cant't update Longos.");
+			updateErrorWindow:ShowModal();
+			return;
+		end
+
+
+		if (lastVersion == 'v'..currentVersion) then
+			local messageWindow = MessageWindow(this:GetApplication(), 'Updating not required', "You are using the latest version of the LongOS. Updating not required.");
+			messageWindow:ShowModal();
+			return;
+		end
+
+
+		local updateDialog = QuestionDialog(this:GetApplication(), 'New version available', 'Version '..lastVersion..' is available. Download?');
+		updateDialog:AddOnYesEventHandler(updateDialogYes);
+		updateDialog:ShowModal();		
+
+		
+	end
+	
+
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
@@ -66,8 +107,17 @@ AboutSystemWindow = Class(Window, function(this, _application)
 			image = Image(_logotypeName);
 		end
 
-		local currentVersionLabel = Label('LongOs v.'..System:GetCurrentVersion(),nil,nil,14,2,'left-top');
-		this:AddComponent(currentVersionLabel);		
+	
+		local currentVersionLabel = Label('LongOs v.'..System:GetCurrentVersion(), nil, nil, 14, 2, 'left-top');		
+		this:AddComponent(currentVersionLabel);
+
+
+		updateButton = Button('Check update ', nil, nil, 14, 3, 'left-top');
+		updateButton:AddOnClickEventHandler(updateButtonClick);
+		this:AddComponent(updateButton);
+
+--		local currentVersionLabel = Label('LongOs v.'..System:GetCurrentVersion(),nil,nil,14,2,'left-top');
+--		this:AddComponent(currentVersionLabel);		
 
 
 		local id = os.getComputerID();

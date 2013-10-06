@@ -21,7 +21,7 @@ For v 1.1
 - [X] F107: Add mask char to the Edit component.
 - [X] F102: Add posibility to filter chars in Edit component.
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
-- [ ] F99: Add Updater program for updation OS to the current released version.
+- [X] F99: Add Updater program for updation OS to the current released version.
 
 
 

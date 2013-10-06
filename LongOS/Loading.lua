@@ -215,6 +215,9 @@ local function includeComponentsClasses()
 
 	include('Classes/ComponentsClasses/FileBrowser');
 	mustBeLoaded(Classes.Components.FileBrowser, 'FileBrowser');
+
+	include('Classes/ComponentsClasses/ProgressBar');
+	mustBeLoaded(Classes.Components.ProgressBar, 'ProgressBar');
 end
 
 local function includeApplicationClasses()
