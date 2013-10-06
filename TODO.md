@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 110 registered features.
+Currently there are 111 registered features.
 
 TODO
 ========
@@ -50,6 +50,7 @@ Further releases
 - [ ] F105: Create application for editing file assotiations configuration.
 - [ ] F108: Add more events to the Window.
 - [ ] F109: Add custom events support.
+- [ ] F111: Add events to the Thread class.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 
 
