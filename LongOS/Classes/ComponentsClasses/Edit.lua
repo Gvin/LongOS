@@ -22,6 +22,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 	local textColor;
 	local text;
 	local width;
+	local mask;
 
 	local focus;
 	local enabled;
@@ -127,6 +128,18 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 	end
 
+	function this:GetMask()
+		return mask;
+	end
+
+	function this:SetMask(_value)
+		if (_value ~= nil and type(_value) ~= 'string') then
+			error(this:GetClassName()..'.SetMask [value]: String or nil expected, got '..type(_value)..'.');
+		end
+
+		mask = _value:sub(1, 1);
+	end
+
 	function this:AddOnFocusEventHandler(_value)
 		onFocus:AddHandler(_value);
 	end
@@ -147,10 +160,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		invokeOnTextChangedEvent(oldText, text);
 	end
 
-	function this:Draw(_videoBuffer, _x, _y)
-		_videoBuffer:DrawBlock(_x, _y, width, 1, backgroundColor);
-		_videoBuffer:SetColorParameters(textColor, backgroundColor);
-
+	local function getTextToPrint()
 		local toPrint = text;
 
 		if (cursorPosition > string.len(toPrint)) then
@@ -164,6 +174,19 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		if (string.len(toPrint) > width - 2) then
 			toPrint = ''..string.sub(toPrint, 1, width - 1);
 		end
+
+		if (mask == nil) then
+			return toPrint;
+		end
+
+		return ''..string.rep(mask, toPrint:len());
+	end
+
+	function this:Draw(_videoBuffer, _x, _y)
+		_videoBuffer:DrawBlock(_x, _y, width, 1, backgroundColor);
+		_videoBuffer:SetColorParameters(textColor, backgroundColor);
+
+		local toPrint = getTextToPrint();
 
 		if (focus) then
 			local realCursorPosition = cursorPosition;
