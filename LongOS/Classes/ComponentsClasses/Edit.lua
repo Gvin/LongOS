@@ -44,7 +44,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		return text;
 	end
 
-	function this.SetText(_, _value)
+	function this:SetText(_value)
 		if (type(_value) ~= 'string') then
 			error(this:GetClassName()..'.SetText [value]: String expected, got '..type(_value)..'.');
 		end
@@ -57,11 +57,11 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		invokeOnTextChangedEvent(oldText, text);
 	end
 
-	function this.GetWidth()
+	function this:GetWidth()
 		return width;
 	end
 
-	function this.SetWidth(_, _value)
+	function this:SetWidth(_value)
 		if (type(_value) ~= 'number') then
 			error(this:GetClassName()..'.SetWidth [value] Number expected, got '..type(_value)..'.');
 		end
@@ -69,11 +69,11 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		width = _value;
 	end
 
-	function this.GetBackgroundColor()
+	function this:GetBackgroundColor()
 		return backgroundColor;
 	end
 
-	function this.SetBackgroundColor(_, _value)
+	function this:SetBackgroundColor(_value)
 		if (type(_value) ~= 'number') then
 			error(this:GetClassName()..'.SetBackgroundColor [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -85,7 +85,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		return textColor;
 	end
 
-	function this.SetTextColor(_, _value)
+	function this:SetTextColor(_value)
 		if (type(_value) ~= 'number') then
 			error(this:GetClassName()..'.SetTextColor [value]: Number expected, got '..type(_value)..'.');
 		end
@@ -93,11 +93,11 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		textColor = _value;
 	end
 
-	function this.GetFocus()
+	function this:GetFocus()
 		return focus;
 	end
 
-	function this.SetFocus(_, _value)
+	function this:SetFocus(_value)
 		if (type(_value) ~= 'boolean') then
 			error(this:GetClassName()..'.SetFocus [value]: Boolean expected, got '..type(_value)..'.');
 		end
@@ -112,11 +112,11 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 	end
 
-	function this.GetEnabled()
+	function this:GetEnabled()
 		return enabled;
 	end
 
-	function this.SetEnabled(_, _value)
+	function this:SetEnabled(_value)
 		if (type(_value) ~= 'boolean') then
 			error(this:GetClassName()..'.SetEnabled [value]: Boolean expected, got '..type(_value)..'.');
 		end
@@ -127,11 +127,11 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 	end
 
-	function this.AddOnFocusEventHandler(_, _value)
+	function this:AddOnFocusEventHandler(_value)
 		onFocus:AddHandler(_value);
 	end
 
-	function this.AddOnTextChangedEventHandler(_, _value)
+	function this:AddOnTextChangedEventHandler(_value)
 		onTextChanged:AddHandler(_value);
 	end
 
@@ -139,7 +139,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	function this.Clear()
+	function this:Clear()
 		local oldText = text;
 
 		this:SetText('');
@@ -147,7 +147,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		invokeOnTextChangedEvent(oldText, text);
 	end
 
-	function this.Draw(_, _videoBuffer, _x, _y)
+	function this:Draw(_videoBuffer, _x, _y)
 		_videoBuffer:DrawBlock(_x, _y, width, 1, backgroundColor);
 		_videoBuffer:SetColorParameters(textColor, backgroundColor);
 
@@ -178,9 +178,21 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		_videoBuffer:WriteAt(_x, _y, toPrint);
 	end
 
-	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
+	local function locateRelativeClickPosition(_cursorX)
+		local position = _cursorX - this:GetX();
+		local realCursorPosition = cursorPosition;
+		if (realCursorPosition > width - 1) then
+			realCursorPosition = width - 1;
+		end
+		local difference = position - realCursorPosition;
+		cursorPosition = cursorPosition + difference;
+	end
+
+	function this:ProcessLeftClickEvent(_cursorX, _cursorY)
 		if (this:Contains(_cursorX, _cursorY)) then
 			this:SetFocus(true);
+
+			locateRelativeClickPosition(_cursorX);
 		else
 			this:SetFocus(false);
 		end
@@ -214,7 +226,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 	end
 
-	function this.ProcessKeyEvent(_, _key)
+	function this:ProcessKeyEvent(_key)
 		if (enabled and focus) then
 			local keyName = keys.getName(_key);
 			if (keyName == 'backspace') then
@@ -237,7 +249,7 @@ Classes.Components.Edit = Class(Component, function(this, _width, _backgroundCol
 		end
 	end
 
-	function this.ProcessCharEvent(_, _char)
+	function this:ProcessCharEvent(_char)
 		if (enabled and focus) then
 			local oldText = text;
 
