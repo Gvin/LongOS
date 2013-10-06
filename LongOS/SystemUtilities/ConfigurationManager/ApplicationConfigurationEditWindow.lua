@@ -86,7 +86,7 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 			errorWindow:ShowModal();	
 		else
 			local path = pathEdit:GetText();
-			local resolvedPath = System:Resolve(path);
+			local resolvedPath = System:ResolvePath(path);
 			local add = true;
 			if (#path == 0) then
 				local errorWindow = MessageWindow(this:GetApplication(), 'Empty path', 'Application path should be entered');			
