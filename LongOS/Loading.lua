@@ -72,7 +72,7 @@ end
 
 
 local function drawLoading(operation)	
-	local position = operation/operationsCount*(screenWidth - 6);
+	local position = math.floor(operation/operationsCount*(screenWidth - 6) - 1);
 	paintutils.drawLine(3, labelPositionY + 2, 3 + position, labelPositionY + 2, colors.lime);
 	term.setCursorPos(1, 19);
 end
