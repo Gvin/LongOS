@@ -85,7 +85,7 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		end
 
 
-		if (lastVersion == 'v'..currentVersion) then
+		if (lastVersion == currentVersion) then
 			local messageWindow = MessageWindow(this:GetApplication(), 'Updating not required', "You are using the latest version of the LongOS. Updating not required.");
 			messageWindow:ShowModal();
 			return;

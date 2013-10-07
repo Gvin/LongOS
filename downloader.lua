@@ -164,10 +164,10 @@ while (path == nil or not checkPath(path)) do
 end
 
 clearScreen(colors.lightGray);
---if (not downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua')) then
-	--term.setCursorPos(1, screenHeight);
-	--return;
---end
+if (not downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua')) then
+	term.setCursorPos(1, screenHeight);
+	return;
+end
 shell.run('/tree.lua');
 fs.delete('/tree.lua');
 osVersion = version;
@@ -184,6 +184,7 @@ clearScreen(colors.black);
 term.setTextColor(colors.lime);
 print('Downloading finished.');
 local ansvered = false;
+local startupCreated = false;
 while (not ansvered) do
 	print('Set LongOS on startup? (Y/n)');
 	local ansver = read();
@@ -192,11 +193,18 @@ while (not ansvered) do
 		file.writeLine("shell.run('"..path.."/LongOS/Long');");
 		file.close();
 		print('Startup file created.');
+		startupCreated = true;
 		ansvered = true;
 	elseif (ansver == 'n' or ansver == 'N') then
 		ansvered = true;
 	end
 end
-print('Installation completed. Press ENTER to exit setup.');
-read();
+if (startupCreated) then
+	print('Installation completed. Press ENTER to reboot the computer.');
+	read();
+	os.reboot();
+else
+	print('Installation completed. Press ENTER to exit setup.');
+	read();
+end
 clearScreen(colors.black);

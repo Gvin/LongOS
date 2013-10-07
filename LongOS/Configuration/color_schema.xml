@@ -1,21 +1,39 @@
 <color-schemas>
-	<schema value="32768" name="SystemLabelsTextColor" />
-	<schema value="8192" name="ControlPanelColor" />
-	<schema value="16384" name="ProgressBarEmptyColor" />
-	<schema value="16384" name="ControlPanelPowerButtonColor" />
-	<schema value="16384" name="DesktopBackgroundColor" />
-	<schema value="1" name="TimeTextColor" />
-	<schema value="128" name="SystemButtonsColor" />
-	<schema value="1" name="SystemEditsBackgroundColor" />
-	<schema value="8" name="SelectedBackgroundColor" />
-	<schema value="1" name="TopLineTextColor" />
-	<schema value="256" name="WindowColor" />
-	<schema value="128" name="TopLineInactiveColor" />
-	<schema value="32" name="ControlPanelButtonsColor" />
-	<schema value="1" name="SystemButtonsTextColor" />
-	<schema value="32768" name="WindowBorderColor" />
-	<schema value="32768" name="TopLineActiveColor" />
-	<schema value="32" name="ProgressBarFilledColor" />
-	<schema value="1" name="SelectedTextColor" />
-</color-schemas>
-
+
+	<schema value="32768" name="SystemLabelsTextColor" />
+
+	<schema value="8192" name="ControlPanelColor" />
+
+	<schema value="16384" name="ProgressBarEmptyColor" />
+
+	<schema value="16384" name="ControlPanelPowerButtonColor" />
+
+	<schema value="16384" name="DesktopBackgroundColor" />
+
+	<schema value="1" name="TimeTextColor" />
+
+	<schema value="128" name="SystemButtonsColor" />
+
+	<schema value="1" name="SystemEditsBackgroundColor" />
+
+	<schema value="8" name="SelectedBackgroundColor" />
+
+	<schema value="1" name="TopLineTextColor" />
+
+	<schema value="256" name="WindowColor" />
+
+	<schema value="128" name="TopLineInactiveColor" />
+
+	<schema value="32" name="ControlPanelButtonsColor" />
+
+	<schema value="1" name="SystemButtonsTextColor" />
+
+	<schema value="32768" name="WindowBorderColor" />
+
+	<schema value="32768" name="TopLineActiveColor" />
+
+	<schema value="32" name="ProgressBarFilledColor" />
+
+	<schema value="1" name="SelectedTextColor" />
+
+</color-schemas>
