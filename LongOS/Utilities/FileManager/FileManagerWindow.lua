@@ -29,6 +29,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local contextMenu;
 
 	local editButton;
+	local runInTerminalButton;
 
 	local copiedFile;
 	local cuttedFile;
@@ -54,11 +55,13 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function fileBrowserOnFileRightClick(_sender, _eventArgs)
 		local screenWidth, screenHeight = term.getSize();
 
-		if (fs.isDir(_eventArgs.FilePath)) then
+		if (_eventArgs.IsDir) then
 			editButton:SetVisible(false);
-			contextMenu.Height = 11;
+			runInTerminalButton:SetVisible(false);
+			contextMenu.Height = 9;
 		else
 			editButton:SetVisible(true);
+			runInTerminalButton:SetVisible(true);
 			contextMenu.Height = 13;
 		end
 
@@ -287,23 +290,23 @@ FileManagerWindow = Class(Window, function(this, _application)
 		contextMenu = PopupMenu(1, 1, 12, 11, nil, false);
 		this:AddMenu('ContextMenu', contextMenu);
 
-		local runInTerminalButton = Button('Run in terminal', nil, nil, 1, 1, 'left-top');
+		runInTerminalButton = Button('Run in terminal', nil, nil, 1, 9, 'left-top');
 		runInTerminalButton:AddOnClickEventHandler(runInTerminalButtonClick);
 		contextMenu:AddComponent(runInTerminalButton);
 
-		local copyButton = Button('Copy', nil, nil, 6, 3, 'left-top');
+		local copyButton = Button('Copy', nil, nil, 6, 1, 'left-top');
 		copyButton:AddOnClickEventHandler(copyButtonClick);
 		contextMenu:AddComponent(copyButton);
 
-		local cutButton = Button('Cut ', nil, nil, 6, 5, 'left-top');
+		local cutButton = Button('Cut ', nil, nil, 6, 3, 'left-top');
 		cutButton:AddOnClickEventHandler(cutButtonClick);
 		contextMenu:AddComponent(cutButton);
 
-		local deleteButton = Button('Delete', nil, nil, 5, 7, 'left-top');
+		local deleteButton = Button('Delete', nil, nil, 5, 5, 'left-top');
 		deleteButton:AddOnClickEventHandler(deleteButtonClick);
 		contextMenu:AddComponent(deleteButton);
 
-		local renameButton = Button('Rename', nil, nil, 5, 9, 'left-top');
+		local renameButton = Button('Rename', nil, nil, 5, 7, 'left-top');
 		renameButton:AddOnClickEventHandler(renameButtonClick);
 		contextMenu:AddComponent(renameButton);
 

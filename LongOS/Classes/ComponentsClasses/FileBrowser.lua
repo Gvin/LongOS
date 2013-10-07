@@ -101,6 +101,7 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 		eventArgs.FilePath = _fileName;
 		eventArgs.X = _cursorX;
 		eventArgs.Y = _cursorY;
+		eventArgs.IsDir = fs.isDir(_fileName);
 		onFileRightClick:Invoke(this, eventArgs);
 	end
 
@@ -374,7 +375,8 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 			processFileSelection(_cursorX, _cursorY);
 
 			if (selectedFile ~= '') then
-				fireOnFileRightClick(fs.combine(currentDirectory, selectedFile), _cursorX, _cursorY);
+				local filePath = fs.combine(currentDirectory, selectedFile);
+				fireOnFileRightClick(filePath, _cursorX, _cursorY);
 			end
 
 			return true;
@@ -417,7 +419,11 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 				end
 				i = i - 1;
 			end
-			this:SetCurrentDirectory(''..string.sub(currentDirectory, 1, endPos - 1));
+			if (endPos == 0) then
+				this:SetCurrentDirectory('/');
+			else
+				this:SetCurrentDirectory(''..string.sub(currentDirectory, 1, endPos - 1));
+			end
 		end
 	end
 
