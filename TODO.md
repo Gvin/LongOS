@@ -20,11 +20,11 @@ For v 1.1
 - [X] F103: Add on click cursor position changing for edit component.
 - [X] F107: Add mask char to the Edit component.
 - [X] F102: Add posibility to filter chars in Edit component.
-- [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 - [X] F99: Add Updater program for updation OS to the current released version.
+- [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
+- [X] #30 GvinFileManager: Double slash is displayed sometimes in the current path string.
 - [ ] #26 Allow windows to set their default positions in the center of the screen.
 - [ ] #29 Change calculator buttons position.
-- [ ] #30 GvinFileManager: Double slash is displayed sometimes in the current path string.
 
 
 

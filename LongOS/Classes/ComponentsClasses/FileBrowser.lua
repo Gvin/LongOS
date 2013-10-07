@@ -236,7 +236,7 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 		for i = vScrollBar:GetValue() + 1, lastLine do
 			_videoBuffer:SetCursorPos(_x, i + _y - vScrollBar:GetValue());
 
-			local currentFile = currentDirectory..'/'..filesList[i];
+			local currentFile = fs.combine(currentDirectory, filesList[i]);
 			if (fs.isDir(currentFile) or filesList[i] == '..') then
 				if (filesList[i] ~= '..') then
 					_videoBuffer:SetBackgroundColor(colors.yellow);
@@ -374,7 +374,7 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 			processFileSelection(_cursorX, _cursorY);
 
 			if (selectedFile ~= '') then
-				fireOnFileRightClick(currentDirectory..'/'..selectedFile, _cursorX, _cursorY);
+				fireOnFileRightClick(fs.combine(currentDirectory, selectedFile), _cursorX, _cursorY);
 			end
 
 			return true;
@@ -426,7 +426,7 @@ Classes.Components.FileBrowser = Class(Component, function(this, _width, _height
 			local clickedLine = _cursorY - this:GetY() + vScrollBar:GetValue();
 
 			if (filesList[clickedLine] ~= nil) then
-				local clickedFile = currentDirectory..'/'..filesList[clickedLine];
+				local clickedFile = fs.combine(currentDirectory, filesList[clickedLine]);
 				if (filesList[clickedLine] == '..') then
 					back();
 				elseif (fs.isDir(clickedFile)) then
