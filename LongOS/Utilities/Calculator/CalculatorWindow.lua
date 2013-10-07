@@ -201,15 +201,15 @@ CalculatorWindow = Class(Window, function(this, _application)
 
 	-- Adding numbers buttons
 
-	button1 = Button(' 1 ', nil, nil, 0, 3, 'left-top');
+	button1 = Button(' 1 ', nil, nil, 0, 7, 'left-top');
 	button1:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button1);
 
-	button2 = Button(' 2 ', nil, nil, 4, 3, 'left-top');
+	button2 = Button(' 2 ', nil, nil, 4, 7, 'left-top');
 	button2:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button2);
 
-	button3 = Button(' 3 ', nil, nil, 8, 3, 'left-top');
+	button3 = Button(' 3 ', nil, nil, 8, 7, 'left-top');
 	button3:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button3);
 
@@ -225,15 +225,15 @@ CalculatorWindow = Class(Window, function(this, _application)
 	button6:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button6);
 
-	button7 = Button(' 7 ', nil, nil, 0, 7, 'left-top');
+	button7 = Button(' 7 ', nil, nil, 0, 3, 'left-top');
 	button7:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button7);
 
-	button8 = Button(' 8 ', nil, nil, 4, 7, 'left-top');
+	button8 = Button(' 8 ', nil, nil, 4, 3, 'left-top');
 	button8:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button8);
 
-	button9 = Button(' 9 ', nil, nil, 8, 7, 'left-top');
+	button9 = Button(' 9 ', nil, nil, 8, 3, 'left-top');
 	button9:AddOnClickEventHandler(addValueButtonClick);
 	this:AddComponent(button9);
 
