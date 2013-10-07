@@ -13,7 +13,7 @@ local LOGOTYPE_IMAGE = {
 local screenWidth, screenHeight = term.getSize();
 local labelPositionX = math.floor(screenWidth/2) - 16;
 local labelPositionY = math.floor(screenHeight/2) - 5;
-local osVersion = 'v-';
+local osVersion = '-';
 local currentCount = 0;
 local count = 1;
 
@@ -84,7 +84,7 @@ local function updateScreen(fileName)
 	term.setCursorPos(labelPositionX, labelPositionY);
 	term.setTextColor(colors.green);
 	term.setBackgroundColor(colors.lightGray);
-	term.write('LongOS '..osVersion..' is downloading ['..currentCount..'/'..count..']');
+	term.write('LongOS v'..osVersion..' is downloading ['..currentCount..'/'..count..']');
 	term.setCursorPos(2, 18);
 	term.write(string.rep(' ', screenWidth - 2));
 	term.setCursorPos(2, 18);
@@ -134,7 +134,7 @@ local function processFilesTreeRec(tree, path, urlPath)
 				return false;
 			end
 		else
-			if (not downloadFile(REPOSITORY_URL..'/'..osVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
+			if (not downloadFile(REPOSITORY_URL..'/v'..osVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
 				return false;
 			end
 		end
@@ -164,10 +164,10 @@ while (path == nil or not checkPath(path)) do
 end
 
 clearScreen(colors.lightGray);
-if (not downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua')) then
-	term.setCursorPos(1, screenHeight);
-	return;
-end
+--if (not downloadFile(REPOSITORY_URL..'/master/tree.lua', '/tree.lua')) then
+	--term.setCursorPos(1, screenHeight);
+	--return;
+--end
 shell.run('/tree.lua');
 fs.delete('/tree.lua');
 osVersion = version;

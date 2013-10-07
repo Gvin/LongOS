@@ -1,4 +1,4 @@
-version = "v1.0";
+version = "1.1";
 
 tree = {
 	{
@@ -78,6 +78,10 @@ tree = {
 						IsDir = false
 					},
 					{
+						Name = "FileBrowser.lua",
+						IsDir = false
+					},
+					{
 						Name = "HorizontalScrollBar.lua",
 						IsDir = false
 					},
@@ -91,6 +95,10 @@ tree = {
 					},
 					{
 						Name = "PopupMenu.lua",
+						IsDir = false
+					},
+					{
+						Name = "ProgressBar.lua",
 						IsDir = false
 					},
 					{
@@ -129,6 +137,10 @@ tree = {
 							},
 							{
 								Name = "ConfigurationManager.lua",
+								IsDir = false
+							},
+							{
+								Name = "FileAssotiationsConfiguration.lua",
 								IsDir = false
 							},
 							{
@@ -196,7 +208,15 @@ tree = {
 								IsDir = false
 							},
 							{
+								Name = "OpenFileDialog.lua",
+								IsDir = false
+							},
+							{
 								Name = "QuestionDialog.lua",
+								IsDir = false
+							},
+							{
+								Name = "SaveFileDialog.lua",
 								IsDir = false
 							}
 						}
@@ -219,6 +239,10 @@ tree = {
 			},
 			{
 				Name = "color_schema.xml",
+				IsDir = false
+			},
+			{
+				Name = "file_assotiations_configuration.xml",
 				IsDir = false
 			},
 			{
@@ -257,6 +281,14 @@ tree = {
 					},
 					{
 						Name = "logotype.image",
+						IsDir = false
+					},
+					{
+						Name = "SystemUpdater.lua",
+						IsDir = false
+					},
+					{
+						Name = "UpdateSystemWindow.lua",
 						IsDir = false
 					}
 				}

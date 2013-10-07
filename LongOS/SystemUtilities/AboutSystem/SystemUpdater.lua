@@ -82,7 +82,7 @@ SystemUpdater = Class(Object, function(this)
 					return false;
 				end
 			else
-				if (not downloadFile(repositoryUrl..'/'..lastVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
+				if (not downloadFile(repositoryUrl..'/v'..lastVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
 					return false;
 				end
 			end

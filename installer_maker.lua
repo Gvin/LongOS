@@ -2,7 +2,7 @@ local function readDirectory(path)
 	local list = fs.list(path);
 	local result = {};
 	for i = 1, #list do
-		if (list[i] ~= 'Logs') then
+		if (list[i] ~= 'Logs' and list[i] ~= 'Temp') then
 			local data = {};
 			data.Name = list[i];
 			data.IsDir = fs.isDir(path..'/'..list[i]);
@@ -11,6 +11,7 @@ local function readDirectory(path)
 			end
 			table.insert(result, data);
 		end
+		sleep(0.01);
 	end
 	return result;
 end
@@ -21,6 +22,7 @@ local function printDirectory(data, spacer)
 		if (data[i].IsDir) then
 			printDirectory(data[i].Content, spacer..'-');
 		end
+		sleep(0.01);
 	end
 end
 
@@ -41,6 +43,7 @@ local function writeDirectories(data, spacer, file)
 		else
 			file.writeLine(spacer..'},');
 		end
+		sleep(0.01);
 	end
 end
 
@@ -55,7 +58,7 @@ print('Directory tree:');
 printDirectory(data, '');
 print('Writing to file...');
 local file = fs.open('/tree.lua', 'w');
-file.writeLine('version = "v'..version..'";');
+file.writeLine('version = "'..version..'";');
 file.writeLine();
 file.writeLine('tree = {');
 writeDirectories(data, '\t', file);
