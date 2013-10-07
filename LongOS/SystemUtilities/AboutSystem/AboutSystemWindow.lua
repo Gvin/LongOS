@@ -67,6 +67,12 @@ AboutSystemWindow = Class(Window, function(this, _application)
 
 	local function updateButtonClick(_sender, _eventArgs)		
 
+		if (http == nil) then
+			local updateErrorWindow = MessageWindow(this:GetApplication(), 'Update error', "Cant't update Longos. Please  enable http api in the        computercraft configuration.");
+			updateErrorWindow:ShowModal();
+			return;
+		end
+
 		systemUpdater = SystemUpdater();
 		local lastVersion = systemUpdater:GetLastVersion();
 		local currentVersion = System:GetCurrentVersion();
