@@ -22,6 +22,9 @@ For v 1.1
 - [X] F102: Add posibility to filter chars in Edit component.
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 - [X] F99: Add Updater program for updation OS to the current released version.
+- [ ] #26 Allow windows to set their default positions in the center of the screen.
+- [ ] #29 Change calculator buttons position.
+- [ ] #30 GvinFileManager: Double slash is displayed sometimes in the current path string.
 
 
 
@@ -52,6 +55,9 @@ Further releases
 - [ ] F109: Add custom events support.
 - [ ] F111: Add events to the Thread class.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
+- [ ] #25 GvinTerminal: Assigning error-throwing function to the api function can crash OS.
+- [ ] #27 Value null checking can be shortened.
+- [ ] #28 Improve color values storing.
 
 
 History
