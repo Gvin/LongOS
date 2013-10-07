@@ -129,8 +129,8 @@ SystemUpdater = Class(Object, function(this)
 					return false;
 				end
 			else
-				if (fs.exists(urlPath..tree[i].Name)) then
-					fs.delete(urlPath..tree[i].Name);
+				if (fs.exists(path..tree[i].Name)) then
+					fs.delete(path..tree[i].Name);
 				end
 				fs.move(urlPath..tree[i].Name, path..tree[i].Name);					
 			end

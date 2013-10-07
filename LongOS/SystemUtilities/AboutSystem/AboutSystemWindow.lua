@@ -112,7 +112,7 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		end
 
 	
-		local currentVersionLabel = Label('LongOs v.'..System:GetCurrentVersion(), nil, nil, 14, 2, 'left-top');		
+		local currentVersionLabel = Label('LongOS v.'..System:GetCurrentVersion(), nil, nil, 14, 2, 'left-top');		
 		this:AddComponent(currentVersionLabel);
 
 
