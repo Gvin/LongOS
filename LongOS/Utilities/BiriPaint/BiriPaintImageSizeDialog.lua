@@ -11,8 +11,6 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 
 	Window.init(this, _application, 'Paint new dialog', false);
 	this:SetTitle(_title);
-	this:SetX(10);
-	this:SetY(7);
 	this:SetWidth(30);
 	this:SetHeight(9);
 	this:SetAllowMaximize(false);

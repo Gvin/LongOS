@@ -39,6 +39,8 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 	local allowResize;
 	local allowMaximize;
 
+	local overridenPosition;
+
 	local miniWidth;
 	local miniHeight;
 	local miniX;
@@ -219,6 +221,7 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		end
 		local old = x;
 		x = _value;
+		overridenPosition = true;
 		if (x < 1) then
 			x = 1;
 		end
@@ -239,6 +242,7 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		end
 		local old = y;
 		y = _value;
+		overridenPosition = true;
 		local topLineIndex = getTopLineIndex();
 		if (y < topLineIndex) then
 			y = topLineIndex;
@@ -385,8 +389,22 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 		onClose:Invoke(this, {});
 	end
 
+	local function getStartingPosition()
+		if (overridenPosition) then
+			return x, y;
+		end
+
+		local startX = math.floor(screenWidth/2 - this:GetWidth()/2);
+		local startY = math.floor(screenHeight/2 - this:GetHeight()/2);
+		return startX, startY;
+	end
+
 	function this:Show()
 		isModal = false;
+
+		local startX, startY = getStartingPosition();
+		this:SetX(startX);
+		this:SetY(startY);
 
 		application:AddWindow(this);
 
@@ -398,6 +416,10 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 	function this:ShowModal()
 		isModal = true;
 
+		local startX, startY = getStartingPosition();
+		this:SetX(startX);
+		this:SetY(startY);
+		
 		application:AddWindow(this);
 
 		local eventArgs = {};
@@ -784,6 +806,8 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 
 		-- default values
 		title = 'Window';
+
+		overridenPosition = false;
 		x = 2;
 		y = 2;
 		width = 20;

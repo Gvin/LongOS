@@ -17,8 +17,6 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	
 	Window.init(this, _application, 'Biribitum Paint', false);
 	this:SetTitle('Biribitum Paint');
-	this:SetX(1);
-	this:SetY(2);
 	this:SetWidth(41);
 	this:SetHeight(17);
 	this:SetMinimalWidth(15);

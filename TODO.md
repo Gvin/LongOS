@@ -24,7 +24,7 @@ For v 1.1
 - [X] #23 GvinTerminal: Second click isn't sended to the program in terminal on double clicking.
 - [X] #30 GvinFileManager: Double slash is displayed sometimes in the current path string.
 - [X] #29 Change calculator buttons position.
-- [ ] #26 Allow windows to set their default positions in the center of the screen.
+- [X] #26 Allow windows to set their default positions in the center of the screen.
 
 
 

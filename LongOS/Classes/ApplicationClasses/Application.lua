@@ -100,7 +100,7 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 		if (_window == nil) then
 			return;
 		end
-		windowsManager:AddWindow(_window);
+		_window:Show();
 		System:AddApplication(this);
 	end
 

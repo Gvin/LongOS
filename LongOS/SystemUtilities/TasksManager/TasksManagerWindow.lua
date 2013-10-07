@@ -6,8 +6,6 @@ local VerticalScrollBar = Classes.Components.VerticalScrollBar;
 TasksManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Gvin tasks manager', false);
 	this:SetTitle('Gvin tasks manager');
-	this:SetX(5);
-	this:SetY(3);
 	this:SetWidth(40);
 	this:SetHeight(15);
 	this:SetMinimalWidth(30);

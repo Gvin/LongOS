@@ -12,8 +12,6 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Gvin file manager', false);
 	this:SetTitle('Gvin file manager');
-	this:SetX(5);
-	this:SetY(3);
 	this:SetWidth(40);
 	this:SetHeight(12);
 	this:SetMinimalWidth(36);

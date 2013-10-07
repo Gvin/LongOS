@@ -4,8 +4,6 @@ local Button = Classes.Components.Button;
 ConfigurationManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Configuration window', false);	
 	this:SetTitle('Configuration');
-	this:SetX(10);
-	this:SetY(3);
 	this:SetWidth(32);
 	this:SetHeight(11);
 	this:SetAllowMaximize(false);

@@ -7,8 +7,6 @@ local QuestionDialog = Classes.System.Windows.QuestionDialog;
 InterfaceConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Interface configuration window', false);
 	this:SetTitle('Interface configuration');
-	this:SetX(7);
-	this:SetY(3);
 	this:SetWidth(36);
 	this:SetHeight(13);
 	this:SetAllowMaximize(false);

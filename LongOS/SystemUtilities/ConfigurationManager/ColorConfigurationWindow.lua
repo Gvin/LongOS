@@ -8,8 +8,6 @@ local QuestionDialog = Classes.System.Windows.QuestionDialog;
 ColorConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Color configuration window', false);
 	this:SetTitle('Color configuration');
-	this:SetX(3);
-	this:SetY(2);
 	this:SetWidth(44);
 	this:SetHeight(18);
 	this:SetAllowMaximize(false);

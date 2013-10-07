@@ -9,8 +9,6 @@ local QuestionDialog = Classes.System.Windows.QuestionDialog;
 MouseConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Mouse configuration window', false);
 	this:SetTitle('Mouse configuration');
-	this:SetX(7);
-	this:SetY(3);
 	this:SetWidth(36);
 	this:SetHeight(7);
 	this:SetAllowMaximize(false);
@@ -59,18 +57,8 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 		defaultDialog:ShowModal();		
 	end
 
-
-	local function editTextChanged(_sender, _eventArgs)
-		local  textBefore = _eventArgs.TextBefore;
-		local  textAfter = _eventArgs.TextAfter;		
-		
-		local doubleClickSpeed = tonumber(textAfter);
-
-		if ( doubleClickSpeed == nil or doubleClickSpeed <= 0) then
-			if ( textAfter ~= '' ) then
-				_sender:SetText(textBefore);
-			end
-		end	
+	local function editTextFilter(_char)
+		return (tonumber(_char) ~= nil);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -83,7 +71,7 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 		this:AddComponent(doubleClickLabel);
 	
 		doubleClickEdit = Edit(10, nil, nil, 22, 1, 'left-top');	
-		doubleClickEdit:AddOnTextChangedEventHandler(editTextChanged);
+		doubleClickEdit:SetFilter(editTextFilter);
 		doubleClickEdit:SetText(mouseConfiguration:GetOption('DoubleClickSpeed'));					
 		doubleClickEdit:SetFocus(true);
 		this:AddComponent(doubleClickEdit);

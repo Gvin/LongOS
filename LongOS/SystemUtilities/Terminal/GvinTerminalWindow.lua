@@ -7,8 +7,6 @@ local Button = Classes.Components.Button;
 
 GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	Window.init(this, _application, 'Gvin terminal', false);
-	this:SetX(5);
-	this:SetY(3);
 	this:SetWidth(40);
 	this:SetHeight(13);
 	if (_fileName ~= nil and type(_fileName) == 'string') then

@@ -5,8 +5,6 @@ local Edit = Classes.Components.Edit;
 CalculatorWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Calculator window', false);
 	this:SetTitle('Calculator');
-	this:SetX(3);
-	this:SetY(5);
 	this:SetWidth(25);
 	this:SetHeight(12);
 	this:SetAllowMaximize(false);

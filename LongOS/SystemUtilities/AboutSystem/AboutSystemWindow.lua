@@ -10,8 +10,6 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 AboutSystemWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'About System window', false);	
 	this:SetTitle('About system');
-	this:SetX(10);
-	this:SetY(3);
 	this:SetWidth(34);
 	this:SetHeight(15);
 	this:SetAllowMaximize(false);

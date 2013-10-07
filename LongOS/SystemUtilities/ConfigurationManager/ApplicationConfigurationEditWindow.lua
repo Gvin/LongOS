@@ -8,8 +8,6 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 
 ApplicationConfigurationEditWindow = Class(Window, function(this, _application, _applicationData)
 	Window.init(this, _application, 'Applications configuration edit window', false);
-	this:SetX(4);
-	this:SetY(3);
 	this:SetWidth(44);
 	this:SetHeight(11);
 	this:SetAllowMaximize(false);

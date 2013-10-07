@@ -10,8 +10,6 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 UpdateSystemWindow = Class(Window, function(this, _application, _systemUpdater)
 	Window.init(this, _application, 'Update System window', false);	
 	this:SetTitle('Updating system');
-	this:SetX(11);
-	this:SetY(4);
 	this:SetWidth(20);
 	this:SetHeight(9);
 	this:SetAllowMaximize(false);

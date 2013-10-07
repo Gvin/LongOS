@@ -9,8 +9,6 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 WallpaperManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Wallpaper manager', false);
 	this:SetTitle('Wallpaper manager');
-	this:SetX(5);
-	this:SetY(3);
 	this:SetWidth(40);
 	this:SetHeight(11);
 	this:SetAllowResize(false);
@@ -83,24 +81,9 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 		interfaceConfiguration:ReadConfiguration();
 	end
 
-	local function editTextChanged(_sender, _eventArgs)
-
-		local  textBefore = _eventArgs.TextBefore;
-		local  textAfter = _eventArgs.TextAfter;
-
-
-		
-		if ( tonumber(textAfter) == nil) then
-			if ( textAfter ~= '' ) then
-				_sender:SetText(textBefore);
-			end
-		end
-	
+	local function editTextFilter(_char)
+		return (tonumber(_char) ~= nil);
 	end
-
-	
-
-
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
@@ -131,7 +114,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 
 		xEdit = Edit(4, nil, nil, 3, 6, 'left-top');	
 		xEdit:SetText(interfaceConfiguration:GetOption('WallpaperXShift'));	
-		xEdit:AddOnTextChangedEventHandler(editTextChanged);
+		xEdit:SetFilter(editTextFilter);
 		this:AddComponent(xEdit);
 
 		yLabel = Label('Y:', nil, nil, 8, 6, 'left-top');
@@ -139,7 +122,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 
 		yEdit = Edit(4, nil, nil, 10, 6, 'left-top');
 		yEdit:SetText(interfaceConfiguration:GetOption('WallpaperYShift'));
-		yEdit:AddOnTextChangedEventHandler(editTextChanged);
+		yEdit:SetFilter(editTextFilter);
 		this:AddComponent(yEdit);
 
 

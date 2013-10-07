@@ -9,8 +9,6 @@ local QuestionDialog = Classes.System.Windows.QuestionDialog;
 ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Applications configuration window', false);
 	this:SetTitle('Applications configuration');
-	this:SetX(7);
-	this:SetY(3);
 	this:SetWidth(34);
 	this:SetHeight(17);
 	this:SetAllowMaximize(false);
