@@ -1,7 +1,48 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 111 registered features.
+Currently there are 113 registered features.
 
 TODO
+========
+
+For v1.2
+--------
+- [ ] F112: Add possibility to pause threads execution.
+- [ ] F70: Create Panel component.
+- [ ] F84: Add posibility to minimize windows to control panel.
+- [ ] F111: Add events to the Thread class.
+- [ ] F108: Add more events to the Window.
+- [ ] F105: Create application for editing file assotiations configuration.
+- [ ] F109: Add custom events support.
+- [ ] F113: Implement applets system on the ControlPanel.
+- [ ] #25 GvinTerminal: Assigning error-throwing function to the api function can crash OS.
+
+
+For all versions
+--------
+- [ ] F7: Create class diagrams for all classes.
+- [ ] F1: Make code refactoring.
+
+Further releases
+--------
+- [ ] F15: Improve PopupMenu to support submenues.
+- [ ] F19: Add desktop icons.
+- [ ] F19.1: Add Icon class.
+- [ ] F19.2: Add DesktopIcon class.
+- [ ] F20: Add program to draw icons.
+- [ ] F49: Add window size and position storing on application closing.
+- [ ] F76: Create video files and video player.
+- [ ] F83: Add possibility to use "full screen" mod in windows.
+- [ ] F87: Improve components ierarchy.
+- [ ] F89: Add multiple files selection to the GvinFileManager.
+- [ ] F90: Improve loading to use classes.
+- [ ] F91: Create List class with storing objects type specifying.
+- [ ] F100: Add error value checks everywhere where needed.
+- [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
+- [ ] #27 Value null checking can be shortened.
+- [ ] #28 Improve color values storing.
+
+
+History
 ========
 
 For v 1.1
@@ -25,43 +66,6 @@ For v 1.1
 - [X] #30 GvinFileManager: Double slash is displayed sometimes in the current path string.
 - [X] #29 Change calculator buttons position.
 - [X] #26 Allow windows to set their default positions in the center of the screen.
-
-
-
-For all versions
---------
-- [ ] F7: Create class diagrams for all classes.
-- [ ] F1: Make code refactoring.
-
-Further releases
---------
-- [ ] F15: Improve PopupMenu to support submenues.
-- [ ] F19: Add desktop icons.
-- [ ] F19.1: Add Icon class.
-- [ ] F19.2: Add DesktopIcon class.
-- [ ] F20: Add program to draw icons.
-- [ ] F49: Add window size and position storing on application closing.
-- [ ] F70: Create Panel component.
-- [ ] F76: Create video files and video player.
-- [ ] F83: Add possibility to use "full screen" mod in windows.
-- [ ] F84: Add posibility to minimize windows to control panel.
-- [ ] F87: Improve components ierarchy.
-- [ ] F89: Add multiple files selection to the GvinFileManager.
-- [ ] F90: Improve loading to use classes.
-- [ ] F91: Create List class with storing objects type specifying.
-- [ ] F100: Add error value checks everywhere where needed.
-- [ ] F105: Create application for editing file assotiations configuration.
-- [ ] F108: Add more events to the Window.
-- [ ] F109: Add custom events support.
-- [ ] F111: Add events to the Thread class.
-- [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
-- [ ] #25 GvinTerminal: Assigning error-throwing function to the api function can crash OS.
-- [ ] #27 Value null checking can be shortened.
-- [ ] #28 Improve color values storing.
-
-
-History
-========
 
 For v 1.0
 --------
