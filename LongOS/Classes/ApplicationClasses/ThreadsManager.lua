@@ -78,16 +78,18 @@ Classes.Application.ThreadsManager = Class(Object, function(this)
 			
 			for i = 1, #threads do
 				local thread = threads[i];
-				local id = thread:GetId();
-				if (tFilters[id] == nil or tFilters[id] == event[1] or event[1] == 'terminate') then
-					local ok, params = thread:Resume(event);
-					if (not ok) then
-						error(params);
-					else
-						tFilters[id] = params;
-					end
-					if (thread:GetStatus() == 'dead') then
-						this:RemoveThread(id);
+				if (not thread:GetIsPaused()) then
+					local id = thread:GetId();
+					if (tFilters[id] == nil or tFilters[id] == event[1] or event[1] == 'terminate') then
+						local ok, params = thread:ResumeRoutine(event);
+						if (not ok) then
+							error(params);
+						else
+							tFilters[id] = params;
+						end
+						if (thread:GetStatus() == 'dead') then
+							this:RemoveThread(id);
+						end
 					end
 				end
 			end

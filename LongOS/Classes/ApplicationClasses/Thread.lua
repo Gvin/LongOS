@@ -10,6 +10,7 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 	local application;
 	local id;
 	local operation;
+	local isPaused;
 
 	local routine;
 
@@ -24,6 +25,10 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 
 	function this:GetId()
 		return id;
+	end
+
+	function this:GetIsPaused()
+		return isPaused;
 	end
 
 	function this:AddOnStartEventHandler(_value)
@@ -65,7 +70,17 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 		onStop:Invoke(this, {});
 	end
 
-	function this:Resume(_eventData)
+	function this:Pause()
+		isPaused = true;
+		onPause:Invoke(this, {});
+	end
+
+	function this:Resume()
+		isPaused = false;
+		onResume:Invoke(this, {});
+	end
+
+	function this:ResumeRoutine(_eventData)
 		return coroutine.resume(routine, unpack(_eventData));
 	end
 
@@ -92,6 +107,7 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 		application = _application;
 		operation = _operation;
 		routine = nil;
+		isPaused = false;
 
 		onStart = EventHandler();
 		onStop = EventHandler();

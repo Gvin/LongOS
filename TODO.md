@@ -7,7 +7,7 @@ TODO
 For v1.2
 --------
 - [X] F111: Add events to the Thread class.
-- [ ] F112: Add possibility to pause threads execution.
+- [X] F112: Add possibility to pause threads execution.
 - [ ] F70: Create Panel component.
 - [ ] F84: Add posibility to minimize windows to control panel.
 - [ ] F108: Add more events to the Window.
