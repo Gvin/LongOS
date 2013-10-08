@@ -1,3 +1,5 @@
+local EventHandler = Classes.System.EventHandler;
+
 Classes.Application.Thread = Class(Object, function(this, _application, _operation)
 	Object.init(this, 'Thread');
 
@@ -11,12 +13,33 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 
 	local routine;
 
+	local onStart;
+	local onStop;
+	local onPause;
+	local onResume;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	function this:GetId()
 		return id;
+	end
+
+	function this:AddOnStartEventHandler(_value)
+		onStart:AddHandler(_value);
+	end
+
+	function this:AddOnStopEventHandler(_value)
+		onStop:AddHandler(_value);
+	end
+
+	function this:AddOnPauseEventHandler(_value)
+		onPause:AddHandler(_value)
+	end
+
+	function this:AddOnResumeEventHandler(_value)
+		onResume:AddHandler(_value);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -34,10 +57,12 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 
 	function this:Start()
 		application:AddThread(this);
+		onStart:Invoke(this, {});
 	end
 
 	function this:Stop()
 		application:RemoveThread(id);
+		onStop:Invoke(this, {});
 	end
 
 	function this:Resume(_eventData)
@@ -67,6 +92,11 @@ Classes.Application.Thread = Class(Object, function(this, _application, _operati
 		application = _application;
 		operation = _operation;
 		routine = nil;
+
+		onStart = EventHandler();
+		onStop = EventHandler();
+		onPause  = EventHandler();
+		onResume = EventHandler();
 	end
 
 	constructor(_application, _operation);
