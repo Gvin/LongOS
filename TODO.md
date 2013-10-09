@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 113 registered features.
+Currently there are 114 registered features.
 
 TODO
 ========
@@ -37,6 +37,7 @@ Further releases
 - [ ] F90: Improve loading to use classes.
 - [ ] F91: Create List class with storing objects type specifying.
 - [ ] F100: Add error value checks everywhere where needed.
+- [ ] F114: Add possibiliti to repair current LongOS version from the inside.
 - [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
 - [ ] #27 Value null checking can be shortened.
 - [ ] #28 Improve color values storing.
