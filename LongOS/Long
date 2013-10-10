@@ -21,7 +21,7 @@ end
 local function draw()
 	while (System:GetWorking()) do
 		System:Draw();
-		oldSleep(0.1);
+		oldSleep(0.001);
 	end
 end
 
