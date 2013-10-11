@@ -1,0 +1,12 @@
+<localization name="English">
+	<data key="Action.Ok">Ok</data>
+	<data key="Action.Cancel">Cancel</data>
+	<data key="Action.Yes">Yes</data>
+	<data key="Action.No">No</data>
+	<data key="System.ControlPanel.Buttons.Applications">Applications</data>
+	<data key="System.ControlPanel.Buttons.System">System</data>
+	<data key="System.ControlPanel.Buttons.Power">Power</data>
+	<data key="System.ControlPanel.Buttons.Shutdown">Shutdown</data>
+	<data key="System.ControlPanel.Buttons.Reboot"> Reboot </data>
+	<data key="System.ControlPanel.Buttons.LogOff">Log  Off</data>
+</localization>

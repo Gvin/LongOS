@@ -90,6 +90,7 @@ System = Classes.System.LongOS(SystemDirectory);
 SystemDirectory = nil;
 Classes.System.LongOS = nil;
 System:ReadConfiguration();
+System:Initialize();
 System:ReadAutoexec();
 
 success, message = pcall(parallel.waitForAny, update, draw, catchEvents, processEvents);

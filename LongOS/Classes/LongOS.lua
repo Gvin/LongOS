@@ -1,4 +1,5 @@
 local ConfigurationManager = Classes.System.Configuration.ConfigurationManager;
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
 local Logger = Classes.System.Logger;
 local VideoBuffer = Classes.System.Graphics.VideoBuffer;
 local ApplicationsManager = Classes.System.ApplicationsManager;
@@ -39,6 +40,9 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	local allowedTimers;
 
 	local systemDirectory;
+
+	local locale;
+	local localizationManager;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
@@ -86,6 +90,25 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 
 	function this:GetSystemDirectory()
 		return systemDirectory;
+	end
+
+	function this:GetSystemLocale()
+		return locale;
+	end
+
+	function this:SetSystemLocale(_value)
+		if (type(_value) ~= 'string') then
+			error('LongOS.SetSystemLocale [value]: String expected, got '..type(_value)..'.');
+		end
+
+		locale = _value;
+		local localizationConfiguration = configurationManager:GetLocaleConfiguration();
+		localizationConfiguration:SetLocale(locale);
+		localizationConfiguration:WriteConfiguration();
+	end
+
+	function this:GetLocalizedString(_key)
+		return localizationManager:GetLocalizedString(_key);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
@@ -367,13 +390,9 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 
 	function this:ReadConfiguration()
 		configurationManager:ReadConfiguration();
-		controlPanel:RefreshApplications();
 
-		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
-		local filename = interfaceConfiguration:GetOption('WallpaperFileName');
-		local x = interfaceConfiguration:GetOption('WallpaperXShift');
-		local y = interfaceConfiguration:GetOption('WallpaperYShift');
-		desktopManager:LoadWallpaper(this:ResolvePath(filename), tonumber(x), tonumber(y));
+		locale = configurationManager:GetLocaleConfiguration():GetLocale();
+		localizationManager:ReadLocalization(locale);
 	end
 
 	function this:WriteConfiguration()
@@ -410,6 +429,25 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		print('LongOS closed.');
 	end
 
+	function this:Initialize()
+		videoBuffer = VideoBuffer();
+
+		applicationsManager = ApplicationsManager();
+
+		desktopManager = Desktop();
+		local interfaceConfiguration = configurationManager:GetInterfaceConfiguration();
+		local filename = interfaceConfiguration:GetOption('WallpaperFileName');
+		local x = interfaceConfiguration:GetOption('WallpaperXShift');
+		local y = interfaceConfiguration:GetOption('WallpaperYShift');
+		desktopManager:LoadWallpaper(this:ResolvePath(filename), tonumber(x), tonumber(y));
+		
+		controlPanel = ControlPanel();
+		controlPanel:RefreshApplications();
+
+		initApplication = Application('Init', true, false);
+		applicationsManager:AddApplication(initApplication);
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -438,15 +476,8 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		allowedTimers = {};
 
 		configurationManager = ConfigurationManager(systemDirectory);
+		localizationManager = LocalizationManager(this:ResolvePath('%SYSDIR%/Localizations'), this:ResolvePath('%SYSDIR%/Localizations/default.xml'));
 		runtimeLog = Logger(this:ResolvePath('%SYSDIR%/Logs/runtime.log'));
-
-		videoBuffer = VideoBuffer();
-		applicationsManager = ApplicationsManager();
-		desktopManager = Desktop();
-		controlPanel = ControlPanel();
-
-		initApplication = Application('Init', true, false);
-		applicationsManager:AddApplication(initApplication);
 	end
 
 	constructor(_systemDirectory);

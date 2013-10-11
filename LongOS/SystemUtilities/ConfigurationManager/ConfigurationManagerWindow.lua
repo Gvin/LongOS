@@ -1,11 +1,14 @@
 local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
+local Label = Classes.Components.Label;
+
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
 
 ConfigurationManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Configuration window', false);	
-	this:SetTitle('Configuration');
+	this:SetTitle(System:GetLocalizedString('System.Applications.ConfigurationManager.Title'));
 	this:SetWidth(32);
-	this:SetHeight(11);
+	this:SetHeight(10);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
 
@@ -39,20 +42,23 @@ ConfigurationManagerWindow = Class(Window, function(this, _application)
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local function initializeComponents()		
-		local colorConfigurationButton = Button('Open color configuration      ', nil, nil, 0, 1, 'left-top');
+	local function initializeComponents()
+		local localizationConfiguration = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'));
+		localizationConfiguration:ReadLocalization(System:GetSystemLocale());
+
+		local colorConfigurationButton = Button(System:GetLocalizedString('System.Applications.ConfigurationManager.Buttons.ColorConfiguration'), nil, nil, 0, 1, 'left-top');
 		colorConfigurationButton:AddOnClickEventHandler(colorConfigurationButtonClick);
 		this:AddComponent(colorConfigurationButton);
 	
-		local mouseConfigurationButton = Button('Open mouse configuration      ', nil, nil, 0, 3, 'left-top');
+		local mouseConfigurationButton = Button(System:GetLocalizedString('System.Applications.ConfigurationManager.Buttons.MouseConfiguration'), nil, nil, 0, 3, 'left-top');
 		mouseConfigurationButton:AddOnClickEventHandler(mouseConfigurationButtonClick);
 		this:AddComponent(mouseConfigurationButton);	
 
-		interfaceConfigurationButton = Button('Open interface configuration  ', nil, nil, 0, 5, 'left-top');
+		interfaceConfigurationButton = Button(System:GetLocalizedString('System.Applications.ConfigurationManager.Buttons.InterfaceConfiguration'), nil, nil, 0, 5, 'left-top');
 		interfaceConfigurationButton:AddOnClickEventHandler(interfaceConfigurationButtonClick);
 		this:AddComponent(interfaceConfigurationButton);
 
-		applicationsConfigurationButton = Button('Open application configuration', nil, nil, 0, 7, 'left-top');
+		applicationsConfigurationButton = Button(System:GetLocalizedString('System.Applications.ConfigurationManager.Buttons.ApplicationsConfiguration'), nil, nil, 0, 7, 'left-top');
 		applicationsConfigurationButton:AddOnClickEventHandler(applicationsConfigurationButtonClick);
 		this:AddComponent(applicationsConfigurationButton);
 	end

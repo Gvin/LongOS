@@ -7,6 +7,7 @@ Classes.System.Configuration.ConfigurationManager = Class(Object, function(this,
 	local mouseConfiguration = Classes.System.Configuration.MouseConfiguration(_systemDirectory..'/Configuration/mouse_configuration.xml');
 	local applicationsConfiguration = Classes.System.Configuration.ApplicationsConfiguration(_systemDirectory..'/Configuration/applications_configuration.xml');
 	local fileAssotiationsConfiguration = Classes.System.Configuration.FileAssotiationsConfiguration(_systemDirectory..'/Configuration/file_assotiations_configuration.xml');
+	local localeConfiguration = Classes.System.Configuration.LocaleConfiguration(_systemDirectory..'/Configuration/locale_configuration.xml')
 	-- Gets color configuration.
 	this.GetColorConfiguration = function()
 		return colorConfiguration;
@@ -31,6 +32,10 @@ Classes.System.Configuration.ConfigurationManager = Class(Object, function(this,
 		return fileAssotiationsConfiguration;
 	end
 
+	function this:GetLocaleConfiguration()
+		return localeConfiguration;
+	end
+
 	-- Reads all configurations.
 	this.ReadConfiguration = function()
 		colorConfiguration:ReadConfiguration();
@@ -38,6 +43,7 @@ Classes.System.Configuration.ConfigurationManager = Class(Object, function(this,
 		mouseConfiguration:ReadConfiguration();
 		applicationsConfiguration:ReadConfiguration();
 		fileAssotiationsConfiguration:ReadConfiguration();
+		localeConfiguration:ReadConfiguration();
 	end
 
 	-- Writes all configurations.
@@ -46,5 +52,6 @@ Classes.System.Configuration.ConfigurationManager = Class(Object, function(this,
 		interfaceConfiguration:WriteConfiguration();
 		mouseConfiguration:WriteConfiguration();
 		applicationsConfiguration:WriteConfiguration();
+		localeConfiguration:WriteConfiguration();
 	end
 end)

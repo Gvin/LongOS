@@ -24,7 +24,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:Shutdown();
 	end
 
-	local shutdownButton = Button('Shutdown', colors.red, colors.black, 1, 1, 'left-top');
+	local shutdownButton = Button(System:GetLocalizedString('System.ControlPanel.Buttons.Shutdown'), colors.red, colors.black, 1, 1, 'left-top');
 	shutdownButton:AddOnClickEventHandler(shutdownButtonClick);
 	powerMenu:AddComponent(shutdownButton);
 
@@ -32,7 +32,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:Reboot();
 	end
 
-	local rebootButton = Button('Reboot', colors.lightBlue, colors.black, 2, 3, 'left-top');
+	local rebootButton = Button(System:GetLocalizedString('System.ControlPanel.Buttons.Reboot'), colors.lightBlue, colors.black, 1, 3, 'left-top');
 	rebootButton:AddOnClickEventHandler(rebootButtonClick);
 	powerMenu:AddComponent(rebootButton);
 
@@ -40,7 +40,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:LogOff();
 	end
 
-	local logOffButton = Button('Log  off', colors.lime, colors.black, 1, 5, 'left-top');
+	local logOffButton = Button(System:GetLocalizedString('System.ControlPanel.Buttons.LogOff'), colors.lime, colors.black, 1, 5, 'left-top');
 	logOffButton:AddOnClickEventHandler(logOffButtonClick);
 	powerMenu:AddComponent(logOffButton);
 
@@ -48,7 +48,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		menuesManager:OpenCloseMenu('PowerMenu');
 	end
 
-	local powerButton = Button('Power', colors.red, colors.black, 7, 0, 'right-top');
+	local powerButton = Button(System:GetLocalizedString('System.ControlPanel.Buttons.Power'), colors.red, colors.black, 7, 0, 'right-top');
 	powerButton:AddOnClickEventHandler(powerButtonClick);
 	componentsManager:AddComponent(powerButton);
 
@@ -61,7 +61,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		menuesManager:OpenCloseMenu('ApplicationsMenu');
 	end
 
-	local applicationsButton = Button('Applications', colors.lime, colors.black, 1, 0, 'left-top');
+	local applicationsButton = Button(System:GetLocalizedString('System.ControlPanel.Buttons.Applications'), colors.lime, colors.black, 1, 0, 'left-top');
 	applicationsButton:AddOnClickEventHandler(applicationsButtonClick);
 	componentsManager:AddComponent(applicationsButton);
 
@@ -74,7 +74,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:RunFile('%SYSDIR%/SystemUtilities/TasksManager/GvinTasksManager.exec');
 	end
 
-	local tasksManagerButton = Button('Tasks manager', colors.gray, colors.white, 1, 3, 'left-top');
+	local tasksManagerButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.TasksManager'), colors.gray, colors.white, 1, 3, 'left-top');
 	tasksManagerButton:AddOnClickEventHandler(tasksManagerButtonClick);
 	systemMenu:AddComponent(tasksManagerButton);
 
@@ -82,7 +82,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:RunFile('%SYSDIR%/SystemUtilities/ConfigurationManager/ConfigurationManager.exec');
 	end
 
-	local configurationButton = Button('Configuration', colors.gray, colors.white, 1, 1, 'left-top');
+	local configurationButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.Configuration'), colors.gray, colors.white, 1, 1, 'left-top');
 	configurationButton:AddOnClickEventHandler(configurationButtonClick);
 	systemMenu:AddComponent(configurationButton);
 
@@ -90,7 +90,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:RunFile('%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec');
 	end
 
-	local terminalButton = Button('Terminal', colors.gray, colors.white, 3, 5, 'left-top');
+	local terminalButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.Terminal'), colors.gray, colors.white, 1, 5, 'left-top');
 	terminalButton:AddOnClickEventHandler(terminalButtonClick);
 	systemMenu:AddComponent(terminalButton);
 
@@ -98,7 +98,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:RunFile('%SYSDIR%/SystemUtilities/AboutSystem/AboutSystem.exec');
 	end
 
-	local aboutSystemButton = Button('About system ', colors.gray, colors.white, 1, 7, 'left-top');
+	local aboutSystemButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.AboutSystem'), colors.gray, colors.white, 1, 7, 'left-top');
 	aboutSystemButton:AddOnClickEventHandler(aboutSystemButtonClick);
 	systemMenu:AddComponent(aboutSystemButton);
 
@@ -106,7 +106,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		menuesManager:OpenCloseMenu('SystemMenu');
 	end
 
-	local systemButton = Button('System', colors.lime, colors.black, 14, 0, 'left-top');
+	local systemButton = Button(System:GetLocalizedString('System.ControlPanel.Buttons.System'), colors.lime, colors.black, string.len(applicationsButton:GetText()) + 2, 0, 'left-top');
 	systemButton:AddOnClickEventHandler(systemButtonClick);
 	componentsManager:AddComponent(systemButton);
 
@@ -115,10 +115,10 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	local calendarMenu = PopupMenu(42, 2, 6, 4, colors.lightGray, false);
 	menuesManager:AddMenu('CalendarMenu', calendarMenu);
 
-	local dayLabel = Label('Day ----', colors.lightGray, colors.black, 1, 1, 'left-top');
+	local dayLabel = Label(System:GetLocalizedString('System.ControlPanel.Calendar.Day')..' ----', colors.lightGray, colors.black, 1, 1, 'left-top');
 	calendarMenu:AddComponent(dayLabel);
 
-	local yearLabel = Label('Year ---', colors.lightGray, colors.black, 1, 2, 'left-top');
+	local yearLabel = Label(System:GetLocalizedString('System.ControlPanel.Calendar.Year')..' ---', colors.lightGray, colors.black, 1, 2, 'left-top');
 	calendarMenu:AddComponent(yearLabel);
 
 	local calendarButtonClick = function(sender, eventArgs)
@@ -166,15 +166,18 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		days = days - (years - 1)*365;
 
 		local day = days..'';
-		while (string.len(day) < 4) do
+		local dayText = System:GetLocalizedString('System.ControlPanel.Calendar.Day');
+		while (string.len(day) < 4 + (dayText:len() - 3)) do
 			day = ' '..day;
 		end
+
 		local year = years..'';
-		while (string.len(year) < 3) do
+		local yearText = System:GetLocalizedString('System.ControlPanel.Calendar.Year');
+		while (string.len(year) < 3 + (yearText:len() - 4)) do
 			year = ' '..year;
 		end
-		dayLabel:SetText('Day '..day);
-		yearLabel:SetText('Year '..year);
+		dayLabel:SetText(dayText..' '..day);
+		yearLabel:SetText(yearText..' '..year);
 
 		componentsManager:Draw(videoBuffer, 1, line, screenWidth, 1);
 	end

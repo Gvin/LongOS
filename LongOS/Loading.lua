@@ -1,11 +1,14 @@
 Classes = {};
 Classes.System = {};
 Classes.System.Graphics = {};
+Classes.System.Configuration = {};
+Classes.System.Localization = {};
+Classes.System.Windows = {};
 Classes.Components = {};
-Classes.Aplication = {};
+Classes.Application = {};
 
 local version = '1.1';
-local operationsCount = 40;
+local operationsCount = 42;
 local currentOperation = 1;
 LoadingErrors = 0;
 
@@ -178,9 +181,17 @@ local function includeConfigurationClasses()
 
 	include('Classes/SystemClasses/ConfigurationManager/FileAssotiationsConfiguration');
 	mustBeLoaded(Classes.System.Configuration.FileAssotiationsConfiguration, 'FileAssotiationsConfiguration');
+
+	include('Classes/SystemClasses/ConfigurationManager/LocaleConfiguration');
+	mustBeLoaded(Classes.System.Configuration.LocaleConfiguration, 'LocaleConfiguration');
 	
 	include('Classes/SystemClasses/ConfigurationManager/ConfigurationManager');
 	mustBeLoaded(Classes.System.Configuration.ConfigurationManager, 'ConfigurationManager');
+end
+
+local function includeLocalizationClasses()
+	include('Classes/SystemClasses/Localization/LocalizationManager');
+	mustBeLoaded(Classes.System.Localization.LocalizationManager, 'LocalizationManager');
 end
 
 local function includeComponentsClasses()
@@ -286,15 +297,9 @@ local function includeBaseClass()
 	mustBeLoaded(Classes.System.LongOS, 'LongOS');
 end
 
-
-Classes.System.Graphics = {};
-Classes.System.Configuration = {};
-Classes.System.Windows = {};
-Classes.Components = {};
-Classes.Application = {};
-
 includeGraphicsClasses();
 includeConfigurationClasses();
+includeLocalizationClasses();
 includeComponentsClasses();
 includeApplicationClasses();
 includeSystemWindows();

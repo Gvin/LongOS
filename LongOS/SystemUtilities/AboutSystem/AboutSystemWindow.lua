@@ -9,7 +9,7 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 
 AboutSystemWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'About System window', false);	
-	this:SetTitle('About system');
+	this:SetTitle(System:GetLocalizedString('System.Applications.AboutSystem.Title'));
 	this:SetWidth(34);
 	this:SetHeight(15);
 	this:SetAllowMaximize(false);
@@ -52,6 +52,9 @@ AboutSystemWindow = Class(Window, function(this, _application)
 	end
 
 	function this:Draw(_videoBuffer)
+		if (image == nil) then
+			error("Unable to load logotype.");
+		end
 		for i = 1, image:GetWidth() do
 			for j = 1, image:GetHeight() do
 				local color = image:GetPixel(i, j);				
@@ -116,13 +119,9 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		this:AddComponent(currentVersionLabel);
 
 
-		updateButton = Button('Check update ', nil, nil, 14, 3, 'left-top');
+		updateButton = Button(System:GetLocalizedString('System.Applications.AboutSystem.Buttons.CheckUpdates'), nil, nil, 14, 3, 'left-top');
 		updateButton:AddOnClickEventHandler(updateButtonClick);
 		this:AddComponent(updateButton);
-
---		local currentVersionLabel = Label('LongOs v.'..System:GetCurrentVersion(),nil,nil,14,2,'left-top');
---		this:AddComponent(currentVersionLabel);		
-
 
 		local id = os.getComputerID();
 		local computerIdLabel = Label('ID:    '..id,nil,nil,2,9,'left-top');
@@ -149,11 +148,6 @@ AboutSystemWindow = Class(Window, function(this, _application)
 	local function constructor()
 
 		logotypeName = System:ResolvePath(this:GetApplication():GetWorkingDirectory()..'logotype.image');
-		if ( not fs.exists(logotypeName)) then
-			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'Can`t load logotype. File with name :"'..logotypeName..'" not exist');
-			errorWindow:ShowModal();
-			logotypeName = nil;
-		end
 
 		initializeComponents(logotypeName);
 	end
