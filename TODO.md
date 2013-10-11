@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 114 registered features.
+Currently there are 116 registered features.
 
 TODO
 ========
@@ -8,13 +8,11 @@ For v1.2
 --------
 - [X] F111: Add events to the Thread class.
 - [X] F112: Add possibility to pause threads execution.
-- [ ] F70: Create Panel component.
-- [ ] F84: Add posibility to minimize windows to control panel.
 - [ ] F108: Add more events to the Window.
 - [ ] F105: Create application for editing file assotiations configuration.
 - [ ] F109: Add custom events support.
-- [ ] F113: Implement applets system on the ControlPanel.
-- [ ] #25 GvinTerminal: Assigning error-throwing function to the api function can crash OS.
+- [ ] F115: Create localization option in the OS.
+- [ ] F116: Create UI for changing the localization.
 
 
 For all versions
@@ -38,9 +36,13 @@ Further releases
 - [ ] F91: Create List class with storing objects type specifying.
 - [ ] F100: Add error value checks everywhere where needed.
 - [ ] F114: Add possibiliti to repair current LongOS version from the inside.
-- [ ] #20 System hangs on launching LongOS in the terminal emulator in some cases.
-- [ ] #27 Value null checking can be shortened.
-- [ ] #28 Improve color values storing.
+- [ ] F70: Create Panel component.
+- [ ] F84: Add posibility to minimize windows to control panel.
+- [ ] F113: Implement applets system on the ControlPanel.
+- [ ] #20 [B] System hangs on launching LongOS in the terminal emulator in some cases.
+- [ ] #25 [B] GvinTerminal: Assigning error-throwing function to the api function can crash OS.
+- [ ] #27 [E] Value null checking can be shortened.
+- [ ] #28 [E] Improve color values storing.
 
 
 History
