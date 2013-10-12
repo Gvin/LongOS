@@ -107,11 +107,11 @@ Classes.System.Windows.QuestionDialog = Class(Window, function(this, _applicatio
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_text)
-		yesButton = Button(' Yes ', nil, nil, 0, 0, 'left-bottom');
+		yesButton = Button(System:GetLocalizedString('Action.Yes'), nil, nil, 0, 0, 'left-bottom');
 		yesButton:AddOnClickEventHandler(yesButtonClick);
 		this:AddComponent(yesButton);
 
-		noButton = Button(' No ', nil, nil, 0, 0, 'right-bottom');
+		noButton = Button(System:GetLocalizedString('Action.No'), nil, nil, 0, 0, 'right-bottom');
 		noButton:AddOnClickEventHandler(noButtonClick);
 		this:AddComponent(noButton);
 	end

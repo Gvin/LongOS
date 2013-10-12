@@ -1,9 +1,9 @@
 <localization name="Default">
 <!-- Standard Actions -->
-	<data key="Action.Ok">Ok</data>
+	<data key="Action.Ok"> OK </data>
 	<data key="Action.Cancel">Cancel</data>
-	<data key="Action.Yes">Yes</data>
-	<data key="Action.No">No</data>
+	<data key="Action.Yes">Yes </data>
+	<data key="Action.No"> No </data>
 	<data key="Action.Delete">Delete</data>
 
 	<data key="System.ControlPanel.Buttons.Applications">Applications</data>

@@ -70,11 +70,11 @@ Classes.System.Windows.EnterTextDialog = Class(Window, function(this, _applicati
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_text, _initialText)
-		okButton = Button(' OK ', nil, nil, 0, 0, 'left-bottom');
+		okButton = Button(System:GetLocalizedString('Action.Ok'), nil, nil, 0, 0, 'left-bottom');
 		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 
-		local cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		local cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 

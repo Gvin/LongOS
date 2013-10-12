@@ -7,9 +7,10 @@ local Image = Classes.System.Graphics.Image;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
+
 AboutSystemWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'About System window', false);	
-	this:SetTitle(System:GetLocalizedString('System.Applications.AboutSystem.Title'));
 	this:SetWidth(34);
 	this:SetHeight(15);
 	this:SetAllowMaximize(false);
@@ -25,6 +26,8 @@ AboutSystemWindow = Class(Window, function(this, _application)
 	local updateButton;
 
 	local systemUpdater;
+
+	local localizationManager
 
 
 	----------------------------------------------------
@@ -71,7 +74,7 @@ AboutSystemWindow = Class(Window, function(this, _application)
 	local function updateButtonClick(_sender, _eventArgs)		
 
 		if (http == nil) then
-			local updateErrorWindow = MessageWindow(this:GetApplication(), 'Update error', "Cant't update Longos. Please  enable http api in the        computercraft configuration.");
+			local updateErrorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UpdateError.Title'), localizationManager:GetLocalizedString('Errors.UpdateError.HttpNotEnabled'));
 			updateErrorWindow:ShowModal();
 			return;
 		end
@@ -82,20 +85,20 @@ AboutSystemWindow = Class(Window, function(this, _application)
 
 		if (lastVersion == nil) then
 
-			local updateErrorWindow = MessageWindow(this:GetApplication(), 'Update error', "Cant't update Longos.");
+			local updateErrorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UpdateError.Title'), localizationManager:GetLocalizedString('Errors.UpdateError.NoLastVersion'));
 			updateErrorWindow:ShowModal();
 			return;
 		end
 
 
 		if (lastVersion == currentVersion) then
-			local messageWindow = MessageWindow(this:GetApplication(), 'Updating not required', "You are using the latest version of the LongOS. Updating not required.");
+			local messageWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Messages.UpdateNotRequired.Title'), localizationManager:GetLocalizedString('Messages.UpdateNotRequired.Text'));
 			messageWindow:ShowModal();
 			return;
 		end
 
 
-		local updateDialog = QuestionDialog(this:GetApplication(), 'New version available', 'Version '..lastVersion..' is available. Download?');
+		local updateDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Messages.NewVersionAvailable.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Messages.NewVersionAvailable.Text'), lastVersion));
 		updateDialog:AddOnYesEventHandler(updateDialogYes);
 		updateDialog:ShowModal();		
 
@@ -108,7 +111,11 @@ AboutSystemWindow = Class(Window, function(this, _application)
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
-	local function initializeComponents(_logotypeName)	
+	local function initializeComponents(_logotypeName)
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		this:SetTitle(localizationManager:GetLocalizedString('Title'));
 
 		if (_logotypeName ~= nil) then	
 			image = Image(_logotypeName);
@@ -119,7 +126,7 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		this:AddComponent(currentVersionLabel);
 
 
-		updateButton = Button(System:GetLocalizedString('System.Applications.AboutSystem.Buttons.CheckUpdates'), nil, nil, 14, 3, 'left-top');
+		updateButton = Button(localizationManager:GetLocalizedString('Buttons.CheckUpdates'), nil, nil, 14, 3, 'left-top');
 		updateButton:AddOnClickEventHandler(updateButtonClick);
 		this:AddComponent(updateButton);
 

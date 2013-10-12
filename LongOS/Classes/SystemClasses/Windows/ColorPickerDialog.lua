@@ -5,7 +5,7 @@ local EventHandler = Classes.System.EventHandler;
 Classes.System.Windows.ColorPickerDialog = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Color picker dialog', false);
-	this:SetTitle('Select color');
+	this:SetTitle(System:GetLocalizedString('System.Windows.ColorPicker.Title'));
 	this:SetX(10);
 	this:SetY(3);
 	this:SetWidth(18);
@@ -132,7 +132,7 @@ Classes.System.Windows.ColorPickerDialog = Class(Window, function(this, _applica
 		this:AddComponent(red);
 
 
-		cancelButton = Button('Cancel', nil, nil, 5, 0, 'left-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 5, 0, 'left-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end

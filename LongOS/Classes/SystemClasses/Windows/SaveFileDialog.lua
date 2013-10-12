@@ -9,7 +9,6 @@ local Button = Classes.Components.Button;
 
 Classes.System.Windows.SaveFileDialog = Class(Window, function(this, _application, _initialDirectory, _autoExtension)
 	Window.init(this, _application, 'Save file dialog', false);
-	this:SetTitle('Save file');
 	this:SetX(10);
 	this:SetY(3);
 	this:SetWidth(30);
@@ -123,7 +122,7 @@ Classes.System.Windows.SaveFileDialog = Class(Window, function(this, _applicatio
 		fileBrowser:AddOnSelectionChangedEventHandler(fileBrowserSelectionChanged);
 		this:AddComponent(fileBrowser);
 
-		fileNameLabel = Label('File name:', nil, nil, 0, 3, 'left-bottom');
+		fileNameLabel = Label(System:GetLocalizedString('System.Windows.SaveFile.Labels.FileName'), nil, nil, 0, 3, 'left-bottom');
 		this:AddComponent(fileNameLabel);
 
 		local editWidth = 28;
@@ -138,11 +137,11 @@ Classes.System.Windows.SaveFileDialog = Class(Window, function(this, _applicatio
 		fileNameEdit:SetFocus(true);
 		this:AddComponent(fileNameEdit);
 
-		okButton = Button('  OK  ', nil, nil, 0, 0, 'left-bottom');
+		okButton = Button(System:GetLocalizedString('Action.Ok'), nil, nil, 0, 0, 'left-bottom');
 		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
@@ -151,6 +150,8 @@ Classes.System.Windows.SaveFileDialog = Class(Window, function(this, _applicatio
 		if (_autoExtension ~= nil and type(_autoExtension) ~= 'string') then
 			error('SaveFileDialog.Constructor [autoExtension]: String or nil expected, got '..type(_autoExtension)..'.');
 		end
+
+		this:SetTitle(System:GetLocalizedString('System.Windows.SaveFile.Title'));
 
 		autoExtension = _autoExtension;
 

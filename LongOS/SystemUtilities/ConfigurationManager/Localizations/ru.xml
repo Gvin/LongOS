@@ -1,0 +1,40 @@
+<localization name="Russian">
+	<data key="Title">HacTpoiki cicTeMbI</data>
+	<data key="Buttons.ColorConfiguration"			>       HacTpoiki U,BeTa       </data>
+	<data key="Buttons.MouseConfiguration"			>        HacTpoiki MbIwi       </data>
+	<data key="Buttons.InterfaceConfiguration"		>    HacTpoiki BHewHero BiDa   </data>
+	<data key="Buttons.ApplicationsConfiguration"	>      HacTpoiki TTporpaMM     </data>
+
+<!-- Default Dialog -->
+	<data key="DefaultDialog.Title">YcTaHoBiTb TTo yMo/\4aHiuy?</data>
+	<data key="DefaultDialog.Text">BbI DeucTBiTe/\bHo xoTiTe ycTaHoBiTb HacTpouKi TTo yMo/\4aHiuy?</data>
+
+<!-- Applications Configuration -->
+	<data key="ApplicationsConfiguration.Title">HacTpoiki TTpi/\o}I{eHiu</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.EditTitle">PeDakTipoBaTb HacTpoiki TTpi/\o}I{eHiua</data>
+	<data key="ApplicationsConfiguration.EditDialog.AddTitle">PeDakTipoBaTb HacTpoiki TTpi/\o}I{eHiua</data>
+	<data key="ApplicationsConfiguration.EditDialog.NameLabel">iMia</data>
+	<data key="ApplicationsConfiguration.EditDialog.PathLabel">TTyTb</data>
+	<data key="ApplicationsConfiguration.EditDialog.TerminalLabel">TepMiHa/\</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">TTycToe iMia</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">Hy}I{Ho BBecTi iMia TTpi/\o}I{eHiua</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">TTycToi TTyTb</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Hy}I{Ho BBecTi TTyTb TTpi/\o}I{eHiua</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">opai/\ He cuw,ecTByeT</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">opai/\a c TTyTeM "{1}" He cuw,ecTByeT</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">HeBepHoe pacwipeHie</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">opai/\ c TakiM pacwipeHieM He uaB/\iaeTca icTTo/\HiaeMbIM</data>
+
+<!-- Color Configuration -->
+	<data key="ColorConfiguration.Title">HacTpoiki U,BeTa</data>
+	<data key="ColorConfiguration.Labels.Color">U,BeT:</data>
+	<data key="ColorConfiguration.Labels.ColorSelection">BbIbop U,BeTa:</data>
+
+<!-- Interface Configuration -->
+
+</localization>

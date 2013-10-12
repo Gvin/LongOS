@@ -57,3 +57,18 @@ function getPath(fullPath)
 
 	return ''..fullPath:sub(1, pos - 1);
 end
+
+function format(text, ...)
+	local variables = { ... };
+
+	if (#variables < 1) then
+		return text;
+	end
+
+	local newText = text;
+	for i = 1, #variables do
+		newText = ''..string.gsub(newText, '{'..tostring(i)..'}', tostring(variables[i]));
+	end
+
+	return newText;
+end

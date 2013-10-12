@@ -5,9 +5,8 @@ local ListBox = Classes.Components.ListBox;
 local ColorPickerDialog = Classes.System.Windows.ColorPickerDialog;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
-ColorConfigurationWindow = Class(Window, function(this, _application)
+ColorConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Color configuration window', false);
-	this:SetTitle('Color configuration');
 	this:SetWidth(44);
 	this:SetHeight(18);
 	this:SetAllowMaximize(false);
@@ -27,6 +26,8 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	local cancelButton;
 	local defaultButton;
 
+	local localizationManager;
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -38,7 +39,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	local function colorListBoxSelectedIndexChanged(_sender, _eventArgs)
 		local selectedIndex = colorListBox:GetSelectedIndex();
 		local colorName = colorListBox:GetSelectedItem();
-		colorLabel:SetText('Color: '..colorName);			
+		colorLabel:SetText(localizationManager:GetLocalizedString('ColorConfiguration.Labels.Color')..colorName);			
 		selectColorButton:SetBackgroundColor(colorConfiguration:GetColor(colorName) );
 
 	end
@@ -103,7 +104,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	end
 
 	local function defaultButtonClick(_sender, _eventArgs)
-		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		local defaultDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('DefaultDialog.Title'), localizationManager:GetLocalizedString('DefaultDialog.Text'));
 		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
 		defaultDialog:ShowModal();		
 	end
@@ -113,14 +114,14 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		colorLabel = Label('Color:', nil, nil, 1, 1, 'left-top');
+		colorLabel = Label(localizationManager:GetLocalizedString('ColorConfiguration.Labels.Color'), nil, nil, 1, 1, 'left-top');
 		this:AddComponent(colorLabel);
 
 		colorListBox = ListBox(23,12,nil,nil,1,2,'left-top');
 		colorListBox:AddOnSelectedIndexChangedEventHandler(colorListBoxSelectedIndexChanged);	
 		this:AddComponent(colorListBox);
 	
-		local selectColorLabel = Label('Color selection:', nil, nil, 1, 5, 'right-top');
+		local selectColorLabel = Label(localizationManager:GetLocalizedString('ColorConfiguration.Labels.ColorSelection'), nil, nil, 1, 5, 'right-top');
 		this:AddComponent(selectColorLabel);
 
 		selectColorButton = Button('        ', nil, nil, 5, 7, 'right-top');
@@ -128,20 +129,24 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		this:AddComponent(selectColorButton);
 
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
-		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton = Button(System:GetLocalizedString('Action.SetDefault'), nil, nil, saveChangesButton:GetText():len() + 1, 0, 'left-bottom');
 		defaultButton:AddOnClickEventHandler(defaultButtonClick);
 		this:AddComponent(defaultButton);
 	end
 
-	local function constructor()
+	local function constructor(_localizationManager)
+		localizationManager = _localizationManager;
+
+		this:SetTitle(localizationManager:GetLocalizedString('ColorConfiguration.Title'));
+
 		initializeComponents();
 
 		colorConfiguration = System:GetColorConfiguration();
@@ -155,5 +160,5 @@ ColorConfigurationWindow = Class(Window, function(this, _application)
 		colorListBox:SetSelectedIndex(1);
 	end
 
-	constructor();
+	constructor(_localizationManager);
 end)

@@ -1,0 +1,13 @@
+<localization name="Default">
+	<data key="Title">About system</data>
+	<data key="Buttons.CheckUpdates">Check updates</data>
+
+	<data key="Errors.UpdateError.Title">Update error</data>
+	<data key="Errors.UpdateError.HttpNotEnabled">Cant't update Longos. Please  enable http api in the        computercraft configuration.</data>
+	<data key="Errors.UpdateError.NoLastVersion">Cant't update Longos. Unable to retrieve the latest version.</data>
+
+	<data key="Messages.UpdateNotRequired.Title">Updating not required</data>
+	<data key="Messages.UpdateNotRequired.Text">You are using the latest version of the LongOS. Updating not required.</data>
+	<data key="Messages.NewVersionAvailable.Title">New version available</data>
+	<data key="Messages.NewVersionAvailable.Text">Version {1} is available. Download?</data>
+</localization>

@@ -15,16 +15,22 @@ Classes.System.Localization.LocalizationManager = Class(Object, function(this, _
 	------------------------------------------------------------------------------------------------------------------
 
 	function this:GetLocalizedString(_key)
-		if (data == nil) then
+		if (data == nil and default == nil) then
 			error('LocalizationManager.GetLocalizedString: No localization is loaded. Use ReadLocalization method to load.');
 		end
 		if (type(_key) ~= 'string') then
 			error('LocalizationManager.GetLocalizedString [key]: String expected, got '..type(_key)..'.');
 		end
 
-		local value = data[_key];
+		local value
+		if (data ~= nil) then
+			value = data[_key];
+		end
 		if (value == nil) then
 			value = default[_key];
+		end
+		if (value == nil) then
+			error('LocalizationManager.GetLocalizedString: Value not found for key "'..tostring(_key)..'".');
 		end
 		return value;
 	end
@@ -67,11 +73,13 @@ Classes.System.Localization.LocalizationManager = Class(Object, function(this, _
 
 		local fileName = fs.combine(localizationsDirectory, _localizationCode..'.xml');
 
-		if (not fs.exists(fileName) and _localizationCode) then
+		if (not fs.exists(fileName) and not fs.exists(defaultLocalizationFilePath)) then
 			error('LocalizationManager.ReadLocalization [localizationCode]: No localization file for localization code "'.._localizationCode..'".');
 		end
 
-		data = readLocalization(fileName);
+		if (fs.exists(fileName)) then
+			data = readLocalization(fileName);
+		end
 		default = readLocalization(defaultLocalizationFilePath);
 	end
 

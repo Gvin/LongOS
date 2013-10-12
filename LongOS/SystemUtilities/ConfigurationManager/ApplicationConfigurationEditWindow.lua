@@ -6,7 +6,7 @@ local EventHandler = Classes.System.EventHandler;
 local CheckBox = Classes.Components.CheckBox;	
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
-ApplicationConfigurationEditWindow = Class(Window, function(this, _application, _applicationData)
+ApplicationConfigurationEditWindow = Class(Window, function(this, _application, _applicationData, _localizationManager)
 	Window.init(this, _application, 'Applications configuration edit window', false);
 	this:SetWidth(44);
 	this:SetHeight(11);
@@ -28,6 +28,8 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 	local pathLabel;
 	local terminalCheckBox;
 	local terminalLabel;
+
+	local localizationManager;
 
 
 	------------------------------------------------------------------------------------------------------------------
@@ -80,34 +82,34 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 	local function saveChangesButtonClick(_sender, _eventArgs)			
 		local name = nameEdit:GetText();
 		if (#name == 0) then
-			local errorWindow = MessageWindow(this:GetApplication(), 'Empty name', 'Application name should be entered');			
+			local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title'), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text'));			
 			errorWindow:ShowModal();	
 		else
 			local path = pathEdit:GetText();
 			local resolvedPath = System:ResolvePath(path);
 			local add = true;
 			if (#path == 0) then
-				local errorWindow = MessageWindow(this:GetApplication(), 'Empty path', 'Application path should be entered');			
+				local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title'), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text'));			
 				errorWindow:ShowModal();
 				add = false;			
 			elseif (terminalCheckBox:GetChecked()) then
 				if (isInPrograms(path) == false and not (fs.exists(resolvedPath) and fs.isDir(path) == false)) then
-					local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path "'..path..'" not exist');			
+					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text'), path));			
 					errorWindow:ShowModal();
 					add = false;
 				elseif ( not (stringExtAPI.endsWith(fs.getName(path),'.lua') or  string.find(fs.getName(path),'.') ~= nil ) ) then
-					local errorWindow = MessageWindow(this:GetApplication(), 'Wrong file extension', 'File with this extension is not executable');			
+					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title'), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text'));			
 					errorWindow:ShowModal();
 					add = false;				
 				end	
 
 			elseif(not terminalCheckBox:GetChecked()) then
 				if (not (fs.exists(resolvedPath) and fs.isDir(path) == false)) then
-					local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with path "'..path..'" not exist');			
+					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text'), path));			
 					errorWindow:ShowModal();
 					add = false;
 				elseif ( not stringExtAPI.endsWith(fs.getName(path),'.exec') ) then
-					local errorWindow = MessageWindow(this:GetApplication(), 'Wrong file extension', 'File with this extension is not executable');			
+					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title'), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text'));			
 					errorWindow:ShowModal();
 					add = false;
 				end	
@@ -141,14 +143,14 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 
 	local function initializeComponents(_applicationData)	
 
-		nameLabel = Label('Name', nil, nil, 1, 1, 'left-top');
+		nameLabel = Label(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.NameLabel'), nil, nil, 1, 1, 'left-top');
 		this:AddComponent(nameLabel);
 
 		nameEdit = Edit(this:GetWidth() - 4, nil, nil, 1, 2, 'left-top');		
 		nameEdit:SetFocus(true);
 		this:AddComponent(nameEdit);
 
-		pathLabel = Label('Path', nil, nil, 1, 3, 'left-top');
+		pathLabel = Label(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.PathLabel'), nil, nil, 1, 3, 'left-top');
 		this:AddComponent(pathLabel);
 
 		pathEdit = Edit(this:GetWidth() - 4, nil, nil, 1, 4, 'left-top');
@@ -157,29 +159,31 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 		terminalCheckBox = CheckBox(nil, nil, 1, 6, 'left-top');
 		this:AddComponent(terminalCheckBox);
 
-		terminalLabel = Label('Terminal', nil, nil, 3, 6, 'left-top');
+		terminalLabel = Label(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.TerminalLabel'), nil, nil, 3, 6, 'left-top');
 		this:AddComponent(terminalLabel);
 
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);		
 	
 	end
 
-	local function constructor(_applicationData)
+	local function constructor(_applicationData, _localizationManager)
+		localizationManager = _localizationManager;
+
 		initializeComponents();		
 
 		onSave = EventHandler();
 
 		if (_applicationData == nil) then
-			this:SetTitle('App application configuration');
+			this:SetTitle(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.AddTitle'));
 		else
-			this:SetTitle('Edit application configuration');	
+			this:SetTitle(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.EditTitle'));	
 
 			nameEdit:SetText(_applicationData[1]);
 			pathEdit:SetText(_applicationData[2]);
@@ -190,5 +194,5 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
  	
 	end
 
-	constructor(_applicationData);
+	constructor(_applicationData, _localizationManager);
 end)

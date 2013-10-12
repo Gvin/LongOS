@@ -6,9 +6,8 @@ local ListBox = Classes.Components.ListBox;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
-ApplicationsConfigurationWindow = Class(Window, function(this, _application)
+ApplicationsConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Applications configuration window', false);
-	this:SetTitle('Applications configuration');
 	this:SetWidth(34);
 	this:SetHeight(17);
 	this:SetAllowMaximize(false);
@@ -33,6 +32,8 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 	local editButton;
 	local addButton;
 	local removeButton;
+
+	local localizationManager;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -107,7 +108,7 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 		local selectedIndex = listBox:GetSelectedIndex();
 		if (selectedIndex >= 1) then
 			local data = applicationsConfiguration:GetApplicationsData();
-			editAppWindow = ApplicationConfigurationEditWindow(this:GetApplication(), data[selectedIndex]);
+			editAppWindow = ApplicationConfigurationEditWindow(this:GetApplication(), data[selectedIndex], localizationManager);
 			editAppWindow:AddOnSaveEventHandler(editOnSave);
 			editAppWindow:ShowModal();
 		end
@@ -122,7 +123,7 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 	end
 
 	local function addButtonClick(_sender, _eventArgs)
-		addAppWindow = ApplicationConfigurationEditWindow(this:GetApplication());
+		addAppWindow = ApplicationConfigurationEditWindow(this:GetApplication(), nil, localizationManager);
 		addAppWindow:AddOnSaveEventHandler(addOnSave);
 		addAppWindow:ShowModal();		
 	end
@@ -146,7 +147,7 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 	end
 
 	local function defaultButtonClick(_sender, _eventArgs)
-		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		local defaultDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('DefaultDialog.Title'), localizationManager:GetLocalizedString('DefaultDialog.Text'));
 		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
 		defaultDialog:ShowModal();		
 	end
@@ -161,15 +162,15 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 		listBox = ListBox(18,12,nil,nil,1,1,'left-top');
 		this:AddComponent(listBox);
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton = Button(System:GetLocalizedString('Action.SetDefault'), nil, nil, saveChangesButton:GetText():len() + 1, 0, 'left-bottom');
 		defaultButton:AddOnClickEventHandler(defaultButtonClick);
 		this:AddComponent(defaultButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
@@ -181,25 +182,29 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application)
 		downButton:AddOnClickEventHandler(downButtonClick);
 		this:AddComponent(downButton);
 
-		addButton = Button('Add   ', nil, nil, 25, 4, 'left-top');
+		addButton = Button(System:GetLocalizedString('Action.Add'), nil, nil, 1, 4, 'right-top');
 		addButton:AddOnClickEventHandler(addButtonClick);
 		this:AddComponent(addButton);
 
-		editButton = Button('Edit  ', nil, nil, 25, 6, 'left-top');
+		editButton = Button(System:GetLocalizedString('Action.Edit'), nil, nil, 1, 6, 'right-top');
 		editButton:AddOnClickEventHandler(editButtonClick);
 		this:AddComponent(editButton);		
 
-		removeButton = Button('Remove', nil, nil, 25, 8, 'left-top');
+		removeButton = Button(System:GetLocalizedString('Action.Remove'), nil, nil, 1, 8, 'right-top');
 		removeButton:AddOnClickEventHandler(removeButtonClick);
 		this:AddComponent(removeButton);
 	end
 
-	local function constructor()
+	local function constructor(_localizationManager)
 		applicationsConfiguration = System:GetApplicationsConfiguration();
 		controlPanel = System:GetControlPanel();
+		localizationManager = _localizationManager;
+
+		this:SetTitle(localizationManager:GetLocalizedString('ApplicationsConfiguration.Title'));
+
 		initializeComponents();		
 		drawData();	
 	end
 
-	constructor();
+	constructor(_localizationManager);
 end)

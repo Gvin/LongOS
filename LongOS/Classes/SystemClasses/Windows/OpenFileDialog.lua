@@ -3,7 +3,6 @@ local EventHandler = Classes.System.EventHandler;
 
 Classes.System.Windows.OpenFileDialog = Class(Window, function(this, _application, _initialDirectory, _allowedExtensions)
 	Window.init(this, _application, 'Open file dialog', false);
-	this:SetTitle('Open file');
 	this:SetX(10);
 	this:SetY(3);
 	this:SetWidth(30);
@@ -77,11 +76,11 @@ Classes.System.Windows.OpenFileDialog = Class(Window, function(this, _applicatio
 		fileBrowser:AddOnFileLaunchEventHandler(fileBrowserFileLaunch);
 		this:AddComponent(fileBrowser);
 
-		okButton = Classes.Components.Button('  OK  ', nil, nil, 0, 0, 'left-bottom');
+		okButton = Classes.Components.Button(System:GetLocalizedString('Action.Ok'), nil, nil, 0, 0, 'left-bottom');
 		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 
-		cancelButton = Classes.Components.Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Classes.Components.Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
@@ -90,6 +89,8 @@ Classes.System.Windows.OpenFileDialog = Class(Window, function(this, _applicatio
 		if (_allowedExtensions ~= nil and type(_allowedExtensions) ~= 'table') then
 			error('OpenFileDialog.Constructor [allowedExtensions]: Table expected, got '..type(_allowedExtensions)..'.');
 		end
+
+		this:SetTitle(System:GetLocalizedString('System.Windows.OpenFile.Title'));
 
 		allowedExtensions = _allowedExtensions;
 

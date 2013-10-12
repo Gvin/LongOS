@@ -78,7 +78,7 @@ Classes.System.Windows.MessageWindow = Class(Window, function(this, _application
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		okButton = Button(' OK ', nil, nil, math.floor(this:GetWidth() / 2 - 3), 0, 'left-bottom');
+		okButton = Button(System:GetLocalizedString('Action.Ok'), nil, nil, math.floor(this:GetWidth() / 2 - 3), 0, 'left-bottom');
 		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 	end

@@ -1,35 +1,38 @@
 <localization name="Russian">
 <!-- Standard Actions -->
-	<data key="Action.Ok">Ok</data>
-	<data key="Action.Cancel">Отмена</data>
-	<data key="Action.Yes">Da</data>
-	<data key="Action.No">Net</data>
+	<data key="Action.Ok"> OK </data>
+	<data key="Action.Cancel">OTMeHa</data>
+	<data key="Action.Yes"> Da </data>
+	<data key="Action.No">Net </data>
 	<data key="Action.Delete">YDa/\iTb</data>
+	<data key="Action.Edit">i3MeHiTb</data>
+	<data key="Action.Add">DobaBiTb</data>
+	<data key="Action.Remove">YDa/\iTb</data>
+	<data key="Action.Save">CoxpaHiTb</data>
+	<data key="Action.SaveChanges">CoxpaHiTb</data>
+	<data key="Action.SetDefault">TTo yMo/\4aHiuy</data>
+
+<!-- Keywords -->
+	<data key="Keyword.File">opai/\</data>
+	<data key="Keyword.Folder">TTaTTka</data>
 
 <!-- Control Panel -->
 	<data key="System.ControlPanel.Buttons.Applications">TTporpaMMbI</data>
 	<data key="System.ControlPanel.Buttons.System">CicTeMa</data>
 	<data key="System.ControlPanel.Buttons.Power">TTiTANiE</data>
 	<data key="System.ControlPanel.Buttons.Shutdown">   BbIK/\    </data>
-	<data key="System.ControlPanel.Buttons.Reboot">TTepe3arpy3ka</data>
-	<data key="System.ControlPanel.Buttons.LogOff">   BbIXOD    </data>
-	<data key="System.ControlPanel.Applications.Configuration">   HacTpoiki   </data>
-	<data key="System.ControlPanel.Applications.TasksManager">DicpeT4ep 3aDa4</data>
-	<data key="System.ControlPanel.Applications.Terminal">   TepMiHa/\   </data>
-	<data key="System.ControlPanel.Applications.AboutSystem">   O cicTeMe   </data>
+	<data key="System.ControlPanel.Buttons.Reboot"	>TTepe3arpy3ka</data>
+	<data key="System.ControlPanel.Buttons.LogOff"	>   BbIXOD    </data>
+	<data key="System.ControlPanel.Applications.Configuration"	>   HacTpoiki   </data>
+	<data key="System.ControlPanel.Applications.TasksManager"	>DicpeT4ep 3aDa4</data>
+	<data key="System.ControlPanel.Applications.Terminal"		>   TepMiHa/\   </data>
+	<data key="System.ControlPanel.Applications.AboutSystem"	>   O cicTeMe   </data>
 	<data key="System.ControlPanel.Calendar.Day">DeHb</data>
 	<data key="System.ControlPanel.Calendar.Year">roD</data>
 
-<!-- System Applications -->
-
-	<!-- Configuration Manager -->
-	<data key="System.Applications.ConfigurationManager.Title">HacTpoiki cicTeMbI</data>
-	<data key="System.Applications.ConfigurationManager.Buttons.ColorConfiguration">       HacTpoiki U,BeTa       </data>
-	<data key="System.Applications.ConfigurationManager.Buttons.MouseConfiguration">        HacTpoiki MbIwi       </data>
-	<data key="System.Applications.ConfigurationManager.Buttons.InterfaceConfiguration">    HacTpoiki BHewHero BiDa   </data>
-	<data key="System.Applications.ConfigurationManager.Buttons.ApplicationsConfiguration">     HacTpoiki TTporpaMM      </data>
-
-	<!-- About System -->
-	<data key="System.Applications.AboutSystem.Title">O cicTeMe</data>
-	<data key="System.Applications.AboutSystem.Buttons.CheckUpdates">TTpoBepiTb OBHoBbI</data>
+<!-- System Windows -->
+	<data key="System.Windows.ColorPicker.Title">BbIbepiTe UBeT</data>
+	<data key="System.Windows.OpenFile.Title">OTkpbITb opai/\</data>
+	<data key="System.Windows.SaveFile.Title">CoxpaHiTb opai/\</data>
+	<data key="System.Windows.SaveFile.Labels.FileName">imia opau/\a:</data>
 </localization>

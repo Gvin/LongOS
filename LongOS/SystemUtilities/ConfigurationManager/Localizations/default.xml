@@ -1,0 +1,7 @@
+<localization name="Default">
+	<data key="Title">Configuration manager</data>
+	<data key="Buttons.ColorConfiguration"			>     Color configuration      </data>
+	<data key="Buttons.MouseConfiguration"			>     Mouse configuration      </data>
+	<data key="Buttons.InterfaceConfiguration"		>   Interface configuration    </data>
+	<data key="Buttons.ApplicationsConfiguration"	>  Applications configuration  </data>
+</localization>
