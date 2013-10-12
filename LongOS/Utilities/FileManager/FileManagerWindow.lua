@@ -82,8 +82,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function runInTerminalButtonClick(_sender, _eventArgs)
-		local fullPath = fileBrowser:GetCurrentDirectory()..'/'..fileBrowser:GetSelectedFile();
-		fullPath = string.sub(fullPath, 2, fullPath:len());
+		local fullPath = fs.combine(fileBrowser:GetCurrentDirectory(), fileBrowser:GetSelectedFile());
 		if (fileBrowser:GetSelectedFile() ~= '' and not fs.isDir(fullPath)) then
 			System:RunFile('%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
 		else

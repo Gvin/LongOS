@@ -8,6 +8,7 @@ For v1.2
 --------
 - [X] F111: Add events to the Thread class.
 - [X] F112: Add possibility to pause threads execution.
+- [X] #32 GvinFileManager: "Run in terminal" button shows terminal with "No such program" text in subfolder
 - [ ] F108: Add more events to the Window.
 - [ ] F109: Add custom events support.
 - [ ] F115: Create localization option in the OS.
