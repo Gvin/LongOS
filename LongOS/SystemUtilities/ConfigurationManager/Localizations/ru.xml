@@ -1,37 +1,37 @@
 <localization name="Russian">
-	<data key="Title">HacTpoiki cicTeMbI</data>
-	<data key="Buttons.ColorConfiguration"			>       HacTpoiki U,BeTa       </data>
-	<data key="Buttons.MouseConfiguration"			>        HacTpoiki MbIwi       </data>
-	<data key="Buttons.InterfaceConfiguration"		>    HacTpoiki BHewHero BiDa   </data>
-	<data key="Buttons.ApplicationsConfiguration"	>      HacTpoiki TTporpaMM     </data>
+	<data key="Title">HacTpouku cucTeMbI</data>
+	<data key="Buttons.ColorConfiguration"			>       HacTpouku U,BeTa       </data>
+	<data key="Buttons.MouseConfiguration"			>        HacTpouku MbIwu       </data>
+	<data key="Buttons.InterfaceConfiguration"		>    HacTpouku BHewHero BuDa   </data>
+	<data key="Buttons.ApplicationsConfiguration"	>      HacTpouku  nporpaMM     </data>
 
 <!-- Default Dialog -->
-	<data key="DefaultDialog.Title">YcTaHoBiTb TTo yMo/\4aHiuy?</data>
-	<data key="DefaultDialog.Text">BbI DeucTBiTe/\bHo xoTiTe ycTaHoBiTb HacTpouKi TTo yMo/\4aHiuy?</data>
+	<data key="DefaultDialog.Title">YcTaHoBuTb no yMo/\4aHuuy?</data>
+	<data key="DefaultDialog.Text">BbI DeucTBuTe/\bHo xoTuTe ycTaHoBuTb HacTpouKu no yMo/\4aHuuy?</data>
 
 <!-- Applications Configuration -->
-	<data key="ApplicationsConfiguration.Title">HacTpoiki TTpi/\o}I{eHiu</data>
+	<data key="ApplicationsConfiguration.Title">HacTpouku npu/\o}I{eHuu</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.EditTitle">PeDakTipoBaTb HacTpoiki TTpi/\o}I{eHiua</data>
-	<data key="ApplicationsConfiguration.EditDialog.AddTitle">PeDakTipoBaTb HacTpoiki TTpi/\o}I{eHiua</data>
-	<data key="ApplicationsConfiguration.EditDialog.NameLabel">iMia</data>
-	<data key="ApplicationsConfiguration.EditDialog.PathLabel">TTyTb</data>
-	<data key="ApplicationsConfiguration.EditDialog.TerminalLabel">TepMiHa/\</data>
+	<data key="ApplicationsConfiguration.EditDialog.EditTitle">PeDakTupoBaTb HacTpouku TTpu/\o}I{eHuua</data>
+	<data key="ApplicationsConfiguration.EditDialog.AddTitle">PeDakTupoBaTb HacTpouku TTpu/\o}I{eHuua</data>
+	<data key="ApplicationsConfiguration.EditDialog.NameLabel">uMua</data>
+	<data key="ApplicationsConfiguration.EditDialog.PathLabel">nyTb</data>
+	<data key="ApplicationsConfiguration.EditDialog.TerminalLabel">TepMuHa/\</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">TTycToe iMia</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">Hy}I{Ho BBecTi iMia TTpi/\o}I{eHiua</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">nycToe uMua</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">Hy}I{Ho BBecTu uMua npu/\o}I{eHuua</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">TTycToi TTyTb</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Hy}I{Ho BBecTi TTyTb TTpi/\o}I{eHiua</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">nycTou nyTb</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Hy}I{Ho BBecTu nyTb npu/\o}I{eHuua</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">opai/\ He cuw,ecTByeT</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">opai/\a c TTyTeM "{1}" He cuw,ecTByeT</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">(I)au/\ He cuw,ecTByeT</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">(I)au/\a c nyTeM "{1}" He cuw,ecTByeT</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">HeBepHoe pacwipeHie</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">opai/\ c TakiM pacwipeHieM He uaB/\iaeTca icTTo/\HiaeMbIM</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">HeBepHoe pacwupeHue</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">(I)au/\ c TakuM pacwupeHueM He uaB/\uaeTca ucno/\HuaeMbIM</data>
 
 <!-- Color Configuration -->
-	<data key="ColorConfiguration.Title">HacTpoiki U,BeTa</data>
+	<data key="ColorConfiguration.Title">HacTpouku U,BeTa</data>
 	<data key="ColorConfiguration.Labels.Color">U,BeT:</data>
 	<data key="ColorConfiguration.Labels.ColorSelection">BbIbop U,BeTa:</data>
 
