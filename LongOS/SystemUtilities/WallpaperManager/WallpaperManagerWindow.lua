@@ -2,13 +2,13 @@ local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 local Label = Classes.Components.Label;
 local Edit = Classes.Components.Edit;
---local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
 local OpenFileDialog = Classes.System.Windows.OpenFileDialog;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
+
 WallpaperManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Wallpaper manager', false);
-	this:SetTitle('Wallpaper manager');
 	this:SetWidth(40);
 	this:SetHeight(11);
 	this:SetAllowResize(false);
@@ -90,23 +90,22 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
-		browseButton = Button('Browse', nil, nil, 20, 0, 'left-top');
+		currentWallpaperLabel = Label(localizationManager:GetLocalizedString('Labels.CurrentWallpaper'), nil, nil, 0, 0, 'left-top');
+		this:AddComponent(currentWallpaperLabel);
+
+		browseButton = Button(System:GetLocalizedString('Action.Browse'), nil, nil, currentWallpaperLabel:GetText():len() + 2, 0, 'left-top');
 		browseButton:AddOnClickEventHandler(browseButtonClick);
 		this:AddComponent(browseButton);
 
-		currentWallpaperLabel = Label('Current wallpaper:', nil, nil, 0, 0, 'left-top');
-		this:AddComponent(currentWallpaperLabel);
-
-
-		local shiftLabel = Label('Shift:', nil, nil, 1, 4, 'left-top');
+		local shiftLabel = Label(localizationManager:GetLocalizedString('Labels.Shift'), nil, nil, 1, 4, 'left-top');
 		this:AddComponent(shiftLabel);
 
 		xLabel = Label('X:', nil, nil, 1, 6, 'left-top');
@@ -131,6 +130,11 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 	local function constructor()
 		interfaceConfiguration = System:GetInterfaceConfiguration();
 		this:AddOnCloseEventHandler(windowOnClose);
+
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		this:SetTitle('Wallpaper manager');
 
 		initializeComponents();
 	end

@@ -4,9 +4,8 @@ local Button = Classes.Components.Button;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
 
-InterfaceConfigurationWindow = Class(Window, function(this, _application)
+InterfaceConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Interface configuration window', false);
-	this:SetTitle('Interface configuration');
 	this:SetWidth(36);
 	this:SetHeight(13);
 	this:SetAllowMaximize(false);
@@ -28,33 +27,53 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 	local windowButtonsPositionButton;	
 	local windowButtonsPositionLabel;
 
+	local localizationManager;
 
+	local controlPanelPosition;
+	local windowButtonsPosition;
 	
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	local function updateConfiguration()		
-		interfaceConfiguration:SetOption('ControlPanelPosition', controlPanelPositionButton:GetText());
-		interfaceConfiguration:SetOption('WindowButtonsPosition', windowButtonsPositionButton:GetText());
+		interfaceConfiguration:SetOption('ControlPanelPosition', controlPanelPosition);
+		interfaceConfiguration:SetOption('WindowButtonsPosition', windowButtonsPosition);
 	end		
 
+	local function getLocalizationKey(_position)
+		if (_position == 'top') then
+			return 'InterfaceConfiguration.Labels.Top';
+		elseif (_position == 'bottom') then
+			return 'InterfaceConfiguration.Labels.Bottom';
+		elseif (_position == 'left') then
+			return 'InterfaceConfiguration.Labels.Left';
+		elseif (_position == 'right') then
+			return 'InterfaceConfiguration.Labels.Right';
+		end
+
+		return nil;
+	end
 
 	local function controlPanelPositionButtonClick(_sender, _eventArgs)		
-		if (controlPanelPositionButton:GetText() == 'top') then		
-			controlPanelPositionButton:SetText('bottom');
+		if (controlPanelPosition == 'top') then	
+			controlPanelPosition = 'bottom';	
 		else
-			controlPanelPositionButton:SetText('top');
+			controlPanelPosition = 'top'
 		end
+		controlPanelPositionButton:SetText(localizationManager:GetLocalizedString(getLocalizationKey(controlPanelPosition)));
+
 		updateConfiguration();
 	end
 
 	local function windowButtonsPositionButtonClick(_sender, _eventArgs)		
-		if (windowButtonsPositionButton:GetText() == 'right') then		
-			windowButtonsPositionButton:SetText('left');
+		if (windowButtonsPosition == 'right') then
+			windowButtonsPosition = 'left';	
 		else
-			windowButtonsPositionButton:SetText('right');
+			windowButtonsPosition = 'right';
 		end
+		windowButtonsPositionButton:SetText(localizationManager:GetLocalizedString(getLocalizationKey(windowButtonsPosition)));
+
 		updateConfiguration();
 	end
 
@@ -71,12 +90,14 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 
 	local function defaultDialogYes(sender, eventArgs)
 		interfaceConfiguration:SetDefault();
-		controlPanelPositionButton:SetText(interfaceConfiguration:GetOption('ControlPanelPosition'));
-		windowButtonsPositionButton:SetText(interfaceConfiguration:GetOption('WindowButtonsPosition'));				
+		controlPanelPosition = interfaceConfiguration:GetOption('ControlPanelPosition');
+		windowButtonsPosition = interfaceConfiguration:GetOption('WindowButtonsPosition');
+		controlPanelPositionButton:SetText(localizationManager:GetLocalizedString(getLocalizationKey(controlPanelPosition)));
+		windowButtonsPositionButton:SetText(localizationManager:GetLocalizedString(getLocalizationKey(windowButtonsPosition)));				
 	end
 
 	local function defaultButtonClick(_sender, _eventArgs)
-		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		local defaultDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('DefaultDialog.Title'), localizationManager:GetLocalizedString('DefaultDialog.Text'));
 		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
 		defaultDialog:ShowModal();		
 	end
@@ -87,37 +108,45 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application)
 
 	local function initializeComponents()
 
-		controlPanelPositionButton = Button(interfaceConfiguration:GetOption('ControlPanelPosition'), nil, nil, 0, 1, 'right-top');
+		controlPanelPositionButton = Button(localizationManager:GetLocalizedString(getLocalizationKey(controlPanelPosition)), nil, nil, 0, 1, 'right-top');
 		controlPanelPositionButton:AddOnClickEventHandler(controlPanelPositionButtonClick);			
 		this:AddComponent(controlPanelPositionButton);
 
-		controlPanelPositionLabel = Label('Control Panel Position:', nil, nil, 0, 1, 'left-top');
+		controlPanelPositionLabel = Label(localizationManager:GetLocalizedString('InterfaceConfiguration.Labels.ControlPanelPosition'), nil, nil, 0, 1, 'left-top');
 		this:AddComponent(controlPanelPositionLabel);
 
-		windowButtonsPositionButton = Button(interfaceConfiguration:GetOption('WindowButtonsPosition'), nil, nil, 0, 3, 'right-top');
+		windowButtonsPositionButton = Button(localizationManager:GetLocalizedString(getLocalizationKey(windowButtonsPosition)), nil, nil, 0, 3, 'right-top');
 		windowButtonsPositionButton:AddOnClickEventHandler(windowButtonsPositionButtonClick);			
 		this:AddComponent(windowButtonsPositionButton);	
 
-		windowButtonsPositionLabel = Label('Window Buttons Position:', nil, nil, 0, 3, 'left-top');
+		windowButtonsPositionLabel = Label(localizationManager:GetLocalizedString('InterfaceConfiguration.Labels.WindowButtonsPosition'), nil, nil, 0, 3, 'left-top');
 		this:AddComponent(windowButtonsPositionLabel);
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton = Button(System:GetLocalizedString('Action.SetDefault'), nil, nil, saveChangesButton:GetText():len() + 1, 0, 'left-bottom');
 		defaultButton:AddOnClickEventHandler(defaultButtonClick);
 		this:AddComponent(defaultButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
 
-	local function constructor()
+	local function constructor(_localizationManager)
+		localizationManager = _localizationManager;
+
+		this:SetTitle(localizationManager:GetLocalizedString('InterfaceConfiguration.Title'));
+
 		interfaceConfiguration = System:GetInterfaceConfiguration();
+
+		controlPanelPosition = interfaceConfiguration:GetOption('ControlPanelPosition');
+		windowButtonsPosition = interfaceConfiguration:GetOption('WindowButtonsPosition');
+
 		initializeComponents();
 	end
 
-	constructor();
+	constructor(_localizationManager);
 end)

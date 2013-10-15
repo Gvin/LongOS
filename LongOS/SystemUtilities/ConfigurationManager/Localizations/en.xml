@@ -4,4 +4,47 @@
 	<data key="Buttons.MouseConfiguration"			>     Mouse configuration      </data>
 	<data key="Buttons.InterfaceConfiguration"		>   Interface configuration    </data>
 	<data key="Buttons.ApplicationsConfiguration"	>  Applications configuration  </data>
+
+	<!-- Default Dialog -->
+	<data key="DefaultDialog.Title">Set default?</data>
+	<data key="DefaultDialog.Text">Do you really want to set default configuration?</data>
+
+<!-- Applications Configuration -->
+	<data key="ApplicationsConfiguration.Title">Applications configuration</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.EditTitle">Edit application configuration</data>
+	<data key="ApplicationsConfiguration.EditDialog.AddTitle">Add application configuration</data>
+	<data key="ApplicationsConfiguration.EditDialog.NameLabel">Name</data>
+	<data key="ApplicationsConfiguration.EditDialog.PathLabel">Path</data>
+	<data key="ApplicationsConfiguration.EditDialog.TerminalLabel">Terminal</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">Empty name</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">Application's name must be entered.</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">Empty path</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Application's path must be entered.</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">File not exists</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">File with path "{1}" not exists.</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Wrong extension</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">File with this extension is not executable.</data>
+
+<!-- Color Configuration -->
+	<data key="ColorConfiguration.Title">Color configuration</data>
+	<data key="ColorConfiguration.Labels.Color">Color:</data>
+	<data key="ColorConfiguration.Labels.ColorSelection">Color selection:</data>
+
+<!-- Interface Configuration -->
+	<data key="InterfaceConfiguration.Title">Interface configuration</data>
+	<data key="InterfaceConfiguration.Labels.ControlPanelPosition">Control panel position:</data>
+	<data key="InterfaceConfiguration.Labels.WindowButtonsPosition">Window buttons position:</data>
+	<data key="InterfaceConfiguration.Labels.Top"	> Top  </data>
+	<data key="InterfaceConfiguration.Labels.Bottom">Bottom</data>
+	<data key="InterfaceConfiguration.Labels.Left"	> Left </data>
+	<data key="InterfaceConfiguration.Labels.Right"	> Right</data>
+
+<!-- Mouse Configuration -->
+	<data key="MouseConfiguration.Title">Mouse configuration</data>
+	<data key="MouseConfiguration.Labels.DoubleClickSpeed">Double click speed:</data>
 </localization>

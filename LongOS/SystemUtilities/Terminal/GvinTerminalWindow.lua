@@ -4,16 +4,12 @@ local ThreadsManager = Classes.Application.ThreadsManager;
 
 local Button = Classes.Components.Button;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
 
 GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	Window.init(this, _application, 'Gvin terminal', false);
 	this:SetWidth(40);
 	this:SetHeight(13);
-	if (_fileName ~= nil and type(_fileName) == 'string') then
-		this:SetTitle('LongOS terminal - '.._fileName);
-	else
-		this:SetTitle('LongOS terminal');
-	end
 	this:SetMinimalWidth(26);
 	this:SetMinimalHeight(6)
 
@@ -155,9 +151,9 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	local function pauseResumeButtonClick(_sender, _eventArgs)
 		paused = not paused;
 		if (paused) then
-			pauseResumeButton:SetText('Resume');
+			pauseResumeButton:SetText(localizationManager:GetLocalizedString('Buttons.Resume'));
 		else
-			pauseResumeButton:SetText('Pause ');
+			pauseResumeButton:SetText(localizationManager:GetLocalizedString('Buttons.Pause'));
 		end
 	end
 
@@ -201,20 +197,20 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		terminateButton = Button('Terminate', nil, nil, 0, 0, 'left-top');
+		terminateButton = Button(localizationManager:GetLocalizedString('Buttons.Terminate'), nil, nil, 0, 0, 'left-top');
 		terminateButton:AddOnClickEventHandler(terminateButtonClick);
 		this:AddComponent(terminateButton);
 
-		pauseResumeButton = Button('Pause ', nil, nil, 10, 0, 'left-top');
+		pauseResumeButton = Button(localizationManager:GetLocalizedString('Buttons.Pause'), nil, nil, terminateButton:GetText():len() + 1, 0, 'left-top');
 		pauseResumeButton:AddOnClickEventHandler(pauseResumeButtonClick);
 		this:AddComponent(pauseResumeButton);
 
-		restartButton = Button('Restart', nil, nil, 17, 0, 'left-top');
+		restartButton = Button(localizationManager:GetLocalizedString('Buttons.Restart'), nil, nil, terminateButton:GetText():len() + pauseResumeButton:GetText():len() + 2, 0, 'left-top');
 		restartButton:AddOnClickEventHandler(restartButtonClick);
 		this:AddComponent(restartButton);
 	end
 
-	local function constructor()
+	local function constructor(_fileName)
 		paused = false;
 		executing = true;
 		redirector = RedirectorGenerator():GenerateRedirector(this:GetWidth() - 2, this:GetHeight() - 3);
@@ -225,7 +221,16 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		local thread = Thread(this:GetApplication(), start);
 		threadsManager:AddThread(thread);
 
-		initializeComponents();
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		if (_fileName ~= nil and type(_fileName) == 'string') then
+			this:SetTitle(localizationManager:GetLocalizedString('Title')..' - '.._fileName);
+		else
+			this:SetTitle(localizationManager:GetLocalizedString('Title'));
+		end
+
+		initializeComponents(_fileName);
 	end
 
 	constructor();

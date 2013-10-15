@@ -1,0 +1,7 @@
+<localization name="Russian">
+	<data key="Title">LongOS TepMuHa/\</data>
+	<data key="Buttons.Pause"	>   nay3a   </data>
+	<data key="Buttons.Resume"	>Bo3obHoBuTb</data>
+	<data key="Buttons.Terminate">npepBaTb</data>
+	<data key="Buttons.Restart">PecTapToBaTb</data>
+</localization>

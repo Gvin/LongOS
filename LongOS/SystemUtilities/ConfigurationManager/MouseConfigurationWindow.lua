@@ -6,9 +6,8 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
 
-MouseConfigurationWindow = Class(Window, function(this, _application)
+MouseConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Mouse configuration window', false);
-	this:SetTitle('Mouse configuration');
 	this:SetWidth(36);
 	this:SetHeight(7);
 	this:SetAllowMaximize(false);
@@ -24,14 +23,13 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 	local cancelButton;
 	local defaultButton;
 
-	local doubleClickEdit;	
+	local doubleClickEdit;
+
+	local localizationManager;	
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------		
-
-	
-	
 
 	local function saveChangesButtonClick(_sender, _eventArgs)
 		mouseConfiguration:SetOption('DoubleClickSpeed', doubleClickEdit:GetText());
@@ -52,7 +50,7 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 	end
 
 	local function defaultButtonClick(_sender, _eventArgs)
-		local defaultDialog = QuestionDialog(this:GetApplication(), 'Set default?', 'Do you really want to set default configuratin?');
+		local defaultDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('DefaultDialog.Title'), localizationManager:GetLocalizedString('DefaultDialog.Text'));
 		defaultDialog:AddOnYesEventHandler(defaultDialogYes);
 		defaultDialog:ShowModal();		
 	end
@@ -67,32 +65,36 @@ MouseConfigurationWindow = Class(Window, function(this, _application)
 
 	local function initializeComponents()
 		
-		doubleClickLabel = Label('Double click speed', nil, nil, 1, 1, 'left-top');
+		doubleClickLabel = Label(localizationManager:GetLocalizedString('MouseConfiguration.Labels.DoubleClickSpeed'), nil, nil, 1, 1, 'left-top');
 		this:AddComponent(doubleClickLabel);
 	
-		doubleClickEdit = Edit(10, nil, nil, 22, 1, 'left-top');	
+		doubleClickEdit = Edit(3, nil, nil, 0, 1, 'right-top');	
 		doubleClickEdit:SetFilter(editTextFilter);
 		doubleClickEdit:SetText(mouseConfiguration:GetOption('DoubleClickSpeed'));					
 		doubleClickEdit:SetFocus(true);
 		this:AddComponent(doubleClickEdit);
 
-		saveChangesButton = Button('Save changes', nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
 		saveChangesButton:AddOnClickEventHandler(saveChangesButtonClick);
 		this:AddComponent(saveChangesButton);
 
-		defaultButton = Button('Set default', nil, nil, 14, 0, 'left-bottom');
+		defaultButton = Button(System:GetLocalizedString('Action.SetDefault'), nil, nil, saveChangesButton:GetText():len() + 1, 0, 'left-bottom');
 		defaultButton:AddOnClickEventHandler(defaultButtonClick);
 		this:AddComponent(defaultButton);
 
-		cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 	end
 
-	local function constructor()
+	local function constructor(_localizationManager)
 		mouseConfiguration = System:GetMouseConfiguration();
+		localizationManager = _localizationManager;
+
+		this:SetTitle(localizationManager:GetLocalizedString('MouseConfiguration.Title'));
+
 		initializeComponents();
 	end
 
-	constructor();
+	constructor(_localizationManager);
 end)

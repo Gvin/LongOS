@@ -1,0 +1,6 @@
+<localization name="English">
+	<data key="Title">Wallpaper manager</data>
+
+	<data key="Labels.CurrentWallpaper">Current wallpaper:</data>
+	<data key="Labels.Shift">Shift:</data>
+</localization>

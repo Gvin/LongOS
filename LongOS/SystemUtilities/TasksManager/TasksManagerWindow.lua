@@ -2,43 +2,25 @@ local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 local Label = Classes.Components.Label;
 local VerticalScrollBar = Classes.Components.VerticalScrollBar;
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
 
 TasksManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Gvin tasks manager', false);
-	this:SetTitle('Gvin tasks manager');
 	this:SetWidth(40);
 	this:SetHeight(15);
 	this:SetMinimalWidth(30);
 	this:SetMinimalHeight(7);
 
-	local scroll = 0;
-	local selectedApplicationId = '';
+	local selectedApplicationId;
 
-	local tasksCountLabel = Label('Applications count: '..System:GetApplicationsCount(), nil, nil, 0, 0, 'left-top');
-	this:AddComponent(tasksCountLabel);
+	local tasksCountLabel;
+	local vScrollBar;
+	local killProcessButton;
+	local setActiveButton;
 
-	local vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, 0, 1, 'right-top');
-	this:AddComponent(vScrollBar);
+	local localizationManager;
 
-	local function killProcessButtonClick(sender, eventArgs)
-		System:RemoveApplication(selectedApplicationId);
-	end
-
-	local killProcessButton = Button('Close application', nil, nil, 0, 0, 'left-bottom');
-	killProcessButton:AddOnClickEventHandler(killProcessButtonClick);
-	this:AddComponent(killProcessButton);
-
-	local function setActiveButtonClick(sender, eventArgs)
-		System:SetCurrentApplication(selectedApplicationId);
-	end
-
-	local setActiveButton = Button('Set active', nil, nil, 18, 0, 'left-bottom');
-	setActiveButton:AddOnClickEventHandler(setActiveButtonClick);
-	this:AddComponent(setActiveButton);
-
-	local drawProcesses = function(videoBuffer)
-		tasksCountLabel.Text = 'Applications count: '..System:GetApplicationsCount();
-
+	local function drawProcesses(videoBuffer)
 		local applications = System:GetApplicationsList();
 		videoBuffer:SetTextColor(colors.black);
 		videoBuffer:SetBackgroundColor(colors.white);
@@ -58,7 +40,7 @@ TasksManagerWindow = Class(Window, function(this, _application)
 		end
 	end
 
-	local drawProcessesGrid = function(videoBuffer)
+	local function drawProcessesGrid(videoBuffer)
 		videoBuffer:SetBackgroundColor(colors.white);
 		for i = 2, this:GetHeight() - 3 do
 			videoBuffer:SetCursorPos(1, i);
@@ -72,10 +54,8 @@ TasksManagerWindow = Class(Window, function(this, _application)
 		vScrollBar:SetHeight(this:GetHeight() - 4);
 	end
 
-	this:AddOnResizeEventHandler(onWindowResize);
-
 	this.Draw = function(_, videoBuffer)
-		tasksCountLabel:SetText('Applications count: '..System:GetApplicationsCount());
+		tasksCountLabel:SetText(localizationManager:GetLocalizedString('Labels.ApplicationsCount')..System:GetApplicationsCount());
 		drawProcessesGrid(videoBuffer);
 		drawProcesses(videoBuffer);
 	end
@@ -107,4 +87,42 @@ TasksManagerWindow = Class(Window, function(this, _application)
 			vScrollBar:ScrollDown();
 		end
 	end
+
+	local function setActiveButtonClick(sender, eventArgs)
+		System:SetCurrentApplication(selectedApplicationId);
+	end
+
+	local function killProcessButtonClick(sender, eventArgs)
+		System:RemoveApplication(selectedApplicationId);
+	end
+
+	local function initializeComponents()
+		killProcessButton = Button(localizationManager:GetLocalizedString('Buttons.CloseApplication'), nil, nil, 0, 0, 'left-bottom');
+		killProcessButton:AddOnClickEventHandler(killProcessButtonClick);
+		this:AddComponent(killProcessButton);
+
+		setActiveButton = Button(localizationManager:GetLocalizedString('Buttons.SetActive'), nil, nil, killProcessButton:GetText():len() + 1, 0, 'left-bottom');
+		setActiveButton:AddOnClickEventHandler(setActiveButtonClick);
+		this:AddComponent(setActiveButton);
+
+		vScrollBar = VerticalScrollBar(0, 1, 11, nil, nil, 0, 1, 'right-top');
+		this:AddComponent(vScrollBar);
+
+		tasksCountLabel = Label(localizationManager:GetLocalizedString('Labels.ApplicationsCount')..System:GetApplicationsCount(), nil, nil, 0, 0, 'left-top');
+		this:AddComponent(tasksCountLabel);
+	end
+
+	local function constructor()
+		selectedApplicationId = '';
+		this:AddOnResizeEventHandler(onWindowResize);
+
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		this:SetTitle(localizationManager:GetLocalizedString('Title'));
+
+		initializeComponents();
+	end
+
+	constructor();
 end)

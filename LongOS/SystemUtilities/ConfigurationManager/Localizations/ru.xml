@@ -36,5 +36,15 @@
 	<data key="ColorConfiguration.Labels.ColorSelection">BbIbop U,BeTa:</data>
 
 <!-- Interface Configuration -->
+	<data key="InterfaceConfiguration.Title">HacTpouku uHTep(I)euca</data>
+	<data key="InterfaceConfiguration.Labels.ControlPanelPosition">no/\o}I{eHue naHe/\u:</data>
+	<data key="InterfaceConfiguration.Labels.WindowButtonsPosition">no/\o}I{eHue kHonok okHa:</data>
+	<data key="InterfaceConfiguration.Labels.Top"	>CBepxy</data>
+	<data key="InterfaceConfiguration.Labels.Bottom">CHu3y </data>
+	<data key="InterfaceConfiguration.Labels.Left"	>C/\eBa</data>
+	<data key="InterfaceConfiguration.Labels.Right"	>CnpaBa</data>
 
+<!-- Mouse Configuration -->
+	<data key="MouseConfiguration.Title">HacTpouku MbIwu</data>
+	<data key="MouseConfiguration.Labels.DoubleClickSpeed">CkopocTb DBouHoro K/\uka:</data>
 </localization>
