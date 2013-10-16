@@ -18,12 +18,12 @@
 	<data key="Keyword.Folder">nanka</data>
 
 <!-- Control Panel -->
-	<data key="System.ControlPanel.Buttons.Applications">nporpaMMbI</data>
+	<data key="System.ControlPanel.Buttons.Applications">nporpaMMbl</data>
 	<data key="System.ControlPanel.Buttons.System">CucTeMa</data>
 	<data key="System.ControlPanel.Buttons.Power">nuTAHuE</data>
-	<data key="System.ControlPanel.Buttons.Shutdown">   BbIK/\   </data>
+	<data key="System.ControlPanel.Buttons.Shutdown">   BblK/\   </data>
 	<data key="System.ControlPanel.Buttons.Reboot"	>nepe3arpy3ka</data>
-	<data key="System.ControlPanel.Buttons.LogOff"	>   BbIXOD   </data>
+	<data key="System.ControlPanel.Buttons.LogOff"	>   BblXOD   </data>
 	<data key="System.ControlPanel.Applications.Configuration"	>   HacTpouku   </data>
 	<data key="System.ControlPanel.Applications.TasksManager"	>DucpeT4ep 3aDa4</data>
 	<data key="System.ControlPanel.Applications.Terminal"		>   TepMuHa/\   </data>
@@ -32,8 +32,8 @@
 	<data key="System.ControlPanel.Calendar.Year">roD</data>
 
 <!-- System Windows -->
-	<data key="System.Windows.ColorPicker.Title">BbIbepuTe UBeT</data>
-	<data key="System.Windows.OpenFile.Title">OTkpbITb (I)au/\</data>
+	<data key="System.Windows.ColorPicker.Title">BblbepuTe UBeT</data>
+	<data key="System.Windows.OpenFile.Title">OTkpblTb (I)au/\</data>
 	<data key="System.Windows.SaveFile.Title">CoxpaHuTb (I)au/\</data>
 	<data key="System.Windows.SaveFile.Labels.FileName">umua (I)au/\a:</data>
 </localization>

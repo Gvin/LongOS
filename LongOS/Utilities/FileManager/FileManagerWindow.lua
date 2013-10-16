@@ -8,10 +8,11 @@ local MessageWindow = Classes.System.Windows.MessageWindow;
 local EnterTextDialog = Classes.System.Windows.EnterTextDialog;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
+
 FileManagerWindow = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Gvin file manager', false);
-	this:SetTitle('Gvin file manager');
 	this:SetWidth(40);
 	this:SetHeight(12);
 	this:SetMinimalWidth(36);
@@ -35,10 +36,21 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local cuttedFile;
 
 	local fileAssotiationConfiguration;
+	local localizationManager;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
+
+	local function showExistsMessage(_path)
+		local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.Exists.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Errors.Exists.Text'), _path));
+		errorWindow:ShowModal();
+	end
+
+	local function showReadOnlyMessage()
+		local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.FileReadOnly.Title'), localizationManager:GetLocalizedString('Errors.FileReadOnly.Text'));
+		errorWindow:ShowModal();
+	end
 
 	local function fileBrowserOnFileLaunch(_sender, _eventArgs)
 		local filePath = _eventArgs[1];
@@ -86,7 +98,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		if (fileBrowser:GetSelectedFile() ~= '' and not fs.isDir(fullPath)) then
 			System:RunFile('%SYSDIR%/SystemUtilities/Terminal/GvinTerminal.exec '..fullPath);
 		else
-			local errorMessage = MessageWindow(this:GetApplication(), "Can't launch", 'Unable to lauch selected file.');
+			local errorMessage = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UnableToLaunch.Title'), localizationManager:GetLocalizedString('Errors.UnableToLaunch.Text'));
 			errorMessage:ShowModal();
 		end
 	end
@@ -95,8 +107,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		if (fileBrowser:GetSelectedFile() ~= '' and fileBrowser:GetSelectedFile() ~= nil) then
 			local filePath = fs.combine(fileBrowser:GetCurrentDirectory(), fileBrowser:GetSelectedFile());
 			if (fs.isReadOnly(filePath)) then
-				local errorWindow = MessageWindow(this:GetApplication(), 'File is read-only', 'Selected file is read-only, it cannot be renamed or deleted.');
-				errorWindow:ShowModal();
+				showReadOnlyMessage();
 			else
 				fs.delete(filePath);
 			end
@@ -105,7 +116,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function deleteButtonClick(_sender, _eventArgs)
 		if (fileBrowser:GetSelectedFile() ~= '' and fileBrowser:GetSelectedFile() ~= nil) then
-			local deleteDialog = QuestionDialog(this:GetApplication(), 'Delete?', 'Do you really want to delete     "'..fileBrowser:GetSelectedFile()..'"?');
+			local deleteDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.Delete.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Dialogs.Delete.Text'), fileBrowser:GetSelectedFile()));
 			deleteDialog:AddOnYesEventHandler(deleteDialogYes);
 			deleteDialog:ShowModal();
 		end
@@ -114,8 +125,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function createFile(_fileName)
 		local newFileName = fs.combine(fileBrowser:GetCurrentDirectory(), _fileName);
 		if (fs.exists(newFileName)) then
-			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
-			errorWindow:ShowModal();
+			showExistsMessage(newFileName);
 		else
 			local descryptor = fs.open(newFileName, 'w');
 			descryptor.close();
@@ -128,7 +138,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function createFileButtonClick(_sender, _eventArgs)
-		local newFileDialog = EnterTextDialog(this:GetApplication(), 'Create file', 'Enter new file name:');
+		local newFileDialog = EnterTextDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.CreateFile.Title'), localizationManager:GetLocalizedString('Dialogs.CreateFile.Text'));
 		newFileDialog:AddOnOkEventHandler(newFileDialogOk);
 		newFileDialog:ShowModal();
 	end
@@ -136,12 +146,11 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function createDirectory(_directoryName)
 		local newDirectoryName = fs.combine(fileBrowser:GetCurrentDirectory(), _directoryName);
 		if (fs.exists(newDirectoryName)) then
-			local errorWindow = MessageWindow(this:GetApplication(), 'Directory exists', '   Directory with such name          allready exists.');
-			errorWindow:ShowModal();
+			showExistsMessage(newDirectoryName);
 		else
 			local ok = pcall(fs.makeDir, newDirectoryName);
 			if (not ok) then
-				local errorWindow = MessageWindow(this:GetApplication(), 'Unable to create', '  Unable to create directory  "'..newDirectoryName..'".');
+				local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UnableToCreate.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Errors.UnableToCreate.Text'), newDirectoryName));
 				errorWindow:ShowModal();
 			end
 		end
@@ -153,7 +162,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function createDirectoryButtonClick(_sender, _eventArgs)
-		local newDirectoryDialog = EnterTextDialog(this:GetApplication(), 'Create directory', 'Enter new directory name:');
+		local newDirectoryDialog = EnterTextDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.CreateDirectory.Title'), localizationManager:GetLocalizedString('Dialogs.CreateDirectory.Text'));
 		newDirectoryDialog:AddOnOkEventHandler(newDirectoryDialogOk);
 		newDirectoryDialog:ShowModal();
 	end
@@ -211,19 +220,17 @@ FileManagerWindow = Class(Window, function(this, _application)
 		if (fileName ~= '') then
 			local accessPath = fs.combine(fileBrowser:GetCurrentDirectory(), name);
 			if (fs.exists(accessPath)) then
-				local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File "'..name..'" allready exists in current directory.');
-				errorWindow:ShowModal();
+				showExistsMessage(accessPath);
 				resetCopyCut();
 				return;
 			end
 			if (cuttedFile ~= '' and fs.isReadOnly(cuttedFile)) then
-				local errorWindow = MessageWindow(this:GetApplication(), 'File is read-only', 'Selected file is read-only, it cannot be renamed or deleted.');
-				errorWindow:ShowModal();
+				showReadOnlyMessage();
 				resetCopyCut();
 				return;
 			end
 			if (not copyFile(fileName, accessPath)) then
-				local errorWindow = MessageWindow(this:GetApplication(), 'Wrong operation', "Can't copy directory inside itself.");
+				local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.WrongOperation.Title'), localizationManager:GetLocalizedString('Errors.WrongOperation.Text'));
 				errorWindow:ShowModal();
 				resetCopyCut();
 			end
@@ -242,11 +249,9 @@ FileManagerWindow = Class(Window, function(this, _application)
 		local newFileName = fs.combine(fileBrowser:GetCurrentDirectory(), _newFileName);
 		local oldFileName = fs.combine(fileBrowser:GetCurrentDirectory(), fileBrowser:GetSelectedFile());
 		if (fs.exists(newFileName)) then
-			local errorWindow = MessageWindow(this:GetApplication(), 'File exists', 'File or directory with such     name allready exists.');
-			errorWindow:ShowModal();
+			showExistsMessage(newFileName);
 		elseif (fs.isReadOnly(oldFileName)) then
-			local errorWindow = MessageWindow(this:GetApplication(), 'File is read-only', 'Selected file is read-only, it cannot be renamed or deleted.');
-			errorWindow:ShowModal();
+			showReadOnlyMessage();
 		else
 			fs.copy(oldFileName, newFileName);
 			fs.delete(oldFileName);
@@ -259,7 +264,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function renameButtonClick(_sender, _eventArgs)
-		local renameDialog = EnterTextDialog(this:GetApplication(), 'Rename', 'Enter new name:', fileBrowser:GetSelectedFile());
+		local renameDialog = EnterTextDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.Rename.Title'), localizationManager:GetLocalizedString('Dialogs.Rename.Text'), fileBrowser:GetSelectedFile());
 		renameDialog:AddOnOkEventHandler(renameDialogOk);
 		renameDialog:ShowModal();
 	end
@@ -274,42 +279,42 @@ FileManagerWindow = Class(Window, function(this, _application)
 		fileBrowser:AddOnFileRightClickEventHandler(fileBrowserOnFileRightClick);
 		this:AddComponent(fileBrowser);
 
-		pasteButton = Button('Paste', nil, nil, 0, 0, 'left-bottom');
+		pasteButton = Button(localizationManager:GetLocalizedString('Buttons.Paste'), nil, nil, 0, 0, 'left-bottom');
 		pasteButton:AddOnClickEventHandler(pasteButtonClick);
 		this:AddComponent(pasteButton);
 
-		createDirectoryButton = Button('Create directory', nil, nil, 6, 0, 'left-bottom');
+		createDirectoryButton = Button(localizationManager:GetLocalizedString('Buttons.CreateDirectory'), nil, nil, pasteButton:GetWidth() + 1, 0, 'left-bottom');
 		createDirectoryButton:AddOnClickEventHandler(createDirectoryButtonClick);
 		this:AddComponent(createDirectoryButton);
 
-		createFileButton = Button('Create file', nil, nil, 23, 0, 'left-bottom');
+		createFileButton = Button(localizationManager:GetLocalizedString('Buttons.CreateFile'), nil, nil, createDirectoryButton:GetWidth() + createDirectoryButton:GetdX() + 1, 0, 'left-bottom');
 		createFileButton:AddOnClickEventHandler(createFileButtonClick);
 		this:AddComponent(createFileButton);
 
 		contextMenu = PopupMenu(1, 1, 12, 11, nil, false);
 		this:AddMenu('ContextMenu', contextMenu);
 
-		runInTerminalButton = Button('Run in terminal', nil, nil, 1, 9, 'left-top');
+		runInTerminalButton = Button(localizationManager:GetLocalizedString('Buttons.ContextMenu.RunInTerminal'), nil, nil, 1, 9, 'left-top');
 		runInTerminalButton:AddOnClickEventHandler(runInTerminalButtonClick);
 		contextMenu:AddComponent(runInTerminalButton);
 
-		local copyButton = Button('Copy', nil, nil, 6, 1, 'left-top');
+		local copyButton = Button(localizationManager:GetLocalizedString('Buttons.ContextMenu.Copy'), nil, nil, 1, 1, 'left-top');
 		copyButton:AddOnClickEventHandler(copyButtonClick);
 		contextMenu:AddComponent(copyButton);
 
-		local cutButton = Button('Cut ', nil, nil, 6, 3, 'left-top');
+		local cutButton = Button(localizationManager:GetLocalizedString('Buttons.ContextMenu.Cut'), nil, nil, 1, 3, 'left-top');
 		cutButton:AddOnClickEventHandler(cutButtonClick);
 		contextMenu:AddComponent(cutButton);
 
-		local deleteButton = Button('Delete', nil, nil, 5, 5, 'left-top');
+		local deleteButton = Button(localizationManager:GetLocalizedString('Buttons.ContextMenu.Delete'), nil, nil, 1, 5, 'left-top');
 		deleteButton:AddOnClickEventHandler(deleteButtonClick);
 		contextMenu:AddComponent(deleteButton);
 
-		local renameButton = Button('Rename', nil, nil, 5, 7, 'left-top');
+		local renameButton = Button(localizationManager:GetLocalizedString('Buttons.ContextMenu.Rename'), nil, nil, 1, 7, 'left-top');
 		renameButton:AddOnClickEventHandler(renameButtonClick);
 		contextMenu:AddComponent(renameButton);
 
-		editButton = Button('Edit', nil, nil, 6, 11, 'left-top');
+		editButton = Button(localizationManager:GetLocalizedString('Buttons.ContextMenu.Edit'), nil, nil, 1, 11, 'left-top');
 		editButton:AddOnClickEventHandler(editButtonClick);
 		contextMenu:AddComponent(editButton);
 
@@ -317,6 +322,11 @@ FileManagerWindow = Class(Window, function(this, _application)
 	end
 
 	local function constructor()
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		this:SetTitle(localizationManager:GetLocalizedString('Title'));
+
 		copiedFile = '';
 		cuttedFile = '';
 		fileAssotiationConfiguration = System:GetFileAssotiationsConfiguration();

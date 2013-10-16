@@ -1,0 +1,45 @@
+<localization name="Russian">
+	<data key="Title">(I)au/\oBblu MeHeD}I{ep</data>
+
+	<!-- Standard buttons -->
+	<data key="Buttons.Paste">BcTaBuTb</data>
+	<data key="Buttons.CreateDirectory">Co3DaTb nanky</data>
+	<data key="Buttons.CreateFile">Co3DaTb (I)au/\</data>
+
+	<!-- Context menu buttons -->
+	<data key="Buttons.ContextMenu.RunInTerminal"	>3anyck B TepMuHa/\e</data>
+	<data key="Buttons.ContextMenu.Copy"			>    KonupoBaTb     </data>
+	<data key="Buttons.ContextMenu.Cut"				>     Bblpe3aTb     </data>
+	<data key="Buttons.ContextMenu.Delete"			>     YDa/\uTb      </data>
+	<data key="Buttons.ContextMenu.Rename"			>   nepeuMeHoBaTb   </data>
+	<data key="Buttons.ContextMenu.Edit"			>   PeDakTupoBaTb   </data>
+
+	<!-- Dialogs -->
+	<data key="Dialogs.Rename.Title">nepeuMeHoBaTb</data>
+	<data key="Dialogs.Rename.Text">BBeDuTe HoBoe uMua:</data>
+
+	<data key="Dialogs.CreateDirectory.Title">Co3DaTb nanky</data>
+	<data key="Dialogs.CreateDirectory.Text">BBeDuTe uMua HoBou nanku:</data>
+
+	<data key="Dialogs.CreateFile.Title">Co3DaTb (I)au/\</data>
+	<data key="Dialogs.CreateFile.Text">BBeDuTe uMua HoBoro (I)au/\a:</data>
+
+	<data key="Dialogs.Delete.Title">YDa/\uTb?</data>
+	<data key="Dialogs.Delete.Text">Bbl DeucTBuTe/\bHo xoTuTe yDa/\uTb "{1}"?</data>
+
+	<!-- Errors -->
+	<data key="Errors.Exists.Title">File exists</data>
+	<data key="Errors.Exists.Text">File or directory with path "{1}" allready exists.</data>
+
+	<data key="Errors.FileReadOnly.Title">File is read-only</data>
+	<data key="Errors.FileReadOnly.Text">Selected file is read-only, it cannot be renamed or deleted.</data>
+
+	<data key="Errors.WrongOperation.Title">Wrong operation</data>
+	<data key="Errors.WrongOperation.Text">Can't copy directory inside itself.</data>
+
+	<data key="Errors.UnableToCreate.Title">Unable to create</data>
+	<data key="Errors.UnableToCreate.Text">Unable to create directory "{1}".</data>
+
+	<data key="Errors.UnableToLaunch.Title">Can't launch</data>
+	<data key="Errors.UnableToLaunch.Text">Unable to launch selected file.</data>
+</localization>

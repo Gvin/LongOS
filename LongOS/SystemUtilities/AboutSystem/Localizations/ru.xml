@@ -1,13 +1,13 @@
 <localization name="Russian">
 	<data key="Title">O cucTeMe</data>
-	<data key="Buttons.CheckUpdates">npoBepuTb ObHoBbI</data>
+	<data key="Buttons.CheckUpdates">npoBepuTb ObHoBbl</data>
 
 	<data key="Errors.UpdateError.Title">Owubka obHoB/\enuua</data>
 	<data key="Errors.UpdateError.HttpNotEnabled">HeBo3Mo}I{Ho obHoBuTb LongOS. Bk/\y4uTe http API B koHopurypaU,uu ComputerCraft.</data>
 	<data key="Errors.UpdateError.NoLastVersion">HeBo3Mo}I{Ho obHoBuTb LongOS. He yDa/\ocb no/\y4uTb noc/\eDHyuy Bepcuuy.</data>
 
 	<data key="Messages.UpdateNotRequired.Title">ObHoB/\eHue He Hy}I{Ho</data>
-	<data key="Messages.UpdateNotRequired.Text">BbI ucno/\b3yeTe noc/\eDHyuy Bepcuuy LongOS. ObHoB/\eHue He Hy}I{Ho.</data>
+	<data key="Messages.UpdateNotRequired.Text">Bbl ucno/\b3yeTe noc/\eDHyuy Bepcuuy LongOS. ObHoB/\eHue He Hy}I{Ho.</data>
 	<data key="Messages.NewVersionAvailable.Title">DocTynHa HoBaua Bepcuua</data>
 	<data key="Messages.NewVersionAvailable.Text">DocTynHa Bepcuua {1}. Cka4aTb?</data>
 </localization>
