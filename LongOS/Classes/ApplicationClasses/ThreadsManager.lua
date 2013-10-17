@@ -88,7 +88,7 @@ Classes.Application.ThreadsManager = Class(Object, function(this)
 							tFilters[id] = params;
 						end
 						if (thread:GetStatus() == 'dead') then
-							this:RemoveThread(id);
+							thread:Stop();
 						end
 					end
 				end
