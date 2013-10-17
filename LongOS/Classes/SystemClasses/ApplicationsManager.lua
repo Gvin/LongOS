@@ -67,7 +67,7 @@ Classes.System.ApplicationsManager = Class(Object, function(this)
 			table.insert(applicationsToDelete, _applicationId);
 		end
 		if (applicationToDelete ~= nil and applicationToDelete:GetName() == 'Init') then
-			System:ShowMessage('Warning', '  You cannot delete initial             application.');
+			System:ShowMessage(System:GetLocalizedString('Error.DeleteInitialApplication.Title'), System:GetLocalizedString('Error.DeleteInitialApplication.Text'));
 		end
 	end
 

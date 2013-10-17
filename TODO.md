@@ -11,7 +11,7 @@ For v1.2
 - [X] #32 GvinFileManager: "Run in terminal" button shows terminal with "No such program" text in subfolder
 - [ ] F108: Add more events to the Window.
 - [ ] F109: Add custom events support.
-- [ ] F115: Create localization option in the OS.
+- [X] F115: Create localization option in the OS.
 - [ ] F116: Create UI for changing the localization.
 - [ ] F117: Move system update to the separated application.
 

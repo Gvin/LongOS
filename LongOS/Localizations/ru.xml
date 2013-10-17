@@ -3,7 +3,7 @@
 	<data key="Action.Ok"> OK </data>
 	<data key="Action.Cancel">OTMeHa</data>
 	<data key="Action.Yes"> Da </data>
-	<data key="Action.No">Net </data>
+	<data key="Action.No">HeT </data>
 	<data key="Action.Delete">YDa/\uTb</data>
 	<data key="Action.Edit">u3MeHuTb</data>
 	<data key="Action.Add">DobaBuTb</data>
@@ -41,4 +41,13 @@
 	<data key="System.Windows.OpenFile.Title">OTkpblTb (I)au/\</data>
 	<data key="System.Windows.SaveFile.Title">CoxpaHuTb (I)au/\</data>
 	<data key="System.Windows.SaveFile.Labels.FileName">umua (I)au/\a:</data>
+
+<!-- Errors -->
+	<data key="Error.DeleteInitialApplication.Title">3anpew,eHo</data>
+	<data key="Error.DeleteInitialApplication.Text">He/\b3ua yDa/\uTb cucTeMHoe npu/\o}I{eHue.</data>
+
+	<data key="Error.Title">OWubKa</data>
+	<data key="Error.Text">Coobw,eHue oWubku: "{1}".</data>
+
+	<data key="Error.FileError.Text">npu 3anycke (I)au/\a "{1}" npou3oW/\a oWubka.</data>
 </localization>

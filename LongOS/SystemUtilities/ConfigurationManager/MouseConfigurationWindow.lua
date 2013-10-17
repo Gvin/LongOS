@@ -32,17 +32,17 @@ MouseConfigurationWindow = Class(Window, function(this, _application, _localizat
 	------------------------------------------------------------------------------------------------------------------		
 
 	local function saveChangesButtonClick(_sender, _eventArgs)
-		mouseConfiguration:SetOption('DoubleClickSpeed', doubleClickEdit:GetText());
-		mouseConfiguration:WriteConfiguration();
-		this:Close();				
+		if (doubleClickEdit:GetText():len() > 0) then
+			mouseConfiguration:SetOption('DoubleClickSpeed', doubleClickEdit:GetText());
+			mouseConfiguration:WriteConfiguration();
+			this:Close();
+		end			
 	end
 
 	local function cancelButtonClick(_sender, _eventArgs)
 		mouseConfiguration:ReadConfiguration();
 		this:Close();
 	end
-
-
 
 	local function defaultDialogYes(sender, eventArgs)
 		mouseConfiguration:SetDefault();
@@ -56,7 +56,7 @@ MouseConfigurationWindow = Class(Window, function(this, _application, _localizat
 	end
 
 	local function editTextFilter(_char)
-		return (tonumber(_char) ~= nil);
+		return (tonumber(_char) ~= nil and _char ~= '-' and _char ~= '.');
 	end
 
 	------------------------------------------------------------------------------------------------------------------

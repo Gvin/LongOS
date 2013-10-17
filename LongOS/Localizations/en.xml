@@ -1,12 +1,53 @@
 <localization name="English">
-	<data key="Action.Ok">Ok</data>
+<!-- Standard Actions -->
+	<data key="Action.Ok"> OK </data>
 	<data key="Action.Cancel">Cancel</data>
-	<data key="Action.Yes">Yes</data>
-	<data key="Action.No">No</data>
+	<data key="Action.Yes"> Yes </data>
+	<data key="Action.No"> No </data>
+	<data key="Action.Delete">Delete</data>
+	<data key="Action.Edit">Edit</data>
+	<data key="Action.Add">Add</data>
+	<data key="Action.Remove">Remove</data>
+	<data key="Action.Save">Save</data>
+	<data key="Action.SaveChanges">Save changes</data>
+	<data key="Action.SetDefault">Set default</data>
+	<data key="Action.Browse">Browse</data>
+	<data key="Action.New">New</data>
+	<data key="Action.Open">Open</data>
+
+<!-- Keywords -->
+	<data key="Keyword.File">File</data>
+	<data key="Keyword.Folder">Folder</data>
+
+<!-- Control Panel -->
 	<data key="System.ControlPanel.Buttons.Applications">Applications</data>
 	<data key="System.ControlPanel.Buttons.System">System</data>
 	<data key="System.ControlPanel.Buttons.Power">Power</data>
 	<data key="System.ControlPanel.Buttons.Shutdown">Shutdown</data>
-	<data key="System.ControlPanel.Buttons.Reboot"> Reboot </data>
-	<data key="System.ControlPanel.Buttons.LogOff">Log  Off</data>
+	<data key="System.ControlPanel.Buttons.Reboot"	> Reboot </data>
+	<data key="System.ControlPanel.Buttons.LogOff"	>Log  off</data>
+	<data key="System.ControlPanel.Applications.Configuration"	>Configuration</data>
+	<data key="System.ControlPanel.Applications.TasksManager"	>Tasks manager</data>
+	<data key="System.ControlPanel.Applications.Terminal"		>  Terminal   </data>
+	<data key="System.ControlPanel.Applications.AboutSystem"	>About  System</data>
+	<data key="System.ControlPanel.Calendar.Day">Day</data>
+	<data key="System.ControlPanel.Calendar.Year">Year</data>
+
+<!-- Desktop -->
+	<data key="System.Desktop.ChangeWallpaper">Change wallpaper</data>
+
+<!-- System Windows -->
+	<data key="System.Windows.ColorPicker.Title">Select color</data>
+	<data key="System.Windows.OpenFile.Title">Open file</data>
+	<data key="System.Windows.SaveFile.Title">Save file</data>
+	<data key="System.Windows.SaveFile.Labels.FileName">File name:</data>
+
+<!-- Errors -->
+	<data key="Error.DeleteInitialApplication.Title">Denied</data>
+	<data key="Error.DeleteInitialApplication.Text">You cannot delete initial application.</data>
+
+	<data key="Error.Title">Error</data>
+	<data key="Error.Text">Error message: "{1}".</data>
+
+	<data key="Error.FileError.Text">Error occured when running file "{1}".</data>
 </localization>

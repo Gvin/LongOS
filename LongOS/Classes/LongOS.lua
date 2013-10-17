@@ -326,10 +326,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	end
 
 	function this:ShowError(_message)
-		if (_message == nil) then
-			_message = 'No message.';
-		end
-		this:ShowMessage('Error', 'Error message: '.._message, colors.red);
+		this:ShowMessage(this:GetLocalizedString('Error.Title'), stringExtAPI.format(this:GetLocalizedString('Error.Text'), tostring(_message)), colors.red);
 	end
 
 	function this:GetCurrentTime()
@@ -365,11 +362,8 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	function this:Try(_func)
 		local sucess, message = pcall(_func);
 		if (not sucess) then
-			if (message == nil) then
-				message = 'No message.';
-			end
-			System:LogRuntimeError('Error while trying to run function. Message:"'..message..'".');
-			this:ShowMessage('Error', 'Error message: '..message, colors.red);
+			System:LogRuntimeError('Error while trying to run function. Message:"'..tostring(message)..'".');
+			this:ShowError(tostring(message));
 			return false;
 		end
 
@@ -380,7 +374,8 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		local path = ''..string.gsub(_filePath, '%%SYSDIR%%', systemDirectory);
 		local sucess = shell.run(path);
 		if (not sucess) then
-			this:ShowMessage('Error', 'Errors occured when running file "'..path..'".', colors.red);
+			System:LogRuntimeError('Error occured when running file "'..path..'".');
+			this:ShowMessage(this:GetLocalizedString('Error.Title'), stringExtAPI.format(this:GetLocalizedString('Error.FileError.Text'), path), colors.red);
 		end
 	end
 
