@@ -13,6 +13,7 @@ local LocalizationManager = Classes.System.Localization.LocalizationManager;
 FileManagerWindow = Class(Window, function(this, _application)
 
 	Window.init(this, _application, 'Gvin file manager', false);
+	this:SetTitle('Gvin File Manager');
 	this:SetWidth(40);
 	this:SetHeight(12);
 	this:SetMinimalWidth(36);
@@ -324,8 +325,6 @@ FileManagerWindow = Class(Window, function(this, _application)
 	local function constructor()
 		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
 		localizationManager:ReadLocalization(System:GetSystemLocale());
-
-		this:SetTitle(localizationManager:GetLocalizedString('Title'));
 
 		copiedFile = '';
 		cuttedFile = '';

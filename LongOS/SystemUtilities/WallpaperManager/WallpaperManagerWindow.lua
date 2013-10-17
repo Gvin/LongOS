@@ -72,7 +72,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 		local wallpaperPath = interfaceConfiguration:GetOption('WallpaperFileName');
 		local dir = System:ResolvePath(stringExtAPI.getPath(wallpaperPath));
 		local fileNameDialog = OpenFileDialog(this:GetApplication(), dir, { 'image' });
-		fileNameDialog:SetTitle('Browse for wallpaper');
+		fileNameDialog:SetTitle(localizationManager:GetLocalizedString('BrowseForWallpaper'));
 		fileNameDialog:AddOnOkEventHandler(fileNameDialogOnOk);
 		fileNameDialog:ShowModal();
 	end
@@ -134,7 +134,7 @@ WallpaperManagerWindow = Class(Window, function(this, _application)
 		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
 		localizationManager:ReadLocalization(System:GetSystemLocale());
 
-		this:SetTitle('Wallpaper manager');
+		this:SetTitle(localizationManager:GetLocalizedString('Title'));
 
 		initializeComponents();
 	end

@@ -1,6 +1,4 @@
 <localization name="Default">
-	<data key="Title">File manager</data>
-
 	<!-- Standard buttons -->
 	<data key="Buttons.Paste">Paste</data>
 	<data key="Buttons.CreateDirectory">Create folder</data>

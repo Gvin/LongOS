@@ -3,7 +3,7 @@ local Component = Classes.Components.Component;
 Classes.Components.Label = Class(Component, function(this, _text, _backgroundColor, _textColor, _dX, _dY, _anchorType)
 	Component.init(this, _dX, _dY, _anchorType);
 
-	function this.GetClassName()
+	function this:GetClassName()
 		return 'Label';
 	end
 

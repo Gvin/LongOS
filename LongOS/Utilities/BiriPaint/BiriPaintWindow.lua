@@ -12,6 +12,8 @@ local SaveFileDialog = Classes.System.Windows.SaveFileDialog;
 
 local Image = Classes.System.Graphics.Image;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
+
 
 BiriPaintWindow = Class(Window, function(this, _application, _fileName)	
 	
@@ -61,7 +63,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	local mainColorSelectionButton;
 	local additionalColorSelectionButton;
 	
-
+	local localizationManager;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -123,7 +125,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 
 
 	local newButtonClick = function(_sender, _eventArgs)
-		local newDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image',''..image:GetWidth(),''..image:GetHeight());
+		local newDialog = BiriPaintImageSizeDialog(this:GetApplication(),localizationManager:GetLocalizedString('Dialog.NewImage.Title'),''..image:GetWidth(),''..image:GetHeight(), localizationManager);
 		newDialog:AddOnOkEventHandler(newDialogOnOk);
 		newDialog:ShowModal();		
 	end
@@ -141,17 +143,17 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	local function openDialogOnOk(_sender, _eventArgs)
 		local fileName = _eventArgs.FullPath;
 		if (loadImage(fileName)) then
-			local openWindow = MessageWindow(this:GetApplication(), 'File opened', 'File successfully opened.');
+			local openWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Dialog.FileOpened.Title'), localizationManager:GetLocalizedString('Dialog.FileOpened.Text'));
 			openWindow:ShowModal();
 		else
-			local errorWindow = MessageWindow(this:GetApplication(), 'File not exist', 'File with name :'..fileName..' not exist');
+			local errorWindow = MessageWindow(this:GetApplication(), ocalizationManager:GetLocalizedString('Dialog.FileNotFound.Title'), stringExtAPI.format(ocalizationManager:GetLocalizedString('Dialog.FileNotFound.Text'), fileName));
 			errorWindow:ShowModal();
 		end
 	end
 
 	local openButtonClick = function(_sender, _eventArgs)
 		local openDialog = OpenFileDialog(this:GetApplication(), '/', { 'image' });
-		openDialog:SetTitle('Open image');
+		openDialog:SetTitle(localizationManager:GetLocalizedString('Dialog.OpenFile.Title'));
 		openDialog:AddOnOkEventHandler(openDialogOnOk);
 		openDialog:ShowModal();	
 	end
@@ -159,13 +161,13 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	local function saveDialogOnOk(_sender, _eventArgs)
 		local fileName = _eventArgs.FullPath;	
 		image:SaveToFile(fileName);	
-		local openWindow = MessageWindow(this:GetApplication(), 'File saved', 'File successfully saved.');
+		local openWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Dialog.FileSaved.Title'), localizationManager:GetLocalizedString('Dialog.FileSaved.Text'));
 		openWindow:ShowModal();					
 	end
 
 	local saveButtonClick = function(_sender, _eventArgs)
 		local saveDialog = SaveFileDialog(this:GetApplication(), '/', 'image');
-		saveDialog:SetTitle('Save image');
+		saveDialog:SetTitle(localizationManager:GetLocalizedString('Dialog.SaveFile.Title'));
 		saveDialog:AddOnOkEventHandler(saveDialogOnOk);
 		saveDialog:ShowModal();		
 	end
@@ -195,7 +197,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	local sizeButtonClick = function(_sender, _eventArgs)
-		local sizeDialog = BiriPaintImageSizeDialog(this:GetApplication(),'New image size',''..image:GetWidth(),''..image:GetHeight());
+		local sizeDialog = BiriPaintImageSizeDialog(this:GetApplication(),localizationManager:GetLocalizedString('Dialog.NewSize.Title'),''..image:GetWidth(),''..image:GetHeight(), localizationManager);
 		sizeDialog:AddOnOkEventHandler(sizeDialogOnOk);
 		sizeDialog:ShowModal();		
 	end
@@ -207,9 +209,13 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 		this:OpenCloseMenu('ModeMenu');
 	end
 
+	local function getModeLocalizedString(_modeName)
+		return localizationManager:GetLocalizedString('Mode.'.._modeName);
+	end
+
 	local toolButtonClick = function(_sender, _eventArgs)
-		mode =_sender:GetText();
-		modeButton:SetText(mode);
+		mode =_sender.Mode;
+		modeButton:SetText(getModeLocalizedString(mode));
 	end	
 
 	local function getXOnImage(_cursorX)
@@ -298,14 +304,14 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 
 	function this.ProcessLeftClickEvent(_, _cursorX, _cursorY)
 		imageBackup = Image(image);	
-		if (mode == 'Pen    ') then	
+		if (mode == 'Pen') then	
 			return paintPixel(getXOnImage(_cursorX), getYOnImage(_cursorY), mainColorSelectionButton:GetBackgroundColor());
-		elseif(mode == 'Fill   ') then
+		elseif(mode == 'Fill') then
 			fill(getXOnImage(_cursorX), getYOnImage(_cursorY), mainColorSelectionButton:GetBackgroundColor());
-		elseif(mode == 'Line   ') then			
+		elseif(mode == 'Line') then			
 			xDown = getXOnImage(_cursorX);
 			yDown = getYOnImage(_cursorY);
-		elseif(mode == 'Rect   ') then			
+		elseif(mode == 'Rect') then			
 			xDown = getXOnImage(_cursorX);
 			yDown = getYOnImage(_cursorY);
 		elseif(mode == 'Ellipse') then			
@@ -316,14 +322,14 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 
 	function this.ProcessRightClickEvent(_, _cursorX, _cursorY)
 		imageBackup = Image(image);
-		if (mode == 'Pen    ') then
+		if (mode == 'Pen') then
 			return paintPixel(getXOnImage(_cursorX), getYOnImage(_cursorY), additionalColorSelectionButton:GetBackgroundColor());
-		elseif(mode == 'Fill   ') then
+		elseif(mode == 'Fill') then
 			fill(getXOnImage(_cursorX), getYOnImage(_cursorY), additionalColorSelectionButton:GetBackgroundColor());
-		elseif(mode == 'Line   ') then			
+		elseif(mode == 'Line') then			
 			xDown = getXOnImage(_cursorX);
 			yDown = getYOnImage(_cursorY);
-		elseif(mode == 'Rect   ') then			
+		elseif(mode == 'Rect') then			
 			xDown = getXOnImage(_cursorX);
 			yDown = getYOnImage(_cursorY);
 		elseif(mode == 'Ellipse') then			
@@ -333,12 +339,12 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	end
 	
 	function this.ProcessLeftMouseDragEvent(_, _newCursorX, _newCursorY)
-		if (mode == 'Pen    ') then
+		if (mode == 'Pen') then
 			return paintPixel(getXOnImage(_newCursorX), getYOnImage(_newCursorY), mainColorSelectionButton:GetBackgroundColor());	
-		elseif(mode == 'Line   ') then
+		elseif(mode == 'Line') then
 			image = Image(imageBackup);
 			return paintLine(xDown, yDown, getXOnImage(_newCursorX), getYOnImage(_newCursorY), mainColorSelectionButton:GetBackgroundColor());
-		elseif(mode == 'Rect   ') then
+		elseif(mode == 'Rect') then
 			image = Image(imageBackup);
 			return paintRect(xDown, yDown, getXOnImage(_newCursorX), getYOnImage(_newCursorY), mainColorSelectionButton:GetBackgroundColor());
 		elseif(mode == 'Ellipse') then
@@ -348,12 +354,12 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 	end
 
 	function this.ProcessRightMouseDragEvent(_, _newCursorX, _newCursorY)
-		if (mode == 'Pen    ') then
+		if (mode == 'Pen') then
 			return paintPixel(getXOnImage(_newCursorX), getYOnImage(_newCursorY), additionalColorSelectionButton:GetBackgroundColor());	
-		elseif(mode == 'Line   ') then
+		elseif(mode == 'Line') then
 			image = Image(imageBackup);
 			return paintLine(xDown, yDown, getXOnImage(_newCursorX), getYOnImage(_newCursorY), additionalColorSelectionButton:GetBackgroundColor());	
-		elseif(mode == 'Rect   ') then
+		elseif(mode == 'Rect') then
 			image = Image(imageBackup);
 			return paintRect(xDown, yDown, getXOnImage(_newCursorX), getYOnImage(_newCursorY), additionalColorSelectionButton:GetBackgroundColor());
 		elseif(mode == 'Ellipse') then
@@ -426,27 +432,32 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 		modeMenu = PopupMenu(6, 4, 15, 11, nil);
 		this:AddMenu('ModeMenu', modeMenu);
 
-		modeButton = Button('Pen    ', nil, nil, 5, 0, 'left-bottom');
+		modeButton = Button(getModeLocalizedString('Pen'), nil, nil, 5, 0, 'left-bottom');
 		modeButton:AddOnClickEventHandler(modeButtonClick);
 		this:AddComponent(modeButton);
 
-		penButton = Button('Pen    ', nil, nil, 1, 1, 'left-top');
+		penButton = Button(getModeLocalizedString('Pen'), nil, nil, 1, 1, 'left-top');
+		penButton.Mode = 'Pen';
 		penButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(penButton);
 
-		lineButton = Button('Line   ', nil, nil, 1, 3, 'left-top');
+		lineButton = Button(getModeLocalizedString('Line'), nil, nil, 1, 3, 'left-top');
+		lineButton.Mode = 'Line';
 		lineButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(lineButton);
 
-		rectButton = Button('Rect   ', nil, nil, 1, 5, 'left-top');
+		rectButton = Button(getModeLocalizedString('Rect'), nil, nil, 1, 5, 'left-top');
+		rectButton.Mode = 'Rect';
 		rectButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(rectButton);
 
-		ellipseButton = Button('Ellipse', nil, nil, 1, 7, 'left-top');
+		ellipseButton = Button(getModeLocalizedString('Ellipse'), nil, nil, 1, 7, 'left-top');
+		ellipseButton.Mode = 'Ellipse';
 		ellipseButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(ellipseButton);
 
-		fillButton = Button('Fill   ', nil, nil, 1, 9, 'left-top');
+		fillButton = Button(getModeLocalizedString('Fill'), nil, nil, 1, 9, 'left-top');
+		fillButton.Mode = 'Fill';
 		fillButton:AddOnClickEventHandler(toolButtonClick);
 		modeMenu:AddComponent(fillButton);
 
@@ -457,19 +468,19 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 		fileMenu = PopupMenu(2, 4, 15, 7, nil);
 		this:AddMenu('FileMenu', fileMenu);		
 
-		fileButton = Button('File', nil, nil, 0, 0, 'left-top');
+		fileButton = Button(localizationManager:GetLocalizedString('FileMenu.ButtonText'), nil, nil, 0, 0, 'left-top');
 		fileButton:AddOnClickEventHandler(fileButtonClick);
 		this:AddComponent(fileButton);
 
-		newButton = Button('New', nil, nil, 1, 1, 'left-top');
+		newButton = Button(localizationManager:GetLocalizedString('FileMenu.New'), nil, nil, 1, 1, 'left-top');
 		newButton:AddOnClickEventHandler(newButtonClick);
 		fileMenu:AddComponent(newButton);
 
-		openButton = Button('Open', nil, nil, 1, 3, 'left-top');
+		openButton = Button(localizationManager:GetLocalizedString('FileMenu.Open'), nil, nil, 1, 3, 'left-top');
 		openButton:AddOnClickEventHandler(openButtonClick);
 		fileMenu:AddComponent(openButton);
 
-		saveButton = Button('Save', nil, nil, 1, 5, 'left-top');
+		saveButton = Button(localizationManager:GetLocalizedString('FileMenu.Save'), nil, nil, 1, 5, 'left-top');
 		saveButton:AddOnClickEventHandler(saveButtonClick);
 		fileMenu:AddComponent(saveButton);
 		
@@ -480,19 +491,19 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 		editMenu = PopupMenu(2, 4, 15, 7, nil);
 		this:AddMenu('EditMenu', editMenu);	
 
-		editButton = Button('Edit', nil, nil, 5, 0, 'left-top');
+		editButton = Button(localizationManager:GetLocalizedString('EditMenu.ButtonText'), nil, nil, fileButton:GetWidth() + 1, 0, 'left-top');
 		editButton:AddOnClickEventHandler(editButtonClick);
 		this:AddComponent(editButton);
 
-		clearButton = Button('Clear all', nil, nil, 1, 1, 'left-top');
+		clearButton = Button(localizationManager:GetLocalizedString('EditMenu.ClearAll'), nil, nil, 1, 1, 'left-top');
 		clearButton:AddOnClickEventHandler(clearButtonClick);
 		editMenu:AddComponent(clearButton);
 		
-		undoButton = Button('Undo', nil, nil, 1, 3, 'left-top');
+		undoButton = Button(localizationManager:GetLocalizedString('EditMenu.Undo'), nil, nil, 1, 3, 'left-top');
 		undoButton:AddOnClickEventHandler(undoButtonClick);
 		editMenu:AddComponent(undoButton);
 
-		sizeButton = Button('Set size', nil, nil, 1, 5, 'left-top');
+		sizeButton = Button(localizationManager:GetLocalizedString('EditMenu.SetSize'), nil, nil, 1, 5, 'left-top');
 		sizeButton:AddOnClickEventHandler(sizeButtonClick);
 		editMenu:AddComponent(sizeButton);
 
@@ -501,8 +512,11 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 
 	end
 
-	local function constructor(_application, _fileName)		
-		mode = 'Pen    ';		
+	local function constructor(_application, _fileName)	
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		mode = 'Pen';		
 		isMenuOpen = false;
 		xDown = 0;
 		yDown = 0;

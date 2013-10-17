@@ -7,7 +7,7 @@ local Window = Classes.Application.Window;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
 
-BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight)
+BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_initialWidth, _initialHeight, _localizationManager)
 
 	Window.init(this, _application, 'Paint new dialog', false);
 	this:SetTitle(_title);
@@ -29,6 +29,8 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 	local widthLabel;
 	local heightEdit;
 	local heightLabel;
+
+	local localizationManager;
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Properties -------------------------------------------------------------------------------------------------
@@ -55,9 +57,6 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 			eventArgs.Width = width;
 			eventArgs.Height = height;
 			onOk:Invoke(this, eventArgs);				
-		else
-			local errorWindow = MessageWindow(this:GetApplication(), 'Not a number', 'Width and height must be a number');			
-			errorWindow:ShowModal();	
 		end
 	end
 
@@ -72,20 +71,24 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 		end
 	end
 
+	local function editNumberFilter(_char)
+		return (tonumber(_char) ~= nil and _char ~= '-' and _char ~= '.');
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_initialWidth, _initialHeight)
-		okButton = Button(' OK ', nil, nil, 0, 0, 'left-bottom');
+		okButton = Button(System:GetLocalizedString('Action.Ok'), nil, nil, 0, 0, 'left-bottom');
 		okButton:AddOnClickEventHandler(okButtonClick);
 		this:AddComponent(okButton);
 
-		local cancelButton = Button('Cancel', nil, nil, 0, 0, 'right-bottom');
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 
-		widthLabel = Label('Width', nil, nil, 1, 1, 'left-top');
+		widthLabel = Label(localizationManager:GetLocalizedString('NewImageDialog.Label.Width'), nil, nil, 1, 1, 'left-top');
 		this:AddComponent(widthLabel);
 
 		widthEdit = Edit(26, nil, nil, 1, 2, 'left-top');
@@ -93,25 +96,28 @@ BiriPaintImageSizeDialog = Class(Window, function(this, _application, _title,_in
 			widthEdit:SetText(_initialWidth);
 		end
 		widthEdit:SetFocus(true);
+		widthEdit:SetFilter(editNumberFilter);
 		this:AddComponent(widthEdit);
 
-		heightLabel = Label('Height', nil, nil, 1, 3, 'left-top');
+		heightLabel = Label(localizationManager:GetLocalizedString('NewImageDialog.Label.Height'), nil, nil, 1, 3, 'left-top');
 		this:AddComponent(heightLabel);
 
 		heightEdit = Edit(26, nil, nil, 1, 4, 'left-top');
 		if (_initialHeight ~= nil) then
 			heightEdit:SetText(_initialHeight);
 		end
+		heightEdit:SetFilter(editNumberFilter);
 
 		this:AddComponent(heightEdit);
 	end
 
-	local function constructor(_application, _title, _initialWidth, _initialHeight)
+	local function constructor(_application, _title, _initialWidth, _initialHeight, _localizationManager)
 		onOk = EventHandler();
 		onCancel = EventHandler();
+		localizationManager = _localizationManager;
 
 		initializeComponents(_initialWidth, _initialHeight);
 	end
 
-	constructor(_application, _title, _initialWidth, _initialHeight);
+	constructor(_application, _title, _initialWidth, _initialHeight, _localizationManager);
 end)

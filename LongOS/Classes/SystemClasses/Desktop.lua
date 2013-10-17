@@ -80,7 +80,7 @@ Classes.System.Desktop = Class(Object, function(this)
 	local function constructor()
 		desktopMenu = PopupMenu(1, 1, 18, 3, nil);
 
-		changeWallpaperButton = Button('Change wallpaper', colors.gray, colors.black, 1, 1, 'left-top');
+		changeWallpaperButton = Button(System:GetLocalizedString('System.Desktop.ChangeWallpaper'), colors.gray, colors.black, 1, 1, 'left-top');
 		changeWallpaperButton:AddOnClickEventHandler(changeWallpaperButtonClick);
 		desktopMenu:AddComponent(changeWallpaperButton);
 	end

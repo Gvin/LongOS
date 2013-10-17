@@ -2,6 +2,8 @@ local Window = Classes.Application.Window;
 local Button = Classes.Components.Button;
 local Edit = Classes.Components.Edit;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
+
 CalculatorWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Calculator window', false);
 	this:SetTitle('Calculator');
@@ -70,7 +72,7 @@ CalculatorWindow = Class(Window, function(this, _application)
 		param1 = tonumber(param1);
 		param2 = tonumber(param2);		
 		if (param1 == nil or param2 == nil) then
-			error('$Wrong statement.');
+			error('$'..localizationManager:GetLocalizedString('WrongStatement'));
 		end
 		return param1 + param2;
 	end
@@ -79,7 +81,7 @@ CalculatorWindow = Class(Window, function(this, _application)
 		param1 = tonumber(param1);
 		param2 = tonumber(param2);
 		if (param1 == nil or param2 == nil) then
-			error('$Wrong statement.');
+			error('$'..localizationManager:GetLocalizedString('WrongStatement'));
 		end
 		return param1 - param2;
 	end
@@ -88,7 +90,7 @@ CalculatorWindow = Class(Window, function(this, _application)
 		param1 = tonumber(param1);
 		param2 = tonumber(param2);
 		if (param1 == nil or param2 == nil) then
-			error('$Wrong statement.');
+			error('$'..localizationManager:GetLocalizedString('WrongStatement'));
 		end
 		return param1 * param2;
 	end
@@ -97,7 +99,7 @@ CalculatorWindow = Class(Window, function(this, _application)
 		param1 = tonumber(param1);
 		param2 = tonumber(param2);
 		if (param1 == nil or param2 == nil) then
-			error('$Wrong statement.');
+			error('$'..localizationManager:GetLocalizedString('WrongStatement'));
 		end
 		return param1/param2;
 	end
@@ -153,7 +155,7 @@ CalculatorWindow = Class(Window, function(this, _application)
 		       		table.insert(signs,s);		
 		     	end
 			if (tonumber(numbers[1]) == nil ) then
-				error('$Wrong statement.');
+				error('$'..localizationManager:GetLocalizedString('WrongStatement'));
 			end									
 			multiplyDivide(numbers,signs);
 			addSubstract(numbers,signs);								
@@ -284,7 +286,10 @@ CalculatorWindow = Class(Window, function(this, _application)
 
 	end
 
-	local function constructor(_application)			
+	local function constructor(_application)
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
 		initializeComponents();	
 		errorFlag = false;	
 	end

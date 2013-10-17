@@ -45,6 +45,7 @@ Further releases
 - [ ] #25 [B] GvinTerminal: Assigning error-throwing function to the api function can crash OS.
 - [ ] #27 [E] Value null checking can be shortened.
 - [ ] #28 [E] Improve color values storing.
+- [ ] #34 [E] Improve errors generation with assert function and throwback level.
 
 
 History
