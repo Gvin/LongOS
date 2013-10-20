@@ -4,7 +4,7 @@ local Edit = Classes.Components.Edit;
 
 local LocalizationManager = Classes.System.Localization.LocalizationManager;
 
-CalculatorWindow = Class(Window, function(this, _application)
+return Class(Window, function(this, _application)
 	Window.init(this, _application, 'Calculator window', false);
 	this:SetTitle('Calculator');
 	this:SetWidth(25);

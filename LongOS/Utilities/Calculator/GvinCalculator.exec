@@ -1,6 +1,26 @@
+local function include(_path)
+    local fnFile, err = loadfile( _path )
+    if fnFile then
+        setfenv( fnFile, getfenv(2) )
+        local ok, err = pcall( function()
+        	return fnFile()
+        end )
+        if not ok then
+        	return false, err, nil;
+        end
+        return true, nil, err;
+    end
+    return false, err, nil;
+end
+
 local function run()
 	local application = Classes.Application.Application('Calculator');
-	shell.run(application:GetWorkingDirectory()..'CalculatorWindow.lua');
+	--shell.run(application:GetWorkingDirectory()..'CalculatorWindow.lua');
+	local ok, err, CalculatorWindow = include(application:GetWorkingDirectory()..'CalculatorWindow.lua');
+	if (not ok) then
+		System:ShowError(err);
+		return;
+	end
 
 	local calculatorWindow = CalculatorWindow(application);
 	application:Run(calculatorWindow);
