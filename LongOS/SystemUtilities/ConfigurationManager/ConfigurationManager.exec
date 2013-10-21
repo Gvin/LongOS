@@ -5,6 +5,7 @@ local function run()
 	shell.run(application:GetWorkingDirectory()..'InterfaceConfigurationWindow.lua');
 	shell.run(application:GetWorkingDirectory()..'ApplicationConfigurationEditWindow.lua');
 	shell.run(application:GetWorkingDirectory()..'ApplicationsConfigurationWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'LocaleConfigurationWindow.lua');
 	shell.run(application:GetWorkingDirectory()..'ConfigurationManagerWindow.lua');
 	
 	

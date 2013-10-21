@@ -7,7 +7,7 @@ local LocalizationManager = Classes.System.Localization.LocalizationManager;
 ConfigurationManagerWindow = Class(Window, function(this, _application)
 	Window.init(this, _application, 'Configuration window', false);	
 	this:SetWidth(32);
-	this:SetHeight(10);
+	this:SetHeight(12);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
 
@@ -39,6 +39,11 @@ ConfigurationManagerWindow = Class(Window, function(this, _application)
 		applicationsWindow:ShowModal();		
 	end	
 
+	local function localeConfigurationButtonClick(_sender, _eventArgs)
+		local localeWindow = LocaleConfigurationWindow(_application, localizationManager);
+		localeWindow:ShowModal();		
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
@@ -64,6 +69,10 @@ ConfigurationManagerWindow = Class(Window, function(this, _application)
 		applicationsConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.ApplicationsConfiguration'), nil, nil, 0, 7, 'left-top');
 		applicationsConfigurationButton:AddOnClickEventHandler(applicationsConfigurationButtonClick);
 		this:AddComponent(applicationsConfigurationButton);
+
+		localeConfigurationButton = Button('Locale', nil, nil, 0, 9, 'left-top');
+		localeConfigurationButton:AddOnClickEventHandler(localeConfigurationButtonClick);
+		this:AddComponent(localeConfigurationButton);
 	end
 
 	local function constructor()

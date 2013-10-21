@@ -64,6 +64,8 @@ local function getNodeLine(node, depth)
   end
   if (#node == 0) then -- no more child elements
     return nodeLine..' />\n\r';
+  elseif (#node == 1 and type(node[1]) == 'string') then
+    return nodeLine..'>'..node[1]..'</'..node.label..'>\n\r';
   else
     nodeLine = nodeLine..'>\n\r';
     for i = 1, #node do

@@ -70,13 +70,13 @@ Classes.System.Configuration.LocaleConfiguration = Class(Object, function(this, 
 
 	local function prepareDocument()
 		local prepared = {};
-		prepared.label = locale;
+		prepared.label = 'locale';
 		table.insert(prepared, locale);
 		return prepared;
 	end
 
 	function this:WriteConfiguration()
-		local dicument = prepareDocument();
+		local document = prepareDocument();
 		xmlAPI.write(document, filePath);
 	end
 
