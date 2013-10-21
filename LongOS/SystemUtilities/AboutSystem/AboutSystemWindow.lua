@@ -66,43 +66,10 @@ AboutSystemWindow = Class(Window, function(this, _application)
 		end
 	end
 
-	local function updateDialogYes(sender, eventArgs)
-		local updateSystemWindow = UpdateSystemWindow(this:GetApplication(),systemUpdater);		
-		updateSystemWindow:ShowModal();
-	end
+	
 
-	local function updateButtonClick(_sender, _eventArgs)		
-
-		if (http == nil) then
-			local updateErrorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UpdateError.Title'), localizationManager:GetLocalizedString('Errors.UpdateError.HttpNotEnabled'));
-			updateErrorWindow:ShowModal();
-			return;
-		end
-
-		systemUpdater = SystemUpdater();
-		local lastVersion = systemUpdater:GetLastVersion();
-		local currentVersion = System:GetCurrentVersion();
-
-		if (lastVersion == nil) then
-
-			local updateErrorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UpdateError.Title'), localizationManager:GetLocalizedString('Errors.UpdateError.NoLastVersion'));
-			updateErrorWindow:ShowModal();
-			return;
-		end
-
-
-		if (lastVersion == currentVersion) then
-			local messageWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Messages.UpdateNotRequired.Title'), localizationManager:GetLocalizedString('Messages.UpdateNotRequired.Text'));
-			messageWindow:ShowModal();
-			return;
-		end
-
-
-		local updateDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Messages.NewVersionAvailable.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Messages.NewVersionAvailable.Text'), lastVersion));
-		updateDialog:AddOnYesEventHandler(updateDialogYes);
-		updateDialog:ShowModal();		
-
-		
+	local function updateButtonClick(_sender, _eventArgs)				
+		System:RunFile('%SYSDIR%/SystemUtilities/UpdateSystem/UpdateSystem.exec');	
 	end
 	
 

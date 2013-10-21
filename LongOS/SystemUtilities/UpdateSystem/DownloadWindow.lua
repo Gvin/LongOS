@@ -6,9 +6,10 @@ local ProgressBar = Classes.Components.ProgressBar;
 local QuestionDialog = Classes.System.Windows.QuestionDialog;
 local MessageWindow = Classes.System.Windows.MessageWindow;
 
+local LocalizationManager = Classes.System.Localization.LocalizationManager;
 
-UpdateSystemWindow = Class(Window, function(this, _application, _systemUpdater)
-	Window.init(this, _application, 'Update System window', false);	
+DownloadWindow = Class(Window, function(this, _application, _systemUpdater)
+	Window.init(this, _application, 'Download window', false);	
 	this:SetTitle('Updating system');
 	this:SetWidth(20);
 	this:SetHeight(9);
@@ -28,6 +29,8 @@ UpdateSystemWindow = Class(Window, function(this, _application, _systemUpdater)
 	local progressBar;
 	local statusLabel;
 
+	local localizationManager;
+
 
 	----------------------------------------------------
 	---Window Event--------------------------
@@ -45,14 +48,15 @@ UpdateSystemWindow = Class(Window, function(this, _application, _systemUpdater)
 		local currentCount,filesCount = systemUpdater:GetProgress();
 
 		local percent = math.modf(currentCount/filesCount * 100);
+	
 
-		statusLabel:SetText('Progress: '..currentCount..'/'..filesCount);
+		statusLabel:SetText(stringExtAPI.format(localizationManager:GetLocalizedString('DownloadWindow.Labels.StatusLabel'), currentCount..'/'..filesCount));
 
 		progressBar:SetMaxValue(filesCount);
 		progressBar:SetValue(currentCount);		
 
 		if (updateThread:GetStatus() == 'dead') then
-			local rebootDialog = QuestionDialog(this:GetApplication(), 'Update success', 'LongOS successfully updated.  Reboot is recommended. Reboot the system now?');
+			local rebootDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.DownloadWindow.RebootDialog.Title'), localizationManager:GetLocalizedString('Dialogs.DownloadWindow.RebootDialog.Text'));
 			rebootDialog:AddOnYesEventHandler(rebootDialogYes);
 			rebootDialog:ShowModal();
 			this:Close();
@@ -70,7 +74,7 @@ UpdateSystemWindow = Class(Window, function(this, _application, _systemUpdater)
 
 	local function cancelButtonClick(_sender, _eventArgs)		
 
-		local cancelDialog = QuestionDialog(this:GetApplication(), 'Cancel updating', 'Do you really want to cancel updating process? This operation can cause current system damadge.');
+		local cancelDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.DownloadWindow.CancelDialog.Title'), localizationManager:GetLocalizedString('Dialogs.DownloadWindow.CancelDialog.Text'));
 		cancelDialog:AddOnYesEventHandler(cancelDialogYes);
 		cancelDialog:ShowModal();	
 		
@@ -82,14 +86,20 @@ UpdateSystemWindow = Class(Window, function(this, _application, _systemUpdater)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents(_logotypeName)	
+
+		localizationManager = LocalizationManager(fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations'), fs.combine(this:GetApplication():GetWorkingDirectory(), 'Localizations/default.xml'));
+		localizationManager:ReadLocalization(System:GetSystemLocale());
+
+		this:SetTitle(localizationManager:GetLocalizedString('DownloadWindow.Title'));
 		
-		statusLabel = Label('Progress:', nil, nil, 1, 1, 'left-top');		
+		
+		statusLabel = Label(stringExtAPI.format(localizationManager:GetLocalizedString('DownloadWindow.Labels.StatusLabel'), ''), nil, nil, 1, 1, 'left-top');		
 		this:AddComponent(statusLabel);
 
 		progressBar = ProgressBar(0, 1, 16, 1,3,'left-top');
 		this:AddComponent(progressBar);
 
-		cancelButton = Button('Cancel', nil, nil, 1, 1, 'left-bottom');		
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 1, 1, 'left-bottom');		
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
 

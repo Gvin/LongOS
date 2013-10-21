@@ -1,0 +1,28 @@
+<localization name="Default">
+	<data key="UpdateSystemWindow.Title">Update system</data>	
+	<data key="UpdateSystemWindow.Buttons.CheckUpdates">Check updates</data>
+	<data key="UpdateSystemWindow.Labels.CurrentVersion">Current Version: {1}</data>
+	<data key="UpdateSystemWindow.Labels.LastVersion">Last Version: {1}</data>
+
+	<data key="Errors.UpdateSystemWindow.UpdateError.Title">Update error</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">Cant't update Longos. Please  enable http api in the        computercraft configuration.</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">Cant't update Longos. Unable to retrieve the latest version.</data>
+
+	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Title">Updating not required</data>
+	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Text">You are using the latest version of the LongOS. Updating not required.</data>
+	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Title">New version available</data>
+	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Text">Version {1} is available. Download?</data>
+
+
+	<data key="DownloadWindow.Title">Updating system</data>
+	<data key="DownloadWindow.Labels.StatusLabel">Progress: {1}</data>
+
+	<data key="Dialogs.DownloadWindow.RebootDialog.Title">Update success</data>
+	<data key="Dialogs.DownloadWindow.RebootDialog.Text">LongOS successfully updated.  Reboot is recommended. Reboot the system now?</data>
+	<data key="Dialogs.DownloadWindow.CancelDialog.Title">Cancel updating</data>
+	<data key="Dialogs.DownloadWindow.CancelDialog.Text">Do you really want to cancel updating process? This operation can cause current system damadge.</data>
+
+
+
+
+</localization>

@@ -1,0 +1,25 @@
+<localization name="Russian">
+	<data key="UpdateSystemWindow.Title">ObHoB/\eHue cicTeMbl</data>
+	<data key="UpdateSystemWindow.Buttons.CheckUpdates">npoBepiTb ObHoBleHiua</data>
+	<data key="UpdateSystemWindow.Labels.CurrentVersion">Tekyw,aua Bepciua: {1}</data>
+	<data key="UpdateSystemWindow.Labels.LastVersion">DocTynHaua Bepciua: {1}</data>
+
+	<data key="Errors.UpdateSystemWindow.UpdateError.Title">Owibka obHoB/\eniua</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">HeBo3Mo}I{Ho obHoBiTb LongOS. Bk/\y4iTe http API B koHopirypaU,ii ComputerCraft.</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">HeBo3Mo}I{Ho obHoBiTb LongOS. He yDa/\ocb no/\y4iTb noc/\eDHyuy Bepciuy.</data>
+
+	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Title">ObHoB/\eHie He Hy}I{Ho</data>
+	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Text">BbI icno/\b3yeTe noc/\eDHyuy Bepciuy LongOS. ObHoB/\eHie He Hy}I{Ho.</data>
+	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Title">DocTynHa HoBaua Bepciua</data>
+	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Text">DocTynHa Bepciua {1}. Cka4aTb?</data>
+
+	
+	<data key="DownloadWindow.Title">ObHoB/\eHue</data>		
+	<data key="DownloadWindow.Labels.StatusLabel">nporpecc: {1}</data>
+
+	<data key="Dialogs.DownloadWindow.RebootDialog.Title">CucTeMa obHoB/\eHa</data>
+	<data key="Dialogs.DownloadWindow.RebootDialog.Text">LongOS ycnewHo obHoB/\eHa.  PekoMeHDoBaHa nepe3arpy3ka. nepe3arpy3uTb cucTeMy?</data>
+	<data key="Dialogs.DownloadWindow.CancelDialog.Title">OTMEHA obHoB/\eHiua</data>
+	<data key="Dialogs.DownloadWindow.CancelDialog.Text">Bbl xoTuTe npepBaTb obHoB/\eHue? CucTeMa Mo}|{eT bblTb noBpe}|{DeHa.</data>
+
+</localization>

@@ -1,0 +1,12 @@
+local function run()
+	local application = Classes.Application.Application('Update System', true, true);
+	shell.run(application:GetWorkingDirectory()..'SystemUpdater.lua');	
+	shell.run(application:GetWorkingDirectory()..'DownloadWindow.lua');
+	shell.run(application:GetWorkingDirectory()..'UpdateSystemWindow.lua');
+	
+	
+	local updateSystemWindow = UpdateSystemWindow(application);
+	application:Run(updateSystemWindow);
+end
+
+System:Try(run);
