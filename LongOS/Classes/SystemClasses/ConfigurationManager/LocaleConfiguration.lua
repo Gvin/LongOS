@@ -7,7 +7,7 @@ Classes.System.Configuration.LocaleConfiguration = Class(Object, function(this, 
 
 	local filePath;
 	local locale;
-	local DEFAULT = 'en';
+	local DEFAULT = 'en_US';
 
 	------------------------------------------------------------------------------------------------------------------
 	----- Methods ----------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ Classes.System.Configuration.LocaleConfiguration = Class(Object, function(this, 
 
 	function this:ReadConfiguration()
 		if (not fs.exists(filePath)) then
-			System:LogWarningMessage('Configuration file "'..filePath..'" not found. Default configuration file was created.');
+			System:LogWarningMessage('Configuration file "'..tostring(filePath)..'" not found. Default configuration file was created.');
 			this:SetDefault();
 			return;
 		end
@@ -54,13 +54,13 @@ Classes.System.Configuration.LocaleConfiguration = Class(Object, function(this, 
 
 		local sucess, parsed = pcall(xmlAPI.parse, text);
 		if (not sucess) then
-			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			System:LogWarningMessage('Configuration file "'..tostring(filePath)..'" is damaged and cannot be read. Replaced with a default configuration file.');
 			this:SetDefault();
 			return;			
 		end		
 		local sucess, preparedData = pcall(getData, parsed);
 		if (not sucess) then
-			System:LogWarningMessage('Configuration file "'..fileName..'" is damaged and cannot be read. Replaced with a default configuration file.');
+			System:LogWarningMessage('Configuration file "'..tostring(filePath)..'" is damaged and cannot be read. Replaced with a default configuration file.');
 			this:SetDefault();
 			return;			
 		end		
