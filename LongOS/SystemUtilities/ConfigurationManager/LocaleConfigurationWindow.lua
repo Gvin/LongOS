@@ -6,8 +6,8 @@ local Window = Classes.Application.Window;
 
 LocaleConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Locale configuration window', false);
-	this:SetWidth(20);
-	this:SetHeight(5);
+	this:SetWidth(30);
+	this:SetHeight(7);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
 
@@ -17,6 +17,8 @@ LocaleConfigurationWindow = Class(Window, function(this, _application, _localiza
 
 	local changeLocaleButton;
 	local changeLocaleMenu;
+	local saveChangesButton;
+	local cancelButton;
 
 	local locales;
 	local localesDir;
@@ -67,12 +69,8 @@ LocaleConfigurationWindow = Class(Window, function(this, _application, _localiza
 	end
 
 	local function localeButtonOnClick(_sender, _eventArgs)
-		System:SetSystemLocale(_sender.Locale.Code);
-		changeLocaleButton:SetText(getLocaleName(System:GetSystemLocale(), localesDir)..' ['..System:GetSystemLocale()..']');
-
-		local rebootDialog = QuestionDialog(this:GetApplication(), 'Reboot?', 'You should reboot you System to change the locale. Reboot now?');
-		rebootDialog:AddOnYesEventHandler(rebootDialogOnOk);
-		rebootDialog:ShowModal();
+		selectedLocale = _sender.Locale;
+		changeLocaleButton:SetText(_sender.Locale.Name..' ['.._sender.Locale.Code..']');
 	end
 
 	local function windowOnShow(_sender, _eventArgs)
@@ -94,12 +92,24 @@ LocaleConfigurationWindow = Class(Window, function(this, _application, _localiza
 		changeLocaleMenu:OpenClose();
 	end
 
+	local function cancelButtonOnClick(_sender, _eventArgs)
+		this:Close();
+	end
+
+	local function saveChangesButtonOnClick(_sender, _eventArgs)
+		System:SetSystemLocale(selectedLocale.Code);
+
+		local rebootDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('LocaleConfiguration.RebootDialog.Title'), localizationManager:GetLocalizedString('LocaleConfiguration.RebootDialog.Text'));
+		rebootDialog:AddOnYesEventHandler(rebootDialogOnOk);
+		rebootDialog:ShowModal();
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------
 
 	local function initializeComponents()
-		this:SetTitle('Change locale')
+		this:SetTitle(localizationManager:GetLocalizedString('LocaleConfiguration.Title'));
 
 		this:AddOnShowEventHandler(windowOnShow);
 
@@ -109,6 +119,14 @@ LocaleConfigurationWindow = Class(Window, function(this, _application, _localiza
 
 		changeLocaleMenu = PopupMenu(1, 1, 10, 10, nil, false);
 		this:AddMenu('LocaleMenu', changeLocaleMenu);
+
+		saveChangesButton = Button(System:GetLocalizedString('Action.SaveChanges'), nil, nil, 0, 0, 'left-bottom');
+		saveChangesButton:AddOnClickEventHandler(saveChangesButtonOnClick);
+		this:AddComponent(saveChangesButton);
+
+		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
+		cancelButton:AddOnClickEventHandler(cancelButtonOnClick);
+		this:AddComponent(cancelButton);
 	end
 
 	local function constructor(_localizationManager)

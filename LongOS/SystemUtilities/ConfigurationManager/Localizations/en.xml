@@ -1,9 +1,10 @@
 <localization name="English">
-	<data key="Title">Configuration manager</data>
-	<data key="Buttons.ColorConfiguration"			>     Color configuration      </data>
-	<data key="Buttons.MouseConfiguration"			>     Mouse configuration      </data>
-	<data key="Buttons.InterfaceConfiguration"		>   Interface configuration    </data>
-	<data key="Buttons.ApplicationsConfiguration"	>  Applications configuration  </data>
+	<data key="Title">Configuration</data>
+	<data key="Buttons.ColorConfiguration"			>System  Colors</data>
+	<data key="Buttons.MouseConfiguration"			>     Mouse    </data>
+	<data key="Buttons.InterfaceConfiguration"		>   Interface  </data>
+	<data key="Buttons.ApplicationsConfiguration"	> Applications </data>
+	<data key="Buttons.LocaleConfiguration"			>System  Locale</data>
 
 	<!-- Default Dialog -->
 	<data key="DefaultDialog.Title">Set default?</data>
@@ -47,4 +48,10 @@
 <!-- Mouse Configuration -->
 	<data key="MouseConfiguration.Title">Mouse configuration</data>
 	<data key="MouseConfiguration.Labels.DoubleClickSpeed">Double click speed:</data>
+
+<!-- Locale configuration -->
+	<data key="LocaleConfiguration.Title">Change system locale</data>
+
+	<data key="LocaleConfiguration.RebootDialog.Title">Reboot?</data>
+	<data key="LocaleConfiguration.RebootDialog.Text">You should reboot you System to change the locale. Reboot now?</data>
 </localization>

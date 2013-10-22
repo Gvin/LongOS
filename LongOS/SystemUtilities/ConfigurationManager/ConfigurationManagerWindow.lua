@@ -54,25 +54,27 @@ ConfigurationManagerWindow = Class(Window, function(this, _application)
 
 		this:SetTitle(localizationManager:GetLocalizedString('Title'));
 
-		colorConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.ColorConfiguration'), nil, nil, 0, 1, 'left-top');
+		colorConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.ColorConfiguration'), nil, nil, 1, 1, 'left-top');
 		colorConfigurationButton:AddOnClickEventHandler(colorConfigurationButtonClick);
 		this:AddComponent(colorConfigurationButton);
 	
-		mouseConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.MouseConfiguration'), nil, nil, 0, 3, 'left-top');
+		mouseConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.MouseConfiguration'), nil, nil, 1, 3, 'left-top');
 		mouseConfigurationButton:AddOnClickEventHandler(mouseConfigurationButtonClick);
 		this:AddComponent(mouseConfigurationButton);	
 
-		interfaceConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.InterfaceConfiguration'), nil, nil, 0, 5, 'left-top');
+		interfaceConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.InterfaceConfiguration'), nil, nil, 1, 5, 'left-top');
 		interfaceConfigurationButton:AddOnClickEventHandler(interfaceConfigurationButtonClick);
 		this:AddComponent(interfaceConfigurationButton);
 
-		applicationsConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.ApplicationsConfiguration'), nil, nil, 0, 7, 'left-top');
+		applicationsConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.ApplicationsConfiguration'), nil, nil, 1, 7, 'left-top');
 		applicationsConfigurationButton:AddOnClickEventHandler(applicationsConfigurationButtonClick);
 		this:AddComponent(applicationsConfigurationButton);
 
-		localeConfigurationButton = Button('Locale', nil, nil, 0, 9, 'left-top');
+		localeConfigurationButton = Button(localizationManager:GetLocalizedString('Buttons.LocaleConfiguration'), nil, nil, 1, 9, 'left-top');
 		localeConfigurationButton:AddOnClickEventHandler(localeConfigurationButtonClick);
 		this:AddComponent(localeConfigurationButton);
+
+		this:SetWidth(colorConfigurationButton:GetWidth() + 4);
 	end
 
 	local function constructor()

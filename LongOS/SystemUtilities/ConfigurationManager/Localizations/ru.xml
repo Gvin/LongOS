@@ -1,9 +1,10 @@
 <localization name="Russian">
-	<data key="Title">HacTpouku cucTeMbl</data>
-	<data key="Buttons.ColorConfiguration"			>       HacTpouku U,BeTa       </data>
-	<data key="Buttons.MouseConfiguration"			>        HacTpouku Mblwu       </data>
-	<data key="Buttons.InterfaceConfiguration"		>    HacTpouku BHewHero BuDa   </data>
-	<data key="Buttons.ApplicationsConfiguration"	>      HacTpouku  nporpaMM     </data>
+	<data key="Title">HacTpouku</data>
+	<data key="Buttons.ColorConfiguration"			>    U,BeT   </data>
+	<data key="Buttons.MouseConfiguration"			>    Mblwb   </data>
+	<data key="Buttons.InterfaceConfiguration"		>BHewHuu  BuD</data>
+	<data key="Buttons.ApplicationsConfiguration"	> nporpaMMbl </data>
+	<data key="Buttons.LocaleConfiguration"			>  /\oka/\b  </data>
 
 <!-- Default Dialog -->
 	<data key="DefaultDialog.Title">YcTaHoBuTb no yMo/\4aHu+O?</data>
@@ -47,4 +48,10 @@
 <!-- Mouse Configuration -->
 	<data key="MouseConfiguration.Title">HacTpouku Mblwu</data>
 	<data key="MouseConfiguration.Labels.DoubleClickSpeed">CkopocTb DBouHoro K/\uka:</data>
+
+<!-- Locale configuration -->
+	<data key="LocaleConfiguration.Title">u3MeHuTb /\oka/\b</data>
+
+	<data key="LocaleConfiguration.RebootDialog.Title">nepe3arpy3uTb?</data>
+	<data key="LocaleConfiguration.RebootDialog.Text">Hy}I{Ho nepe3arpy3uTb cucTeMy, 4Tobbl u3MeHeHuua BcTynu/\u B cu/\y. nepe3arpy3uTb ceu4ac?</data>
 </localization>
