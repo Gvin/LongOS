@@ -67,7 +67,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 
 	-- SYSTEM
 
-	local systemMenu = PopupMenu(15, 14, 15, 9, colors.lightGray);
+	local systemMenu = PopupMenu(15, 14, 15, 11, colors.lightGray);
 	menuesManager:AddMenu('SystemMenu', systemMenu);
 
 	local tasksManagerButtonClick = function(sender, eventArgs)
@@ -98,7 +98,15 @@ Classes.System.ControlPanel = Class(Object, function(this)
 		System:RunFile('%SYSDIR%/SystemUtilities/AboutSystem/AboutSystem.exec');
 	end
 
-	local aboutSystemButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.AboutSystem'), colors.gray, colors.white, 1, 7, 'left-top');
+	local function updaterButtonClick(_sender, _eventArgs)
+		System:RunFile('%SYSDIR%/SystemUtilities/UpdateSystem/UpdateSystem.exec');
+	end
+
+	local updaterButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.Updater'), colors.gray, colors.white, 1, 7, 'left-top');
+	updaterButton:AddOnClickEventHandler(updaterButtonClick);
+	systemMenu:AddComponent(updaterButton);
+
+	local aboutSystemButton = Button(System:GetLocalizedString('System.ControlPanel.Applications.AboutSystem'), colors.gray, colors.white, 1, 9, 'left-top');
 	aboutSystemButton:AddOnClickEventHandler(aboutSystemButtonClick);
 	systemMenu:AddComponent(aboutSystemButton);
 
@@ -167,17 +175,17 @@ Classes.System.ControlPanel = Class(Object, function(this)
 
 		local day = days..'';
 		local dayText = System:GetLocalizedString('System.ControlPanel.Calendar.Day');
-		while (string.len(day) < 4 + (dayText:len() - 3)) do
+		while (day:len() + dayText:len() < 8) do
 			day = ' '..day;
 		end
 
 		local year = years..'';
 		local yearText = System:GetLocalizedString('System.ControlPanel.Calendar.Year');
-		while (string.len(year) < 3 + (yearText:len() - 4)) do
+		while (year:len() + yearText:len() < 8) do
 			year = ' '..year;
 		end
-		dayLabel:SetText(dayText..' '..day);
-		yearLabel:SetText(yearText..' '..year);
+		dayLabel:SetText(dayText..day);
+		yearLabel:SetText(yearText..year);
 
 		componentsManager:Draw(videoBuffer, 1, line, screenWidth, 1);
 	end

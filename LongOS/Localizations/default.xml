@@ -26,10 +26,11 @@
 	<data key="System.ControlPanel.Buttons.Shutdown">Shutdown</data>
 	<data key="System.ControlPanel.Buttons.Reboot"	> Reboot </data>
 	<data key="System.ControlPanel.Buttons.LogOff"	>Log  off</data>
-	<data key="System.ControlPanel.Applications.Configuration"	>Configuration</data>
-	<data key="System.ControlPanel.Applications.TasksManager"	>Tasks manager</data>
-	<data key="System.ControlPanel.Applications.Terminal"		>  Terminal   </data>
-	<data key="System.ControlPanel.Applications.AboutSystem"	>About  System</data>
+	<data key="System.ControlPanel.Applications.Configuration"	> Configuration </data>
+	<data key="System.ControlPanel.Applications.TasksManager"	> Tasks manager </data>
+	<data key="System.ControlPanel.Applications.Terminal"		>    Terminal   </data>
+	<data key="System.ControlPanel.Applications.Updater"		>System  Updater</data>
+	<data key="System.ControlPanel.Applications.AboutSystem"	> About  System </data>
 	<data key="System.ControlPanel.Calendar.Day">Day</data>
 	<data key="System.ControlPanel.Calendar.Year">Year</data>
 

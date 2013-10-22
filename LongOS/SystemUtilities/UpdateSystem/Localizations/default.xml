@@ -21,8 +21,4 @@
 	<data key="Dialogs.DownloadWindow.RebootDialog.Text">LongOS successfully updated.  Reboot is recommended. Reboot the system now?</data>
 	<data key="Dialogs.DownloadWindow.CancelDialog.Title">Cancel updating</data>
 	<data key="Dialogs.DownloadWindow.CancelDialog.Text">Do you really want to cancel updating process? This operation can cause current system damadge.</data>
-
-
-
-
 </localization>
