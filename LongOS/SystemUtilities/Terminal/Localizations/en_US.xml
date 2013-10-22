@@ -1,0 +1,7 @@
+<localization name="English US">
+	<data key="Title">LongOS terminal</data>
+	<data key="Buttons.Pause">Pause </data>
+	<data key="Buttons.Resume">Resume</data>
+	<data key="Buttons.Terminate">Terminate</data>
+	<data key="Buttons.Restart">Restart</data>
+</localization>

@@ -1,10 +1,10 @@
-<localization name="Default">
+<localization name="English UK">
 	<data key="Title">Configuration</data>
-	<data key="Buttons.ColorConfiguration"			>System  Colors</data>
-	<data key="Buttons.MouseConfiguration"			>     Mouse    </data>
-	<data key="Buttons.InterfaceConfiguration"		>   Interface  </data>
-	<data key="Buttons.ApplicationsConfiguration"	> Applications </data>
-	<data key="Buttons.LocaleConfiguration"			>System  Locale</data>
+	<data key="Buttons.ColorConfiguration"      	>System Colours</data>
+	<data key="Buttons.MouseConfiguration"      	>     Mouse    </data>
+	<data key="Buttons.InterfaceConfiguration"    	>   Interface  </data>
+	<data key="Buttons.ApplicationsConfiguration" 	> Applications </data>
+	<data key="Buttons.LocaleConfiguration"     	>System  Locale</data>
 
 <!-- Default Dialog -->
 	<data key="DefaultDialog.Title">Set default?</data>
@@ -32,18 +32,18 @@
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">File with this extension is not executable.</data>
 
 <!-- Color Configuration -->
-	<data key="ColorConfiguration.Title">Color configuration</data>
-	<data key="ColorConfiguration.Labels.Color">Color:</data>
-	<data key="ColorConfiguration.Labels.ColorSelection">Color selection:</data>
+	<data key="ColorConfiguration.Title">Colour configuration</data>
+	<data key="ColorConfiguration.Labels.Color">Colour:</data>
+	<data key="ColorConfiguration.Labels.ColorSelection">Colour selection:</data>
 
 <!-- Interface Configuration -->
 	<data key="InterfaceConfiguration.Title">Interface configuration</data>
 	<data key="InterfaceConfiguration.Labels.ControlPanelPosition">Control panel position:</data>
 	<data key="InterfaceConfiguration.Labels.WindowButtonsPosition">Window buttons position:</data>
-	<data key="InterfaceConfiguration.Labels.Top"	> Top  </data>
+	<data key="InterfaceConfiguration.Labels.Top" 	> Top  </data>
 	<data key="InterfaceConfiguration.Labels.Bottom">Bottom</data>
-	<data key="InterfaceConfiguration.Labels.Left"	> Left </data>
-	<data key="InterfaceConfiguration.Labels.Right"	> Right</data>
+	<data key="InterfaceConfiguration.Labels.Left"  > Left </data>
+	<data key="InterfaceConfiguration.Labels.Right" > Right</data>
 
 <!-- Mouse Configuration -->
 	<data key="MouseConfiguration.Title">Mouse configuration</data>
@@ -51,7 +51,6 @@
 
 <!-- Locale configuration -->
 	<data key="LocaleConfiguration.Title">Change system locale</data>
-
 	<data key="LocaleConfiguration.RebootDialog.Title">Reboot?</data>
 	<data key="LocaleConfiguration.RebootDialog.Text">You should reboot you System to change the locale. Reboot now?</data>
 </localization>

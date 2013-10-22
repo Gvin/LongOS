@@ -1,0 +1,8 @@
+<localization name="English UK">
+	<data key="Title">Wallpaper manager</data>
+
+	<data key="Labels.CurrentWallpaper">Current wallpaper:</data>
+	<data key="Labels.Shift">Shift:</data>
+
+	<data key="BrowseForWallpaper">Browse for wallpapers</data>
+</localization>

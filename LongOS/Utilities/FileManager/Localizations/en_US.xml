@@ -1,4 +1,4 @@
-<localization name="English">
+<localization name="English US">
 	<!-- Standard buttons -->
 	<data key="Buttons.Paste">Paste</data>
 	<data key="Buttons.CreateDirectory">Create folder</data>
@@ -27,7 +27,7 @@
 
 	<!-- Errors -->
 	<data key="Errors.Exists.Title">File exists</data>
-	<data key="Errors.Exists.Text">File or directory with path %q allready exists.</data>
+	<data key="Errors.Exists.Text">File or directory with path %q already exists.</data>
 
 	<data key="Errors.FileReadOnly.Title">File is read-only</data>
 	<data key="Errors.FileReadOnly.Text">Selected file is read-only, it cannot be renamed or deleted.</data>

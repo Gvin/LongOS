@@ -1,4 +1,4 @@
-<localization name="English">
+<localization name="English UK">
 	<data key="Title">Tasks manager</data>
 	<data key="Labels.ApplicationsCount">Applications count: </data>
 	<data key="Buttons.CloseApplication">Close application</data>

@@ -1,4 +1,4 @@
-<localization name="English">
+<localization name="English US">
 	<!-- Menus -->
 	<data key="FileMenu.ButtonText">File</data>
 	<data key="FileMenu.New"	>New </data>

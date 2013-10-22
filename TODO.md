@@ -12,7 +12,6 @@ For v1.2
 - [X] F116: Create UI for changing the localization.
 - [X] F117: Move system update to the separated application.
 - [X] #32 GvinFileManager: "Run in terminal" button shows terminal with "No such program" text in subfolder
-- [ ] F108: Add more events to the Window.
 - [ ] F109: Add custom events support.
 
 
@@ -198,4 +197,5 @@ Rejected
 - [X] F11: [REJECTED] Add packets manager.
 - [X] F24: [REJECTED] Create application for components testing.
 - [X] F72: [DUPLICATE] Create file extensions association configuration.
+- [X] F108: [REJECTED] Add more events to the Window.
 - [X] #13 [NOT A BUG] Modal window is hidden by not modal window if Show was called after the ShowModal call.

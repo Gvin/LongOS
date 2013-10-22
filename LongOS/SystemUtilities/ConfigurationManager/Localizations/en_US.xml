@@ -1,4 +1,4 @@
-<localization name="English">
+<localization name="English US">
 	<data key="Title">Configuration</data>
 	<data key="Buttons.ColorConfiguration"			>System  Colors</data>
 	<data key="Buttons.MouseConfiguration"			>     Mouse    </data>
@@ -6,7 +6,7 @@
 	<data key="Buttons.ApplicationsConfiguration"	> Applications </data>
 	<data key="Buttons.LocaleConfiguration"			>System  Locale</data>
 
-	<!-- Default Dialog -->
+<!-- Default Dialog -->
 	<data key="DefaultDialog.Title">Set default?</data>
 	<data key="DefaultDialog.Text">Do you really want to set default configuration?</data>
 
@@ -25,8 +25,8 @@
 	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">Empty path</data>
 	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Application's path must be entered.</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">File not exists</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">File with path %q not exists.</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">File does not exist</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">File with path %q does not exist.</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Wrong extension</data>
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">File with this extension is not executable.</data>

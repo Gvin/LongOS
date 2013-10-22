@@ -1,0 +1,40 @@
+<localization name="English UK">
+	<!-- Menus -->
+	<data key="FileMenu.ButtonText">File</data>
+	<data key="FileMenu.New" 	>New </data>
+	<data key="FileMenu.Open"	>Open</data>
+	<data key="FileMenu.Save"	>Save</data>
+
+	<data key="EditMenu.ButtonText">Edit</data>
+	<data key="EditMenu.ClearAll" 	>Clear all</data>
+	<data key="EditMenu.Undo"   	>   Undo  </data>
+	<data key="EditMenu.SetSize"  	>Set  size</data>
+
+	<!-- Modes -->
+	<data key="Mode.Pen"  	>  Pen  </data>
+	<data key="Mode.Line" 	>  Line </data>
+	<data key="Mode.Rect" 	>  Rect </data>
+	<data key="Mode.Ellipse">Ellipse</data>
+	<data key="Mode.Fill" 	>  Fill </data>
+
+	<!-- Dialogs -->
+	<data key="Dialog.SaveFile.Title">Save image</data>
+	<data key="Dialog.OpenFile.Title">Open image</data>
+
+	<data key="Dialog.FileSaved.Title">File saved</data>
+	<data key="Dialog.FileSaved.Text">File successfully saved.</data>
+
+	<data key="Dialog.FileOpened.Title">File opened</data>
+	<data key="Dialog.FileOpened.Text">File successfully opened.</data>
+
+	<data key="Dialog.FileNotFound.Title">File not found</data>
+	<data key="Dialog.FileNotFound.Text">File with path %q not found.</data>
+
+	<data key="Dialog.NewImage.Title">New image</data>
+
+	<data key="Dialog.NewSize.Title">New image size</data>
+
+	<!-- New Image Dialog -->
+	<data key="NewImageDialog.Label.Width">Width</data>
+	<data key="NewImageDialog.Label.Height">Height</data>
+</localization>
