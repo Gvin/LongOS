@@ -146,7 +146,7 @@ BiriPaintWindow = Class(Window, function(this, _application, _fileName)
 			local openWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Dialog.FileOpened.Title'), localizationManager:GetLocalizedString('Dialog.FileOpened.Text'));
 			openWindow:ShowModal();
 		else
-			local errorWindow = MessageWindow(this:GetApplication(), ocalizationManager:GetLocalizedString('Dialog.FileNotFound.Title'), stringExtAPI.format(ocalizationManager:GetLocalizedString('Dialog.FileNotFound.Text'), fileName));
+			local errorWindow = MessageWindow(this:GetApplication(), ocalizationManager:GetLocalizedString('Dialog.FileNotFound.Title'), string.format(ocalizationManager:GetLocalizedString('Dialog.FileNotFound.Text'), fileName));
 			errorWindow:ShowModal();
 		end
 	end

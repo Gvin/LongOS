@@ -50,7 +50,7 @@ DownloadWindow = Class(Window, function(this, _application, _systemUpdater)
 		local percent = math.modf(currentCount/filesCount * 100);
 	
 
-		statusLabel:SetText(stringExtAPI.format(localizationManager:GetLocalizedString('DownloadWindow.Labels.StatusLabel'), currentCount..'/'..filesCount));
+		statusLabel:SetText(string.format(localizationManager:GetLocalizedString('DownloadWindow.Labels.StatusLabel'), currentCount..'/'..filesCount));
 
 		progressBar:SetMaxValue(filesCount);
 		progressBar:SetValue(currentCount);		
@@ -93,7 +93,7 @@ DownloadWindow = Class(Window, function(this, _application, _systemUpdater)
 		this:SetTitle(localizationManager:GetLocalizedString('DownloadWindow.Title'));
 		
 		
-		statusLabel = Label(stringExtAPI.format(localizationManager:GetLocalizedString('DownloadWindow.Labels.StatusLabel'), ''), nil, nil, 1, 1, 'left-top');		
+		statusLabel = Label(string.format(localizationManager:GetLocalizedString('DownloadWindow.Labels.StatusLabel'), ''), nil, nil, 1, 1, 'left-top');		
 		this:AddComponent(statusLabel);
 
 		progressBar = ProgressBar(0, 1, 16, 1,3,'left-top');

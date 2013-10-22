@@ -26,7 +26,7 @@
 	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Hy}I{Ho BBecTu nyTb npu/\o}I{eHuua</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">(I)au/\ He cuw,ecTByeT</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">(I)au/\a c nyTeM "{1}" He cuw,ecTByeT</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">(I)au/\a c nyTeM %q He cuw,ecTByeT</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">HeBepHoe pacwupeHue</data>
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">(I)au/\ c TakuM pacwupeHueM He uaB/\uaeTca ucno/\HuaeMblM</data>

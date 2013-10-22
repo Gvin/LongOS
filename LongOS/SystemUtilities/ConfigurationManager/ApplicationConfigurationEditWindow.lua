@@ -94,7 +94,7 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 				add = false;			
 			elseif (terminalCheckBox:GetChecked()) then
 				if (isInPrograms(path) == false and not (fs.exists(resolvedPath) and fs.isDir(path) == false)) then
-					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text'), path));			
+					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title'), string.format(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text'), path));			
 					errorWindow:ShowModal();
 					add = false;
 				elseif ( not (stringExtAPI.endsWith(fs.getName(path),'.lua') or  string.find(fs.getName(path),'.') ~= nil ) ) then
@@ -105,7 +105,7 @@ ApplicationConfigurationEditWindow = Class(Window, function(this, _application, 
 
 			elseif(not terminalCheckBox:GetChecked()) then
 				if (not (fs.exists(resolvedPath) and fs.isDir(path) == false)) then
-					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text'), path));			
+					local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title'), string.format(localizationManager:GetLocalizedString('ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text'), path));			
 					errorWindow:ShowModal();
 					add = false;
 				elseif ( not stringExtAPI.endsWith(fs.getName(path),'.exec') ) then

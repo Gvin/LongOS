@@ -326,7 +326,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	end
 
 	function this:ShowError(_message)
-		this:ShowMessage(this:GetLocalizedString('Error.Title'), stringExtAPI.format(this:GetLocalizedString('Error.Text'), tostring(_message)), colors.red);
+		this:ShowMessage(this:GetLocalizedString('Error.Title'), string.format(this:GetLocalizedString('Error.Text'), tostring(_message)), colors.red);
 	end
 
 	function this:GetCurrentTime()
@@ -375,7 +375,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		local sucess = shell.run(path);
 		if (not sucess) then
 			System:LogRuntimeError('Error occured when running file "'..path..'".');
-			this:ShowMessage(this:GetLocalizedString('Error.Title'), stringExtAPI.format(this:GetLocalizedString('Error.FileError.Text'), path), colors.red);
+			this:ShowMessage(this:GetLocalizedString('Error.Title'), string.format(this:GetLocalizedString('Error.FileError.Text'), path), colors.red);
 		end
 	end
 

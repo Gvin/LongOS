@@ -58,7 +58,7 @@ UpdateSystemWindow = Class(Window, function(this, _application)
 			return;
 		end
 
-		lastVersionLabel:SetText(stringExtAPI.format(localizationManager:GetLocalizedString('UpdateSystemWindow.Labels.LastVersion'), lastVersion));		
+		lastVersionLabel:SetText(string.format(localizationManager:GetLocalizedString('UpdateSystemWindow.Labels.LastVersion'), lastVersion));		
 
 		if (lastVersion == currentVersion) then
 			local messageWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Messages.UpdateSystemWindow.UpdateNotRequired.Title'), localizationManager:GetLocalizedString('Messages.UpdateSystemWindow.UpdateNotRequired.Text'));
@@ -66,7 +66,7 @@ UpdateSystemWindow = Class(Window, function(this, _application)
 			return;
 		end
 
-		local updateDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Messages.UpdateSystemWindow.NewVersionAvailable.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Messages.UpdateSystemWindow.NewVersionAvailable.Text'), lastVersion));
+		local updateDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Messages.UpdateSystemWindow.NewVersionAvailable.Title'), string.format(localizationManager:GetLocalizedString('Messages.UpdateSystemWindow.NewVersionAvailable.Text'), lastVersion));
 		updateDialog:AddOnYesEventHandler(updateDialogYes);
 		updateDialog:ShowModal();
 	end	
@@ -109,10 +109,10 @@ UpdateSystemWindow = Class(Window, function(this, _application)
 
 		local currentVersion = System:GetCurrentVersion();
 
-		currentVersionLabel = Label(stringExtAPI.format(localizationManager:GetLocalizedString('UpdateSystemWindow.Labels.CurrentVersion'), currentVersion), nil, nil, 1, 1, 'left-top');		
+		currentVersionLabel = Label(string.format(localizationManager:GetLocalizedString('UpdateSystemWindow.Labels.CurrentVersion'), currentVersion), nil, nil, 1, 1, 'left-top');		
 		this:AddComponent(currentVersionLabel);
 
-		lastVersionLabel = Label(stringExtAPI.format(localizationManager:GetLocalizedString('UpdateSystemWindow.Labels.LastVersion'), ''), nil, nil, 1, 2, 'left-top');		
+		lastVersionLabel = Label(string.format(localizationManager:GetLocalizedString('UpdateSystemWindow.Labels.LastVersion'), ''), nil, nil, 1, 2, 'left-top');		
 		this:AddComponent(lastVersionLabel);
 
 		this:AddOnShowEventHandler(onShow);

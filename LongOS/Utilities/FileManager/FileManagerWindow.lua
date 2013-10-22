@@ -44,7 +44,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 	------------------------------------------------------------------------------------------------------------------
 
 	local function showExistsMessage(_path)
-		local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.Exists.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Errors.Exists.Text'), _path));
+		local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.Exists.Title'), string.format(localizationManager:GetLocalizedString('Errors.Exists.Text'), _path));
 		errorWindow:ShowModal();
 	end
 
@@ -117,7 +117,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 
 	local function deleteButtonClick(_sender, _eventArgs)
 		if (fileBrowser:GetSelectedFile() ~= '' and fileBrowser:GetSelectedFile() ~= nil) then
-			local deleteDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.Delete.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Dialogs.Delete.Text'), fileBrowser:GetSelectedFile()));
+			local deleteDialog = QuestionDialog(this:GetApplication(), localizationManager:GetLocalizedString('Dialogs.Delete.Title'), string.format(localizationManager:GetLocalizedString('Dialogs.Delete.Text'), fileBrowser:GetSelectedFile()));
 			deleteDialog:AddOnYesEventHandler(deleteDialogYes);
 			deleteDialog:ShowModal();
 		end
@@ -151,7 +151,7 @@ FileManagerWindow = Class(Window, function(this, _application)
 		else
 			local ok = pcall(fs.makeDir, newDirectoryName);
 			if (not ok) then
-				local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UnableToCreate.Title'), stringExtAPI.format(localizationManager:GetLocalizedString('Errors.UnableToCreate.Text'), newDirectoryName));
+				local errorWindow = MessageWindow(this:GetApplication(), localizationManager:GetLocalizedString('Errors.UnableToCreate.Title'), string.format(localizationManager:GetLocalizedString('Errors.UnableToCreate.Text'), newDirectoryName));
 				errorWindow:ShowModal();
 			end
 		end
