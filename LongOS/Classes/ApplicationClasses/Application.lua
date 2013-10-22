@@ -185,6 +185,11 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 		windowsManager:ProcessHttpEvent(_status, _url, _handler);
 	end
 
+	function this:ProcessEvent(_eventName, _params)
+		threadsManager:ProcessEvent(_eventName, _params);
+		windowsManager:ProcessEvent(_eventName, _params);
+	end
+
 	local function getWorkingDirectory()
 		local prog = shell.getRunningProgram();
 		local fileName = fs.getName(shell.getRunningProgram());

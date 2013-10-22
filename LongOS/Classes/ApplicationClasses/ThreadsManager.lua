@@ -174,6 +174,11 @@ Classes.Application.ThreadsManager = Class(Object, function(this)
 		table.insert(events, event);
 	end
 
+	function this:ProcessEvent(_eventName, _params)
+		event = { _eventName, unpack(_params) };
+		table.insert(events, event);
+	end
+
 	------------------------------------------------------------------------------------------------------------------
 	----- Constructors -----------------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------------------------------------

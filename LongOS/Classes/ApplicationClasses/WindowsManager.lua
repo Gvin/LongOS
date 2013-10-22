@@ -162,6 +162,12 @@ Classes.Application.WindowsManager = Class(Object, function(this)
 		end
 	end
 
+	this.ProcessEvent = function(_, _eventName, _params)
+		for i = 1, #windows do
+			windows[i]:ProcessEventBase(_eventName, _params);
+		end
+	end
+
 	this.SwitchWindow = function(_)
 		if (currentWindow ~= nil) then
 			local window, index = getWindowById(currentWindow:GetId());

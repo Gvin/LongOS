@@ -777,6 +777,17 @@ Classes.Application.Window = Class(Object, function(this, _application, _name, _
 	function this:ProcessHttpEvent(_status, _url, _handler)
 	end
 
+	function this:ProcessHttpEventBase(_status, _url, _handler)
+		this:ProcessHttpEvent(_status, _url, _handler);
+	end
+
+	function this:ProcessEventBase(_eventName, _params)
+		this:ProcessEvent(_eventName, _params);
+	end
+
+	function this:ProcessEvent(_eventName, _params)
+	end
+
 	local function closeButtonClick(sender, eventArgs)
 		this:Close();
 	end

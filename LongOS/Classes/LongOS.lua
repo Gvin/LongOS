@@ -264,6 +264,10 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		end
 	end
 
+	local function processUnknownEvent(_eventName, _params)
+		applicationsManager:ProcessEvent(_eventName, _params);
+	end
+
 	function this:ProcessEvents()
 		if (#eventsQueue > 0) then
 			local event = eventsQueue[1];
@@ -285,6 +289,8 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 				processMouseScrollEvent(event.Params[1], event.Params[2], event.Params[3]);
 			elseif (event.Name == 'http_success' or event.Name == 'http_failure') then
 				processHttpEvent(event.Name, event.Params[1], event.Params[2]);
+			else
+				processUnknownEvent(event.Name, event.Params);
 			end
 			table.remove(eventsQueue, 1);
 		else

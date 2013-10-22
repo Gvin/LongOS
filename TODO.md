@@ -6,13 +6,13 @@ TODO
 
 For v1.2
 --------
+- [X] F109: Add custom events support.
 - [X] F111: Add events to the Thread class.
 - [X] F112: Add possibility to pause threads execution.
 - [X] F115: Create localization option in the OS.
 - [X] F116: Create UI for changing the localization.
 - [X] F117: Move system update to the separated application.
 - [X] #32 GvinFileManager: "Run in terminal" button shows terminal with "No such program" text in subfolder
-- [ ] F109: Add custom events support.
 
 
 

@@ -408,6 +408,21 @@ Classes.System.ApplicationsManager = Class(Object, function(this)
 		end
 	end
 
+	local function tryProcessEvent(_application, _eventName, _params)
+		local success, message = pcall(_application.ProcessEvent, _application, _eventName, _params);
+		if (not success) then
+			message = tostring(message);
+			System:LogRuntimeError('Event processing error (ApplicationName:"'..getString(_application:GetName())..'", ApplicationId:'..getString(_application:GetId())..', EventName:'..tostring(_eventName)..'). Message:"'..message..'".');
+			showError(_application, 'Event processing error: ', message);
+		end
+	end
+
+	function this:ProcessEvent(_eventName, _params)
+		for i = 1, #applications do
+			tryProcessEvent(applications[i], _eventName, _params);
+		end
+	end
+
 	function this:GetApplicationsCount()
 		return #applications;
 	end
