@@ -1,5 +1,5 @@
 This is TODO file of the LongOS project. Planned features will be listed here.
-Currently there are 118 registered features.
+Currently there are 119 registered features.
 
 TODO
 ========
@@ -42,6 +42,7 @@ Further releases
 - [ ] F113: Implement applets system on the ControlPanel.
 - [ ] F105: Create application for editing file assotiations configuration.
 - [ ] F118: FileManager: Add "Launch terminal from here" button.
+- [ ] F119: Move uid generation to a separate API.
 - [ ] #20 [B] System hangs on launching LongOS in the terminal emulator in some cases.
 - [ ] #25 [B] GvinTerminal: Assigning error-throwing function to the api function can crash OS.
 - [ ] #27 [E] Value null checking can be shortened.
