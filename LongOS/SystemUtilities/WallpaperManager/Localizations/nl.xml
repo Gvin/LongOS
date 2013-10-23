@@ -1,0 +1,8 @@
+<localization name="Dutch NL">
+	<data key="Title">Wallpaper manager</data>
+
+	<data key="Labels.CurrentWallpaper">Gebruikte wallpaper:</data>
+	<data key="Labels.Shift">Verander:</data>
+
+	<data key="BrowseForWallpaper">Blader wallpapers</data>
+</localization>

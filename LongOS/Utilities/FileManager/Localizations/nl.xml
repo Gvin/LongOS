@@ -1,0 +1,43 @@
+<localization name="Dutch NL">
+	  <!-- Standard buttons -->
+	<data key="Buttons.Paste">Plakken</data>
+	<data key="Buttons.CreateDirectory">Folder maken</data>
+	<data key="Buttons.CreateFile">Bestand maken</data>
+
+	<!-- Context menu buttons -->
+	<data key="Buttons.ContextMenu.RunInTerminal" 	>Uitvoeren in terminal</data>
+	<data key="Buttons.ContextMenu.Copy"      		>      Kopieeren      </data>
+	<data key="Buttons.ContextMenu.Cut"       		>       Knippen       </data>
+	<data key="Buttons.ContextMenu.Delete"      	>     Verwijderen     </data>
+	<data key="Buttons.ContextMenu.Rename"      	>      Hernoemen      </data>
+	<data key="Buttons.ContextMenu.Edit"      		>       Bewerken      </data>
+
+	<!-- Dialogs -->
+	<data key="Dialogs.Rename.Title">Hernoemen</data>
+	<data key="Dialogs.Rename.Text">Type nieuwe naam:</data>
+
+	<data key="Dialogs.CreateDirectory.Title">Foldernaam</data>
+	<data key="Dialogs.CreateDirectory.Text">Type nieuwe foldernaam:</data>
+
+	<data key="Dialogs.CreateFile.Title">Bestand maken</data>
+	<data key="Dialogs.CreateFile.Text">Type nieuwe bestandsnaam:</data>
+
+	<data key="Dialogs.Delete.Title">Verwijderen?</data>
+	<data key="Dialogs.Delete.Text">Weet je zeker dat %q wilt verwijderen?</data>
+
+	<!-- Errors -->
+	<data key="Errors.Exists.Title">Bestand bestaat</data>
+	<data key="Errors.Exists.Text">Bestand of folder met pad %q bestaat al.</data>
+
+	<data key="Errors.FileReadOnly.Title">Bestand is alleen-lezen</data>
+	<data key="Errors.FileReadOnly.Text">Geselecteerd bestand is alleen-lezen.</data>
+
+	<data key="Errors.WrongOperation.Title">Verkeerde actie</data>
+	<data key="Errors.WrongOperation.Text">Kan geen folder in zichzelf kopieeren.</data>
+
+	<data key="Errors.UnableToCreate.Title">Kan niet creeren</data>
+	<data key="Errors.UnableToCreate.Text">Kan folder niet creeren: %q.</data>
+
+	<data key="Errors.UnableToLaunch.Title">Kan niet opstarten</data>
+	<data key="Errors.UnableToLaunch.Text">Kan het bestand niet opstarten.</data>
+</localization>

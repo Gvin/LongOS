@@ -1,0 +1,6 @@
+<localization name="Dutch NL">
+	<data key="Title">Taakbeheer</data>
+	<data key="Labels.ApplicationsCount">Aantal applicaties: </data>
+	<data key="Buttons.CloseApplication">Sluit applicatie</data>
+	<data key="Buttons.SetActive">Zet actief</data>
+</localization>

@@ -236,6 +236,11 @@ GvinTerminalWindow = Class(Window, function(this, _application, _fileName)
 		end
 
 		initializeComponents(_fileName);
+
+		local neededWidth = restartButton:GetdX() + restartButton:GetWidth() + 2;
+		if (this:GetWidth() < neededWidth) then
+			this:SetWidth(neededWidth);
+		end
 	end
 
 	constructor();

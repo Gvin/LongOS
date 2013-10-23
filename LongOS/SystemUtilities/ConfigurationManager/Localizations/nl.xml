@@ -1,0 +1,57 @@
+<localization name="Dutch NL">
+	<data key="Title">Configuratie</data>
+	<data key="Buttons.ColorConfiguration"      	>Systeemkleuren</data>
+	<data key="Buttons.MouseConfiguration"      	>     Muis     </data>
+	<data key="Buttons.InterfaceConfiguration"    	>   Vensters   </data>
+	<data key="Buttons.ApplicationsConfiguration" 	> Applicaties  </data>
+	<data key="Buttons.LocaleConfiguration"     	> Systeemtaal  </data>
+
+<!-- Default Dialog -->
+	<data key="DefaultDialog.Title">Zet standaard configuratie?</data>
+	<data key="DefaultDialog.Text">Weet je zeker dat je de standaard configuratie wilt gebruiken?</data>
+
+<!-- Applications Configuration -->
+	<data key="ApplicationsConfiguration.Title">Applicatiies configuratie</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.EditTitle">Bewerk applicatie configuratie</data>
+	<data key="ApplicationsConfiguration.EditDialog.AddTitle">Voeg applicatie configuratie toe</data>
+	<data key="ApplicationsConfiguration.EditDialog.NameLabel">Naam</data>
+	<data key="ApplicationsConfiguration.EditDialog.PathLabel">Pad</data>
+	<data key="ApplicationsConfiguration.EditDialog.TerminalLabel">Terminal</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">Lege naam</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">De naam van de applicatie moet ingevuld worden.</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">Lege pad</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">De bestandspad van de applicatie moet ingevuld worden.</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">Bestand bestaat niet</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">Bestand met pad %q bestaat niet.</data>
+
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Verkeerde bestandsextensie</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">Bestand met deze bestandsextensie is niet uitvoerbaar</data>
+
+<!-- Color Configuration -->
+	<data key="ColorConfiguration.Title">Kleur configuratie</data>
+	<data key="ColorConfiguration.Labels.Color">Kleur:</data>
+	<data key="ColorConfiguration.Labels.ColorSelection">Kleur selectie:</data>
+
+<!-- Interface Configuration -->
+	<data key="InterfaceConfiguration.Title">Venster configuratie</data>
+	<data key="InterfaceConfiguration.Labels.ControlPanelPosition">Configuratiescherm positie:</data>
+	<data key="InterfaceConfiguration.Labels.WindowButtonsPosition">Venstor knoppen positie:</data>
+	<data key="InterfaceConfiguration.Labels.Top" 	> Top  </data>
+	<data key="InterfaceConfiguration.Labels.Bottom"> Voet </data>
+	<data key="InterfaceConfiguration.Labels.Left"  >Links </data>
+	<data key="InterfaceConfiguration.Labels.Right" >Rechts</data>
+
+<!-- Mouse Configuration -->
+	<data key="MouseConfiguration.Title">Muis Configuratie</data>
+	<data key="MouseConfiguration.Labels.DoubleClickSpeed">Dubbelklik snelheid:</data>
+
+<!-- Locale configuration -->
+	<data key="LocaleConfiguration.Title">Verander systeemtaal</data>
+
+	<data key="LocaleConfiguration.RebootDialog.Title">Herstart?</data>
+	<data key="LocaleConfiguration.RebootDialog.Text">U moet uw systeem opnieuw opstarten om de landinstellingen te wijzigen. Herstart nu?</data>
+</localization>

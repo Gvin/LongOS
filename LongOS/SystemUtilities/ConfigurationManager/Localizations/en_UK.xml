@@ -52,5 +52,5 @@
 <!-- Locale configuration -->
 	<data key="LocaleConfiguration.Title">Change system locale</data>
 	<data key="LocaleConfiguration.RebootDialog.Title">Reboot?</data>
-	<data key="LocaleConfiguration.RebootDialog.Text">You should reboot you System to change the locale. Reboot now?</data>
+	<data key="LocaleConfiguration.RebootDialog.Text">You should reboot your System to change the locale. Reboot now?</data>
 </localization>

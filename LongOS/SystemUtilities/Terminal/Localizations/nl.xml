@@ -1,0 +1,7 @@
+<localization name="Dutch NL">
+	<data key="Title">LongOS terminal</data>
+	<data key="Buttons.Pause"	>  Pause  </data>
+	<data key="Buttons.Resume"	>Hervatten</data>
+	<data key="Buttons.Terminate">Geforceerd sluiten</data>
+	<data key="Buttons.Restart">Herstarten</data>
+</localization>
