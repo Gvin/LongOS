@@ -5,8 +5,8 @@
 	<data key="UpdateSystemWindow.Labels.LastVersion">Last Version: %s</data>
 
 	<data key="Errors.UpdateSystemWindow.UpdateError.Title">Update error</data>
-	<data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">Cant't update Longos. Please  enable http api in the        computercraft configuration.</data>
-	<data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">Cant't update Longos. Unable to retrieve the latest version.</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">Can't update Longos. Please  enable http api in the        computercraft configuration.</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">Can't update Longos. Unable to retrieve the latest version.</data>
 
 	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Title">Update not required</data>
 	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Text">You are using the latest version of the LongOS. Updating is not required.</data>
