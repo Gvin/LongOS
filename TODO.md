@@ -45,9 +45,14 @@ Further releases
 - [ ] F119: Move uid generation to a separate API.
 - [ ] #20 [B] System hangs on launching LongOS in the terminal emulator in some cases.
 - [ ] #25 [B] GvinTerminal: Assigning error-throwing function to the api function can crash OS.
+- [ ] #36 [B] Wallpapers Manager: OS must be rebooted to change the wallpaper.
+- [ ] #37 [B] Desktop: Desktop background color isn't filling all screen.
+- [ ] #38 [B] Desktop: LongOS crashes on startup when the wallpaper file was deleted.
 - [ ] #27 [E] Value null checking can be shortened.
 - [ ] #28 [E] Improve color values storing.
 - [ ] #34 [E] Improve errors generation with assert function and throwback level.
+- [ ] #39 [E] Add boot screen animation.
+- [ ] #40 [E] Create better OS crash screen.
 
 
 History
