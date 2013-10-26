@@ -26,7 +26,7 @@
 	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Application's path must be entered.</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">File does not exist</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">File with path %q does not exist.</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">File with path "%s" does not exist.</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Wrong extension</data>
 	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">File with this extension is not executable.</data>

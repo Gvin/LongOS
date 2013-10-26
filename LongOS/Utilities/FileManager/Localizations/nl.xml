@@ -1,8 +1,8 @@
 <localization name="Dutch NL">
 	  <!-- Standard buttons -->
 	<data key="Buttons.Paste">Plakken</data>
-	<data key="Buttons.CreateDirectory">Folder maken</data>
-	<data key="Buttons.CreateFile">Bestand maken</data>
+	<data key="Buttons.CreateDirectory">Map aanmaken</data>
+	<data key="Buttons.CreateFile">Bestand aanmaken</data>
 
 	<!-- Context menu buttons -->
 	<data key="Buttons.ContextMenu.RunInTerminal" 	>Uitvoeren in terminal</data>
@@ -14,29 +14,29 @@
 
 	<!-- Dialogs -->
 	<data key="Dialogs.Rename.Title">Hernoemen</data>
-	<data key="Dialogs.Rename.Text">Type nieuwe naam:</data>
+	<data key="Dialogs.Rename.Text">Nieuwe naam:</data>
 
-	<data key="Dialogs.CreateDirectory.Title">Foldernaam</data>
-	<data key="Dialogs.CreateDirectory.Text">Type nieuwe foldernaam:</data>
+	<data key="Dialogs.CreateDirectory.Title">Mapnaam</data>
+	<data key="Dialogs.CreateDirectory.Text">Nieuwe naam:</data>
 
 	<data key="Dialogs.CreateFile.Title">Bestand maken</data>
-	<data key="Dialogs.CreateFile.Text">Type nieuwe bestandsnaam:</data>
+	<data key="Dialogs.CreateFile.Text">Nieuwe naam:</data>
 
 	<data key="Dialogs.Delete.Title">Verwijderen?</data>
-	<data key="Dialogs.Delete.Text">Weet je zeker dat %q wilt verwijderen?</data>
+	<data key="Dialogs.Delete.Text">Weet je zeker dat "%s" wilt verwijderen?</data>
 
 	<!-- Errors -->
-	<data key="Errors.Exists.Title">Bestand bestaat</data>
-	<data key="Errors.Exists.Text">Bestand of folder met pad %q bestaat al.</data>
+	<data key="Errors.Exists.Title">Bestand bestaat al</data>
+	<data key="Errors.Exists.Text">Bestand of map met pad "%s" bestaat al.</data>
 
 	<data key="Errors.FileReadOnly.Title">Bestand is alleen-lezen</data>
 	<data key="Errors.FileReadOnly.Text">Geselecteerd bestand is alleen-lezen.</data>
 
 	<data key="Errors.WrongOperation.Title">Verkeerde actie</data>
-	<data key="Errors.WrongOperation.Text">Kan geen folder in zichzelf kopieeren.</data>
+	<data key="Errors.WrongOperation.Text">Je kunt een map niet in zichzelf verplaatsen.</data>
 
-	<data key="Errors.UnableToCreate.Title">Kan niet creeren</data>
-	<data key="Errors.UnableToCreate.Text">Kan folder niet creeren: %q.</data>
+	<data key="Errors.UnableToCreate.Title">Kan niet aanmaken</data>
+	<data key="Errors.UnableToCreate.Text">Kan map niet aanmaken: "%s".</data>
 
 	<data key="Errors.UnableToLaunch.Title">Kan niet opstarten</data>
 	<data key="Errors.UnableToLaunch.Text">Kan het bestand niet opstarten.</data>

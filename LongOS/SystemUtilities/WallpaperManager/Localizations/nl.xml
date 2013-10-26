@@ -1,8 +1,8 @@
 <localization name="Dutch NL">
-	<data key="Title">Wallpaper manager</data>
+	<data key="Title">Achtergrond instellingen</data>
 
-	<data key="Labels.CurrentWallpaper">Gebruikte wallpaper:</data>
+	<data key="Labels.CurrentWallpaper">Gebruikte achtergrond:</data>
 	<data key="Labels.Shift">Verander:</data>
 
-	<data key="BrowseForWallpaper">Blader wallpapers</data>
+	<data key="BrowseForWallpaper">Door achtergronden bladeren</data>
 </localization>

@@ -1,0 +1,54 @@
+<localization name="Pilipino">
+<!-- Standard Actions -->
+	<data key="Action.Ok"> Ayos </data>
+	<data key="Action.Cancel">Kanselahin</data>
+	<data key="Action.Yes"> Oo </data>
+	<data key="Action.No">Hindi</data>
+	<data key="Action.Delete">Alisin</data>
+	<data key="Action.Edit">I-Edit</data>
+	<data key="Action.Add">Magdagdag</data>
+	<data key="Action.Remove">Tangalin</data>
+	<data key="Action.Save">I-save</data>
+	<data key="Action.SaveChanges">I-save</data>
+	<data key="Action.SetDefault">I-set ang default</data>
+	<data key="Action.Browse">Mag-browse</data>
+	<data key="Action.New">Bago</data>
+	<data key="Action.Open">Magbukas</data>
+
+<!-- Keywords -->
+	<data key="Keyword.File">File</data>
+	<data key="Keyword.Folder">Folder</data>
+
+<!-- Control Panel -->
+	<data key="System.ControlPanel.Buttons.Applications">Applications</data>
+	<data key="System.ControlPanel.Buttons.System">Sistem</data>
+	<data key="System.ControlPanel.Buttons.Power">Power</data>
+	<data key="System.ControlPanel.Buttons.Shutdown">Shutdown</data>
+	<data key="System.ControlPanel.Buttons.Reboot"  > Reboot </data>
+	<data key="System.ControlPanel.Buttons.LogOff"  >Log  off</data>
+	<data key="System.ControlPanel.Applications.Configuration"      > Configuration  </data>
+	<data key="System.ControlPanel.Applications.TasksManager"       >Manager ng Tasks</data>
+	<data key="System.ControlPanel.Applications.Terminal"           >    Terminal    </data>
+	<data key="System.ControlPanel.Applications.Updater"			> System Updater </data>
+	<data key="System.ControlPanel.Applications.AboutSystem"        >Tunkol sa sistem</data>
+	<data key="System.ControlPanel.Calendar.Day">Araw</data>
+	<data key="System.ControlPanel.Calendar.Year">Taon</data>
+
+<!-- Desktop -->
+	<data key="System.Desktop.ChangeWallpaper">Baguhin ang wallpaper</data>
+
+<!-- System Windows -->
+	<data key="System.Windows.ColorPicker.Title">Mamili ng kulay</data>
+	<data key="System.Windows.OpenFile.Title">Mag open ng file</data>
+	<data key="System.Windows.SaveFile.Title">I-save ang file</data>
+	<data key="System.Windows.SaveFile.Labels.FileName">Pangalan ng file</data>
+
+<!-- Errors -->
+	<data key="Error.DeleteInitialApplication.Title">Bawal</data>
+	<data key="Error.DeleteInitialApplication.Text">Bawal idelete ang Internal Application.</data>
+
+	<data key="Error.Title">Problema!</data>
+	<data key="Error.Text">Message ng problema: %q.</data>
+
+	<data key="Error.FileError.Text">Nagkaerror habang pinapaandar ang: %q.</data>
+</localization>

@@ -28,7 +28,7 @@
 	<data key="Dialog.FileOpened.Text">File successfully opened.</data>
 
 	<data key="Dialog.FileNotFound.Title">File not found</data>
-	<data key="Dialog.FileNotFound.Text">File with path %q not found.</data>
+	<data key="Dialog.FileNotFound.Text">File with path "%s" not found.</data>
 
 	<data key="Dialog.NewImage.Title">New image</data>
 

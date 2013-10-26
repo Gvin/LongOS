@@ -23,11 +23,11 @@
 	<data key="Dialogs.CreateFile.Text">Enter new file name:</data>
 
 	<data key="Dialogs.Delete.Title">Delete?</data>
-	<data key="Dialogs.Delete.Text">Do you really want to delete %q?</data>
+	<data key="Dialogs.Delete.Text">Do you really want to delete "%s"?</data>
 
 	<!-- Errors -->
 	<data key="Errors.Exists.Title">File exists</data>
-	<data key="Errors.Exists.Text">File or directory with path %q already exists.</data>
+	<data key="Errors.Exists.Text">File or directory with path "%s" already exists.</data>
 
 	<data key="Errors.FileReadOnly.Title">File is read-only</data>
 	<data key="Errors.FileReadOnly.Text">Selected file is read-only, it cannot be renamed or deleted.</data>
@@ -36,7 +36,7 @@
 	<data key="Errors.WrongOperation.Text">Can't copy directory inside itself.</data>
 
 	<data key="Errors.UnableToCreate.Title">Unable to create</data>
-	<data key="Errors.UnableToCreate.Text">Unable to create directory %q.</data>
+	<data key="Errors.UnableToCreate.Text">Unable to create directory "%s".</data>
 
 	<data key="Errors.UnableToLaunch.Title">Can't launch</data>
 	<data key="Errors.UnableToLaunch.Text">Unable to launch selected file.</data>

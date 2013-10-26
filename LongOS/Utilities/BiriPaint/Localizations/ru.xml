@@ -28,7 +28,7 @@
 	<data key="Dialog.FileOpened.Text">(I)au/\ ycneWHo oTkpblT.</data>
 
 	<data key="Dialog.FileNotFound.Title">(I)au/\ He HauDeH</data>
-	<data key="Dialog.FileNotFound.Text">(I)au/\ c nyTeM %q He HauDeH.</data>
+	<data key="Dialog.FileNotFound.Text">(I)au/\ c nyTeM "%s" He HauDeH.</data>
 
 	<data key="Dialog.NewImage.Title">HoBaua kapTuHka</data>
 

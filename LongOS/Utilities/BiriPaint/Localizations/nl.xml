@@ -8,7 +8,7 @@
 	<data key="EditMenu.ButtonText">Bewerken</data>
 	<data key="EditMenu.ClearAll" 	>Alles weghalen</data>
 	<data key="EditMenu.Undo"   	>Ongedaan maken</data>
-	<data key="EditMenu.SetSize"  	>Zet   afmeting</data>
+	<data key="EditMenu.SetSize"  	> Zet  grootte </data>
 
 	<!-- Modes -->
 	<data key="Mode.Pen"  	>  Pen   </data>
@@ -18,8 +18,8 @@
 	<data key="Mode.Fill" 	> Vullen </data>
 
 	<!-- Dialogs -->
-	<data key="Dialog.SaveFile.Title">Sla foto op</data>
-	<data key="Dialog.OpenFile.Title">Open foto</data>
+	<data key="Dialog.SaveFile.Title">Opslaan</data>
+	<data key="Dialog.OpenFile.Title">Openen</data>
 
 	<data key="Dialog.FileSaved.Title">Bestand opgeslagen</data>
 	<data key="Dialog.FileSaved.Text">Bestand met succes opgeslagen.</data>
@@ -28,7 +28,7 @@
 	<data key="Dialog.FileOpened.Text">Bestand met succes geopend.</data>
 
 	<data key="Dialog.FileNotFound.Title">Bestand niet gevonden</data>
-	<data key="Dialog.FileNotFound.Text">Bestand met pad %q niet gevonden.</data>
+	<data key="Dialog.FileNotFound.Text">Bestand met pad "%s" niet gevonden.</data>
 
 	<data key="Dialog.NewImage.Title">Nieuwe foto</data>
 

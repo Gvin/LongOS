@@ -48,7 +48,7 @@
 	<data key="Error.DeleteInitialApplication.Text">He/\b3ua yDa/\uTb cucTeMHoe npu/\o}I{eHue.</data>
 
 	<data key="Error.Title">OWubKa</data>
-	<data key="Error.Text">Coobw,eHue oWubku: %q.</data>
+	<data key="Error.Text">Coobw,eHue oWubku: "%s".</data>
 
-	<data key="Error.FileError.Text">npu 3anycke (I)au/\a %q npou3oW/\a oWubka.</data>
+	<data key="Error.FileError.Text">npu 3anycke (I)au/\a "%s" npou3oW/\a oWubka.</data>
 </localization>

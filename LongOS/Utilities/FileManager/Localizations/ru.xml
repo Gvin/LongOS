@@ -23,11 +23,11 @@
 	<data key="Dialogs.CreateFile.Text">BBeDuTe uMua HoBoro (I)au/\a:</data>
 
 	<data key="Dialogs.Delete.Title">YDa/\uTb?</data>
-	<data key="Dialogs.Delete.Text">Bbl DeucTBuTe/\bHo xoTuTe yDa/\uTb %q?</data>
+	<data key="Dialogs.Delete.Text">Bbl DeucTBuTe/\bHo xoTuTe yDa/\uTb "%s"?</data>
 
 	<!-- Errors -->
 	<data key="Errors.Exists.Title">(I)au/\ cyw,ecTByeT</data>
-	<data key="Errors.Exists.Text">(I)au/\ u/\u nanka c nyTeM %q y}I{e cyw,ecTByeT.</data>
+	<data key="Errors.Exists.Text">(I)au/\ u/\u nanka c nyTeM "%s" y}I{e cyw,ecTByeT.</data>
 
 	<data key="Errors.FileReadOnly.Title">(I)au/\ 3aw,uw,eH oT 3anucu</data>
 	<data key="Errors.FileReadOnly.Text">BblbpaHHblu (I)au/\ 3aw,uweH oT 3anucu, ero He/\b3ua nepeuMeHoBaTb u/\u yDa/\uTb.</data>
@@ -36,7 +36,7 @@
 	<data key="Errors.WrongOperation.Text">He/\b3ua ckonupoBaTb nanky BHyTpb ee caMou.</data>
 
 	<data key="Errors.UnableToCreate.Title">HeBo3Mo}I{Ho co3DaTb</data>
-	<data key="Errors.UnableToCreate.Text">HeBo3Mo}I{Ho co3DaTb nanky %q.</data>
+	<data key="Errors.UnableToCreate.Text">HeBo3Mo}I{Ho co3DaTb nanky "%s".</data>
 
 	<data key="Errors.UnableToLaunch.Title">HeBo3Mo}I{Ho 3anucTuTb</data>
 	<data key="Errors.UnableToLaunch.Text">HeBo3Mo}I{Ho 3anycTuTb BblbpaHHblu (I)au/\.</data>

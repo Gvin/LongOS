@@ -48,7 +48,7 @@
 	<data key="Error.DeleteInitialApplication.Text">You cannot delete initial application.</data>
 
 	<data key="Error.Title">Error</data>
-	<data key="Error.Text">Error message: %q.</data>
+	<data key="Error.Text">Error message: "%s".</data>
 
-	<data key="Error.FileError.Text">Error occured when running file %q.</data>
+	<data key="Error.FileError.Text">Error occured when running file "%s".</data>
 </localization>

@@ -1,38 +1,38 @@
 <localization name="Dutch NL">
 	<data key="Title">Configuratie</data>
-	<data key="Buttons.ColorConfiguration"      	>Systeemkleuren</data>
-	<data key="Buttons.MouseConfiguration"      	>     Muis     </data>
-	<data key="Buttons.InterfaceConfiguration"    	>   Vensters   </data>
-	<data key="Buttons.ApplicationsConfiguration" 	> Applicaties  </data>
-	<data key="Buttons.LocaleConfiguration"     	> Systeemtaal  </data>
+	<data key="Buttons.ColorConfiguration"      	>  Kleur  instellingen  </data>
+	<data key="Buttons.MouseConfiguration"      	>   Muis instellingen   </data>
+	<data key="Buttons.InterfaceConfiguration"    	> Venster  instellingen </data>
+	<data key="Buttons.ApplicationsConfiguration" 	>Applicatie instellingen</data>
+	<data key="Buttons.LocaleConfiguration"     	>   Taal instellingen   </data>
 
 <!-- Default Dialog -->
-	<data key="DefaultDialog.Title">Zet standaard configuratie?</data>
-	<data key="DefaultDialog.Text">Weet je zeker dat je de standaard configuratie wilt gebruiken?</data>
+	<data key="DefaultDialog.Title">Standaard instellingen terugzetten?</data>
+	<data key="DefaultDialog.Text">Weet u zeker dat u de standaard instellingen wilt terugzetten?</data>
 
 <!-- Applications Configuration -->
-	<data key="ApplicationsConfiguration.Title">Applicatiies configuratie</data>
+	<data key="ApplicationsConfiguration.Title">Applicatie instelligen</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.EditTitle">Bewerk applicatie configuratie</data>
-	<data key="ApplicationsConfiguration.EditDialog.AddTitle">Voeg applicatie configuratie toe</data>
+	<data key="ApplicationsConfiguration.EditDialog.EditTitle">Applicatie instellingen aanpassen</data>
+	<data key="ApplicationsConfiguration.EditDialog.AddTitle">Applicatie instelling toevoegen</data>
 	<data key="ApplicationsConfiguration.EditDialog.NameLabel">Naam</data>
 	<data key="ApplicationsConfiguration.EditDialog.PathLabel">Pad</data>
 	<data key="ApplicationsConfiguration.EditDialog.TerminalLabel">Terminal</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">Lege naam</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">De naam van de applicatie moet ingevuld worden.</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">De applicatie moet een naam hebben!</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">Lege pad</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">De bestandspad van de applicatie moet ingevuld worden.</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Er moet een pad zijn naar het bestand!</data>
 
 	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">Bestand bestaat niet</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">Bestand met pad %q bestaat niet.</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">Bestand met pad "%s" bestaat niet.</data>
 
-	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Verkeerde bestandsextensie</data>
-	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">Bestand met deze bestandsextensie is niet uitvoerbaar</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Onbekende bestandsextensie</data>
+	<data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">Dit bestand heeft een onbekende extensie.</data>
 
 <!-- Color Configuration -->
-	<data key="ColorConfiguration.Title">Kleur configuratie</data>
+	<data key="ColorConfiguration.Title">Kleur instellingen</data>
 	<data key="ColorConfiguration.Labels.Color">Kleur:</data>
 	<data key="ColorConfiguration.Labels.ColorSelection">Kleur selectie:</data>
 
@@ -46,7 +46,7 @@
 	<data key="InterfaceConfiguration.Labels.Right" >Rechts</data>
 
 <!-- Mouse Configuration -->
-	<data key="MouseConfiguration.Title">Muis Configuratie</data>
+	<data key="MouseConfiguration.Title">Muis instellingen</data>
 	<data key="MouseConfiguration.Labels.DoubleClickSpeed">Dubbelklik snelheid:</data>
 
 <!-- Locale configuration -->

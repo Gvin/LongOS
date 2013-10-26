@@ -1,24 +1,24 @@
 <localization name="Dutch NL">
 	<data key="UpdateSystemWindow.Title">Update systeem</data>
-	<data key="UpdateSystemWindow.Buttons.CheckUpdates">Check voor update</data>
+	<data key="UpdateSystemWindow.Buttons.CheckUpdates">Controleer op updates</data>
 	<data key="UpdateSystemWindow.Labels.CurrentVersion">Gebruikte Versie: %s</data>
 	<data key="UpdateSystemWindow.Labels.LastVersion">Laatste Versie: %s</data>
 
 	<data key="Errors.UpdateSystemWindow.UpdateError.Title">Update error</data>
-	<data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">Kan LongOS niet updaten. Stel http in, in de computercraft configuratie.</data>
-	<data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">Kan LongOS niet updaten. Kan niet de laatste versie verkrijgen.</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">Om LongOS te updaten moet de http_api aanstaan in de ComputerCraft configuratie.</data>
+	<data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">LongOS kan de nieuwste versie niet verkrijgen.</data>
 
 	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Title">Update niet nodig</data>
-	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Text">Je gebruikt de laatste versie van LongOS. Updaten is niet nodig.</data>
+	<data key="Messages.UpdateSystemWindow.UpdateNotRequired.Text">U gebruikt al de laatste versie van LongOS.</data>
 	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Title">Nieuwe versie beschikbaar</data>
-	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Text">Versie %s is beschikbaar. Download?</data>
+	<data key="Messages.UpdateSystemWindow.NewVersionAvailable.Text">Versie %s is beschikbaar. Update installeren?</data>
 
 
-	<data key="DownloadWindow.Title">Updating systeem</data>
-	<data key="DownloadWindow.Labels.StatusLabel">Progressie: %s</data>
+	<data key="DownloadWindow.Title">Systeem updaten</data>
+	<data key="DownloadWindow.Labels.StatusLabel">Voortgang: %s</data>
 
 	<data key="Dialogs.DownloadWindow.RebootDialog.Title">Update succesvol</data>
-	<data key="Dialogs.DownloadWindow.RebootDialog.Text">LongOS is met succes geupdate. Herstart is aangeraden. Herstart het systeem nu?</data>
-	<data key="Dialogs.DownloadWindow.CancelDialog.Title">Annuleer updaten</data>
-	<data key="Dialogs.DownloadWindow.CancelDialog.Text">Weet je zeker dat je de update wilt annuleren? Deze operatie kan schade toebrengen aan het systeem.</data>
+	<data key="Dialogs.DownloadWindow.RebootDialog.Text">LongOS is succesvol geupdate. U wordt aangeraden het systeem opnieuw op te starten. Herstart nu?</data>
+	<data key="Dialogs.DownloadWindow.CancelDialog.Title">Update annuleren</data>
+	<data key="Dialogs.DownloadWindow.CancelDialog.Text">Weet u zeker dat u de update wilt annuleren? Als u nu annuleert kan er schade zijn aan het systeem.</data>
 </localization>

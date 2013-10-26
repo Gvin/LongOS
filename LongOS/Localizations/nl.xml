@@ -10,7 +10,7 @@
 	<data key="Action.Remove">Verwijderen</data>
 	<data key="Action.Save">Opslaan</data>
 	<data key="Action.SaveChanges">Bewaar</data>
-	<data key="Action.SetDefault">Zet standaard</data>
+	<data key="Action.SetDefault">Standaard</data>
 	<data key="Action.Browse">Bladeren</data>
 	<data key="Action.New">Nieuw</data>
 	<data key="Action.Open">Openen</data>
@@ -25,30 +25,30 @@
 	<data key="System.ControlPanel.Buttons.Power">Power</data>
 	<data key="System.ControlPanel.Buttons.Shutdown">Afsluiten </data>
 	<data key="System.ControlPanel.Buttons.Reboot"  >Herstarten</data>
-	<data key="System.ControlPanel.Buttons.LogOff"  >Uitloggen </data>
-	<data key="System.ControlPanel.Applications.Configuration"  >  Configuratie  </data>
-	<data key="System.ControlPanel.Applications.TasksManager" 	>   Taakbeheer   </data>
-	<data key="System.ControlPanel.Applications.Terminal"   	>    Terminal    </data>
-	<data key="System.ControlPanel.Applications.Updater"		>Systeem  Updater</data>
-	<data key="System.ControlPanel.Applications.AboutSystem"  	>Over het Systeem</data>
+	<data key="System.ControlPanel.Buttons.LogOff"  > Afmelden </data>
+	<data key="System.ControlPanel.Applications.Configuration"  >  Configuratie   </data>
+	<data key="System.ControlPanel.Applications.TasksManager" 	>   Taakbeheer    </data>
+	<data key="System.ControlPanel.Applications.Terminal"   	>    Terminal     </data>
+	<data key="System.ControlPanel.Applications.Updater"		> Systeem Updater </data>
+	<data key="System.ControlPanel.Applications.AboutSystem"  	>Systeeminformatie</data>
 	<data key="System.ControlPanel.Calendar.Day">Dag</data>
 	<data key="System.ControlPanel.Calendar.Year">Jaar</data>
 
 <!-- Desktop -->
-	<data key="System.Desktop.ChangeWallpaper">Verander wallpaper</data>
+	<data key="System.Desktop.ChangeWallpaper">Achtergrond veranderen</data>
 
 <!-- System Windows -->
-	<data key="System.Windows.ColorPicker.Title">Selecteer bestand</data>
+	<data key="System.Windows.ColorPicker.Title">Selecteer kleur</data>
 	<data key="System.Windows.OpenFile.Title">Open bestand</data>
-	<data key="System.Windows.SaveFile.Title">Sla bestand op</data>
+	<data key="System.Windows.SaveFile.Title">Bestand opslaan</data>
 	<data key="System.Windows.SaveFile.Labels.FileName">Bestandsnaam:</data>
 
 <!-- Errors -->
 	<data key="Error.DeleteInitialApplication.Title">Afgewezen</data>
-	<data key="Error.DeleteInitialApplication.Text">Je kan niet originele applicaties verwijderen.</data>
+	<data key="Error.DeleteInitialApplication.Text">U kunt systeem-applicaties niet verwijderen.</data>
 
 	<data key="Error.Title">Error</data>
-	<data key="Error.Text">Error melding: %q.</data>
+	<data key="Error.Text">Error melding: "%s".</data>
 
-	<data key="Error.FileError.Text">Error tijdens het uitvoeren van bestand %q.</data>
+	<data key="Error.FileError.Text">Error tijdens het uitvoeren van bestand "%s".</data>
 </localization>
