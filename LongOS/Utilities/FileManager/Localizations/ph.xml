@@ -5,12 +5,12 @@
         <data key="Buttons.CreateFile">Gumawa ng file</data>
  
         <!-- Context menu buttons -->
-        <data key="Buttons.ContextMenu.RunInTerminal"   >Patakbuhin sa terminal</data>
-        <data key="Buttons.ContextMenu.Copy"                    >      I-Copy     </data>
-        <data key="Buttons.ContextMenu.Cut"                             >      I-Cut      </data>
-        <data key="Buttons.ContextMenu.Delete"                  >     Alisin    </data>
-        <data key="Buttons.ContextMenu.Rename"                  >     Baguhin ang pangalan    </data>
-        <data key="Buttons.ContextMenu.Edit"                    >      I-Edit     </data>
+        <data key="Buttons.ContextMenu.RunInTerminal"           >Patakbuhin sa terminal</data>
+        <data key="Buttons.ContextMenu.Copy"                    >         I-Copy       </data>
+        <data key="Buttons.ContextMenu.Cut"                     >         I-Cut        </data>
+        <data key="Buttons.ContextMenu.Delete"                  >        Alisin        </data>
+        <data key="Buttons.ContextMenu.Rename"                  > Baguhin ang pangalan </data>
+        <data key="Buttons.ContextMenu.Edit"                    >        I-Edit        </data>
  
         <!-- Dialogs -->
         <data key="Dialogs.Rename.Title">Baguhin ang pangalan</data>

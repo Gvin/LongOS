@@ -7,7 +7,7 @@ local QuestionDialog = Classes.System.Windows.QuestionDialog;
 InterfaceConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Interface configuration window', false);
 	this:SetWidth(36);
-	this:SetHeight(13);
+	this:SetHeight(8);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);
 
@@ -133,6 +133,8 @@ InterfaceConfigurationWindow = Class(Window, function(this, _application, _local
 		cancelButton = Button(System:GetLocalizedString('Action.Cancel'), nil, nil, 0, 0, 'right-bottom');
 		cancelButton:AddOnClickEventHandler(cancelButtonClick);
 		this:AddComponent(cancelButton);
+
+		this:SetWidth(math.max(controlPanelPositionLabel:GetWidth() + controlPanelPositionButton:GetWidth() + 2, windowButtonsPositionLabel:GetWidth() + windowButtonsPositionButton:GetWidth() + 2));
 	end
 
 	local function constructor(_localizationManager)

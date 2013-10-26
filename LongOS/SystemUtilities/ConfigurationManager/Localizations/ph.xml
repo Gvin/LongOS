@@ -34,16 +34,16 @@
 <!-- Color Configuration -->
         <data key="ColorConfiguration.Title">Configuration ng Kulay</data>
         <data key="ColorConfiguration.Labels.Color">Kulay:</data>
-        <data key="ColorConfiguration.Labels.ColorSelection">Selection ng kulay:</data>
+        <data key="ColorConfiguration.Labels.ColorSelection">Selection ng kulay</data>
  
 <!-- Interface Configuration -->
         <data key="InterfaceConfiguration.Title">Interface configuration</data>
         <data key="InterfaceConfiguration.Labels.ControlPanelPosition">Posisyon ng Control Panel:</data>
-        <data key="InterfaceConfiguration.Labels.WindowButtonsPosition">Posisyon ng pindutan sa windows :</data>
-        <data key="InterfaceConfiguration.Labels.Top"   > Tuktok  </data>
+        <data key="InterfaceConfiguration.Labels.WindowButtonsPosition">Posisyon ng pindutan sa windows:</data>
+        <data key="InterfaceConfiguration.Labels.Top"   >Tuktok</data>
         <data key="InterfaceConfiguration.Labels.Bottom">Ilalim</data>
-        <data key="InterfaceConfiguration.Labels.Left"  > Kaliwa </data>
-        <data key="InterfaceConfiguration.Labels.Right" > Kanan</data>
+        <data key="InterfaceConfiguration.Labels.Left"  >Kaliwa</data>
+        <data key="InterfaceConfiguration.Labels.Right" >Kanan </data>
  
 <!-- Mouse Configuration -->
         <data key="MouseConfiguration.Title">Configuration ng mouse</data>

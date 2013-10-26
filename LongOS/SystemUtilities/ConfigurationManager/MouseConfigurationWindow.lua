@@ -8,7 +8,7 @@ local QuestionDialog = Classes.System.Windows.QuestionDialog;
 
 MouseConfigurationWindow = Class(Window, function(this, _application, _localizationManager)
 	Window.init(this, _application, 'Mouse configuration window', false);
-	this:SetWidth(36);
+	this:SetWidth(37);
 	this:SetHeight(7);
 	this:SetAllowMaximize(false);
 	this:SetAllowResize(false);

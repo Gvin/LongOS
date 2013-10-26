@@ -121,7 +121,7 @@ ColorConfigurationWindow = Class(Window, function(this, _application, _localizat
 		colorListBox:AddOnSelectedIndexChangedEventHandler(colorListBoxSelectedIndexChanged);	
 		this:AddComponent(colorListBox);
 	
-		local selectColorLabel = Label(localizationManager:GetLocalizedString('ColorConfiguration.Labels.ColorSelection'), nil, nil, 1, 5, 'right-top');
+		local selectColorLabel = Label(localizationManager:GetLocalizedString('ColorConfiguration.Labels.ColorSelection'), nil, nil, 0, 5, 'right-top');
 		this:AddComponent(selectColorLabel);
 
 		selectColorButton = Button('        ', nil, nil, 5, 7, 'right-top');

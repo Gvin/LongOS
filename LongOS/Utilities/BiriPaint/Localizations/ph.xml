@@ -1,39 +1,39 @@
 <localization name="Pilipino">
-	 <!-- Menus -->
+         <!-- Menus -->
         <data key="FileMenu.ButtonText">File</data>
-        <data key="FileMenu.New"        >Bago </data>
-        <data key="FileMenu.Open"       >Bukas</data>
+        <data key="FileMenu.New"        > Bago </data>
+        <data key="FileMenu.Open"       >Bukas </data>
         <data key="FileMenu.Save"       >I-Save</data>
- 
+
         <data key="EditMenu.ButtonText">I-Edit</data>
-        <data key="EditMenu.ClearAll"   >I-Clear lahat</data>
-        <data key="EditMenu.Undo"               >   Undo  </data>
-        <data key="EditMenu.SetSize"    >I-Set ang size</data>
- 
+        <data key="EditMenu.ClearAll"  >I-Clear  lahat</data>
+        <data key="EditMenu.Undo"      >     Undo     </data>
+        <data key="EditMenu.SetSize"   >I-Set ang size</data>
+
         <!-- Modes -->
         <data key="Mode.Pen"    >  Pen  </data>
         <data key="Mode.Line"   >  Line </data>
         <data key="Mode.Rect"   >  Rect </data>
         <data key="Mode.Ellipse">Ellipse</data>
         <data key="Mode.Fill"   >  Fill </data>
- 
+
         <!-- Dialogs -->
         <data key="Dialog.SaveFile.Title">I-Save ang image</data>
         <data key="Dialog.OpenFile.Title">Magbukas ng image</data>
- 
+
         <data key="Dialog.FileSaved.Title">File ay saved</data>
         <data key="Dialog.FileSaved.Text">File ay nasave.</data>
- 
+
         <data key="Dialog.FileOpened.Title">File ay nabuksan</data>
         <data key="Dialog.FileOpened.Text">File ay nabuksan.</data>
- 
+
         <data key="Dialog.FileNotFound.Title">File hindi mahanapd</data>
         <data key="Dialog.FileNotFound.Text">File %q ay hindi mahanap.</data>
- 
+
         <data key="Dialog.NewImage.Title">Bagong image</data>
- 
+
         <data key="Dialog.NewSize.Title">Bagong image size</data>
- 
+
         <!-- New Image Dialog -->
         <data key="NewImageDialog.Label.Width">Width</data>
         <data key="NewImageDialog.Label.Height">Height</data>

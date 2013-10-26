@@ -193,6 +193,8 @@ ApplicationsConfigurationWindow = Class(Window, function(this, _application, _lo
 		removeButton = Button(System:GetLocalizedString('Action.Remove'), nil, nil, 1, 8, 'right-top');
 		removeButton:AddOnClickEventHandler(removeButtonClick);
 		this:AddComponent(removeButton);
+
+		this:SetWidth(math.max(saveChangesButton:GetWidth() + defaultButton:GetWidth() + cancelButton:GetWidth() + 5, 34));
 	end
 
 	local function constructor(_localizationManager)
