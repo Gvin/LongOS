@@ -1,0 +1,8 @@
+<localization name="Pilipino">
+	<data key="Title">Manager ng wallpaper</data>
+ 
+        <data key="Labels.CurrentWallpaper">Current wallpaper:</data>
+        <data key="Labels.Shift">Shift:</data>
+ 
+        <data key="BrowseForWallpaper">Mag Browse ng wallpaper</data>
+</localization>

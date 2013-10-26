@@ -1,0 +1,43 @@
+<localization name="Pilipino">
+	<!-- Standard buttons -->
+        <data key="Buttons.Paste">Paste</data>
+        <data key="Buttons.CreateDirectory">Gumawa ng folder</data>
+        <data key="Buttons.CreateFile">Gumawa ng file</data>
+ 
+        <!-- Context menu buttons -->
+        <data key="Buttons.ContextMenu.RunInTerminal"   >Patakbuhin sa terminal</data>
+        <data key="Buttons.ContextMenu.Copy"                    >      I-Copy     </data>
+        <data key="Buttons.ContextMenu.Cut"                             >      I-Cut      </data>
+        <data key="Buttons.ContextMenu.Delete"                  >     Alisin    </data>
+        <data key="Buttons.ContextMenu.Rename"                  >     Baguhin ang pangalan    </data>
+        <data key="Buttons.ContextMenu.Edit"                    >      I-Edit     </data>
+ 
+        <!-- Dialogs -->
+        <data key="Dialogs.Rename.Title">Baguhin ang pangalan</data>
+        <data key="Dialogs.Rename.Text">I-Enter ang bagong pangalan: </data>
+ 
+        <data key="Dialogs.CreateDirectory.Title">Gumawa ng folder</data>
+        <data key="Dialogs.CreateDirectory.Text">I-Enter ang bagong folder name</data>
+ 
+        <data key="Dialogs.CreateFile.Title">Guumawa ng file</data>
+        <data key="Dialogs.CreateFile.Text">I-Enter ang bagong pangalan ng file :</data>
+ 
+        <data key="Dialogs.Delete.Title">Alisin?</data>
+        <data key="Dialogs.Delete.Text">Gusto mo talaga idelete ang%q?</data>
+ 
+        <!-- Errors -->
+        <data key="Errors.Exists.Title">File ay nageexist na</data>
+        <data key="Errors.Exists.Text">File o directory kasama ang path %q ay nageexist na.</data>
+ 
+        <data key="Errors.FileReadOnly.Title">File ay read-only</data>
+        <data key="Errors.FileReadOnly.Text">Ang Sinilect na file ay Read-Only, hindi pwede alisin o baguhin ang pangalan nito.</data>
+ 
+        <data key="Errors.WrongOperation.Title">Maling operation</data>
+        <data key="Errors.WrongOperation.Text">Hindi macopy ang directory saluob ng sarili nito.</data>
+ 
+        <data key="Errors.UnableToCreate.Title">Hindi macreate</data>
+        <data key="Errors.UnableToCreate.Text">Hindi macreate ang directory na %q.</data>
+ 
+        <data key="Errors.UnableToLaunch.Title">Hindi mapatakbo</data>
+        <data key="Errors.UnableToLaunch.Text">Hindi malaunch ang nakaselect na file.</data>
+</localization>

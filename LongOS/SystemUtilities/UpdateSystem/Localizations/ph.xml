@@ -1,0 +1,24 @@
+<localization name="Pilipino">
+	<data key="UpdateSystemWindow.Title">I-Update ang system</data>      
+        <data key="UpdateSystemWindow.Buttons.CheckUpdates">Magcheck ng updates</data>
+        <data key="UpdateSystemWindow.Labels.CurrentVersion">Bersyon: %s</data>
+        <data key="UpdateSystemWindow.Labels.LastVersion">Huling Bersyon: %s</data>
+ 
+        <data key="Errors.UpdateSystemWindow.UpdateError.Title">Update error</data>
+        <data key="Errors.UpdateSystemWindow.UpdateError.HttpNotEnabled">Hindi maupdate ang LongOS. IEnable ang HTTP API sa        computercraft configuration.</data>
+        <data key="Errors.UpdateSystemWindow.UpdateError.NoLastVersion">Hindi maupdate ang LongOS. Hindi Maretreive ang bagong bersyon.</data>
+ 
+        <data key="Messages.UpdateSystemWindow.UpdateNotRequired.Title">Pag Update ay hindi na kailangan</data>
+        <data key="Messages.UpdateSystemWindow.UpdateNotRequired.Text">Ginagamit mo na ang bagong ersyon ng LongOS. </data>
+        <data key="Messages.UpdateSystemWindow.NewVersionAvailable.Title">Bagong bersyon</data>
+        <data key="Messages.UpdateSystemWindow.NewVersionAvailable.Text">Bersyon %s ay available. I-Download?</data>
+ 
+ 
+        <data key="DownloadWindow.Title">Ang sistem ay naguupdate.</data>
+        <data key="DownloadWindow.Labels.StatusLabel">Progress: %s</data>
+ 
+        <data key="Dialogs.DownloadWindow.RebootDialog.Title">Update ay natapos</data>
+        <data key="Dialogs.DownloadWindow.RebootDialog.Text">LongOS ay naupdate. Kailangan mag reboot. Reboot ngayon?</data>
+        <data key="Dialogs.DownloadWindow.CancelDialog.Title">I-cancel updating</data>
+        <data key="Dialogs.DownloadWindow.CancelDialog.Text">Gusto mo icancel ang update? Itong ginagawa mo ay pwede makasira sa sistema.</data>
+</localization>

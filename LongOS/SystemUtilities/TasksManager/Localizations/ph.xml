@@ -1,0 +1,6 @@
+<localization name="Pilipino">
+ 	<data key="Title">Manager ng tasks</data>
+        <data key="Labels.ApplicationsCount">Applications count: </data>
+        <data key="Buttons.CloseApplication">Isirado ang Application</data>
+        <data key="Buttons.SetActive">I-set active</data>
+</localization>

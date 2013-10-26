@@ -1,0 +1,57 @@
+<localization name="Pilipino">
+       <data key="Title">Configuration</data>
+        <data key="Buttons.ColorConfiguration"                  >Kulay ng sistem</data>
+        <data key="Buttons.MouseConfiguration"                  >     Mouse    </data>
+        <data key="Buttons.InterfaceConfiguration"              >   Interface  </data>
+        <data key="Buttons.ApplicationsConfiguration"   > Applications </data>
+        <data key="Buttons.LocaleConfiguration"                 >Wika ng sistem</data>
+ 
+<!-- Default Dialog -->
+        <data key="DefaultDialog.Title">I-set ang default?</data>
+        <data key="DefaultDialog.Text">Gusto mo ba talaga idefault lahat na config?</data>
+ 
+<!-- Applications Configuration -->
+        <data key="ApplicationsConfiguration.Title">Applications configuration</data>
+ 
+        <data key="ApplicationsConfiguration.EditDialog.EditTitle">I-edit application configuration</data>
+        <data key="ApplicationsConfiguration.EditDialog.AddTitle">Magdagdag ng application configuration</data>
+        <data key="ApplicationsConfiguration.EditDialog.NameLabel">Pangalan</data>
+        <data key="ApplicationsConfiguration.EditDialog.PathLabel">Path</data>
+        <data key="ApplicationsConfiguration.EditDialog.TerminalLabel">Terminal</data>
+ 
+        <data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Title">Walang Pangalan</data>
+        <data key="ApplicationsConfiguration.EditDialog.Errors.EmptyName.Text">Pangalan ng Application ay dapat ienter.</data>
+ 
+        <data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Title">Walang path</data>
+        <data key="ApplicationsConfiguration.EditDialog.Errors.EmptyPath.Text">Path ng Application ay dapat ienter.</data>
+ 
+        <data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Title">File ay hindi nageexists</data>
+        <data key="ApplicationsConfiguration.EditDialog.Errors.FileNotExists.Text">path %q ay hindi nageexists</data>
+ 
+        <data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Title">Maling Extension</data>
+        <data key="ApplicationsConfiguration.EditDialog.Errors.WrongExtension.Text">Ang file na ito kasama ang extension ay hindi executable.</data>
+ 
+<!-- Color Configuration -->
+        <data key="ColorConfiguration.Title">Configuration ng Kulay</data>
+        <data key="ColorConfiguration.Labels.Color">Kulay:</data>
+        <data key="ColorConfiguration.Labels.ColorSelection">Selection ng kulay:</data>
+ 
+<!-- Interface Configuration -->
+        <data key="InterfaceConfiguration.Title">Interface configuration</data>
+        <data key="InterfaceConfiguration.Labels.ControlPanelPosition">Posisyon ng Control Panel:</data>
+        <data key="InterfaceConfiguration.Labels.WindowButtonsPosition">Posisyon ng pindutan sa windows :</data>
+        <data key="InterfaceConfiguration.Labels.Top"   > Tuktok  </data>
+        <data key="InterfaceConfiguration.Labels.Bottom">Ilalim</data>
+        <data key="InterfaceConfiguration.Labels.Left"  > Kaliwa </data>
+        <data key="InterfaceConfiguration.Labels.Right" > Kanan</data>
+ 
+<!-- Mouse Configuration -->
+        <data key="MouseConfiguration.Title">Configuration ng mouse</data>
+        <data key="MouseConfiguration.Labels.DoubleClickSpeed">Speed ng Double Click:</data>
+ 
+<!-- Locale configuration -->
+        <data key="LocaleConfiguration.Title">Baguhin ang Wika.</data>
+
+	<data key="LocaleConfiguration.RebootDialog.Title">Reboot?</data>
+	<data key="LocaleConfiguration.RebootDialog.Text">Kailangan mo dapat ireboot ang sistem para mabago ang locale. magreboot ngayon?</data>
+</localization>
