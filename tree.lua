@@ -1,4 +1,4 @@
-version = "1.1";
+version = "1.2";
 
 tree = {
 	{
@@ -148,6 +148,10 @@ tree = {
 								IsDir = false
 							},
 							{
+								Name = "LocaleConfiguration.lua",
+								IsDir = false
+							},
+							{
 								Name = "MouseConfiguration.lua",
 								IsDir = false
 							}
@@ -183,6 +187,16 @@ tree = {
 							},
 							{
 								Name = "VideoBuffer.lua",
+								IsDir = false
+							}
+						}
+					},
+					{
+						Name = "Localization",
+						IsDir = true,
+						Content = {
+							{
+								Name = "LocalizationManager.lua",
 								IsDir = false
 							}
 						}
@@ -250,6 +264,10 @@ tree = {
 				IsDir = false
 			},
 			{
+				Name = "locale_configuration.xml",
+				IsDir = false
+			},
+			{
 				Name = "mouse_configuration.xml",
 				IsDir = false
 			}
@@ -258,6 +276,36 @@ tree = {
 	{
 		Name = "Loading.lua",
 		IsDir = false
+	},
+	{
+		Name = "Localizations",
+		IsDir = true,
+		Content = {
+			{
+				Name = "default.xml",
+				IsDir = false
+			},
+			{
+				Name = "en_UK.xml",
+				IsDir = false
+			},
+			{
+				Name = "en_US.xml",
+				IsDir = false
+			},
+			{
+				Name = "nl.xml",
+				IsDir = false
+			},
+			{
+				Name = "ph.xml",
+				IsDir = false
+			},
+			{
+				Name = "ru.xml",
+				IsDir = false
+			}
+		}
 	},
 	{
 		Name = "Long",
@@ -280,15 +328,37 @@ tree = {
 						IsDir = false
 					},
 					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
+					},
+					{
 						Name = "logotype.image",
-						IsDir = false
-					},
-					{
-						Name = "SystemUpdater.lua",
-						IsDir = false
-					},
-					{
-						Name = "UpdateSystemWindow.lua",
 						IsDir = false
 					}
 				}
@@ -322,6 +392,40 @@ tree = {
 						IsDir = false
 					},
 					{
+						Name = "LocaleConfigurationWindow.lua",
+						IsDir = false
+					},
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
+					},
+					{
 						Name = "MouseConfigurationWindow.lua",
 						IsDir = false
 					}
@@ -334,6 +438,36 @@ tree = {
 					{
 						Name = "GvinTasksManager.exec",
 						IsDir = false
+					},
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
 					},
 					{
 						Name = "TasksManagerWindow.lua",
@@ -354,7 +488,89 @@ tree = {
 						IsDir = false
 					},
 					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
+					},
+					{
 						Name = "RedirectorGenerator.lua",
+						IsDir = false
+					}
+				}
+			},
+			{
+				Name = "UpdateSystem",
+				IsDir = true,
+				Content = {
+					{
+						Name = "DownloadWindow.lua",
+						IsDir = false
+					},
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
+					},
+					{
+						Name = "SystemUpdater.lua",
+						IsDir = false
+					},
+					{
+						Name = "UpdateSystem.exec",
+						IsDir = false
+					},
+					{
+						Name = "UpdateSystemWindow.lua",
 						IsDir = false
 					}
 				}
@@ -363,6 +579,36 @@ tree = {
 				Name = "WallpaperManager",
 				IsDir = true,
 				Content = {
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
+					},
 					{
 						Name = "WallpaperManager.exec",
 						IsDir = false
@@ -394,6 +640,36 @@ tree = {
 					{
 						Name = "BiriPaintWindow.lua",
 						IsDir = false
+					},
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
 					}
 				}
 			},
@@ -408,6 +684,36 @@ tree = {
 					{
 						Name = "GvinCalculator.exec",
 						IsDir = false
+					},
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
 					}
 				}
 			},
@@ -422,6 +728,36 @@ tree = {
 					{
 						Name = "GvinFileManager.exec",
 						IsDir = false
+					},
+					{
+						Name = "Localizations",
+						IsDir = true,
+						Content = {
+							{
+								Name = "default.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_UK.xml",
+								IsDir = false
+							},
+							{
+								Name = "en_US.xml",
+								IsDir = false
+							},
+							{
+								Name = "nl.xml",
+								IsDir = false
+							},
+							{
+								Name = "ph.xml",
+								IsDir = false
+							},
+							{
+								Name = "ru.xml",
+								IsDir = false
+							}
+						}
 					}
 				}
 			}
