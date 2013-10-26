@@ -40,10 +40,12 @@ SystemUpdater = Class(Object, function(this)
 	local function countFiles(filesTree)
 		local count = 0;
 		for i = 1, #filesTree do
-			if (filesTree[i].IsDir) then
-				count = count + countFiles(filesTree[i].Content);
-			else
-				count = count + 1;
+			if (filesTree[i] ~= nil) then
+				if (filesTree[i].IsDir) then
+					count = count + countFiles(filesTree[i].Content);
+				else
+					count = count + 1;
+				end
 			end
 		end
 		return count;
@@ -76,14 +78,16 @@ SystemUpdater = Class(Object, function(this)
 
 	local function downloadFilesTreeRec(tree, path, urlPath)
 		for i = 1, #tree do
-			if (tree[i].IsDir) then
-				fs.makeDir(path..tree[i].Name);
-				if (not downloadFilesTreeRec(tree[i].Content, path..tree[i].Name..'/', urlPath..tree[i].Name..'/')) then
-					return false;
-				end
-			else
-				if (not downloadFile(repositoryUrl..'/v'..lastVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
-					return false;
+			if (tree[i] ~= nil) then
+				if (tree[i].IsDir) then
+					fs.makeDir(path..tree[i].Name);
+					if (not downloadFilesTreeRec(tree[i].Content, path..tree[i].Name..'/', urlPath..tree[i].Name..'/')) then
+						return false;
+					end
+				else
+					if (not downloadFile(repositoryUrl..'/v'..lastVersion..urlPath..tree[i].Name, path..tree[i].Name)) then
+						return false;
+					end
 				end
 			end
 		end
@@ -102,12 +106,14 @@ SystemUpdater = Class(Object, function(this)
 
 	local function deleteFilesTreeRec(tree, urlPath)
 		for i = 1, #tree do
-			if (tree[i].IsDir) then			
-				if (not deleteFilesTreeRec(tree[i].Content, urlPath..tree[i].Name..'/')) then
-					return false;
+			if (tree[i] ~= nil) then
+				if (tree[i].IsDir) then			
+					if (not deleteFilesTreeRec(tree[i].Content, urlPath..tree[i].Name..'/')) then
+						return false;
+					end
+				else
+					fs.delete(urlPath..tree[i].Name)			
 				end
-			else
-				fs.delete(urlPath..tree[i].Name)			
 			end
 		end
 		return true;
@@ -123,17 +129,20 @@ SystemUpdater = Class(Object, function(this)
 
 	local function moveFilesTreeRec(tree, path, urlPath)
 		for i = 1, #tree do
-			if (tree[i].IsDir) then	
-				fs.makeDir(path..tree[i].Name);		
-				if (not moveFilesTreeRec(tree[i].Content, path..tree[i].Name..'/' ,urlPath..tree[i].Name..'/')) then
-					return false;
+			if (tree[i] ~= nil) then
+				if (tree[i].IsDir) then	
+					fs.makeDir(path..tree[i].Name);		
+					if (not moveFilesTreeRec(tree[i].Content, path..tree[i].Name..'/' ,urlPath..tree[i].Name..'/')) then
+						return false;
+					end
+				else
+					if (fs.exists(path..tree[i].Name)) then
+						fs.delete(path..tree[i].Name);
+					end
+					fs.move(urlPath..tree[i].Name, path..tree[i].Name);					
 				end
-			else
-				if (fs.exists(path..tree[i].Name)) then
-					fs.delete(path..tree[i].Name);
-				end
-				fs.move(urlPath..tree[i].Name, path..tree[i].Name);					
 			end
+			os.sleep(0);
 		end
 		return true;
 	end
