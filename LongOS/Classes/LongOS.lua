@@ -464,7 +464,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	local function constructor(_systemDirectory)
 		working = true;
 		updateLock = false;
-		currentVersion = '1.1';
+		currentVersion = '1.2';
 		systemDirectory = _systemDirectory;
 
 		cleanTempDirectory();

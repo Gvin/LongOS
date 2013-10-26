@@ -7,7 +7,7 @@ Classes.System.Windows = {};
 Classes.Components = {};
 Classes.Application = {};
 
-local version = '1.1';
+local version = '1.2';
 local operationsCount = 42;
 local currentOperation = 1;
 LoadingErrors = 0;
