@@ -149,14 +149,16 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 		end
 	end
 
-
 	function this.SaveToFile(_, _fileName)
 		local file = fs.open(_fileName, 'w');
 		file.writeLine(width..'x'..height);
 		local line = '';
 		for i = 1, height do
-			line = line..table.concat(toHex(canvas[i]), '')..'\n';
-		end
+	    for j = 1, width do
+	      line = line..toHex(canvas[i][j])
+	    end
+	    line = line..'\n';
+	  end
 		file.write(line)
 		file.close();
 	end
