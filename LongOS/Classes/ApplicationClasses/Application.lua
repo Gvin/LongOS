@@ -94,10 +94,7 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 	end
 
 	function this:Run(_window)
-		if (_window == nil and shutdownWhenNoWindows) then 
-			return;
-		end
-		if (_window == nil) then
+		if (_window == nil and shutdownWhenNoWindows) or (_window == nil) then 
 			return;
 		end
 		_window:Show();
@@ -192,8 +189,8 @@ Classes.Application.Application = Class(Object, function(this, _applicationName,
 
 	local function getWorkingDirectory()
 		local prog = shell.getRunningProgram();
-		local fileName = fs.getName(shell.getRunningProgram());
-		return prog:sub(1, prog:len() - fileName:len());
+		local fileName = fs.getName(prog);
+		return prog:sub(1, #prog - #fileName);
 	end
 
 	------------------------------------------------------------------------------------------------------------------
