@@ -23,6 +23,6 @@ function getExtension(path)
   return (path:match(".*%.(%w+)"));
 end
 
-function getPath2(fullPath)
+function getPath(fullPath)
   return (fullPath:match("(.*)/"));
 end
