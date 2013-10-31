@@ -1,10 +1,7 @@
 local tArgs = { ... };
 
 local function getLauncherString(_table)
-	local launcherString = '';
-	for key, v in pairs(_table) do
-		launcherString = launcherString.._table[key]..' ';
-	end
+	local launcherString = table.concat(_table, ' ');
 	if (launcherString == '') then
 		return nil;
 	end
