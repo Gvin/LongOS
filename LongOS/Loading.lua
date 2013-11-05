@@ -144,6 +144,10 @@ os.loadAPI(SystemDirectory..'/APIs/tableExtAPI');
 if (tableExtAPI == nil) then
 	error('tableExtAPI not found in location '..SystemDirectory..'/APIs/');
 end
+os.loadAPI(SystemDirectory..'/APIs/uidAPI');
+if (uidAPI == nil) then
+	error('uidAPI not found in location '..SystemDirectory..'/APIs/');
+end
 
 
 

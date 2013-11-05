@@ -35,7 +35,7 @@ Classes.Application.WindowsManager = Class(Object, function(this)
 				return;
 			end
 		end
-		window:SetId(System:GenerateId());
+		window:SetId(uidAPI.generateUid());
 		table.insert(windows, window);
 		currentWindow = window;
 	end

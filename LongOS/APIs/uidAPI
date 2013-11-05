@@ -1,0 +1,19 @@
+local function generateIdPart()
+	local selector = math.random(0, 2);
+	if (selector == 1) then
+		return string.char(math.random(48, 57));
+	elseif (selector == 2) then
+		return string.char(math.random(65, 90));
+	else
+		return string.char(math.random(97, 122));
+	end
+end
+
+function generateUid()
+	local result = '';
+	for i = 1, 20 do
+		result = result..generateIdPart();
+	end
+
+	return result;
+end

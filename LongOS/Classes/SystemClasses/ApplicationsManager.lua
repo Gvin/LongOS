@@ -33,19 +33,6 @@ Classes.System.ApplicationsManager = Class(Object, function(this)
 		return nil, nil;
 	end
 
-	local function generateIdPart()
-		return string.char(math.random(48, 122));
-	end
-
-	local function generateId()
-		local result = '';
-		for i = 1, 20 do
-			result = result..generateIdPart();
-		end
-
-		return result;
-	end
-
 	function this:AddApplication(_application)
 		if (_application:GetIsUnique()) then
 			local oldApplication, index = getApplicationByName(_application:GetName());
@@ -55,7 +42,7 @@ Classes.System.ApplicationsManager = Class(Object, function(this)
 			end
 		end
 
-		_application:Initialize(generateId());
+		_application:Initialize(uidAPI.generateUid());
 		table.insert(applications, _application);
 		currentApplication = _application;
 	end

@@ -43,7 +43,7 @@ Classes.Application.ThreadsManager = Class(Object, function(this)
 			error('ThreadsManager.AddThread [thread]: Thread is allready initialized.');
 		end
 
-		_thread:Initialize(System:GenerateId());
+		_thread:Initialize(uidAPI.generateUid());
 		table.insert(threads, _thread);
 	end
 

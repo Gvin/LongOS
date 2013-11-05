@@ -1,3 +1,4 @@
+
 local ConfigurationManager = Classes.System.Configuration.ConfigurationManager;
 local LocalizationManager = Classes.System.Localization.LocalizationManager;
 local Logger = Classes.System.Logger;
@@ -343,26 +344,6 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 		end
 
 		return sTime;
-	end
-
-	local function generateIdPart()
-		local selector = math.random(0, 2);
-		if (selector == 1) then
-			return string.char(math.random(48, 57));
-		elseif (selector == 2) then
-			return string.char(math.random(65, 90));
-		else
-			return string.char(math.random(97, 122));
-		end
-	end
-
-	function this:GenerateId()
-		local result = '';
-		for i = 1, 20 do
-			result = result..generateIdPart();
-		end
-
-		return result;
 	end
 
 	function this:Try(_func)
