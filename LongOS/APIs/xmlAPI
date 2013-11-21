@@ -48,11 +48,7 @@ function parse(s)
 end
 
 local function getSpaces(depth)
-  local spaces = '';
-  for i = 1, depth do
-    spaces = spaces..'\t';
-  end
-  return spaces;
+  return string.rep("\t", depth);
 end
 
 local function getNodeLine(node, depth)

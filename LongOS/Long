@@ -1,4 +1,4 @@
-if (not term.isColor()) then
+if (not (term.isColor and term.isColor())) then
 	print('LongOS is designed for advanced computers and cannot be executed on colorless machines.');
 	return;
 end
@@ -61,13 +61,14 @@ local function drawGlobalErrorScreen(errorText)
 	oldSleep(1);
 	repeat
 		local event, key = os.pullEvent('key');
-	until (keys.getName(key) == 'enter');
+	until (key == keys.enter);
 	os.reboot();
 end
 
 local function getSystemDirectory()
 	local prog = shell.getRunningProgram();
-	return prog:sub(1, prog:len() - 11)..'LongOS';
+	local name = fs.getName(prog)
+	return prog:sub(1, #prog - #name);
 end
 
 SystemDirectory = getSystemDirectory();

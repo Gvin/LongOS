@@ -26,14 +26,8 @@ Classes.System.Desktop = Class(Object, function(this)
 
 	function this:LoadWallpaper(_fileName, _x, _y)
 		wallpaper = Image(_fileName);
-		if (_x == nil ) then
-			_x = 0
-		end
-		wallpaperX = _x;
-		if (_y == nil ) then
-			_y = 0
-		end
-		wallpaperY = _y;
+		wallpaperX = type(_x) == "number" and _x or 0;
+		wallpaperY = type(_y) == "number" and _y or 0;
 	end
 
 	function this:Draw(_videoBuffer)

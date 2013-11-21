@@ -230,7 +230,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	end
 
 	local function processKeys(_key)
-		if (_key == 15) then ------------- Tab
+		if (_key == keys.tab) then
 			processTabKey();
 		else
 			applicationsManager:ProcessKeyEvent(_key);
@@ -258,11 +258,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 	end
 
 	local function processHttpEvent(_eventName, _url, _handler)
-		if (_eventName == 'http_success') then
-			applicationsManager:ProcessHttpEvent(true, _url, _handler);
-		elseif (_eventName == 'http_failure') then
-			applicationsManager:ProcessHttpEvent(false, _url, _handler);
-		end
+		applicationsManager:ProcessHttpEvent(_eventName == 'http_success', _url, _handler);
 	end
 
 	local function processUnknownEvent(_eventName, _params)
@@ -288,7 +284,7 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 				processRedstoneEvent();
 			elseif (event.Name == 'mouse_scroll') then
 				processMouseScrollEvent(event.Params[1], event.Params[2], event.Params[3]);
-			elseif (event.Name == 'http_success' or event.Name == 'http_failure') then
+			elseif (event.Name:find('http')) then
 				processHttpEvent(event.Name, event.Params[1], event.Params[2]);
 			else
 				processUnknownEvent(event.Name, event.Params);
@@ -404,11 +400,6 @@ Classes.System.LongOS = Class(Object, function(this, _systemDirectory)
 
 	function this:LogOff()
 		working = false;
-		term.setBackgroundColor(colors.black);
-		term.setTextColor(colors.white);
-		term.clear();
-		term.setCursorPos(1, 1);
-		print('LongOS closed.');
 	end
 
 	function this:Initialize()

@@ -181,9 +181,8 @@ Classes.System.ControlPanel = Class(Object, function(this)
 
 		local year = years..'';
 		local yearText = System:GetLocalizedString('System.ControlPanel.Calendar.Year');
-		while (year:len() + yearText:len() < 8) do
-			year = ' '..year;
-		end
+		year = string.rep(' ', 8 - (#year + #yearText))..year
+
 		dayLabel:SetText(dayText..day);
 		yearLabel:SetText(yearText..year);
 
@@ -191,11 +190,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 	end
 
 	local alignMenu = function(menu)
-		if (this.IsBottom) then
-			menu.Y = screenHeight - menu.Height;
-		else
-			menu.Y = 2;
-		end
+		menu.Y = this.IsBottom and screenHeight - menu.Height or 2;
 	end
 
 	-- Draw bottom menu on the screen.
@@ -209,15 +204,7 @@ Classes.System.ControlPanel = Class(Object, function(this)
 
 	-- Process left click event caught by system.
 	this.ProcessLeftClickEvent = function(_, cursorX, cursorY)
-		if (componentsManager:ProcessLeftClickEvent(cursorX, cursorY)) then
-			return true;
-		end
-
-		if (menuesManager:ProcessLeftClickEvent(cursorX, cursorY)) then
-			return true;
-		end
-
-		return false;
+		return (componentsManager:ProcessLeftClickEvent(cursorX, cursorY)) or (menuesManager:ProcessLeftClickEvent(cursorX, cursorY))
 	end
 
 	local applicationButtonClick = function(sender, eventArgs)
@@ -237,11 +224,8 @@ Classes.System.ControlPanel = Class(Object, function(this)
 
 		local applicationButton = Button(_applicationName, nil, nil, 1, applicationsMenu.Height - 2, 'left-top');
 		applicationButton.Path = _applicationPath;
-		if (_useTerminal == 'true') then
-			applicationButton.Terminal = true;
-		else
-			applicationButton.Terminal = false;	
-		end
+		applicationButton.Terminal = _useTerminal == 'true';
+		
 		applicationButton:AddOnClickEventHandler(applicationButtonClick);
 
 		applicationsMenu:AddComponent(applicationButton);

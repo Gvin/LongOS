@@ -18,13 +18,11 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 	end
 
 	function this.SetWidth(_,_width)
-		
 		if ( type(_width) ~= 'number' ) then
 			error('Image.SetWidth [width]: Number expected, got '..type(_width)..'.');
 		end
-		if (_width < 1) then
-			_width = 1;
-		end
+		_width = math.max(_width, 1);
+
 		if (_width >= width) then
 			for j = width + 1,_width, 1 do			
 				for i = 1, height do
@@ -45,9 +43,8 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 		if ( type(_height) ~= 'number' ) then
 			error('Image.SetHeight [height]: Number expected, got '..type(_height)..'.');
 		end
-		if (_height < 1) then
-			_height = 1;
-		end
+		_height = math.max(_height, 1);
+		
 		if (_height >= height) then
 			for i = height + 1,_height do
 				canvas[i] = {};
@@ -85,24 +82,27 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 
 	----- METHODS -----
 
+	local function round(num, idp)
+    local multiplier = 10^(idp or 0);
+    if num >= 0 then
+      return math.floor(num * multiplier + 0.5) / multiplier;
+    end
+    return math.ceil(num * multiplier - 0.5) / multiplier;
+  end
 
+  local function toHex(num)
+  	local hex = math.floor(math.log(num or 1)/math.log(2));
+  	return string.format("%x", hex);
+  end
 
-	local function round(_x)
-		local result = _x;
-		local integral, ractional = math.modf (_x);
-		if ractional > 0.5 then
-			result = integral + 1;
-		else
-			result = integral;
-		end
-		return result;
-	end
+  local function fromHex(hex)
+  	return 2^tonumber(hex, 16)
+  end
 
 	function this.SetSize(_,_width,_height)			
 		this:SetWidth(_width);
 		this:SetHeight(_height);		 
 	end
-
 
 	function this.DrawLine(_,_color,_x1,_y1,_x2,_y2)			
 		local xShiftCount = _x2 - _x1;		
@@ -119,7 +119,7 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 				y = y + yShift; 		
 			else
 				y = (_y1 - _y2)*x;		
-				y = y +  (_x1*_y2 - _x2*_y1);		
+				y = y + (_x1*_y2 - _x2*_y1);		
 				y = y/(_x1 - _x2);			
 			end		
 		end
@@ -137,8 +137,7 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 		local b = _height/2;
 		local xCenter = _x + a;
 		local yCenter = _y + b;
-		local i =-a;
-		while i<=0 do
+		for i = -a, 0, 0.05 do
 			local y = (i*i)/(a*a);
 			y = 1 - y;
 			y = y * b*b;
@@ -147,22 +146,20 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 			this:SetPixel(round(xCenter + i),round(yCenter - y),_color);
 			this:SetPixel(round(xCenter - i),round(yCenter + y),_color);
 			this:SetPixel(round(xCenter - i),round(yCenter - y),_color);
-			i = i + 0.05
 		end
 	end
-
 
 	function this.SaveToFile(_, _fileName)
 		local file = fs.open(_fileName, 'w');
 		file.writeLine(width..'x'..height);
 		local line = '';
 		for i = 1, height do
-			line = '';
-			for j = 1, width do
-				line = line..canvas[i][j]..' ';
-			end
-			file.writeLine(line);
-		end
+	    for j = 1, width do
+	      line = line..toHex(canvas[i][j])
+	    end
+	    line = line..'\n';
+	  end
+		file.write(line)
 		file.close();
 	end
 
@@ -173,14 +170,14 @@ Classes.System.Graphics.Image = Class(Object, function(this, param1, param2)
 
 		local file = fs.open(_fileName, 'r');
 		local size = stringExtAPI.separate(file.readLine(),'x');
-		width = size[1] + 0;
-		height = size[2] + 0;
+		width = tonumber(size[1]);
+		height = tonumber(size[2]);
 		canvas = {};
 		for i = 1, height do
+			canvas[i] = {};
 			local line = file.readLine();
-			canvas[i] = stringExtAPI.separate(line, ' ');
-			for j = 1, width do
-				canvas[i][j] = canvas[i][j] + 0;
+			for j = 1, #line do
+				canvas[i][j] = fromHex(line:sub(j,j))
 			end
 		end
 		file.close();
